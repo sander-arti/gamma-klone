@@ -1,0 +1,27 @@
+Prosjekt: Website Redesign
+Status: I gang
+
+Action Items fra workshop 12. desember:
+
+HØYESTE PRIORITET:
+- Definere nye brukerreiser for checkout-flyten
+- Teste ny navigasjonsstruktur med 5 brukere
+- Godkjenne fargepalett med merkevare-team
+
+TEKNISK:
+- Migrere fra Vue til React (Q1 2025)
+- Implementere ny API-gateway
+- Sette opp staging-miljø
+
+DESIGN:
+- Ferdigstille wireframes for mobil
+- Lage prototype i Figma
+- Dokumentere designsystem-komponenter
+
+INNHOLD:
+- Skrive nye produktbeskrivelser
+- Ta nye produktbilder
+- Oppdatere FAQ-seksjonen
+
+Ansvarlig: Produktteamet
+Deadline: 31. januar 2025

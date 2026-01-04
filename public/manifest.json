@@ -1,0 +1,27 @@
+{
+  "name": "ARTI Slides",
+  "short_name": "ARTI Slides",
+  "description": "AI-presentasjoner som faktisk imponerer. Lag profesjonelle presentasjoner fra prompt eller notater på minutter.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "business"],
+  "lang": "no",
+  "dir": "ltr"
+}

@@ -1,0 +1,114 @@
+# ================================================
+# Dockerfile.worker - BullMQ Workers Multi-Stage
+# ================================================
+# Supports: Generation + Export (PDF/PPTX) + Extraction
+# Requires: Playwright/Chromium for PDF rendering
+# ================================================
+
+# ------------------------------------------------
+# Stage 1: Dependencies
+# ------------------------------------------------
+FROM node:20-alpine AS deps
+
+# Install libc compatibility for native modules
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* ./
+
+# Install pnpm and dependencies
+RUN corepack enable pnpm && \
+    pnpm install --frozen-lockfile
+
+# ------------------------------------------------
+# Stage 2: Builder
+# ------------------------------------------------
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy source code
+COPY . .
+
+# Copy Prisma schema and generate client
+COPY prisma ./prisma
+RUN corepack enable pnpm && \
+    pnpm prisma generate
+
+# Set production environment
+ENV NODE_ENV=production
+
+# Build TypeScript (compile to dist/)
+RUN corepack enable pnpm && \
+    pnpm build:workers || echo "No build:workers script, using tsx runtime"
+
+# ------------------------------------------------
+# Stage 3: Runner (with Playwright/Chromium)
+# ------------------------------------------------
+# Use full Node image (not alpine) for Playwright browser support
+FROM node:20-bookworm-slim AS runner
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV=production
+
+# Install system dependencies for Playwright Chromium
+# These are required for headless browser rendering
+RUN apt-get update && apt-get install -y \
+    # Chromium dependencies
+    libnss3 \
+    libnspr4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libatspi2.0-0 \
+    # Fonts (for PDF rendering)
+    fonts-liberation \
+    fonts-noto-color-emoji \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user for security
+RUN groupadd --system --gid 1001 nodejs && \
+    useradd --system --uid 1001 --gid nodejs worker
+
+# Copy built dependencies and source
+COPY --from=builder --chown=worker:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=worker:nodejs /app/dist ./dist
+COPY --from=builder --chown=worker:nodejs /app/src ./src
+COPY --from=builder --chown=worker:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=worker:nodejs /app/tsconfig.json ./tsconfig.json
+
+# Copy Prisma client (needed for runtime)
+COPY --from=builder --chown=worker:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=worker:nodejs /app/prisma ./prisma
+
+# Switch to non-root user
+USER worker
+
+# Install Playwright Chromium browser (as worker user)
+# This downloads ~100MB Chromium binary
+RUN npx playwright install chromium
+
+# Health check (check if worker process is running)
+# Workers don't expose HTTP, so we check process
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD ps aux | grep -E "node.*start-all-workers|tsx.*start-all-workers" || exit 1
+
+# Start all workers (generation + export + extraction)
+# Using tsx for runtime TypeScript execution
+CMD ["npx", "tsx", "src/lib/queue/start-all-workers.ts"]

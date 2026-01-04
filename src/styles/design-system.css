@@ -1,0 +1,1214 @@
+/**
+ * Design System CSS
+ *
+ * Core animations, utilities, and enhanced styles.
+ * Import this after Tailwind in globals.css
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (from design-tokens.ts)
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     ARTI Premium Color Palette - Warm Cream + Emerald
+     Inspired by meetdara.no - Clean, Premium, Magical
+     ========================================================================== */
+
+  /* Background Colors - Warm Cream */
+  --arti-bg-primary: #faf8f5;
+  --arti-bg-secondary: #f5f3f0;
+  --arti-bg-elevated: #ffffff;
+  --arti-bg-hover: #f0ede8;
+  --arti-bg-active: #e8e5e0;
+
+  /* Border Colors - Warm */
+  --arti-border: #e5e2dd;
+  --arti-border-subtle: #edeae5;
+  --arti-border-hover: #d8d5d0;
+
+  /* Text Colors */
+  --arti-text-primary: #1a1a1a;
+  --arti-text-secondary: #525252;
+  --arti-text-muted: #737373;
+  --arti-text-disabled: #a3a3a3;
+
+  /* Emerald Accent Colors */
+  --arti-accent: #059669;
+  --arti-accent-hover: #047857;
+  --arti-accent-light: #10b981;
+  --arti-accent-muted: rgba(5, 150, 105, 0.1);
+  --arti-accent-ring: rgba(5, 150, 105, 0.3);
+
+  /* Status Colors */
+  --arti-success: #059669;
+  --arti-success-muted: rgba(5, 150, 105, 0.1);
+  --arti-warning: #d97706;
+  --arti-warning-muted: rgba(217, 119, 6, 0.1);
+  --arti-error: #dc2626;
+  --arti-error-muted: rgba(220, 38, 38, 0.1);
+  --arti-info: #0284c7;
+  --arti-info-muted: rgba(2, 132, 199, 0.1);
+
+  /* Light Glass Effects */
+  --arti-glass-bg: rgba(255, 255, 255, 0.9);
+  --arti-glass-bg-elevated: rgba(255, 255, 255, 0.95);
+  --arti-glass-border: rgba(0, 0, 0, 0.06);
+  --arti-glass-border-hover: rgba(0, 0, 0, 0.1);
+  --arti-glass-blur: 12px;
+  --arti-glass-blur-heavy: 20px;
+
+  /* Glow Effects - Emerald */
+  --arti-glow: 0 0 20px rgba(5, 150, 105, 0.15);
+  --arti-glow-intense: 0 0 30px rgba(5, 150, 105, 0.25);
+  --arti-glow-success: 0 0 20px rgba(5, 150, 105, 0.15);
+  --arti-glow-error: 0 0 20px rgba(220, 38, 38, 0.15);
+
+  /* Legacy aliases for compatibility */
+  --nordic-accent-primary: var(--arti-accent);
+  --nordic-bg-primary: var(--arti-bg-primary);
+  --nordic-bg-secondary: var(--arti-bg-secondary);
+  --nordic-text-primary: var(--arti-text-primary);
+
+  /* ==========================================================================
+     Timing & Animation
+     ========================================================================== */
+
+  /* Duration */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  /* Easing */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-entrance: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* ==========================================================================
+     Shadows - Light Mode Optimized
+     ========================================================================== */
+
+  /* Standard shadows (for light backgrounds) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 24px 48px rgba(0, 0, 0, 0.12);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+
+  /* Colored glows - Emerald */
+  --shadow-glow: 0 0 15px rgba(5, 150, 105, 0.15);
+  --shadow-glow-primary: 0 0 20px rgba(5, 150, 105, 0.15);
+  --shadow-glow-emerald: 0 0 20px rgba(5, 150, 105, 0.15);
+  --shadow-glow-success: 0 0 20px rgba(5, 150, 105, 0.15);
+
+  /* Elevated surface shadow (for cards, modals) */
+  --shadow-elevated:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-default: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+
+/* Fade In */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade Out */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Fade In Up - for content appearing */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down - for dropdowns */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Left */
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Right */
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In - for modals, popovers */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scale Out */
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Slide In from Right */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Slide In from Left */
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Pulse - subtle attention */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Shimmer - loading skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Spin - for loaders */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bounce subtle */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Stagger delay helper - use with data-stagger attribute */
+@keyframes stagger-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Premium Decorative Animations (Punkt 6)
+   ========================================================================== */
+
+/* Floating orb animation - slow, dreamy movement */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) scale(1.05);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px) scale(0.95);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px) scale(1.02);
+    opacity: 0.75;
+  }
+}
+
+/* Subtle breathing/pulsing for backgrounds */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+/* Gradient shift for dynamic backgrounds */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Elegant reveal animation - for titles */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Slide content entrance - subtle scale */
+@keyframes slide-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Decorative accent line grow */
+@keyframes line-grow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Animation Utility Classes
+   ========================================================================== */
+
+.animate-fade-in {
+  animation: fade-in var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-fade-out {
+  animation: fade-out var(--duration-normal) var(--ease-in) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-scale-out {
+  animation: scale-out var(--duration-fast) var(--ease-in) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s var(--ease) infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(
+    90deg,
+    var(--theme-color-background-muted, #e2e8f0) 0%,
+    var(--theme-color-background-subtle, #f1f5f9) 50%,
+    var(--theme-color-background-muted, #e2e8f0) 100%
+  );
+  background-size: 200% 100%;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s var(--ease) infinite;
+}
+
+/* Premium Decorative Animations (Punkt 6) */
+.animate-float-slow {
+  animation: float-slow 8s var(--ease) infinite;
+}
+
+.animate-breathe {
+  animation: breathe 4s var(--ease) infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 6s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-reveal-up {
+  animation: reveal-up var(--duration-slow) var(--ease-out) forwards;
+}
+
+.animate-slide-entrance {
+  animation: slide-entrance var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-line-grow {
+  animation: line-grow var(--duration-slow) var(--ease-out) forwards;
+}
+
+/* Stagger children animations */
+.animate-stagger > * {
+  opacity: 0;
+  animation: stagger-fade-in-up var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.animate-stagger > *:nth-child(2) { animation-delay: 75ms; }
+.animate-stagger > *:nth-child(3) { animation-delay: 150ms; }
+.animate-stagger > *:nth-child(4) { animation-delay: 225ms; }
+.animate-stagger > *:nth-child(5) { animation-delay: 300ms; }
+.animate-stagger > *:nth-child(6) { animation-delay: 375ms; }
+.animate-stagger > *:nth-child(7) { animation-delay: 450ms; }
+.animate-stagger > *:nth-child(8) { animation-delay: 525ms; }
+
+/* Animation delay utilities */
+.delay-0 { animation-delay: 0ms; }
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }
+
+/* Initially hidden for animations */
+.animate-on-enter {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Transition Utilities
+   ========================================================================== */
+
+.transition-fast {
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease);
+}
+
+.transition-normal {
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease);
+}
+
+.transition-slow {
+  transition-duration: var(--duration-slow);
+  transition-timing-function: var(--ease);
+}
+
+.transition-spring {
+  transition-timing-function: var(--ease-spring);
+}
+
+/* ==========================================================================
+   Shadow Utilities
+   ========================================================================== */
+
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-2xl { box-shadow: var(--shadow-2xl); }
+.shadow-inner { box-shadow: var(--shadow-inner); }
+.shadow-glow { box-shadow: var(--shadow-glow); }
+
+/* ==========================================================================
+   Typography Enhancements
+   ========================================================================== */
+
+/* Tight letter-spacing for headings */
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+/* Text balance for better wrapping */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--theme-color-primary, #2563eb),
+    var(--theme-color-accent, #0891b2)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Text shadow for readability on images */
+.text-shadow {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Background Utilities
+   ========================================================================== */
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(
+    135deg,
+    var(--theme-color-primary, #2563eb),
+    var(--theme-color-accent, #0891b2)
+  );
+}
+
+.bg-gradient-subtle {
+  background: linear-gradient(
+    180deg,
+    var(--theme-color-background, #f8fafc),
+    var(--theme-color-background-subtle, #f1f5f9)
+  );
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(
+    ellipse at top,
+    var(--theme-color-background-subtle, #f1f5f9),
+    var(--theme-color-background, #f8fafc)
+  );
+}
+
+/* Overlay for text readability on images */
+.overlay-dark {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.overlay-light {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+/* Decorative dot pattern */
+.bg-dots {
+  background-image: radial-gradient(
+    circle,
+    var(--theme-color-border-subtle, #e2e8f0) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+}
+
+/* ==========================================================================
+   Card & Container Styles
+   ========================================================================== */
+
+.card {
+  background: var(--theme-color-background, #ffffff);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--theme-color-border-subtle, #e2e8f0);
+}
+
+.card-elevated {
+  background: var(--theme-color-background, #ffffff);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Glass effect - using theme tokens */
+.glass {
+  background: var(--theme-effects-glass-background, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+  -webkit-backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+  border: var(--theme-effects-glass-border, 1px solid rgba(255, 255, 255, 0.3));
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+  -webkit-backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+}
+
+/* ==========================================================================
+   Nordic Glassmorphism - Dark Mode Glass Effects
+   ========================================================================== */
+
+/* Nordic glass - primary panel style */
+.nordic-glass {
+  background: var(--nordic-glass-bg);
+  backdrop-filter: blur(var(--nordic-glass-blur));
+  -webkit-backdrop-filter: blur(var(--nordic-glass-blur));
+  border: 1px solid var(--nordic-glass-border);
+}
+
+/* Nordic glass - elevated (modals, dropdowns) */
+.nordic-glass-elevated {
+  background: var(--nordic-glass-bg-elevated);
+  backdrop-filter: blur(var(--nordic-glass-blur-heavy));
+  -webkit-backdrop-filter: blur(var(--nordic-glass-blur-heavy));
+  border: 1px solid var(--nordic-glass-border);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Nordic glass - subtle (hover states) */
+.nordic-glass-subtle {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--nordic-glass-border);
+}
+
+/* Nordic glass - interactive (buttons, inputs) */
+.nordic-glass-interactive {
+  background: var(--nordic-glass-bg);
+  backdrop-filter: blur(var(--nordic-glass-blur));
+  -webkit-backdrop-filter: blur(var(--nordic-glass-blur));
+  border: 1px solid var(--nordic-glass-border);
+  transition:
+    background var(--duration-normal) var(--ease),
+    border-color var(--duration-normal) var(--ease),
+    box-shadow var(--duration-normal) var(--ease);
+}
+
+.nordic-glass-interactive:hover {
+  background: var(--nordic-glass-bg-elevated);
+  border-color: var(--nordic-glass-border-hover);
+}
+
+.nordic-glass-interactive:focus-visible {
+  outline: none;
+  border-color: var(--nordic-accent-primary);
+  box-shadow: var(--nordic-glow-primary);
+}
+
+/* ==========================================================================
+   Nordic Surface Utilities
+   ========================================================================== */
+
+/* Surface levels */
+.nordic-surface-1 {
+  background: var(--nordic-bg-primary);
+}
+
+.nordic-surface-2 {
+  background: var(--nordic-bg-secondary);
+}
+
+.nordic-surface-3 {
+  background: var(--nordic-bg-elevated);
+}
+
+/* Text utilities */
+.nordic-text {
+  color: var(--nordic-text-primary);
+}
+
+.nordic-text-secondary {
+  color: var(--nordic-text-secondary);
+}
+
+.nordic-text-muted {
+  color: var(--nordic-text-muted);
+}
+
+/* Border utilities */
+.nordic-border {
+  border-color: var(--nordic-border);
+}
+
+.nordic-border-subtle {
+  border-color: var(--nordic-border-subtle);
+}
+
+/* Glow utilities */
+.nordic-glow {
+  box-shadow: var(--nordic-glow-primary);
+}
+
+.nordic-glow-intense {
+  box-shadow: var(--nordic-glow-primary-intense);
+}
+
+/* ==========================================================================
+   Nordic Hover Effects
+   ========================================================================== */
+
+/* Subtle lift with glow */
+.nordic-hover-lift {
+  transition:
+    transform var(--duration-normal) var(--ease),
+    box-shadow var(--duration-normal) var(--ease);
+}
+
+.nordic-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nordic-glow-primary);
+}
+
+/* Background highlight */
+.nordic-hover-bg {
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.nordic-hover-bg:hover {
+  background: var(--nordic-bg-hover);
+}
+
+/* Border highlight */
+.nordic-hover-border {
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+.nordic-hover-border:hover {
+  border-color: var(--nordic-border-hover);
+}
+
+/* Premium card with glassmorphism */
+.card-premium {
+  background: var(--theme-effects-glass-background, rgba(255, 255, 255, 0.7));
+  backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+  -webkit-backdrop-filter: var(--theme-effects-glass-backdrop-blur, blur(12px));
+  border: var(--theme-effects-glass-border, 1px solid rgba(255, 255, 255, 0.3));
+  border-radius: var(--theme-effects-border-radius, 0.75rem);
+}
+
+/* Nordic premium card */
+.nordic-card {
+  background: var(--nordic-bg-elevated);
+  border: 1px solid var(--nordic-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition:
+    border-color var(--duration-normal) var(--ease),
+    box-shadow var(--duration-normal) var(--ease);
+}
+
+.nordic-card:hover {
+  border-color: var(--nordic-border-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Nordic input styling */
+.nordic-input {
+  background: var(--nordic-bg-secondary);
+  border: 1px solid var(--nordic-border);
+  border-radius: var(--radius-md);
+  color: var(--nordic-text-primary);
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
+}
+
+.nordic-input::placeholder {
+  color: var(--nordic-text-muted);
+}
+
+.nordic-input:hover {
+  border-color: var(--nordic-border-hover);
+}
+
+.nordic-input:focus {
+  outline: none;
+  border-color: var(--nordic-accent-primary);
+  box-shadow: var(--nordic-glow-primary);
+}
+
+/* Colored accent shadows - using theme tokens */
+.shadow-accent-pink {
+  box-shadow: var(--theme-effects-shadow-pink, 0 4px 14px rgba(236, 72, 153, 0.15));
+}
+
+.shadow-accent-purple {
+  box-shadow: var(--theme-effects-shadow-purple, 0 4px 14px rgba(139, 92, 246, 0.15));
+}
+
+.shadow-accent-blue {
+  box-shadow: var(--theme-effects-shadow-blue, 0 4px 14px rgba(59, 130, 246, 0.15));
+}
+
+/* ==========================================================================
+   Interactive States
+   ========================================================================== */
+
+/* Hover lift effect - premium version with stronger lift */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease),
+              box-shadow var(--duration-normal) var(--ease);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Premium hover with colored shadow */
+.hover-premium {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-premium:hover {
+  transform: translateY(-4px);
+}
+
+/* Hover scale effect */
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Focus ring */
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--theme-color-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Skeleton Loading
+   ========================================================================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--theme-color-background-muted, #e2e8f0) 0%,
+    var(--theme-color-background-subtle, #f1f5f9) 50%,
+    var(--theme-color-background-muted, #e2e8f0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-title {
+  height: 1.5em;
+  width: 60%;
+  margin-bottom: 1em;
+}
+
+.skeleton-image {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Slide-specific Utilities
+   ========================================================================== */
+
+/* Decorative accent line */
+.accent-line {
+  width: 4rem;
+  height: 4px;
+  background: var(--theme-color-primary, #2563eb);
+  border-radius: var(--radius-full);
+}
+
+.accent-line-sm {
+  width: 2rem;
+  height: 3px;
+}
+
+.accent-line-lg {
+  width: 6rem;
+  height: 5px;
+}
+
+/* Quote decoration */
+.quote-mark {
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--theme-color-primary, #2563eb);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+/* Bullet point custom styling */
+.bullet-custom {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.bullet-custom::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.5em;
+  background: var(--theme-color-primary, #2563eb);
+  border-radius: var(--radius-full);
+}
+
+/* Numbered list styling */
+.numbered-list {
+  counter-reset: list-counter;
+}
+
+.numbered-item {
+  counter-increment: list-counter;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.numbered-item::before {
+  content: counter(list-counter);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--theme-color-primary, #2563eb);
+  color: var(--theme-color-primary-foreground, #ffffff);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-stagger > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .shadow-xs,
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================================================
+   Nordic Minimalism Micro-Interactions
+   ========================================================================== */
+
+/* Subtle glow pulse for selected items - Emerald accent */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(5, 150, 105, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 2px rgba(5, 150, 105, 0.15);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s var(--ease) infinite;
+}
+
+/* Smooth fade for content transitions */
+@keyframes content-fade {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-content-fade {
+  animation: content-fade var(--duration-normal) var(--ease-out) forwards;
+}
+
+/* Subtle scale bounce for button presses */
+@keyframes press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-press {
+  animation: press var(--duration-fast) var(--ease-spring);
+}
+
+/* Typing cursor blink */
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Dark mode optimized shimmer */
+.animate-shimmer-dark {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(
+    90deg,
+    var(--nordic-bg-secondary) 0%,
+    var(--nordic-bg-elevated) 50%,
+    var(--nordic-bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* Status dot pulse */
+@keyframes status-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.animate-status-pulse {
+  animation: status-pulse 1.5s var(--ease) infinite;
+}
+
+/* Smooth panel slide */
+@keyframes panel-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes panel-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-panel-in {
+  animation: panel-slide-in var(--duration-normal) var(--ease-out) forwards;
+}
+
+.animate-panel-out {
+  animation: panel-slide-out var(--duration-fast) var(--ease-in) forwards;
+}
+
+/* Hover underline effect */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--nordic-accent-primary);
+  transition: width var(--duration-normal) var(--ease);
+}
+
+.hover-underline:hover::after {
+  width: 100%;
+}
+
+/* Focus within container highlight */
+.focus-within-highlight:focus-within {
+  border-color: var(--nordic-accent-primary) !important;
+  box-shadow: var(--nordic-glow-primary);
+}
+
+/* Active state feedback */
+.active-scale:active {
+  transform: scale(0.98);
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "deck": {
+    "title": "Møtereferat - Produktteam uke 50",
+    "language": "no",
+    "themeId": "nordic_light"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "Møtereferat" },
+        { "kind": "text", "text": "Produktteam • Uke 50 • 15. desember 2025" }
+      ]
+    },
+    {
+      "type": "agenda",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "Agenda" },
+        {
+          "kind": "bullets",
+          "items": [
+            "Status på MVP-utvikling",
+            "Gjennomgang av beslutninger",
+            "Oppgavefordeling",
+            "Neste møte"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "bullets",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "MVP-status" },
+        {
+          "kind": "bullets",
+          "items": [
+            "80% av MVP er ferdig",
+            "Eksport-modul gjenstår",
+            "Designreview godkjent",
+            "Beta-feedback er positiv"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "decisions_list",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "Beslutninger" },
+        {
+          "kind": "bullets",
+          "items": [
+            "Lansering flyttes til 15. januar",
+            "Ansetter ny frontend-utvikler",
+            "Freemium-modell med Pro tier på 99kr/mnd",
+            "API-dokumentasjon før lansering"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "action_items_table",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "Oppgaver" },
+        {
+          "kind": "table",
+          "columns": ["Oppgave", "Ansvarlig", "Frist"],
+          "rows": [
+            ["Ferdigstille markedsplan", "Anna", "20. des"],
+            ["Fikse eksport-bugs", "Per", "10. jan"],
+            ["Lage 3 nye temaer", "Kari", "8. jan"],
+            ["Skrive integrasjonstester", "Ole", "12. jan"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "summary_next_steps",
+      "layoutVariant": "default",
+      "blocks": [
+        { "kind": "title", "text": "Neste steg" },
+        {
+          "kind": "bullets",
+          "items": [
+            "Følge opp oppgaver før jul",
+            "Neste møte: 8. januar kl. 10:00",
+            "Forbered demo av eksport-funksjon",
+            "Gjennomgå kundefeedback"
+          ]
+        }
+      ]
+    }
+  ]
+}

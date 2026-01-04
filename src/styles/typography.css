@@ -1,0 +1,475 @@
+/**
+ * Typography System
+ *
+ * Professional typography scale with proper line-heights,
+ * letter-spacing, and font weights for presentations.
+ */
+
+/* ==========================================================================
+   Font Variables
+   ========================================================================== */
+
+:root {
+  /* Font Families - Using Plus Jakarta Sans for premium feel (loaded in layout.tsx) */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ==========================================================================
+     Nordic Typography Scale - Larger, More Spacious
+     ========================================================================== */
+
+  /* Display - Hero stats, large numbers */
+  --nordic-font-display: clamp(3.5rem, 8cqw, 6rem);
+  --nordic-font-display-weight: 800;
+  --nordic-font-display-line-height: 1;
+  --nordic-font-display-tracking: -0.04em;
+
+  /* Title - Slide titles */
+  --nordic-font-title: clamp(2.75rem, 6cqw, 4rem);
+  --nordic-font-title-weight: 700;
+  --nordic-font-title-line-height: 1.1;
+  --nordic-font-title-tracking: -0.03em;
+
+  /* Heading - Section headings */
+  --nordic-font-heading: clamp(1.75rem, 3.5cqw, 2.5rem);
+  --nordic-font-heading-weight: 600;
+  --nordic-font-heading-line-height: 1.2;
+  --nordic-font-heading-tracking: -0.02em;
+
+  /* Subheading - Card titles */
+  --nordic-font-subheading: clamp(1.25rem, 2.25cqw, 1.75rem);
+  --nordic-font-subheading-weight: 600;
+  --nordic-font-subheading-line-height: 1.3;
+  --nordic-font-subheading-tracking: -0.01em;
+
+  /* Body Large - Lead paragraphs */
+  --nordic-font-body-lg: clamp(1.125rem, 1.8cqw, 1.375rem);
+  --nordic-font-body-lg-weight: 400;
+  --nordic-font-body-lg-line-height: 1.7;
+
+  /* Body - Default text */
+  --nordic-font-body: clamp(1rem, 1.5cqw, 1.25rem);
+  --nordic-font-body-weight: 400;
+  --nordic-font-body-line-height: 1.7;
+
+  /* Body Small - Secondary text */
+  --nordic-font-body-sm: clamp(0.875rem, 1.25cqw, 1rem);
+  --nordic-font-body-sm-weight: 400;
+  --nordic-font-body-sm-line-height: 1.6;
+
+  /* Caption - Labels, metadata */
+  --nordic-font-caption: clamp(0.75rem, 1cqw, 0.875rem);
+  --nordic-font-caption-weight: 500;
+  --nordic-font-caption-line-height: 1.4;
+  --nordic-font-caption-tracking: 0.02em;
+
+  /* Letter Spacing Tokens */
+  --nordic-tracking-tighter: -0.04em;
+  --nordic-tracking-tight: -0.02em;
+  --nordic-tracking-normal: -0.01em;
+  --nordic-tracking-wide: 0.02em;
+}
+
+/* ==========================================================================
+   Typography Scale (Theme-Aware)
+
+   These utility classes use CSS custom properties from the theme system.
+   The hierarchy (from largest to smallest):
+   1. Display - Hero numbers, stats
+   2. Title - Slide titles (h1)
+   3. Heading - Section headings (h2)
+   4. Subheading - Card titles, sub-sections (h3/h4)
+   5. Body Large - Lead paragraphs, subtitles
+   6. Body - Default text
+   7. Body Small - Secondary text
+   8. Caption - Labels, metadata
+   ========================================================================== */
+
+/* Display - For hero numbers, stats, large visuals */
+.text-display {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-display-size, clamp(3rem, 6cqw, 4.5rem));
+  font-weight: var(--theme-typography-display-weight, 800);
+  line-height: var(--theme-typography-display-line-height, 1);
+  letter-spacing: var(--theme-typography-display-letter-spacing, -0.03em);
+}
+
+/* Heading 1 - Slide titles */
+.text-h1,
+.text-title {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-title-size, clamp(2.5rem, 5.5cqw, 3.5rem));
+  font-weight: var(--theme-typography-title-weight, 700);
+  line-height: var(--theme-typography-title-line-height, 1.1);
+  letter-spacing: var(--theme-typography-title-letter-spacing, -0.025em);
+  text-wrap: balance;
+}
+
+/* Heading 2 - Section headings */
+.text-h2,
+.text-heading {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-heading-size, clamp(1.5rem, 3cqw, 2.25rem));
+  font-weight: var(--theme-typography-heading-weight, 600);
+  line-height: var(--theme-typography-heading-line-height, 1.2);
+  letter-spacing: var(--theme-typography-heading-letter-spacing, -0.02em);
+}
+
+/* Heading 3/4 - Subheadings, card titles */
+.text-h3,
+.text-h4,
+.text-subheading {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-subheading-size, clamp(1.125rem, 2cqw, 1.5rem));
+  font-weight: var(--theme-typography-subheading-weight, 600);
+  line-height: var(--theme-typography-subheading-line-height, 1.3);
+  letter-spacing: var(--theme-typography-subheading-letter-spacing, -0.01em);
+}
+
+/* Body Large - Lead paragraphs, subtitles */
+.text-body-lg,
+.text-lead {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-large-size, clamp(1.0625rem, 1.75cqw, 1.25rem));
+  font-weight: var(--theme-typography-body-large-weight, 400);
+  line-height: var(--theme-typography-body-large-line-height, 1.6);
+  letter-spacing: 0;
+}
+
+/* Body - Default text */
+.text-body {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-size, clamp(0.9375rem, 1.4cqw, 1.125rem));
+  font-weight: var(--theme-typography-body-weight, 400);
+  line-height: var(--theme-typography-body-line-height, 1.65);
+  letter-spacing: 0;
+}
+
+/* Body Small - Secondary text */
+.text-body-sm,
+.text-small {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-small-size, clamp(0.8125rem, 1.2cqw, 0.9375rem));
+  font-weight: var(--theme-typography-body-small-weight, 400);
+  line-height: var(--theme-typography-body-small-line-height, 1.6);
+  letter-spacing: 0;
+}
+
+/* Caption - Labels, metadata, table headers */
+.text-caption {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-caption-size, clamp(0.6875rem, 1cqw, 0.8125rem));
+  font-weight: var(--theme-typography-caption-weight, 500);
+  line-height: var(--theme-typography-caption-line-height, 1.4);
+  letter-spacing: var(--theme-typography-caption-letter-spacing, 0.025em);
+  text-transform: uppercase;
+}
+
+/* Quote - Block quotes */
+.text-quote {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-quote-size, clamp(1.25rem, 2.5cqw, 1.75rem));
+  font-weight: var(--theme-typography-quote-weight, 400);
+  font-style: var(--theme-typography-quote-style, italic);
+  line-height: var(--theme-typography-quote-line-height, 1.5);
+  letter-spacing: -0.01em;
+}
+
+/* Code - Inline code, monospace */
+.text-code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   Slide-Specific Typography (Theme-Aware)
+
+   These classes use theme variables for consistent styling across slide types.
+   ========================================================================== */
+
+/* Cover title - largest, most impactful */
+.slide-title-cover {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-display-size, clamp(3rem, 6cqw, 4.5rem));
+  font-weight: var(--theme-typography-display-weight, 800);
+  line-height: var(--theme-typography-display-line-height, 1);
+  letter-spacing: var(--theme-typography-display-letter-spacing, -0.03em);
+  text-wrap: balance;
+}
+
+/* Cover subtitle */
+.slide-subtitle-cover {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-large-size, clamp(1.0625rem, 1.75cqw, 1.25rem));
+  font-weight: var(--theme-typography-body-large-weight, 400);
+  line-height: var(--theme-typography-body-large-line-height, 1.6);
+  letter-spacing: 0;
+}
+
+/* Section header title */
+.slide-title-section {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-title-size, clamp(2.5rem, 5.5cqw, 3.5rem));
+  font-weight: var(--theme-typography-title-weight, 700);
+  line-height: var(--theme-typography-title-line-height, 1.1);
+  letter-spacing: var(--theme-typography-title-letter-spacing, -0.025em);
+  text-wrap: balance;
+}
+
+/* Content slide title */
+.slide-title-content {
+  font-family: var(--theme-font-family-heading, var(--font-heading));
+  font-size: var(--theme-typography-heading-size, clamp(1.5rem, 3cqw, 2.25rem));
+  font-weight: var(--theme-typography-heading-weight, 600);
+  line-height: var(--theme-typography-heading-line-height, 1.2);
+  letter-spacing: var(--theme-typography-heading-letter-spacing, -0.02em);
+  text-wrap: balance;
+}
+
+/* Bullet text */
+.slide-bullet-text {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-size, clamp(0.9375rem, 1.4cqw, 1.125rem));
+  font-weight: var(--theme-typography-body-weight, 400);
+  line-height: var(--theme-typography-body-line-height, 1.65);
+  letter-spacing: 0;
+}
+
+/* Table text */
+.slide-table-text {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-small-size, clamp(0.8125rem, 1.2cqw, 0.9375rem));
+  font-weight: var(--theme-typography-body-small-weight, 400);
+  line-height: var(--theme-typography-body-small-line-height, 1.6);
+  letter-spacing: 0;
+}
+
+/* Table header */
+.slide-table-header {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-caption-size, clamp(0.6875rem, 1cqw, 0.8125rem));
+  font-weight: var(--theme-typography-caption-weight, 500);
+  line-height: var(--theme-typography-caption-line-height, 1.4);
+  letter-spacing: var(--theme-typography-caption-letter-spacing, 0.025em);
+  text-transform: uppercase;
+}
+
+/* Callout text */
+.slide-callout-text {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-size, clamp(0.9375rem, 1.4cqw, 1.125rem));
+  font-weight: var(--font-weight-medium);
+  line-height: var(--theme-typography-body-line-height, 1.65);
+  letter-spacing: 0;
+}
+
+/* Quote text */
+.slide-quote-text {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-quote-size, clamp(1.25rem, 2.5cqw, 1.75rem));
+  font-weight: var(--theme-typography-quote-weight, 400);
+  font-style: var(--theme-typography-quote-style, italic);
+  line-height: var(--theme-typography-quote-line-height, 1.5);
+  letter-spacing: -0.01em;
+}
+
+/* Quote attribution */
+.slide-quote-attribution {
+  font-family: var(--theme-font-family, var(--font-sans));
+  font-size: var(--theme-typography-body-small-size, clamp(0.8125rem, 1.2cqw, 0.9375rem));
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--theme-color-foreground-muted, #64748b);
+}
+
+/* ==========================================================================
+   Text Utility Classes
+   ========================================================================== */
+
+/* Font weights */
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-extrabold { font-weight: var(--font-weight-extrabold); }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Text colors using theme variables */
+.text-primary {
+  color: var(--theme-color-primary, #2563eb);
+}
+
+.text-secondary {
+  color: var(--theme-color-secondary, #64748b);
+}
+
+.text-muted {
+  color: var(--theme-color-foreground-muted, #475569);
+}
+
+.text-accent {
+  color: var(--theme-color-accent, #0891b2);
+}
+
+/* Truncation */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--theme-color-primary, #2563eb);
+  color: var(--theme-color-primary-foreground, #ffffff);
+}
+
+/* ==========================================================================
+   Nordic Typography Utility Classes
+   ========================================================================== */
+
+/* Nordic Display */
+.nordic-display {
+  font-family: var(--font-heading);
+  font-size: var(--nordic-font-display);
+  font-weight: var(--nordic-font-display-weight);
+  line-height: var(--nordic-font-display-line-height);
+  letter-spacing: var(--nordic-font-display-tracking);
+  color: var(--nordic-text-primary);
+}
+
+/* Nordic Title */
+.nordic-title {
+  font-family: var(--font-heading);
+  font-size: var(--nordic-font-title);
+  font-weight: var(--nordic-font-title-weight);
+  line-height: var(--nordic-font-title-line-height);
+  letter-spacing: var(--nordic-font-title-tracking);
+  color: var(--nordic-text-primary);
+  text-wrap: balance;
+}
+
+/* Nordic Heading */
+.nordic-heading {
+  font-family: var(--font-heading);
+  font-size: var(--nordic-font-heading);
+  font-weight: var(--nordic-font-heading-weight);
+  line-height: var(--nordic-font-heading-line-height);
+  letter-spacing: var(--nordic-font-heading-tracking);
+  color: var(--nordic-text-primary);
+}
+
+/* Nordic Subheading */
+.nordic-subheading {
+  font-family: var(--font-heading);
+  font-size: var(--nordic-font-subheading);
+  font-weight: var(--nordic-font-subheading-weight);
+  line-height: var(--nordic-font-subheading-line-height);
+  letter-spacing: var(--nordic-font-subheading-tracking);
+  color: var(--nordic-text-primary);
+}
+
+/* Nordic Body Large */
+.nordic-body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--nordic-font-body-lg);
+  font-weight: var(--nordic-font-body-lg-weight);
+  line-height: var(--nordic-font-body-lg-line-height);
+  color: var(--nordic-text-secondary);
+}
+
+/* Nordic Body */
+.nordic-body {
+  font-family: var(--font-sans);
+  font-size: var(--nordic-font-body);
+  font-weight: var(--nordic-font-body-weight);
+  line-height: var(--nordic-font-body-line-height);
+  color: var(--nordic-text-secondary);
+}
+
+/* Nordic Body Small */
+.nordic-body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--nordic-font-body-sm);
+  font-weight: var(--nordic-font-body-sm-weight);
+  line-height: var(--nordic-font-body-sm-line-height);
+  color: var(--nordic-text-muted);
+}
+
+/* Nordic Caption */
+.nordic-caption {
+  font-family: var(--font-sans);
+  font-size: var(--nordic-font-caption);
+  font-weight: var(--nordic-font-caption-weight);
+  line-height: var(--nordic-font-caption-line-height);
+  letter-spacing: var(--nordic-font-caption-tracking);
+  color: var(--nordic-text-muted);
+  text-transform: uppercase;
+}
+
+/* Nordic Label - For form labels, small headings */
+.nordic-label {
+  font-family: var(--font-sans);
+  font-size: var(--nordic-font-body-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  color: var(--nordic-text-secondary);
+}
+
+/* Nordic Link */
+.nordic-link {
+  color: var(--nordic-accent-primary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.nordic-link:hover {
+  color: var(--nordic-accent-primary-hover);
+}
+
+/* Nordic text colors */
+.nordic-text-primary {
+  color: var(--nordic-text-primary);
+}
+
+.nordic-text-secondary {
+  color: var(--nordic-text-secondary);
+}
+
+.nordic-text-muted {
+  color: var(--nordic-text-muted);
+}
+
+.nordic-text-accent {
+  color: var(--nordic-accent-primary);
+}

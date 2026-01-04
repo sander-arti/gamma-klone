@@ -1,0 +1,35 @@
+{
+  "title": "Møtereferat - Produktteam uke 50",
+  "slides": [
+    {
+      "title": "Møteoversikt",
+      "suggestedType": "cover",
+      "hints": ["Produktteam", "Uke 50", "15. desember 2025"]
+    },
+    {
+      "title": "Agenda",
+      "suggestedType": "agenda",
+      "hints": ["Status", "Beslutninger", "Oppgaver"]
+    },
+    {
+      "title": "MVP-status",
+      "suggestedType": "bullets",
+      "hints": ["80% ferdig", "Eksport gjenstår"]
+    },
+    {
+      "title": "Beslutninger",
+      "suggestedType": "decisions_list",
+      "hints": ["Lansering", "Ansettelse", "Prising"]
+    },
+    {
+      "title": "Oppgaver",
+      "suggestedType": "action_items_table",
+      "hints": ["Anna", "Per", "Kari", "Ole"]
+    },
+    {
+      "title": "Neste steg",
+      "suggestedType": "summary_next_steps",
+      "hints": ["Neste møte 8. januar"]
+    }
+  ]
+}

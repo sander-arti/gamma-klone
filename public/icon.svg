@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="emerald-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded rectangle background -->
+  <rect width="512" height="512" rx="96" fill="url(#emerald-gradient)"/>
+  <!-- Lightbulb icon representing AI/ideas -->
+  <path
+    d="M256 96c-66.3 0-120 53.7-120 120 0 44.6 24.3 83.5 60.4 104.2 7.7 4.4 12.4 12.5 12.4 21.4v10.4c0 8.8 7.2 16 16 16h62.4c8.8 0 16-7.2 16-16v-10.4c0-8.9 4.7-17 12.4-21.4C351.7 299.5 376 260.6 376 216c0-66.3-53.7-120-120-120z"
+    stroke="white"
+    stroke-width="28"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  <!-- Lightbulb base lines -->
+  <path
+    d="M208 400h96M224 432h64"
+    stroke="white"
+    stroke-width="28"
+    stroke-linecap="round"
+  />
+  <!-- Rays/sparkle to represent AI generation -->
+  <circle cx="256" cy="200" r="8" fill="white"/>
+  <path
+    d="M256 152v-24M256 248v24M208 200h-24M304 200h24"
+    stroke="white"
+    stroke-width="16"
+    stroke-linecap="round"
+  />
+</svg>

@@ -1,0 +1,115 @@
+# ============================================
+# Dockerfile.web - Next.js Multi-Stage Build
+# ============================================
+# Optimized for production deployment
+# Stages: deps → builder → runner
+# ============================================
+
+# --------------------------------------------
+# Stage 1: Dependencies
+# --------------------------------------------
+# Install all dependencies (production + dev)
+# This stage is cached unless package.json changes
+FROM node:20-alpine AS deps
+
+# Install libc compatibility for native modules
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml* ./
+
+# Install pnpm and dependencies
+RUN corepack enable pnpm && \
+    pnpm install --frozen-lockfile
+
+# --------------------------------------------
+# Stage 2: Builder
+# --------------------------------------------
+# Build the Next.js application
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+
+# Copy source code
+COPY . .
+
+# Copy Prisma schema and generate client
+COPY prisma ./prisma
+RUN corepack enable pnpm && \
+    pnpm prisma generate
+
+# Set production environment
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Set placeholder env vars for build (will be overridden at runtime)
+# These are needed for Next.js to build routes that reference env vars
+# WARNING: These are dummy values for build only - MUST be set in Railway/Vercel
+ENV NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwbGFjZWhvbGRlciIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNjAwMDAwMDAwfQ.placeholder
+ENV SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwbGFjZWhvbGRlciIsInJvbGUiOiJzZXJ2aWNlX3JvbGUiLCJpYXQiOjE2MDAwMDAwMDB9.placeholder
+ENV DATABASE_URL=postgresql://placeholder:placeholder@localhost:5432/placeholder
+ENV REDIS_URL=redis://localhost:6379
+ENV OPENAI_API_KEY=sk-placeholder
+ENV GEMINI_API_KEY=AIza-placeholder
+ENV S3_ENDPOINT=http://localhost:9000
+ENV S3_ACCESS_KEY=placeholder
+ENV S3_SECRET_KEY=placeholder
+ENV S3_BUCKET=placeholder
+ENV NEXT_PUBLIC_APP_URL=http://localhost:3000
+ENV NEXT_PUBLIC_BASE_URL=http://localhost:3000
+ENV APP_SECRET=placeholder-change-in-production
+
+# Build Next.js app (standalone output)
+RUN corepack enable pnpm && \
+    pnpm build
+
+# --------------------------------------------
+# Stage 3: Runner
+# --------------------------------------------
+# Run the Next.js application with minimal footprint
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Copy standalone Next.js output
+# Standalone mode includes a minimal node_modules with only required deps
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy Prisma schema (needed for runtime client)
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
+# Switch to non-root user
+USER nextjs
+
+# Note: Next.js standalone should include Prisma client in its bundled node_modules
+# If issues occur, we may need to run: prisma generate in this stage
+
+# Expose Next.js port
+EXPOSE 3000
+
+# Set hostname (required for Next.js standalone)
+ENV HOSTNAME="0.0.0.0"
+ENV PORT=3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Start Next.js server
+CMD ["node", "server.js"]

@@ -1,0 +1,25 @@
+Møtereferat - Produktteam uke 50
+
+Deltakere: Anna (PM), Per (Dev), Kari (Design), Ole (QA)
+Dato: 15. desember 2025
+
+DISKUTERT:
+- Status på MVP-utvikling: 80% ferdig, eksport-modul gjenstår
+- Designreview av nye slide-templates: Godkjent med små justeringer
+- Teknisk gjeld i backend: Må prioriteres i Q1
+- Kundefeedback fra beta: Generelt positiv, ønsker flere temaer
+
+BESLUTNINGER:
+1. Lansering flyttes til 15. januar for å sikre kvalitet
+2. Ansetter ny frontend-utvikler - Anna tar rekruttering
+3. Prising: Fremium-modell med Pro tier på 99kr/mnd
+4. API-dokumentasjon må være klar før lansering
+
+OPPGAVER:
+- Anna: Ferdigstille markedsplan (frist: 20. des)
+- Per: Fikse eksport-bugs (frist: 10. jan)
+- Kari: Lage 3 nye temaer (frist: 8. jan)
+- Ole: Skrive integrasjonstester (frist: 12. jan)
+
+NESTE MØTE:
+8. januar 2025 kl. 10:00

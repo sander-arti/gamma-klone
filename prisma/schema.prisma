@@ -1,0 +1,264 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================================
+// USER & WORKSPACE
+// ============================================================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  workspaces WorkspaceMember[]
+  decks      Deck[]
+
+  @@map("users")
+}
+
+model Workspace {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  members       WorkspaceMember[]
+  apiKeys       ApiKey[]
+  decks         Deck[]
+  jobs          GenerationJob[]
+  uploadedFiles UploadedFile[]
+
+  @@map("workspaces")
+}
+
+model WorkspaceMember {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  workspaceId String   @map("workspace_id")
+  role        String   @default("member") // owner, admin, member
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
+  @@map("workspace_members")
+}
+
+// ============================================================================
+// API KEY
+// ============================================================================
+
+model ApiKey {
+  id          String    @id @default(cuid())
+  workspaceId String    @map("workspace_id")
+  name        String
+  keyHash     String    @unique @map("key_hash") // hashed API key
+  prefix      String    // first 8 chars for identification
+  lastUsedAt  DateTime? @map("last_used_at")
+  expiresAt   DateTime? @map("expires_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  revokedAt   DateTime? @map("revoked_at")
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
+}
+
+// ============================================================================
+// DECK, SLIDE, BLOCK
+// ============================================================================
+
+model Deck {
+  id          String   @id @default(cuid())
+  workspaceId String   @map("workspace_id")
+  userId      String   @map("user_id")
+  title       String
+  language    String   @default("no")
+  themeId     String   @default("nordic_light") @map("theme_id")
+
+  // Brand kit (optional)
+  logoUrl        String? @map("logo_url")
+  primaryColor   String? @map("primary_color")
+  secondaryColor String? @map("secondary_color")
+
+  // Sharing
+  shareToken  String?  @unique @map("share_token")
+  shareAccess String   @default("private") @map("share_access") // private, anyone_with_link_can_view
+
+  // Outline (stored as JSON for editing before generation)
+  outline Json?
+
+  // Onboarding
+  isSample Boolean @default(false) @map("is_sample")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  workspace Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  slides    Slide[]
+  exports   ExportJob[]
+  jobs      GenerationJob[]
+
+  @@index([workspaceId])
+  @@index([shareToken])
+  @@map("decks")
+}
+
+model Slide {
+  id            String @id @default(cuid())
+  deckId        String @map("deck_id")
+  position      Int    // Order in deck
+  type          String // cover, agenda, section_header, bullets, two_column_text, text_plus_image, decisions_list, action_items_table, summary_next_steps, quote_callout
+  layoutVariant String @default("default") @map("layout_variant")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  deck   Deck    @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  blocks Block[]
+
+  @@index([deckId, position])
+  @@map("slides")
+}
+
+model Block {
+  id       String @id @default(cuid())
+  slideId  String @map("slide_id")
+  position Int    // Order in slide
+  kind     String // title, text, bullets, image, table, callout
+
+  // Content stored as JSON to support various block types
+  content Json
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  slide Slide @relation(fields: [slideId], references: [id], onDelete: Cascade)
+
+  @@index([slideId, position])
+  @@map("blocks")
+}
+
+// ============================================================================
+// JOBS
+// ============================================================================
+
+model GenerationJob {
+  id            String   @id @default(cuid())
+  workspaceId   String   @map("workspace_id")
+  deckId        String?  @map("deck_id")
+  sourceFileId  String?  @map("source_file_id")
+
+  // Request parameters
+  inputText     String   @map("input_text") @db.Text // Note: Don't log this in production
+  textMode      String   @map("text_mode") // generate, condense, preserve
+  language      String   @default("no")
+  tone          String?
+  audience      String?
+  amount        String   @default("medium") // brief, medium, detailed
+  numSlides     Int?     @map("num_slides")
+  themeId       String?  @map("theme_id")
+  imageMode     String   @default("none") @map("image_mode") // none, ai
+  imageStyle    String?  @map("image_style")
+  templateId    String?  @map("template_id") // Golden Template: executive_brief, feature_showcase, project_update
+  exportAs      String[] @map("export_as") // ["pdf", "pptx"]
+
+  // Idempotency
+  idempotencyKey String? @unique @map("idempotency_key")
+
+  // Status
+  status   String   @default("queued") // queued, running, completed, failed
+  progress Int      @default(0) // 0-100
+
+  // Results (when completed)
+  viewUrl  String? @map("view_url")
+
+  // Export URLs (from ExportJob completion)
+  pdfUrl          String?   @map("pdf_url")
+  pptxUrl         String?   @map("pptx_url")
+  exportExpiresAt DateTime? @map("export_expires_at")
+
+  // Error (when failed)
+  errorCode    String? @map("error_code")
+  errorMessage String? @map("error_message")
+
+  // Timestamps
+  createdAt   DateTime  @default(now()) @map("created_at")
+  startedAt   DateTime? @map("started_at")
+  completedAt DateTime? @map("completed_at")
+
+  workspace  Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  deck       Deck?         @relation(fields: [deckId], references: [id], onDelete: SetNull)
+  sourceFile UploadedFile? @relation(fields: [sourceFileId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId, status])
+  @@index([idempotencyKey])
+  @@map("generation_jobs")
+}
+
+model ExportJob {
+  id               String  @id @default(cuid())
+  deckId           String  @map("deck_id")
+  generationJobId  String? @map("generation_job_id")
+  format           String  // pdf, pptx
+
+  // Status
+  status String @default("queued") // queued, running, completed, failed
+
+  // Result (when completed)
+  fileUrl   String?   @map("file_url")
+  expiresAt DateTime? @map("expires_at")
+
+  // Error (when failed)
+  errorCode    String? @map("error_code")
+  errorMessage String? @map("error_message")
+
+  // Timestamps
+  createdAt   DateTime  @default(now()) @map("created_at")
+  completedAt DateTime? @map("completed_at")
+
+  deck Deck @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@index([deckId, format])
+  @@map("export_jobs")
+}
+
+// ============================================================================
+// UPLOADED FILES (for import mode)
+// ============================================================================
+
+model UploadedFile {
+  id            String    @id @default(cuid())
+  workspaceId   String    @map("workspace_id")
+  filename      String
+  mimeType      String    @map("mime_type")
+  size          Int
+  s3Key         String    @map("s3_key")
+  status        String    @default("pending") // pending, processing, completed, failed
+  extractedText String?   @map("extracted_text") @db.Text
+  charCount     Int?      @map("char_count")
+  truncated     Boolean   @default(false)
+  errorCode     String?   @map("error_code")
+  errorMessage  String?   @map("error_message")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  processedAt   DateTime? @map("processed_at")
+
+  workspace      Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  generationJobs GenerationJob[]
+
+  @@index([workspaceId])
+  @@index([status])
+  @@map("uploaded_files")
+}
