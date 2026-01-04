@@ -70,9 +70,7 @@ describe("s3-client", () => {
       const expiry = calculateExpiryDate(3600); // 1 hour
 
       expect(expiry).toBeInstanceOf(Date);
-      expect(expiry.getTime()).toBe(
-        new Date("2025-01-15T12:00:00Z").getTime() + 3600 * 1000
-      );
+      expect(expiry.getTime()).toBe(new Date("2025-01-15T12:00:00Z").getTime() + 3600 * 1000);
     });
 
     it("uses default expiry when no argument provided", () => {

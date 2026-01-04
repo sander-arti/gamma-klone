@@ -1,5 +1,5 @@
-import { createServerClient } from '@supabase/ssr';
-import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient } from "@supabase/ssr";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Middleware for protecting routes with Supabase Auth
@@ -11,24 +11,24 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   // Skip API routes with API key auth (custom auth, not Supabase Auth)
-  if (request.nextUrl.pathname.startsWith('/api/v1')) {
+  if (request.nextUrl.pathname.startsWith("/api/v1")) {
     return NextResponse.next();
   }
 
   // Skip public routes
   const publicPaths = [
-    '/',
-    '/login',
-    '/signup',
-    '/view',
-    '/preview',
-    '/about',
-    '/features',
-    '/pricing',
-    '/docs',
-    '/contact',
-    '/terms',
-    '/privacy',
+    "/",
+    "/login",
+    "/signup",
+    "/view",
+    "/preview",
+    "/about",
+    "/features",
+    "/pricing",
+    "/docs",
+    "/contact",
+    "/terms",
+    "/privacy",
   ];
 
   if (publicPaths.some((path) => request.nextUrl.pathname.startsWith(path))) {
@@ -63,8 +63,8 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to login if not authenticated
   if (!user) {
-    const redirectUrl = new URL('/login', request.url);
-    redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
+    const redirectUrl = new URL("/login", request.url);
+    redirectUrl.searchParams.set("redirect", request.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
   }
 
@@ -80,6 +80,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public files (images, etc.)
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

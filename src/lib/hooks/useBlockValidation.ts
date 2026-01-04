@@ -180,7 +180,10 @@ function getSuggestedAction(
 /**
  * Get validation result for a single bullet item.
  */
-export function getBulletItemValidation(item: string, itemIndex: number): {
+export function getBulletItemValidation(
+  item: string,
+  itemIndex: number
+): {
   current: number;
   max: number;
   remaining: number;

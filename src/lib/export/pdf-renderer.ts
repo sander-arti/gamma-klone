@@ -27,12 +27,7 @@ async function getBrowser(): Promise<Browser> {
 
   browserInstance = await chromium.launch({
     headless: true,
-    args: [
-      "--no-sandbox",
-      "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--disable-gpu",
-    ],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu"],
   });
 
   return browserInstance;
@@ -51,10 +46,7 @@ export async function closeBrowser(): Promise<void> {
 /**
  * Render a single slide HTML to PDF buffer
  */
-async function renderSlideToPdf(
-  context: BrowserContext,
-  html: string
-): Promise<Buffer> {
+async function renderSlideToPdf(context: BrowserContext, html: string): Promise<Buffer> {
   const page = await context.newPage();
 
   try {

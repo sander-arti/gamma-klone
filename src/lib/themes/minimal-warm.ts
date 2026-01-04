@@ -115,18 +115,18 @@ export const minimalWarm: Theme = {
       unit: "8px",
 
       // 8px grid scale (extra generous for minimal aesthetic)
-      xs: "clamp(0.25rem, 0.5cqw, 0.5rem)",      // ~4-8px
-      sm: "clamp(0.5rem, 1cqw, 0.875rem)",       // ~8-14px
-      md: "clamp(1rem, 1.75cqw, 1.5rem)",        // ~16-24px
-      lg: "clamp(1.75rem, 2.5cqw, 2.25rem)",     // ~28-36px
-      xl: "clamp(2.25rem, 3.5cqw, 3rem)",        // ~36-48px
-      xxl: "clamp(3.5rem, 5cqw, 4.5rem)",        // ~56-72px
-      xxxl: "clamp(4.5rem, 7cqw, 6rem)",         // ~72-96px
+      xs: "clamp(0.25rem, 0.5cqw, 0.5rem)", // ~4-8px
+      sm: "clamp(0.5rem, 1cqw, 0.875rem)", // ~8-14px
+      md: "clamp(1rem, 1.75cqw, 1.5rem)", // ~16-24px
+      lg: "clamp(1.75rem, 2.5cqw, 2.25rem)", // ~28-36px
+      xl: "clamp(2.25rem, 3.5cqw, 3rem)", // ~36-48px
+      xxl: "clamp(3.5rem, 5cqw, 4.5rem)", // ~56-72px
+      xxxl: "clamp(4.5rem, 7cqw, 6rem)", // ~72-96px
 
       // Semantic tokens (generous breathing room, calm aesthetic)
-      slideGutter: "clamp(3.5rem, 6cqw, 5.5rem)",   // Very generous edges
-      sectionGap: "clamp(3rem, 5cqw, 4rem)",        // Calm section breaks
-      blockGap: "clamp(1.75rem, 2.5cqw, 2.25rem)",  // Relaxed content spacing
+      slideGutter: "clamp(3.5rem, 6cqw, 5.5rem)", // Very generous edges
+      sectionGap: "clamp(3rem, 5cqw, 4rem)", // Calm section breaks
+      blockGap: "clamp(1.75rem, 2.5cqw, 2.25rem)", // Relaxed content spacing
       contentPadding: "clamp(1.5rem, 2cqw, 1.75rem)", // Airy card padding
       itemGap: "clamp(0.875rem, 1.25cqw, 1.125rem)", // Relaxed list items
       inlineGap: "clamp(0.5rem, 0.875cqw, 0.75rem)", // Comfortable inline
@@ -166,15 +166,19 @@ export const minimalWarm: Theme = {
 
       // Overlay for images
       overlayDark: "linear-gradient(180deg, transparent 0%, rgba(41, 37, 36, 0.6) 100%)",
-      overlayLight: "linear-gradient(180deg, rgba(250, 248, 245, 0.1) 0%, rgba(250, 248, 245, 0.95) 100%)",
+      overlayLight:
+        "linear-gradient(180deg, rgba(250, 248, 245, 0.1) 0%, rgba(250, 248, 245, 0.95) 100%)",
 
       // Slide background system (Punkt 3)
       // Warm, cream-tinted gradient
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(255, 253, 250, 0.6) 0%, rgba(250, 248, 245, 0.3) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(255, 253, 250, 0.6) 0%, rgba(250, 248, 245, 0.3) 100%)",
       // Soft warm vignette
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(120, 53, 15, 0.015) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(120, 53, 15, 0.015) 100%)",
       // Warm corner accent
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(217, 119, 6, 0.025) 0%, transparent 50%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(217, 119, 6, 0.025) 0%, transparent 50%)",
       // Warm minimal pattern
       slidePatternColor: "rgba(180, 83, 9, 0.02)",
       slidePatternOpacity: "0.3",
@@ -182,7 +186,8 @@ export const minimalWarm: Theme = {
       // Image styling system (Punkt 5) - Soft, minimal aesthetic
       imageBorderRadius: "0.375rem",
       imageShadow: "0 2px 6px -1px rgba(120, 53, 15, 0.06), 0 1px 3px -1px rgba(120, 53, 15, 0.04)",
-      imageShadowFloating: "0 16px 36px -10px rgba(120, 53, 15, 0.1), 0 6px 14px -4px rgba(120, 53, 15, 0.06)",
+      imageShadowFloating:
+        "0 16px 36px -10px rgba(120, 53, 15, 0.1), 0 6px 14px -4px rgba(120, 53, 15, 0.06)",
       imageInnerShadow: "inset 0 0 0 1px rgba(120, 53, 15, 0.03)",
       imageFrameColor: "rgba(254, 243, 199, 0.8)",
       imageFrameWidth: "3px",

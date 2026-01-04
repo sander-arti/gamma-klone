@@ -136,11 +136,13 @@ export function EditableBlockRenderer({
     const hasViolations = validation.violations.length > 0;
 
     return (
-      <div className={`relative transition-all duration-200 rounded-lg ${
-        isEditing
-          ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-          : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-      }`}>
+      <div
+        className={`relative transition-all duration-200 rounded-lg ${
+          isEditing
+            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+        }`}
+      >
         {content}
         {/* Character counter shown when editing or approaching limit */}
         {showCounter && showCharCounter && (isEditing || validation.isApproaching) && (
@@ -192,11 +194,13 @@ export function EditableBlockRenderer({
 
     case "bullets":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <BulletsBlock
             items={block.items ?? []}
             className={className}
@@ -208,10 +212,7 @@ export function EditableBlockRenderer({
           {/* Item counter for bullets */}
           {showCounter && (isEditing || validation.isApproaching) && (
             <div className="mt-1 flex items-center justify-end">
-              <ItemCounter
-                current={(block.items ?? []).length}
-                max={validation.max}
-              />
+              <ItemCounter current={(block.items ?? []).length} max={validation.max} />
             </div>
           )}
           {validation.violations.length > 0 && !isEditing && (
@@ -237,11 +238,13 @@ export function EditableBlockRenderer({
 
     case "table":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <TableBlock
             columns={block.columns ?? []}
             rows={block.rows ?? []}
@@ -284,11 +287,13 @@ export function EditableBlockRenderer({
     // Phase 7: Editable stat_block
     case "stat_block":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <EditableStatBlock
             value={block.value ?? ""}
             label={block.label ?? ""}
@@ -312,11 +317,13 @@ export function EditableBlockRenderer({
     // Phase 7: Editable timeline_step
     case "timeline_step":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <EditableTimelineStepBlock
             step={block.step ?? 1}
             title={block.text ?? ""}
@@ -341,11 +348,13 @@ export function EditableBlockRenderer({
     // Phase 7: Editable icon_card
     case "icon_card":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <EditableIconCardBlock
             icon={block.icon ?? "circle"}
             text={block.text ?? ""}
@@ -370,11 +379,13 @@ export function EditableBlockRenderer({
     // Phase 7: Editable numbered_card
     case "numbered_card":
       return (
-        <div className={`relative transition-all duration-200 rounded-lg ${
-          isEditing
-            ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
-            : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
-        }`}>
+        <div
+          className={`relative transition-all duration-200 rounded-lg ${
+            isEditing
+              ? "ring-2 ring-emerald-600 ring-offset-2 ring-offset-transparent"
+              : "hover:ring-2 hover:ring-emerald-600/20 hover:ring-offset-1 hover:ring-offset-transparent"
+          }`}
+        >
           <EditableNumberedCardBlock
             number={block.number ?? 1}
             text={block.text ?? ""}

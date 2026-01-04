@@ -57,9 +57,7 @@ export function ImageSettingsPanel({
           </div>
           <div>
             <h3 className="text-sm font-medium text-gray-900">Bilder</h3>
-            <p className="text-xs text-gray-500">
-              Velg hvordan bilder skal genereres
-            </p>
+            <p className="text-xs text-gray-500">Velg hvordan bilder skal genereres</p>
           </div>
         </div>
       </div>
@@ -75,9 +73,10 @@ export function ImageSettingsPanel({
           disabled={disabled}
           className={`
             flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border-2 transition-all
-            ${imageMode === "none"
-              ? "border-gray-900 bg-gray-900 text-white"
-              : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
+            ${
+              imageMode === "none"
+                ? "border-gray-900 bg-gray-900 text-white"
+                : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
             }
             ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
           `}
@@ -95,9 +94,10 @@ export function ImageSettingsPanel({
           disabled={disabled}
           className={`
             flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border-2 transition-all
-            ${imageMode === "ai"
-              ? "border-emerald-500 bg-emerald-50 text-emerald-700"
-              : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
+            ${
+              imageMode === "ai"
+                ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                : "border-gray-200 bg-white text-gray-600 hover:border-gray-300"
             }
             ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
           `}
@@ -120,14 +120,8 @@ export function ImageSettingsPanel({
             <div className="space-y-6 pt-4 border-t border-gray-100">
               {/* Art Style Picker */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Bildestil
-                </label>
-                <ArtStylePicker
-                  value={artStyle}
-                  onChange={onArtStyleChange}
-                  disabled={disabled}
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-3">Bildestil</label>
+                <ArtStylePicker value={artStyle} onChange={onArtStyleChange} disabled={disabled} />
               </div>
 
               {/* Keywords Input */}
@@ -154,8 +148,8 @@ export function ImageSettingsPanel({
                       AI vil generere unike bilder
                     </p>
                     <p className="text-xs text-emerald-700 mt-1">
-                      Basert på presentasjonsinnholdet og valgt stil vil AI lage
-                      relevante bilder for hver slide.
+                      Basert på presentasjonsinnholdet og valgt stil vil AI lage relevante bilder
+                      for hver slide.
                     </p>
                   </div>
                 </div>

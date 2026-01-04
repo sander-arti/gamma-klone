@@ -12,11 +12,7 @@ import JSZip from "jszip";
 import { readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { homedir } from "os";
-import {
-  renderSlidesToPdf,
-  renderDeckToPdf,
-  closeBrowser,
-} from "../pdf-renderer";
+import { renderSlidesToPdf, renderDeckToPdf, closeBrowser } from "../pdf-renderer";
 import { renderSlidesToPptx, renderDeckToPptx } from "../pptx-renderer";
 import type { Deck } from "@/lib/schemas/deck";
 import type { ThemeId } from "@/lib/themes";
@@ -317,10 +313,7 @@ describe("Export Integration Tests", () => {
 
       const zip = await JSZip.loadAsync(buffer);
       for (let i = 1; i <= allSlideTypes.slides.length; i++) {
-        expect(
-          zip.files[`ppt/slides/slide${i}.xml`],
-          `Slide ${i} should exist`
-        ).toBeDefined();
+        expect(zip.files[`ppt/slides/slide${i}.xml`], `Slide ${i} should exist`).toBeDefined();
       }
     });
   });

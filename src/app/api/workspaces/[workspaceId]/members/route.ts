@@ -37,10 +37,7 @@ export async function GET(
       .single();
 
     if (!member) {
-      return NextResponse.json(
-        { error: "Not a member of this workspace" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Not a member of this workspace" }, { status: 403 });
     }
 
     // Fetch all workspace members with user details
@@ -60,19 +57,13 @@ export async function GET(
 
     if (error) {
       console.error("Failed to fetch workspace members:", error);
-      return NextResponse.json(
-        { error: "Failed to fetch members" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to fetch members" }, { status: 500 });
     }
 
     return NextResponse.json({ members: members || [] });
   } catch (error) {
     console.error("Workspace members fetch error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch members" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch members" }, { status: 500 });
   }
 }
 
@@ -131,11 +122,7 @@ export async function POST(
       .select("user_id, users(email)")
       .eq("workspace_id", workspaceId);
 
-    if (
-      existingMember?.some(
-        (m: any) => m.users?.email?.toLowerCase() === email.toLowerCase()
-      )
-    ) {
+    if (existingMember?.some((m: any) => m.users?.email?.toLowerCase() === email.toLowerCase())) {
       return NextResponse.json(
         { error: "User is already a member of this workspace" },
         { status: 400 }
@@ -163,23 +150,18 @@ export async function POST(
     const token = crypto.randomBytes(32).toString("hex");
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 
-    const { error: inviteError } = await supabaseAdmin
-      .from("workspace_invitations")
-      .insert({
-        id: crypto.randomUUID(),
-        workspace_id: workspaceId,
-        email: email.toLowerCase(),
-        role,
-        token,
-        expires_at: expiresAt.toISOString(),
-      });
+    const { error: inviteError } = await supabaseAdmin.from("workspace_invitations").insert({
+      id: crypto.randomUUID(),
+      workspace_id: workspaceId,
+      email: email.toLowerCase(),
+      role,
+      token,
+      expires_at: expiresAt.toISOString(),
+    });
 
     if (inviteError) {
       console.error("Failed to create invitation:", inviteError);
-      return NextResponse.json(
-        { error: "Failed to send invitation" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to send invitation" }, { status: 500 });
     }
 
     // TODO: Send email (for MVP, just console.log)
@@ -194,9 +176,6 @@ export async function POST(
     });
   } catch (error) {
     console.error("Workspace invitation error:", error);
-    return NextResponse.json(
-      { error: "Failed to send invitation" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to send invitation" }, { status: 500 });
   }
 }

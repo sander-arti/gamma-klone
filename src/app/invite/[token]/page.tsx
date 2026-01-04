@@ -3,11 +3,7 @@ import { supabaseAdmin } from "@/lib/db/supabase";
 import { redirect } from "next/navigation";
 import crypto from "crypto";
 
-export default async function InvitePage({
-  params,
-}: {
-  params: Promise<{ token: string }>;
-}) {
+export default async function InvitePage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const supabase = await createClient();
   const {
@@ -84,12 +80,10 @@ export default async function InvitePage({
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
-            Invitation Expired
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">Invitation Expired</h1>
           <p className="text-gray-600 text-center mb-6">
-            This invitation link has expired. Please contact the workspace owner
-            for a new invitation.
+            This invitation link has expired. Please contact the workspace owner for a new
+            invitation.
           </p>
           <a
             href="/dashboard"
@@ -122,16 +116,12 @@ export default async function InvitePage({
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
-            Email Mismatch
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">Email Mismatch</h1>
           <p className="text-gray-600 text-center mb-4">
-            This invitation is for{" "}
-            <strong>{invitation.email}</strong>
+            This invitation is for <strong>{invitation.email}</strong>
           </p>
           <p className="text-gray-600 text-center mb-6">
-            You are currently logged in as{" "}
-            <strong>{user.email}</strong>
+            You are currently logged in as <strong>{user.email}</strong>
           </p>
           <p className="text-sm text-gray-500 text-center mb-6">
             Please log out and sign in with the invited email address.
@@ -166,14 +156,12 @@ export default async function InvitePage({
   }
 
   // Add user to workspace
-  const { error: membershipError } = await supabaseAdmin
-    .from("workspace_members")
-    .insert({
-      id: crypto.randomUUID(),
-      workspace_id: invitation.workspace_id,
-      user_id: user.id,
-      role: invitation.role,
-    });
+  const { error: membershipError } = await supabaseAdmin.from("workspace_members").insert({
+    id: crypto.randomUUID(),
+    workspace_id: invitation.workspace_id,
+    user_id: user.id,
+    role: invitation.role,
+  });
 
   if (membershipError) {
     console.error("Failed to add workspace member:", membershipError);
@@ -195,9 +183,7 @@ export default async function InvitePage({
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
-            Error
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">Error</h1>
           <p className="text-gray-600 text-center mb-6">
             Failed to accept invitation. Please try again later.
           </p>

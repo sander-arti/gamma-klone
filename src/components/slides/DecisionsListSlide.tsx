@@ -21,13 +21,7 @@ interface DecisionsListSlideProps {
 /**
  * Decision card with checkmark indicator
  */
-function DecisionCard({
-  item,
-  index,
-}: {
-  item: string;
-  index: number;
-}) {
+function DecisionCard({ item, index }: { item: string; index: number }) {
   return (
     <div
       className="group relative animate-fade-in-up"
@@ -37,7 +31,8 @@ function DecisionCard({
         background: "var(--theme-color-surface, rgba(255, 255, 255, 0.7))",
         borderRadius: "var(--theme-radius-lg, 12px)",
         border: "1px solid var(--theme-color-border-subtle, rgba(0, 0, 0, 0.06))",
-        boxShadow: "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
+        boxShadow:
+          "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
         transition: "all 0.2s ease",
         display: "flex",
         flexDirection: "row",
@@ -51,16 +46,13 @@ function DecisionCard({
         style={{
           width: "clamp(2rem, 3cqw, 2.5rem)",
           height: "clamp(2rem, 3cqw, 2.5rem)",
-          background: "var(--theme-effects-gradient-success, linear-gradient(135deg, #10b981 0%, #059669 100%))",
+          background:
+            "var(--theme-effects-gradient-success, linear-gradient(135deg, #10b981 0%, #059669 100%))",
           borderRadius: "50%",
           boxShadow: "0 2px 8px rgba(16, 185, 129, 0.25)",
         }}
       >
-        <Check
-          size={16}
-          style={{ color: "#ffffff" }}
-          strokeWidth={3}
-        />
+        <Check size={16} style={{ color: "#ffffff" }} strokeWidth={3} />
       </div>
 
       {/* Content */}

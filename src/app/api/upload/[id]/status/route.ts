@@ -21,10 +21,7 @@ type RouteParams = {
   params: Promise<{ id: string }>;
 };
 
-export async function GET(
-  request: NextRequest,
-  { params }: RouteParams
-) {
+export async function GET(request: NextRequest, { params }: RouteParams) {
   const { id } = await params;
 
   // 1. Verify the upload exists and belongs to workspace
@@ -138,9 +135,7 @@ export async function GET(
               ...event.data,
             });
 
-            await writer.write(
-              encoder.encode(`event: ${event.type}\ndata: ${eventData}\n\n`)
-            );
+            await writer.write(encoder.encode(`event: ${event.type}\ndata: ${eventData}\n\n`));
 
             // Close stream on completion or failure
             if (event.type === "completed" || event.type === "failed") {
@@ -153,18 +148,21 @@ export async function GET(
       );
 
       // Timeout after 5 minutes
-      const timeout = setTimeout(async () => {
-        unsubscribe();
-        await writer.write(
-          encoder.encode(
-            `event: timeout\ndata: ${JSON.stringify({
-              status: "timeout",
-              message: "Extraction timed out",
-            })}\n\n`
-          )
-        );
-        await cleanup();
-      }, 5 * 60 * 1000);
+      const timeout = setTimeout(
+        async () => {
+          unsubscribe();
+          await writer.write(
+            encoder.encode(
+              `event: timeout\ndata: ${JSON.stringify({
+                status: "timeout",
+                message: "Extraction timed out",
+              })}\n\n`
+            )
+          );
+          await cleanup();
+        },
+        5 * 60 * 1000
+      );
 
       // Clean up timeout on abort
       request.signal.addEventListener("abort", () => {
@@ -192,9 +190,7 @@ export async function GET(
                 : undefined,
             });
 
-            await writer.write(
-              encoder.encode(`event: ${eventType}\ndata: ${eventData}\n\n`)
-            );
+            await writer.write(encoder.encode(`event: ${eventType}\ndata: ${eventData}\n\n`));
             await cleanup();
           }
         } catch (err) {

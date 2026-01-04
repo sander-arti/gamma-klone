@@ -39,16 +39,14 @@ export function ProblemSolution() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 border border-red-200/60 mb-6">
-            <span className="text-sm font-medium text-red-700">
-              Kjenner du deg igjen?
-            </span>
+            <span className="text-sm font-medium text-red-700">Kjenner du deg igjen?</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
             Generell AI lager darlige presentasjoner
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ChatGPT og andre verktøy er gode på mye, men presentasjoner?
-            Ikke sa mye. ARTI Slides er bygget for en ting: presentasjoner som imponerer.
+            ChatGPT og andre verktøy er gode på mye, men presentasjoner? Ikke sa mye. ARTI Slides er
+            bygget for en ting: presentasjoner som imponerer.
           </p>
         </div>
 
@@ -86,13 +84,9 @@ export function ProblemSolution() {
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 w-5 h-5 rounded-full bg-red-100 flex-shrink-0 flex items-center justify-center">
-                    <span className="text-xs font-semibold text-red-600">
-                      {index + 1}
-                    </span>
+                    <span className="text-xs font-semibold text-red-600">{index + 1}</span>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    "{item.problem}"
-                  </p>
+                  <p className="text-gray-700 leading-relaxed">"{item.problem}"</p>
                 </div>
               </div>
             ))}
@@ -116,9 +110,7 @@ export function ProblemSolution() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">
-                ARTI Slides
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900">ARTI Slides</h3>
             </div>
 
             {problems.map((item, index) => (
@@ -146,9 +138,7 @@ export function ProblemSolution() {
                       />
                     </svg>
                   </div>
-                  <p className="text-gray-700 leading-relaxed font-medium">
-                    {item.solution}
-                  </p>
+                  <p className="text-gray-700 leading-relaxed font-medium">{item.solution}</p>
                 </div>
               </div>
             ))}

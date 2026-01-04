@@ -56,10 +56,7 @@ export const API_ERROR_MESSAGES: Record<ApiErrorCode, UserFriendlyError> = {
   FORBIDDEN: {
     title: "Ingen tilgang",
     message: "Du har ikke tillatelse til å utføre denne handlingen.",
-    recovery: [
-      "Sjekk at du har riktige tilganger",
-      "Kontakt workspace-administrator",
-    ],
+    recovery: ["Sjekk at du har riktige tilganger", "Kontakt workspace-administrator"],
     isTemporary: false,
     isUserActionable: false,
   },
@@ -78,17 +75,18 @@ export const API_ERROR_MESSAGES: Record<ApiErrorCode, UserFriendlyError> = {
 
   RATE_LIMITED: {
     title: "For mange forespørsler",
-    message:
-      "Du har sendt for mange forespørsler på kort tid. Vent litt før du prøver igjen.",
-    recovery: ["Vent 1-2 minutter før du prøver igjen", "Oppgrader til høyere plan for flere forespørsler"],
+    message: "Du har sendt for mange forespørsler på kort tid. Vent litt før du prøver igjen.",
+    recovery: [
+      "Vent 1-2 minutter før du prøver igjen",
+      "Oppgrader til høyere plan for flere forespørsler",
+    ],
     isTemporary: true,
     isUserActionable: true,
   },
 
   MODEL_ERROR: {
     title: "AI-tjenesten er midlertidig utilgjengelig",
-    message:
-      "AI-tjenesten opplevde en feil under generering. Dette er som regel midlertidig.",
+    message: "AI-tjenesten opplevde en feil under generering. Dette er som regel midlertidig.",
     recovery: [
       "Prøv igjen om noen sekunder",
       "Forenkle eller kort ned teksten",
@@ -124,10 +122,7 @@ type PipelineErrorCode =
   | "TEMPLATE_NOT_FOUND"
   | "TEMPLATE_GENERATION_FAILED";
 
-export const PIPELINE_ERROR_MESSAGES: Record<
-  PipelineErrorCode,
-  UserFriendlyError
-> = {
+export const PIPELINE_ERROR_MESSAGES: Record<PipelineErrorCode, UserFriendlyError> = {
   OUTLINE_FAILED: {
     title: "Kunne ikke lage outline",
     message:
@@ -216,21 +211,14 @@ export const PIPELINE_ERROR_MESSAGES: Record<
 /**
  * LLM Error Code Mappings
  */
-type LLMErrorCode =
-  | "MODEL_ERROR"
-  | "INVALID_RESPONSE"
-  | "RATE_LIMITED"
-  | "PARSE_ERROR";
+type LLMErrorCode = "MODEL_ERROR" | "INVALID_RESPONSE" | "RATE_LIMITED" | "PARSE_ERROR";
 
 export const LLM_ERROR_MESSAGES: Record<LLMErrorCode, UserFriendlyError> = {
   MODEL_ERROR: {
     title: "AI-modellen er utilgjengelig",
     message:
       "AI-modellen opplevde en feil. Dette er som regel midlertidig og løser seg innen kort tid.",
-    recovery: [
-      "Prøv igjen om 30 sekunder",
-      "Kontakt support hvis problemet vedvarer",
-    ],
+    recovery: ["Prøv igjen om 30 sekunder", "Kontakt support hvis problemet vedvarer"],
     isTemporary: true,
     isUserActionable: true,
   },
@@ -249,8 +237,7 @@ export const LLM_ERROR_MESSAGES: Record<LLMErrorCode, UserFriendlyError> = {
 
   RATE_LIMITED: {
     title: "Rate limit nådd",
-    message:
-      "Du har sendt for mange forespørsler til AI-tjenesten. Vent litt før du prøver igjen.",
+    message: "Du har sendt for mange forespørsler til AI-tjenesten. Vent litt før du prøver igjen.",
     recovery: ["Vent 1-2 minutter før du prøver igjen"],
     isTemporary: true,
     isUserActionable: true,
@@ -260,10 +247,7 @@ export const LLM_ERROR_MESSAGES: Record<LLMErrorCode, UserFriendlyError> = {
     title: "Kunne ikke tolke AI-svar",
     message:
       "Svaret fra AI-en kunne ikke tolkes. Dette skyldes som regel en midlertidig feil i AI-tjenesten.",
-    recovery: [
-      "Prøv igjen om noen sekunder",
-      "Kontakt support hvis problemet vedvarer",
-    ],
+    recovery: ["Prøv igjen om noen sekunder", "Kontakt support hvis problemet vedvarer"],
     isTemporary: true,
     isUserActionable: true,
   },
@@ -293,8 +277,7 @@ export function getUserFriendlyError(
   // Fallback for unknown errors
   return {
     title: "Noe gikk galt",
-    message:
-      "En uventet feil oppstod. Vennligst prøv igjen eller kontakt support.",
+    message: "En uventet feil oppstod. Vennligst prøv igjen eller kontakt support.",
     recovery: ["Prøv igjen", "Last siden på nytt", "Kontakt support"],
     isTemporary: true,
     isUserActionable: true,
@@ -304,9 +287,7 @@ export function getUserFriendlyError(
 /**
  * Check if error code indicates a temporary issue
  */
-export function isTemporaryError(
-  code: ApiErrorCode | PipelineErrorCode | LLMErrorCode
-): boolean {
+export function isTemporaryError(code: ApiErrorCode | PipelineErrorCode | LLMErrorCode): boolean {
   const error = getUserFriendlyError(code);
   return error.isTemporary;
 }
@@ -314,9 +295,7 @@ export function isTemporaryError(
 /**
  * Check if user can take action to resolve error
  */
-export function isUserActionable(
-  code: ApiErrorCode | PipelineErrorCode | LLMErrorCode
-): boolean {
+export function isUserActionable(code: ApiErrorCode | PipelineErrorCode | LLMErrorCode): boolean {
   const error = getUserFriendlyError(code);
   return error.isUserActionable;
 }

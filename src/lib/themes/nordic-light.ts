@@ -138,20 +138,20 @@ export const nordicLight: Theme = {
       unit: "8px",
 
       // 8px grid scale (responsive with container queries)
-      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)",    // ~4-6px
-      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)",      // ~8-12px
-      md: "clamp(1rem, 1.5cqw, 1.25rem)",        // ~16-20px
-      lg: "clamp(1.5rem, 2cqw, 2rem)",           // ~24-32px
-      xl: "clamp(2rem, 3cqw, 2.5rem)",           // ~32-40px
-      xxl: "clamp(3rem, 4cqw, 4rem)",            // ~48-64px
-      xxxl: "clamp(4rem, 6cqw, 5rem)",           // ~64-80px
+      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)", // ~4-6px
+      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)", // ~8-12px
+      md: "clamp(1rem, 1.5cqw, 1.25rem)", // ~16-20px
+      lg: "clamp(1.5rem, 2cqw, 2rem)", // ~24-32px
+      xl: "clamp(2rem, 3cqw, 2.5rem)", // ~32-40px
+      xxl: "clamp(3rem, 4cqw, 4rem)", // ~48-64px
+      xxxl: "clamp(4rem, 6cqw, 5rem)", // ~64-80px
 
       // Semantic tokens (generous "breathing room")
-      slideGutter: "clamp(3rem, 5cqw, 5rem)",    // Maps to xxl-xxxl
+      slideGutter: "clamp(3rem, 5cqw, 5rem)", // Maps to xxl-xxxl
       sectionGap: "clamp(2.5rem, 4cqw, 3.5rem)", // Large section breaks
-      blockGap: "clamp(1.5rem, 2cqw, 2rem)",     // Between content blocks
+      blockGap: "clamp(1.5rem, 2cqw, 2rem)", // Between content blocks
       contentPadding: "clamp(1.25rem, 1.75cqw, 1.5rem)", // Inside cards
-      itemGap: "clamp(0.75rem, 1cqw, 1rem)",     // List items, grid gaps
+      itemGap: "clamp(0.75rem, 1cqw, 1rem)", // List items, grid gaps
       inlineGap: "clamp(0.5rem, 0.75cqw, 0.75rem)", // Icon-text spacing
 
       // Legacy tokens
@@ -189,15 +189,19 @@ export const nordicLight: Theme = {
 
       // Overlay for images
       overlayDark: "linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%)",
-      overlayLight: "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%)",
+      overlayLight:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%)",
 
       // Slide background system (Punkt 3)
       // Subtle top-to-bottom gradient for depth
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%)",
       // Radial gradient for soft vignette/focus effect
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.02) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.02) 100%)",
       // Corner accent with primary color
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.03) 0%, transparent 50%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.03) 0%, transparent 50%)",
       // Pattern overlay (subtle dots)
       slidePatternColor: "rgba(37, 99, 235, 0.04)",
       slidePatternOpacity: "0.5",
@@ -205,7 +209,8 @@ export const nordicLight: Theme = {
       // Image styling system (Punkt 5)
       imageBorderRadius: "0.75rem",
       imageShadow: "0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.04)",
-      imageShadowFloating: "0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.1)",
+      imageShadowFloating:
+        "0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.1)",
       imageInnerShadow: "inset 0 0 0 1px rgba(0, 0, 0, 0.04)",
       imageFrameColor: "rgba(255, 255, 255, 0.9)",
       imageFrameWidth: "4px",

@@ -190,18 +190,14 @@ export default function PreviewPage() {
   const [selectedTheme, setSelectedTheme] = useState<ThemeId>("nordic_light");
   const [useBrandKit, setUseBrandKit] = useState(false);
 
-  const brandKit = useBrandKit
-    ? { primaryColor: "#059669", secondaryColor: "#f59e0b" }
-    : undefined;
+  const brandKit = useBrandKit ? { primaryColor: "#059669", secondaryColor: "#f59e0b" } : undefined;
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col">
       {/* Header */}
       <header className="bg-gray-800 border-b border-gray-700 px-4 py-3">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <h1 className="text-white text-lg font-semibold">
-            ARTI Decks — Preview
-          </h1>
+          <h1 className="text-white text-lg font-semibold">ARTI Decks — Preview</h1>
 
           <div className="flex items-center gap-4">
             {/* Theme selector */}

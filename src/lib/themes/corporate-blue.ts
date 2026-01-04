@@ -115,17 +115,17 @@ export const corporateBlue: Theme = {
       unit: "8px",
 
       // 8px grid scale (slightly tighter for corporate/professional)
-      xs: "clamp(0.25rem, 0.35cqw, 0.375rem)",   // ~4-6px
-      sm: "clamp(0.5rem, 0.7cqw, 0.625rem)",     // ~8-10px
-      md: "clamp(0.875rem, 1.25cqw, 1.125rem)",  // ~14-18px
-      lg: "clamp(1.25rem, 1.75cqw, 1.75rem)",    // ~20-28px
-      xl: "clamp(1.75rem, 2.5cqw, 2.25rem)",     // ~28-36px
-      xxl: "clamp(2.5rem, 3.5cqw, 3.5rem)",      // ~40-56px
-      xxxl: "clamp(3.5rem, 5cqw, 4.5rem)",       // ~56-72px
+      xs: "clamp(0.25rem, 0.35cqw, 0.375rem)", // ~4-6px
+      sm: "clamp(0.5rem, 0.7cqw, 0.625rem)", // ~8-10px
+      md: "clamp(0.875rem, 1.25cqw, 1.125rem)", // ~14-18px
+      lg: "clamp(1.25rem, 1.75cqw, 1.75rem)", // ~20-28px
+      xl: "clamp(1.75rem, 2.5cqw, 2.25rem)", // ~28-36px
+      xxl: "clamp(2.5rem, 3.5cqw, 3.5rem)", // ~40-56px
+      xxxl: "clamp(3.5rem, 5cqw, 4.5rem)", // ~56-72px
 
       // Semantic tokens (professional, structured spacing)
       slideGutter: "clamp(2.5rem, 4.5cqw, 4.5rem)", // Slightly tighter
-      sectionGap: "clamp(2rem, 3.5cqw, 3rem)",      // Clean section breaks
+      sectionGap: "clamp(2rem, 3.5cqw, 3rem)", // Clean section breaks
       blockGap: "clamp(1.25rem, 1.75cqw, 1.75rem)", // Structured content
       contentPadding: "clamp(1rem, 1.5cqw, 1.25rem)", // Compact cards
       itemGap: "clamp(0.625rem, 0.9cqw, 0.875rem)", // Tighter list items
@@ -166,15 +166,19 @@ export const corporateBlue: Theme = {
 
       // Overlay for images
       overlayDark: "linear-gradient(180deg, transparent 0%, rgba(17, 24, 39, 0.7) 100%)",
-      overlayLight: "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%)",
+      overlayLight:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.95) 100%)",
 
       // Slide background system (Punkt 3)
       // Professional gradient with deep blue tint
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(239, 246, 255, 0.4) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(239, 246, 255, 0.4) 100%)",
       // Subtle vignette for professional focus
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(30, 58, 138, 0.02) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(30, 58, 138, 0.02) 100%)",
       // Corporate corner accent
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.04) 0%, transparent 45%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.04) 0%, transparent 45%)",
       // Professional pattern
       slidePatternColor: "rgba(30, 58, 138, 0.03)",
       slidePatternOpacity: "0.4",
@@ -182,7 +186,8 @@ export const corporateBlue: Theme = {
       // Image styling system (Punkt 5) - Professional/conservative
       imageBorderRadius: "0.5rem",
       imageShadow: "0 2px 8px -1px rgba(0, 0, 0, 0.06), 0 1px 4px -1px rgba(0, 0, 0, 0.03)",
-      imageShadowFloating: "0 16px 32px -8px rgba(0, 0, 0, 0.12), 0 6px 16px -4px rgba(0, 0, 0, 0.08)",
+      imageShadowFloating:
+        "0 16px 32px -8px rgba(0, 0, 0, 0.12), 0 6px 16px -4px rgba(0, 0, 0, 0.08)",
       imageInnerShadow: "inset 0 0 0 1px rgba(0, 0, 0, 0.03)",
       imageFrameColor: "rgba(30, 58, 138, 0.08)",
       imageFrameWidth: "3px",

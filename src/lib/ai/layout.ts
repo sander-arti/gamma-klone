@@ -381,10 +381,7 @@ function selectWithVariation(
  * Phase 7 Sprint 4: Context-aware layout variant assignment
  * Uses LayoutContext to provide variation and avoid monotony
  */
-export function assignLayoutVariantWithContext(
-  slide: Slide,
-  context: LayoutContext
-): string {
+export function assignLayoutVariantWithContext(slide: Slide, context: LayoutContext): string {
   const variants = LAYOUT_VARIANTS[slide.type] ?? ["default"];
 
   // First, get the content-based choice (existing logic)

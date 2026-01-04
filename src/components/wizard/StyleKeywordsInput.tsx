@@ -21,30 +21,9 @@ const SUGGESTED_KEYWORDS = {
     "dramatisk lys",
     "soft light",
   ],
-  style: [
-    "hyperrealistisk",
-    "minimalistisk",
-    "retro",
-    "futuristisk",
-    "vintage",
-    "moderne",
-  ],
-  mood: [
-    "profesjonell",
-    "leken",
-    "seriøs",
-    "varm",
-    "kald",
-    "energisk",
-  ],
-  composition: [
-    "symmetrisk",
-    "sentrert",
-    "close-up",
-    "wide shot",
-    "bird's eye",
-    "rule of thirds",
-  ],
+  style: ["hyperrealistisk", "minimalistisk", "retro", "futuristisk", "vintage", "moderne"],
+  mood: ["profesjonell", "leken", "seriøs", "varm", "kald", "energisk"],
+  composition: ["symmetrisk", "sentrert", "close-up", "wide shot", "bird's eye", "rule of thirds"],
 };
 
 const ALL_SUGGESTIONS = Object.values(SUGGESTED_KEYWORDS).flat();
@@ -68,11 +47,7 @@ export function StyleKeywordsInput({
   const addKeyword = useCallback(
     (keyword: string) => {
       const trimmed = keyword.trim().toLowerCase();
-      if (
-        trimmed &&
-        !value.includes(trimmed) &&
-        value.length < maxKeywords
-      ) {
+      if (trimmed && !value.includes(trimmed) && value.length < maxKeywords) {
         onChange([...value, trimmed]);
         setInputValue("");
       }
@@ -107,10 +82,7 @@ export function StyleKeywordsInput({
       <div
         className={`
           min-h-[80px] p-3 rounded-lg border-2 transition-all
-          ${isFocused
-            ? "border-emerald-400 ring-2 ring-emerald-100"
-            : "border-gray-200"
-          }
+          ${isFocused ? "border-emerald-400 ring-2 ring-emerald-100" : "border-gray-200"}
           ${disabled ? "bg-gray-50 opacity-50" : "bg-white"}
         `}
       >

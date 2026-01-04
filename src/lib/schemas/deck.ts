@@ -5,11 +5,7 @@ import { SlideSchema, OutlineSchema } from "./slide";
  * Golden Template IDs (Phase 8)
  * Pixel-perfect templates with fixed structure
  */
-export const GoldenTemplateId = z.enum([
-  "executive_brief",
-  "feature_showcase",
-  "project_update",
-]);
+export const GoldenTemplateId = z.enum(["executive_brief", "feature_showcase", "project_update"]);
 export type GoldenTemplateId = z.infer<typeof GoldenTemplateId>;
 
 /**

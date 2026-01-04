@@ -45,9 +45,7 @@ export default function ContactPage() {
                 />
               </svg>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
-              ARTI Slides
-            </span>
+            <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
           </Link>
         </div>
       </header>
@@ -55,12 +53,9 @@ export default function ContactPage() {
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Kontakt oss
-          </h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Kontakt oss</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Har du spørsmål, tilbakemeldinger eller trenger hjelp? Vi er her for
-            deg.
+            Har du spørsmål, tilbakemeldinger eller trenger hjelp? Vi er her for deg.
           </p>
         </div>
 
@@ -85,12 +80,9 @@ export default function ContactPage() {
                       />
                     </svg>
                   </div>
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                    Takk for meldingen!
-                  </h2>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-2">Takk for meldingen!</h2>
                   <p className="text-gray-600 mb-6">
-                    Vi har mottatt henvendelsen din og vil svare så snart som
-                    mulig.
+                    Vi har mottatt henvendelsen din og vil svare så snart som mulig.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
@@ -208,9 +200,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="font-semibold text-gray-900 mb-1">E-post</h3>
-              <p className="text-gray-600 text-sm mb-3">
-                For generelle henvendelser
-              </p>
+              <p className="text-gray-600 text-sm mb-3">For generelle henvendelser</p>
               <a
                 href="mailto:hei@artislides.no"
                 className="text-emerald-600 hover:text-emerald-700 font-medium"
@@ -237,9 +227,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="font-semibold text-gray-900 mb-1">Support</h3>
-              <p className="text-gray-600 text-sm mb-3">
-                Teknisk hjelp og feilsøking
-              </p>
+              <p className="text-gray-600 text-sm mb-3">Teknisk hjelp og feilsøking</p>
               <a
                 href="mailto:support@artislides.no"
                 className="text-emerald-600 hover:text-emerald-700 font-medium"
@@ -268,26 +256,17 @@ export default function ContactPage() {
               <h3 className="font-semibold text-gray-900 mb-3">Nyttige lenker</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link
-                    href="/docs"
-                    className="text-emerald-600 hover:text-emerald-700 text-sm"
-                  >
+                  <Link href="/docs" className="text-emerald-600 hover:text-emerald-700 text-sm">
                     Dokumentasjon og hjelp
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/pricing"
-                    className="text-emerald-600 hover:text-emerald-700 text-sm"
-                  >
+                  <Link href="/pricing" className="text-emerald-600 hover:text-emerald-700 text-sm">
                     Priser og planer
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/privacy"
-                    className="text-emerald-600 hover:text-emerald-700 text-sm"
-                  >
+                  <Link href="/privacy" className="text-emerald-600 hover:text-emerald-700 text-sm">
                     Personvern
                   </Link>
                 </li>
@@ -298,10 +277,7 @@ export default function ContactPage() {
 
         {/* Back link */}
         <div className="mt-12 text-center">
-          <Link
-            href="/"
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
             ← Tilbake til forsiden
           </Link>
         </div>

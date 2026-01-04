@@ -7,11 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getDeckById,
-  generateShareToken,
-  revokeShareAccess,
-} from "@/lib/db/deck";
+import { getDeckById, generateShareToken, revokeShareAccess } from "@/lib/db/deck";
 
 // MVP: Use fixed workspace ID (no auth yet)
 const MVP_WORKSPACE_ID = "ws_default";
@@ -29,10 +25,7 @@ function buildShareUrl(token: string, request: NextRequest): string {
 // GET /api/decks/[id]/share - Get current share status
 // ============================================================================
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const deck = await getDeckById(id, MVP_WORKSPACE_ID);
@@ -71,10 +64,7 @@ export async function GET(
 // POST /api/decks/[id]/share - Generate share link
 // ============================================================================
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
 

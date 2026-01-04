@@ -176,11 +176,7 @@ export class SlideTransformAgent {
         );
       } else {
         // Non-streaming
-        result = await this.llmClient.generateJSON(
-          systemPrompt,
-          userPrompt,
-          TransformResultSchema
-        );
+        result = await this.llmClient.generateJSON(systemPrompt, userPrompt, TransformResultSchema);
       }
 
       // Post-process result
@@ -414,11 +410,12 @@ export async function transformSlideServer(
     });
     return { success: true, data: result };
   } catch (error) {
-    const message = error instanceof LLMError
-      ? error.message
-      : error instanceof Error
+    const message =
+      error instanceof LLMError
         ? error.message
-        : "Ukjent feil under AI-transformasjon";
+        : error instanceof Error
+          ? error.message
+          : "Ukjent feil under AI-transformasjon";
     console.error("transformSlideServer error:", error);
     return { success: false, error: message };
   }

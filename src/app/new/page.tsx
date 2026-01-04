@@ -87,9 +87,7 @@ function NewPresentationContent() {
       const { outline } = await res.json();
       setOutline(outline);
     } catch (err) {
-      setOutlineError(
-        err instanceof Error ? err.message : "Kunne ikke generere outline"
-      );
+      setOutlineError(err instanceof Error ? err.message : "Kunne ikke generere outline");
     } finally {
       setIsLoadingOutline(false);
     }
@@ -118,7 +116,8 @@ function NewPresentationContent() {
             // Include additional settings from PromptEditor
             additionalInstructions: promptEditorState.additionalInstructions || undefined,
             imageMode: promptEditorState.imageMode,
-            imageStyle: promptEditorState.imageMode === "ai" ? promptEditorState.imageStyle : undefined,
+            imageStyle:
+              promptEditorState.imageMode === "ai" ? promptEditorState.imageStyle : undefined,
             numSlides: promptEditorState.targetSlideCount,
             // Golden Template (Phase 8) - when set, AI fills content into fixed structure
             templateId: promptEditorState.templateId || undefined,
@@ -167,9 +166,7 @@ function NewPresentationContent() {
       const data = await res.json();
       setOutline(data.outline);
     } catch (err) {
-      setOutlineError(
-        err instanceof Error ? err.message : "Kunne ikke generere outline"
-      );
+      setOutlineError(err instanceof Error ? err.message : "Kunne ikke generere outline");
     } finally {
       setIsLoadingOutline(false);
     }
@@ -261,27 +258,12 @@ function NewPresentationContent() {
   const renderModeInput = () => {
     switch (mode) {
       case "paste":
-        return (
-          <PasteInput
-            onNext={handleInputNext}
-            initialData={inputData ?? undefined}
-          />
-        );
+        return <PasteInput onNext={handleInputNext} initialData={inputData ?? undefined} />;
       case "import":
-        return (
-          <ImportInput
-            onNext={handleInputNext}
-            initialData={inputData ?? undefined}
-          />
-        );
+        return <ImportInput onNext={handleInputNext} initialData={inputData ?? undefined} />;
       case "generate":
       default:
-        return (
-          <GenerateInput
-            onNext={handleInputNext}
-            initialData={inputData ?? undefined}
-          />
-        );
+        return <GenerateInput onNext={handleInputNext} initialData={inputData ?? undefined} />;
     }
   };
 
@@ -295,12 +277,7 @@ function NewPresentationContent() {
               href="/"
               className="text-gray-500 hover:text-gray-700 flex items-center gap-2 transition-colors"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -311,9 +288,7 @@ function NewPresentationContent() {
               Avbryt
             </Link>
             <div className="text-center">
-              <h1 className="text-lg font-medium text-gray-900">
-                Ny presentasjon
-              </h1>
+              <h1 className="text-lg font-medium text-gray-900">Ny presentasjon</h1>
               <p className="text-sm text-gray-500">{MODE_TITLES[mode]}</p>
             </div>
             <div className="w-20" /> {/* Spacer */}
@@ -336,9 +311,7 @@ function NewPresentationContent() {
               <div className="flex flex-col items-center justify-center py-16">
                 <LoadingSpinner size="lg" label="Genererer outline" />
                 <p className="mt-4 text-gray-600">Genererer outline...</p>
-                <p className="text-sm text-gray-400 mt-2">
-                  Dette tar vanligvis 5-10 sekunder
-                </p>
+                <p className="text-sm text-gray-400 mt-2">Dette tar vanligvis 5-10 sekunder</p>
               </div>
             ) : outlineError ? (
               <div className="text-center py-16">

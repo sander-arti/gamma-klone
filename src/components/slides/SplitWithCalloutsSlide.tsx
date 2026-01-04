@@ -134,7 +134,7 @@ export function SplitWithCalloutsSlide({
   const textBlock = slide.blocks.find((b) => b.kind === "text");
 
   // Get color for a callout - use bgColor from block or cycle through defaults
-  const getCalloutColor = (block: typeof calloutBlocks[0]["block"], colorIndex: number) => {
+  const getCalloutColor = (block: (typeof calloutBlocks)[0]["block"], colorIndex: number) => {
     if (block.kind === "icon_card" && block.bgColor) {
       const colorKey = block.bgColor.toLowerCase();
       if (colorKey in COLOR_PRESETS) {
@@ -169,7 +169,7 @@ export function SplitWithCalloutsSlide({
     gap: "var(--theme-spacing-block-gap, 1.5rem)",
   };
 
-  const calloutStyle = (colors: typeof COLOR_PRESETS[string]): React.CSSProperties => {
+  const calloutStyle = (colors: (typeof COLOR_PRESETS)[string]): React.CSSProperties => {
     return {
       padding: "1rem 1.25rem",
       background: colors.bg,
@@ -179,7 +179,7 @@ export function SplitWithCalloutsSlide({
     };
   };
 
-  const calloutTitleStyle = (colors: typeof COLOR_PRESETS[string]): React.CSSProperties => {
+  const calloutTitleStyle = (colors: (typeof COLOR_PRESETS)[string]): React.CSSProperties => {
     return {
       fontSize: "1rem",
       fontWeight: 600,
@@ -254,16 +254,17 @@ export function SplitWithCalloutsSlide({
                   {block.kind === "icon_card" && (
                     <>
                       <div style={calloutTitleStyle(colors)}>
-                        {block.icon && (() => {
-                          const IconComponent = getIconComponent(block.icon);
-                          return (
-                            <IconComponent
-                              size={18}
-                              strokeWidth={2.5}
-                              style={{ color: colors.icon, flexShrink: 0 }}
-                            />
-                          );
-                        })()}
+                        {block.icon &&
+                          (() => {
+                            const IconComponent = getIconComponent(block.icon);
+                            return (
+                              <IconComponent
+                                size={18}
+                                strokeWidth={2.5}
+                                style={{ color: colors.icon, flexShrink: 0 }}
+                              />
+                            );
+                          })()}
                         {block.text}
                       </div>
                       {block.description && <div style={calloutTextStyle}>{block.description}</div>}
@@ -271,9 +272,7 @@ export function SplitWithCalloutsSlide({
                   )}
                   {block.kind === "bullets" && (
                     <>
-                      <div style={calloutTitleStyle(colors)}>
-                        {block.items?.[0]}
-                      </div>
+                      <div style={calloutTitleStyle(colors)}>{block.items?.[0]}</div>
                       {block.items && block.items.length > 1 && (
                         <ul style={{ ...calloutTextStyle, paddingLeft: "1.5rem", margin: 0 }}>
                           {block.items.slice(1).map((item, i) => (

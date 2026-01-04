@@ -37,10 +37,7 @@ export async function GET(
       .single();
 
     if (!member) {
-      return NextResponse.json(
-        { error: "Not a member of this workspace" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Not a member of this workspace" }, { status: 403 });
     }
 
     // Fetch API keys (using admin client to bypass RLS)
@@ -53,19 +50,13 @@ export async function GET(
 
     if (error) {
       console.error("Failed to fetch API keys:", error);
-      return NextResponse.json(
-        { error: "Failed to fetch API keys" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to fetch API keys" }, { status: 500 });
     }
 
     return NextResponse.json({ keys: keys || [] });
   } catch (error) {
     console.error("API keys fetch error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch API keys" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch API keys" }, { status: 500 });
   }
 }
 
@@ -97,10 +88,7 @@ export async function POST(
       .single();
 
     if (!member) {
-      return NextResponse.json(
-        { error: "Not a member of this workspace" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Not a member of this workspace" }, { status: 403 });
     }
 
     const body = await request.json();
@@ -125,9 +113,7 @@ export async function POST(
     let expiresAt: string | null = null;
     if (expiresIn !== "never") {
       const days = expiresIn === "30d" ? 30 : expiresIn === "90d" ? 90 : 365;
-      expiresAt = new Date(
-        Date.now() + days * 24 * 60 * 60 * 1000
-      ).toISOString();
+      expiresAt = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
     }
 
     // Store API key (using admin client)
@@ -147,10 +133,7 @@ export async function POST(
 
     if (error) {
       console.error("Failed to create API key:", error);
-      return NextResponse.json(
-        { error: "Failed to create API key" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to create API key" }, { status: 500 });
     }
 
     // Return the full key (only shown once) + metadata
@@ -160,9 +143,6 @@ export async function POST(
     });
   } catch (error) {
     console.error("API key creation error:", error);
-    return NextResponse.json(
-      { error: "Failed to create API key" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to create API key" }, { status: 500 });
   }
 }

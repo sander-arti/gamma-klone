@@ -16,11 +16,7 @@ export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
-  const handleSubmit = async (data: {
-    email: string;
-    password: string;
-    name?: string;
-  }) => {
+  const handleSubmit = async (data: { email: string; password: string; name?: string }) => {
     setIsLoading(true);
     setError(undefined);
 
@@ -40,11 +36,7 @@ export default function SignupPage() {
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Kunne ikke opprette konto. Prøv igjen."
-      );
+      setError(err instanceof Error ? err.message : "Kunne ikke opprette konto. Prøv igjen.");
     } finally {
       setIsLoading(false);
     }
@@ -61,10 +53,7 @@ export default function SignupPage() {
   };
 
   return (
-    <AuthLayout
-      title="Opprett konto"
-      subtitle="Kom i gang med ARTI Slides gratis"
-    >
+    <AuthLayout title="Opprett konto" subtitle="Kom i gang med ARTI Slides gratis">
       {/* Social login */}
       <SocialLogin
         onGoogleClick={handleGoogleLogin}
@@ -83,20 +72,12 @@ export default function SignupPage() {
       </div>
 
       {/* Email/password form */}
-      <AuthForm
-        mode="signup"
-        onSubmit={handleSubmit}
-        isLoading={isLoading}
-        error={error}
-      />
+      <AuthForm mode="signup" onSubmit={handleSubmit} isLoading={isLoading} error={error} />
 
       {/* Login link */}
       <p className="mt-6 text-center text-sm text-gray-600">
         Har du allerede en konto?{" "}
-        <Link
-          href="/login"
-          className="font-medium text-emerald-600 hover:text-emerald-700"
-        >
+        <Link href="/login" className="font-medium text-emerald-600 hover:text-emerald-700">
           Logg inn
         </Link>
       </p>

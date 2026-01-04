@@ -58,14 +58,9 @@ export const LayoutVariant = z.string().default("default");
  * - split_diagonal: Diagonal split between solid color and image
  * - gradient_only: Rich gradient background without image, bold typography
  */
-export const CoverLayoutVariant = z.enum([
-  "cinematic",
-  "editorial",
-  "minimal",
-  "centered",
-  "split_diagonal",
-  "gradient_only",
-]).default("cinematic");
+export const CoverLayoutVariant = z
+  .enum(["cinematic", "editorial", "minimal", "centered", "split_diagonal", "gradient_only"])
+  .default("cinematic");
 
 export type CoverLayoutVariant = z.infer<typeof CoverLayoutVariant>;
 
@@ -79,14 +74,9 @@ export type CoverLayoutVariant = z.infer<typeof CoverLayoutVariant>;
  * - grid: 2-3 column grid with card styling (Premium)
  * - cards: Feature cards with icons/numbers (Premium)
  */
-export const BulletsLayoutVariant = z.enum([
-  "default",
-  "compact",
-  "expanded",
-  "two_columns",
-  "grid",
-  "cards",
-]).default("grid"); // Default to grid for premium look
+export const BulletsLayoutVariant = z
+  .enum(["default", "compact", "expanded", "two_columns", "grid", "cards"])
+  .default("grid"); // Default to grid for premium look
 
 export type BulletsLayoutVariant = z.infer<typeof BulletsLayoutVariant>;
 

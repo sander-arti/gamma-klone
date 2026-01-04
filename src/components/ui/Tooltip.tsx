@@ -9,12 +9,12 @@
  * - Automatic cleanup on unmount
  */
 
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, ReactNode, useMemo } from 'react';
-import { createPortal } from 'react-dom';
+import { useState, useEffect, useRef, ReactNode, useMemo } from "react";
+import { createPortal } from "react-dom";
 
-type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
+type TooltipPosition = "top" | "right" | "bottom" | "left";
 
 type TooltipProps = {
   content: string;
@@ -27,7 +27,7 @@ type TooltipProps = {
 export function Tooltip({
   content,
   shortcut,
-  position = 'top',
+  position = "top",
   delay = 500,
   children,
 }: TooltipProps) {
@@ -55,19 +55,19 @@ export function Tooltip({
     let left = 0;
 
     switch (position) {
-      case 'top':
+      case "top":
         top = triggerRect.top - tooltipRect.height - offset;
         left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
         break;
-      case 'right':
+      case "right":
         top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
         left = triggerRect.right + offset;
         break;
-      case 'bottom':
+      case "bottom":
         top = triggerRect.bottom + offset;
         left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
         break;
-      case 'left':
+      case "left":
         top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
         left = triggerRect.left - tooltipRect.width - offset;
         break;

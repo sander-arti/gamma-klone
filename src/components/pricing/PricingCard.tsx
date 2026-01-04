@@ -52,38 +52,22 @@ export function PricingCard({ tier }: PricingCardProps) {
       )}
 
       {/* Plan name */}
-      <h3
-        className={`text-xl font-semibold mb-2 ${
-          isPopular ? "text-white" : "text-gray-900"
-        }`}
-      >
+      <h3 className={`text-xl font-semibold mb-2 ${isPopular ? "text-white" : "text-gray-900"}`}>
         {tier.name}
       </h3>
 
       {/* Price */}
       <div className="mb-4">
         {isEnterprise ? (
-          <div
-            className={`text-3xl font-bold ${
-              isPopular ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <div className={`text-3xl font-bold ${isPopular ? "text-white" : "text-gray-900"}`}>
             Kontakt oss
           </div>
         ) : (
           <div className="flex items-baseline gap-1">
-            <span
-              className={`text-4xl font-bold ${
-                isPopular ? "text-white" : "text-gray-900"
-              }`}
-            >
+            <span className={`text-4xl font-bold ${isPopular ? "text-white" : "text-gray-900"}`}>
               {tier.price}
             </span>
-            <span
-              className={`text-lg ${
-                isPopular ? "text-emerald-100" : "text-gray-500"
-              }`}
-            >
+            <span className={`text-lg ${isPopular ? "text-emerald-100" : "text-gray-500"}`}>
               {tier.period}
             </span>
           </div>
@@ -91,11 +75,7 @@ export function PricingCard({ tier }: PricingCardProps) {
       </div>
 
       {/* Description */}
-      <p
-        className={`text-sm mb-6 ${
-          isPopular ? "text-emerald-100" : "text-gray-600"
-        }`}
-      >
+      <p className={`text-sm mb-6 ${isPopular ? "text-emerald-100" : "text-gray-600"}`}>
         {tier.description}
       </p>
 
@@ -137,11 +117,7 @@ export function PricingCard({ tier }: PricingCardProps) {
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            <span
-              className={`text-sm ${
-                isPopular ? "text-emerald-50" : "text-gray-600"
-              }`}
-            >
+            <span className={`text-sm ${isPopular ? "text-emerald-50" : "text-gray-600"}`}>
               {feature}
             </span>
           </li>

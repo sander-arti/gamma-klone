@@ -11,11 +11,7 @@ import { PDFDocument } from "pdf-lib";
 import { existsSync } from "fs";
 import { join } from "path";
 import { homedir } from "os";
-import {
-  renderSlidesToPdf,
-  renderSingleSlideToPdf,
-  closeBrowser,
-} from "../pdf-renderer";
+import { renderSlidesToPdf, renderSingleSlideToPdf, closeBrowser } from "../pdf-renderer";
 import { renderSlideToHtml, PDF_DIMENSIONS } from "../slide-html";
 import type { Slide } from "@/lib/schemas/slide";
 import type { ThemeId } from "@/lib/themes";
@@ -138,12 +134,10 @@ describe("slide-html", () => {
   });
 });
 
-describe.skipIf(!PLAYWRIGHT_AVAILABLE)(
-  "pdf-renderer (requires Playwright)",
-  () => {
-    afterAll(async () => {
-      await closeBrowser();
-    });
+describe.skipIf(!PLAYWRIGHT_AVAILABLE)("pdf-renderer (requires Playwright)", () => {
+  afterAll(async () => {
+    await closeBrowser();
+  });
 
   describe("renderSingleSlideToPdf", () => {
     it("renders a cover slide to PDF buffer", async () => {

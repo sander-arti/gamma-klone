@@ -25,7 +25,12 @@ const PASTE_MODES = [
     description: "Komprimer teksten til konsise slides",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+        />
       </svg>
     ),
   },
@@ -35,7 +40,12 @@ const PASTE_MODES = [
     description: "Bevar eksisterende punkter og struktur",
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
     ),
   },
@@ -76,20 +86,24 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
               onClick={() => setTextMode(mode.id)}
               className={`
                 p-4 rounded-xl border-2 text-left transition-all
-                ${textMode === mode.id
-                  ? "border-emerald-500 bg-emerald-50"
-                  : "border-gray-200 hover:border-gray-300"
+                ${
+                  textMode === mode.id
+                    ? "border-emerald-500 bg-emerald-50"
+                    : "border-gray-200 hover:border-gray-300"
                 }
               `}
             >
               <div className="flex items-start gap-3">
-                <div className={`
+                <div
+                  className={`
                   p-2 rounded-lg
-                  ${textMode === mode.id
-                    ? "bg-emerald-100 text-emerald-600"
-                    : "bg-gray-100 text-gray-500"
+                  ${
+                    textMode === mode.id
+                      ? "bg-emerald-100 text-emerald-600"
+                      : "bg-gray-100 text-gray-500"
                   }
-                `}>
+                `}
+                >
                   {mode.icon}
                 </div>
                 <div>
@@ -133,9 +147,7 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
                 {charCount.toLocaleString()} / {MAX_CHARS.toLocaleString()} tegn
               </span>
               {isOverLimit && (
-                <span className="text-red-600">
-                  For mye tekst - vennligst forkort
-                </span>
+                <span className="text-red-600">For mye tekst - vennligst forkort</span>
               )}
             </div>
             <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -144,8 +156,8 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
                   isOverLimit
                     ? "bg-red-500"
                     : charPercentage > 80
-                    ? "bg-amber-500"
-                    : "bg-gradient-to-r from-blue-500 to-cyan-500"
+                      ? "bg-amber-500"
+                      : "bg-gradient-to-r from-blue-500 to-cyan-500"
                 }`}
                 style={{ width: `${charPercentage}%` }}
               />
@@ -159,7 +171,12 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
                 className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
                 <span>Tips: Kontroller slide-inndeling</span>
                 <svg
@@ -168,14 +185,20 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               </button>
 
               {showSeparatorHint && (
                 <div className="mt-2 p-3 bg-blue-50 rounded-lg border border-blue-100">
                   <p className="text-xs text-blue-800 mb-2">
-                    Bruk <code className="px-1 py-0.5 bg-blue-100 rounded font-mono">---</code> for å definere hvor en ny slide skal starte:
+                    Bruk <code className="px-1 py-0.5 bg-blue-100 rounded font-mono">---</code> for
+                    å definere hvor en ny slide skal starte:
                   </p>
                   <div className="text-xs text-blue-700 font-mono bg-white p-2 rounded border border-blue-100 space-y-1">
                     <div>Introduksjon til strategien</div>
@@ -203,12 +226,7 @@ export function PasteInput({ onNext, initialData }: PasteInputProps) {
               size="lg"
             >
               Fortsett
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

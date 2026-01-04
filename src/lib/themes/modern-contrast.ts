@@ -115,20 +115,20 @@ export const modernContrast: Theme = {
       unit: "8px",
 
       // 8px grid scale (bold, confident spacing)
-      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)",    // ~4-6px
-      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)",      // ~8-12px
-      md: "clamp(1rem, 1.5cqw, 1.25rem)",        // ~16-20px
-      lg: "clamp(1.5rem, 2.25cqw, 2rem)",        // ~24-32px
-      xl: "clamp(2rem, 3cqw, 2.75rem)",          // ~32-44px
-      xxl: "clamp(3rem, 4.5cqw, 4rem)",          // ~48-64px
-      xxxl: "clamp(4rem, 6cqw, 5.5rem)",         // ~64-88px
+      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)", // ~4-6px
+      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)", // ~8-12px
+      md: "clamp(1rem, 1.5cqw, 1.25rem)", // ~16-20px
+      lg: "clamp(1.5rem, 2.25cqw, 2rem)", // ~24-32px
+      xl: "clamp(2rem, 3cqw, 2.75rem)", // ~32-44px
+      xxl: "clamp(3rem, 4.5cqw, 4rem)", // ~48-64px
+      xxxl: "clamp(4rem, 6cqw, 5.5rem)", // ~64-88px
 
       // Semantic tokens (confident, modern spacing)
-      slideGutter: "clamp(3rem, 5.5cqw, 5rem)",    // Bold edge padding
-      sectionGap: "clamp(2.5rem, 4cqw, 3.5rem)",   // Clear section breaks
-      blockGap: "clamp(1.5rem, 2.25cqw, 2rem)",    // Confident content gaps
+      slideGutter: "clamp(3rem, 5.5cqw, 5rem)", // Bold edge padding
+      sectionGap: "clamp(2.5rem, 4cqw, 3.5rem)", // Clear section breaks
+      blockGap: "clamp(1.5rem, 2.25cqw, 2rem)", // Confident content gaps
       contentPadding: "clamp(1.25rem, 1.75cqw, 1.5rem)", // Spacious cards
-      itemGap: "clamp(0.75rem, 1.1cqw, 1rem)",     // Clear list spacing
+      itemGap: "clamp(0.75rem, 1.1cqw, 1rem)", // Clear list spacing
       inlineGap: "clamp(0.5rem, 0.75cqw, 0.625rem)", // Modern inline gaps
 
       // Legacy tokens
@@ -166,15 +166,19 @@ export const modernContrast: Theme = {
 
       // Overlay for images
       overlayDark: "linear-gradient(180deg, transparent 0%, rgba(9, 9, 11, 0.7) 100%)",
-      overlayLight: "linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.95) 100%)",
+      overlayLight:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.95) 100%)",
 
       // Slide background system (Punkt 3)
       // Modern gradient with slight purple tint
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(250, 250, 255, 0.4) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(250, 250, 255, 0.4) 100%)",
       // Focused vignette for modern look
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(124, 58, 237, 0.02) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(124, 58, 237, 0.02) 100%)",
       // Bold corner accent with gradient
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(124, 58, 237, 0.05) 0%, transparent 45%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(124, 58, 237, 0.05) 0%, transparent 45%)",
       // Modern geometric pattern hint
       slidePatternColor: "rgba(124, 58, 237, 0.03)",
       slidePatternOpacity: "0.5",
@@ -182,7 +186,8 @@ export const modernContrast: Theme = {
       // Image styling system (Punkt 5) - Bold, modern aesthetic
       imageBorderRadius: "1rem",
       imageShadow: "0 6px 16px -3px rgba(124, 58, 237, 0.12), 0 3px 8px -2px rgba(0, 0, 0, 0.06)",
-      imageShadowFloating: "0 24px 50px -12px rgba(124, 58, 237, 0.2), 0 10px 24px -8px rgba(0, 0, 0, 0.15)",
+      imageShadowFloating:
+        "0 24px 50px -12px rgba(124, 58, 237, 0.2), 0 10px 24px -8px rgba(0, 0, 0, 0.15)",
       imageInnerShadow: "inset 0 0 0 1px rgba(124, 58, 237, 0.06)",
       imageFrameColor: "rgba(124, 58, 237, 0.1)",
       imageFrameWidth: "4px",

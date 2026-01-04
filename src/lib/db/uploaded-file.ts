@@ -35,9 +35,7 @@ export interface ExtractionErrorInput {
 /**
  * Create a new uploaded file record
  */
-export async function createUploadedFile(
-  input: CreateUploadedFileInput
-): Promise<UploadedFile> {
+export async function createUploadedFile(input: CreateUploadedFileInput): Promise<UploadedFile> {
   const { workspaceId, filename, mimeType, size, s3Key } = input;
 
   return prisma.uploadedFile.create({
@@ -55,9 +53,7 @@ export async function createUploadedFile(
 /**
  * Get an uploaded file by ID (internal use, no workspace isolation)
  */
-export async function getUploadedFile(
-  id: string
-): Promise<UploadedFile | null> {
+export async function getUploadedFile(id: string): Promise<UploadedFile | null> {
   return prisma.uploadedFile.findUnique({
     where: { id },
   });

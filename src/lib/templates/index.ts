@@ -24,9 +24,7 @@ export const goldenTemplates: Record<GoldenTemplateId, GoldenTemplate> = {
 /**
  * Get a template by ID
  */
-export function getGoldenTemplate(
-  id: GoldenTemplateId
-): GoldenTemplate | undefined {
+export function getGoldenTemplate(id: GoldenTemplateId): GoldenTemplate | undefined {
   return goldenTemplates[id];
 }
 

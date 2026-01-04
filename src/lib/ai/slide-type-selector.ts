@@ -29,9 +29,7 @@ export interface SlideTypeRecommendation {
  * - Action items (3+) → action_items_table
  * - Quotes → quote_callout
  */
-export function recommendSlideTypes(
-  analysis: ContentAnalysis
-): SlideTypeRecommendation[] {
+export function recommendSlideTypes(analysis: ContentAnalysis): SlideTypeRecommendation[] {
   const recommendations: SlideTypeRecommendation[] = [];
 
   // Regel 1: Statistikk → summary_with_stats
@@ -125,9 +123,7 @@ export function recommendSlideTypes(
 /**
  * Format recommendations for prompt injection
  */
-export function formatRecommendationsForPrompt(
-  recommendations: SlideTypeRecommendation[]
-): string {
+export function formatRecommendationsForPrompt(recommendations: SlideTypeRecommendation[]): string {
   if (recommendations.length === 0) {
     return "";
   }
@@ -158,9 +154,7 @@ export function getTopRecommendation(
     return highConfidence[0];
   }
 
-  const mediumConfidence = recommendations.filter(
-    (r) => r.confidence === "medium"
-  );
+  const mediumConfidence = recommendations.filter((r) => r.confidence === "medium");
   if (mediumConfidence.length > 0) {
     return mediumConfidence[0];
   }
@@ -175,7 +169,5 @@ export function isSlideTypeRecommended(
   recommendations: SlideTypeRecommendation[],
   type: SlideType
 ): boolean {
-  return recommendations.some(
-    (r) => r.type === type && r.confidence !== "low"
-  );
+  return recommendations.some((r) => r.type === type && r.confidence !== "low");
 }

@@ -14,8 +14,7 @@ export const metadata: Metadata = {
     "Velg den planen som passer best for deg. Fra gratis til enterprise - ARTI Slides har en løsning for alle behov.",
   openGraph: {
     title: "Priser og planer | ARTI Slides",
-    description:
-      "Velg den planen som passer best for deg. Fra gratis til enterprise.",
+    description: "Velg den planen som passer best for deg. Fra gratis til enterprise.",
     url: "https://artislides.no/pricing",
   },
   alternates: {
@@ -118,9 +117,7 @@ export default function PricingPage() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-semibold text-gray-900">
-                ARTI Slides
-              </span>
+              <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
             </Link>
             <nav className="hidden sm:flex items-center gap-6">
               <Link
@@ -129,10 +126,7 @@ export default function PricingPage() {
               >
                 Funksjoner
               </Link>
-              <Link
-                href="/pricing"
-                className="text-sm font-medium text-emerald-600"
-              >
+              <Link href="/pricing" className="text-sm font-medium text-emerald-600">
                 Priser
               </Link>
               <Link
@@ -160,8 +154,7 @@ export default function PricingPage() {
             Enkel og transparent prising
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Velg planen som passer for deg. Oppgrader, nedgrader eller avbryt
-            nar som helst.
+            Velg planen som passer for deg. Oppgrader, nedgrader eller avbryt nar som helst.
           </p>
         </div>
       </section>
@@ -195,9 +188,7 @@ export default function PricingPage() {
       {/* Final CTA */}
       <section className="py-16 bg-gradient-to-br from-emerald-600 to-emerald-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Klar til å komme i gang?
-          </h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Klar til å komme i gang?</h2>
           <p className="text-lg text-emerald-100 mb-8">
             Prove gratis i dag - ingen kredittkort nødvendig.
           </p>
@@ -214,12 +205,7 @@ export default function PricingPage() {
             "
           >
             Lag din første presentasjon
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -251,9 +237,7 @@ export default function PricingPage() {
                   />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-gray-400">
-                ARTI Slides
-              </span>
+              <span className="text-sm font-medium text-gray-400">ARTI Slides</span>
             </div>
             <div className="flex items-center gap-6">
               <Link

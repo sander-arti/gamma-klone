@@ -39,9 +39,7 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
                 />
               </svg>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
-              ARTI Slides
-            </span>
+            <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
           </Link>
 
           {/* Header */}
@@ -70,8 +68,8 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
               AI-presentasjoner som faktisk imponerer
             </h2>
             <p className="text-emerald-100 text-lg mb-8">
-              Lag profesjonelle presentasjoner pa minutter, ikke timer.
-              Over 20 slide-typer og 6 premium temaer.
+              Lag profesjonelle presentasjoner pa minutter, ikke timer. Over 20 slide-typer og 6
+              premium temaer.
             </p>
 
             {/* Features */}

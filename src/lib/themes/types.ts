@@ -140,21 +140,21 @@ export interface ThemeSpacing {
   unit: string;
 
   // 8px scale (responsive with clamp)
-  xs: string;    // ~4px - icon gaps, micro adjustments
-  sm: string;    // ~8px - tight spacing, small gaps
-  md: string;    // ~16px - default content gap
-  lg: string;    // ~24px - comfortable spacing
-  xl: string;    // ~32px - generous spacing
-  xxl: string;   // ~48px - section spacing
-  xxxl: string;  // ~64px - large gutters
+  xs: string; // ~4px - icon gaps, micro adjustments
+  sm: string; // ~8px - tight spacing, small gaps
+  md: string; // ~16px - default content gap
+  lg: string; // ~24px - comfortable spacing
+  xl: string; // ~32px - generous spacing
+  xxl: string; // ~48px - section spacing
+  xxxl: string; // ~64px - large gutters
 
   // Semantic tokens (map to scale for clarity)
-  slideGutter: string;     // Padding from slide edges (xl-xxxl)
-  sectionGap: string;      // Gap between major sections (xxl)
-  blockGap: string;        // Gap between content blocks (lg)
-  contentPadding: string;  // Inside cards/callouts (md-lg)
-  itemGap: string;         // Between list items, grid items (sm-md)
-  inlineGap: string;       // Icon-to-text, inline elements (xs-sm)
+  slideGutter: string; // Padding from slide edges (xl-xxxl)
+  sectionGap: string; // Gap between major sections (xxl)
+  blockGap: string; // Gap between content blocks (lg)
+  contentPadding: string; // Inside cards/callouts (md-lg)
+  itemGap: string; // Between list items, grid items (sm-md)
+  inlineGap: string; // Icon-to-text, inline elements (xs-sm)
 
   // Legacy tokens
   bulletIndent: string;

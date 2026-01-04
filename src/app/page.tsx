@@ -47,9 +47,7 @@ export default function LandingPage() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-semibold text-gray-900">
-                ARTI Slides
-              </span>
+              <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
             </div>
             <nav className="hidden sm:flex items-center gap-6">
               <Link
@@ -118,12 +116,7 @@ export default function LandingPage() {
             "
           >
             Lag din første presentasjon gratis
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -213,13 +206,11 @@ export default function LandingPage() {
                     />
                   </svg>
                 </div>
-                <span className="text-lg font-semibold text-white">
-                  ARTI Slides
-                </span>
+                <span className="text-lg font-semibold text-white">ARTI Slides</span>
               </div>
               <p className="text-gray-400 text-sm max-w-xs">
-                Norsk AI-presentasjonsplattform. Lag førsteklasses presentasjoner
-                på minutter, ikke timer.
+                Norsk AI-presentasjonsplattform. Lag førsteklasses presentasjoner på minutter, ikke
+                timer.
               </p>
             </div>
 
@@ -296,12 +287,8 @@ export default function LandingPage() {
 
           {/* Bottom bar */}
           <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-500">
-              © 2024 ARTI Slides. Alle rettigheter reservert.
-            </p>
-            <p className="text-sm text-gray-500">
-              Laget med kjærlighet i Norge
-            </p>
+            <p className="text-sm text-gray-500">© 2024 ARTI Slides. Alle rettigheter reservert.</p>
+            <p className="text-sm text-gray-500">Laget med kjærlighet i Norge</p>
           </div>
         </div>
       </footer>

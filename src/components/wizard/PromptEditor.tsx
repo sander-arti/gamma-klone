@@ -13,7 +13,15 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, RefreshCw, Sparkles, AlertCircle, List, Loader2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  RefreshCw,
+  Sparkles,
+  AlertCircle,
+  List,
+  Loader2,
+} from "lucide-react";
 import { Button } from "@/components/ui";
 import { SettingsPanel } from "./SettingsPanel";
 import { ContentPreview } from "./ContentPreview";
@@ -154,12 +162,8 @@ export function PromptEditor({
       {/* Header */}
       <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#e5e2dd]">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">
-            Prompt Editor
-          </h2>
-          <p className="text-sm text-gray-500">
-            Tilpass genereringen før du fortsetter
-          </p>
+          <h2 className="text-lg font-semibold text-gray-900">Prompt Editor</h2>
+          <p className="text-sm text-gray-500">Tilpass genereringen før du fortsetter</p>
         </div>
 
         <div className="text-right">
@@ -239,11 +243,7 @@ export function PromptEditor({
       {/* Sticky Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-[#e5e2dd] shadow-lg z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center gap-3">
-          <Button
-            variant="secondary"
-            onClick={onBack}
-            disabled={isLoading || isGeneratingOutline}
-          >
+          <Button variant="secondary" onClick={onBack} disabled={isLoading || isGeneratingOutline}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             Tilbake
           </Button>
@@ -279,10 +279,7 @@ export function PromptEditor({
           ) : null}
 
           {/* Generate button - always enabled (outline is optional) */}
-          <Button
-            onClick={onGenerate}
-            disabled={isLoading || isGeneratingOutline}
-          >
+          <Button onClick={onGenerate} disabled={isLoading || isGeneratingOutline}>
             <Sparkles className="w-4 h-4 mr-2" />
             Generer presentasjon
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -313,28 +310,20 @@ export function PromptEditor({
                   <AlertCircle className="w-5 h-5 text-amber-600" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Regenerer outline?
-                  </h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Regenerer outline?</h3>
                   <p className="text-sm text-gray-600 mb-4">
                     Du har endret antall slides fra{" "}
-                    <span className="font-medium">{outline?.slides.length ?? settings.targetSlideCount}</span>
-                    {" "}til{" "}
-                    <span className="font-medium">{pendingSlideCount}</span>.
-                    Dette vil regenerere hele outlinen.
+                    <span className="font-medium">
+                      {outline?.slides.length ?? settings.targetSlideCount}
+                    </span>{" "}
+                    til <span className="font-medium">{pendingSlideCount}</span>. Dette vil
+                    regenerere hele outlinen.
                   </p>
                   <div className="flex gap-3">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={cancelSlideCountChange}
-                    >
+                    <Button variant="secondary" size="sm" onClick={cancelSlideCountChange}>
                       Avbryt
                     </Button>
-                    <Button
-                      size="sm"
-                      onClick={confirmSlideCountChange}
-                    >
+                    <Button size="sm" onClick={confirmSlideCountChange}>
                       <RefreshCw className="w-4 h-4 mr-1.5" />
                       Regenerer
                     </Button>

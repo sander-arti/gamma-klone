@@ -36,9 +36,7 @@ export default function LoginPage() {
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Feil e-post eller passord. Prøv igjen."
-      );
+      setError(err instanceof Error ? err.message : "Feil e-post eller passord. Prøv igjen.");
     } finally {
       setIsLoading(false);
     }
@@ -55,10 +53,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthLayout
-      title="Velkommen tilbake"
-      subtitle="Logg inn på kontoen din for å fortsette"
-    >
+    <AuthLayout title="Velkommen tilbake" subtitle="Logg inn på kontoen din for å fortsette">
       {/* Social login */}
       <SocialLogin
         onGoogleClick={handleGoogleLogin}
@@ -77,20 +72,12 @@ export default function LoginPage() {
       </div>
 
       {/* Email/password form */}
-      <AuthForm
-        mode="login"
-        onSubmit={handleSubmit}
-        isLoading={isLoading}
-        error={error}
-      />
+      <AuthForm mode="login" onSubmit={handleSubmit} isLoading={isLoading} error={error} />
 
       {/* Sign up link */}
       <p className="mt-6 text-center text-sm text-gray-600">
         Har du ikke en konto?{" "}
-        <Link
-          href="/signup"
-          className="font-medium text-emerald-600 hover:text-emerald-700"
-        >
+        <Link href="/signup" className="font-medium text-emerald-600 hover:text-emerald-700">
           Opprett konto
         </Link>
       </p>

@@ -77,7 +77,8 @@ export function ImageBlock({
       case "floating":
         return {
           ...baseStyle,
-          boxShadow: "var(--theme-effects-image-shadow-floating, 0 20px 40px -12px rgba(0, 0, 0, 0.15))",
+          boxShadow:
+            "var(--theme-effects-image-shadow-floating, 0 20px 40px -12px rgba(0, 0, 0, 0.15))",
           transform: "translateY(-2px)",
         };
       case "minimal":
@@ -112,7 +113,8 @@ export function ImageBlock({
         <div
           className="absolute inset-0 animate-shimmer"
           style={{
-            background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
             backgroundSize: "200% 100%",
           }}
           aria-hidden="true"
@@ -120,10 +122,7 @@ export function ImageBlock({
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
           {/* Pulsing sparkles icon */}
           <div className="relative">
-            <Sparkles
-              className="w-10 h-10 animate-pulse"
-              style={{ color: "#8b5cf6" }}
-            />
+            <Sparkles className="w-10 h-10 animate-pulse" style={{ color: "#8b5cf6" }} />
             {/* Glow effect */}
             <div
               className="absolute inset-0 blur-md animate-pulse"
@@ -154,7 +153,8 @@ export function ImageBlock({
         style={{
           aspectRatio,
           borderRadius: "var(--theme-effects-image-border-radius, 0.75rem)",
-          background: "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
+          background:
+            "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
         }}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
@@ -187,7 +187,8 @@ export function ImageBlock({
           <div
             className="absolute inset-0 animate-shimmer"
             style={{
-              background: "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
+              background:
+                "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
               backgroundSize: "200% 100%",
             }}
             aria-hidden="true"
@@ -199,7 +200,8 @@ export function ImageBlock({
           <div
             className="absolute inset-0 flex flex-col items-center justify-center gap-2"
             style={{
-              background: "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
+              background:
+                "var(--theme-effects-image-placeholder-bg, linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%))",
             }}
           >
             <AlertCircle
@@ -235,7 +237,8 @@ export function ImageBlock({
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              boxShadow: "var(--theme-effects-image-inner-shadow, inset 0 0 0 1px rgba(0, 0, 0, 0.04))",
+              boxShadow:
+                "var(--theme-effects-image-inner-shadow, inset 0 0 0 1px rgba(0, 0, 0, 0.04))",
             }}
             aria-hidden="true"
           />

@@ -147,12 +147,8 @@ describe("pptx-theme-mapper", () => {
       expect(CONTENT_AREA.height).toBeGreaterThan(0);
 
       // Content area should fit within slide dimensions
-      expect(CONTENT_AREA.x + CONTENT_AREA.width).toBeLessThanOrEqual(
-        PPTX_DIMENSIONS.width
-      );
-      expect(CONTENT_AREA.y + CONTENT_AREA.height).toBeLessThanOrEqual(
-        PPTX_DIMENSIONS.height
-      );
+      expect(CONTENT_AREA.x + CONTENT_AREA.width).toBeLessThanOrEqual(PPTX_DIMENSIONS.width);
+      expect(CONTENT_AREA.y + CONTENT_AREA.height).toBeLessThanOrEqual(PPTX_DIMENSIONS.height);
     });
   });
 
@@ -267,11 +263,7 @@ describe("pptx-renderer", () => {
     });
 
     it("renders multiple slides to PPTX", async () => {
-      const slides = [
-        createCoverSlide(),
-        createBulletsSlide(),
-        createTableSlide(),
-      ];
+      const slides = [createCoverSlide(), createBulletsSlide(), createTableSlide()];
 
       const buffer = await renderSlidesToPptx(slides, themeId);
 

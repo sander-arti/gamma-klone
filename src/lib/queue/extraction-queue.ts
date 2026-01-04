@@ -56,9 +56,7 @@ export function getExtractionQueue(): Queue<ExtractionJobData> {
 /**
  * Add an extraction job to the queue
  */
-export async function addExtractionJob(
-  data: ExtractionJobData
-): Promise<string> {
+export async function addExtractionJob(data: ExtractionJobData): Promise<string> {
   const queue = getExtractionQueue();
 
   const job = await queue.add(

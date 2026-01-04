@@ -14,8 +14,7 @@ export const metadata: Metadata = {
     "Utforsk alle funksjonene i ARTI Slides: 20+ slide-typer, premium temaer, AI-bilder, og eksport til PDF og PowerPoint.",
   openGraph: {
     title: "Funksjoner | ARTI Slides",
-    description:
-      "20+ slide-typer, premium temaer, AI-bilder, og eksport til PDF og PowerPoint.",
+    description: "20+ slide-typer, premium temaer, AI-bilder, og eksport til PDF og PowerPoint.",
     url: "https://artislides.no/features",
   },
   alternates: {
@@ -35,7 +34,12 @@ const slideTypes: Feature[] = [
     description: "Imponerende aapningsslides med tittel, undertittel og visuell effekt.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h7" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M4 6h16M4 12h16M4 18h7"
+        />
       </svg>
     ),
   },
@@ -44,7 +48,12 @@ const slideTypes: Feature[] = [
     description: "Strukturerte slides med tittel, tekst og bullet points.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
     ),
   },
@@ -53,7 +62,12 @@ const slideTypes: Feature[] = [
     description: "Side-ved-side sammenligning av to alternativer eller konsepter.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"
+        />
       </svg>
     ),
   },
@@ -62,7 +76,12 @@ const slideTypes: Feature[] = [
     description: "Visualiser prosesser, historikk eller fremdrift over tid.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
       </svg>
     ),
   },
@@ -71,7 +90,12 @@ const slideTypes: Feature[] = [
     description: "Vis tall og metrikker på en visuelt slaende mate.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        />
       </svg>
     ),
   },
@@ -92,7 +116,12 @@ const inputModes: Feature[] = [
     description: "Beskriv temaet ditt, og AI-en lager en komplett presentasjon.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+        />
       </svg>
     ),
   },
@@ -101,7 +130,12 @@ const inputModes: Feature[] = [
     description: "Lim inn lange møtenotater, og AI-en trekker ut det viktigste.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
     ),
   },
@@ -110,7 +144,12 @@ const inputModes: Feature[] = [
     description: "Last opp PDF, Word eller tekstfil og konverter til presentasjon.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+        />
       </svg>
     ),
   },
@@ -122,7 +161,12 @@ const exportOptions: Feature[] = [
     description: "Last ned som PDF for deling, utskrift eller arkivering.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+        />
       </svg>
     ),
   },
@@ -131,7 +175,12 @@ const exportOptions: Feature[] = [
     description: "Eksporter til redigerbar PowerPoint for videre arbeid.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
+        />
       </svg>
     ),
   },
@@ -140,7 +189,12 @@ const exportOptions: Feature[] = [
     description: "Del presentasjonen med en enkel lenke - ingen nedlasting nødvendig.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+        />
       </svg>
     ),
   },
@@ -156,7 +210,9 @@ function FeatureCard({ feature, color }: { feature: Feature; color: string }) {
 
   return (
     <div className="bg-white rounded-xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow">
-      <div className={`w-12 h-12 rounded-xl ${colors.bg} ${colors.icon} flex items-center justify-center mb-4`}>
+      <div
+        className={`w-12 h-12 rounded-xl ${colors.bg} ${colors.icon} flex items-center justify-center mb-4`}
+      >
         {feature.icon}
       </div>
       <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
@@ -188,15 +244,10 @@ export default function FeaturesPage() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-semibold text-gray-900">
-                ARTI Slides
-              </span>
+              <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
             </Link>
             <nav className="hidden sm:flex items-center gap-6">
-              <Link
-                href="/features"
-                className="text-sm font-medium text-emerald-600"
-              >
+              <Link href="/features" className="text-sm font-medium text-emerald-600">
                 Funksjoner
               </Link>
               <Link
@@ -227,16 +278,14 @@ export default function FeaturesPage() {
       <section className="py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/60 mb-6">
-            <span className="text-sm font-medium text-emerald-700">
-              20+ slide-typer
-            </span>
+            <span className="text-sm font-medium text-emerald-700">20+ slide-typer</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Alt du trenger for førsteklasses presentasjoner
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Spesialbygde funksjoner for å lage presentasjoner som imponerer.
-            Ingen unødvendige funksjoner - bare det du faktisk trenger.
+            Spesialbygde funksjoner for å lage presentasjoner som imponerer. Ingen unødvendige
+            funksjoner - bare det du faktisk trenger.
           </p>
         </div>
       </section>
@@ -245,12 +294,10 @@ export default function FeaturesPage() {
       <section className="py-16 bg-white/60 border-y border-gray-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Intelligente slide-typer
-            </h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Intelligente slide-typer</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Over 20 spesialiserte layouts designet for ulike typer innhold.
-              Ikke bare bullet points.
+              Over 20 spesialiserte layouts designet for ulike typer innhold. Ikke bare bullet
+              points.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -268,9 +315,7 @@ export default function FeaturesPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Fleksibel input
-            </h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Fleksibel input</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Start fra der du er. Tre mater å komme i gang på.
             </p>
@@ -287,9 +332,7 @@ export default function FeaturesPage() {
       <section className="py-16 bg-white/60 border-y border-gray-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Eksport som faktisk fungerer
-            </h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Eksport som faktisk fungerer</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Last ned i formatet du trenger. PPTX-eksport er fullt redigerbar.
             </p>
@@ -308,16 +351,12 @@ export default function FeaturesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 border border-violet-200/60 mb-6">
-                <span className="text-sm font-medium text-violet-700">
-                  Pro-funksjon
-                </span>
+                <span className="text-sm font-medium text-violet-700">Pro-funksjon</span>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                AI-genererte bilder
-              </h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">AI-genererte bilder</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Hver slide kan få et unikt, AI-generert bilde som passer
-                innholdet. Ingen stockfoto-jakt - bildene lages automatisk.
+                Hver slide kan få et unikt, AI-generert bilde som passer innholdet. Ingen
+                stockfoto-jakt - bildene lages automatisk.
               </p>
               <ul className="space-y-3">
                 {[
@@ -363,9 +402,7 @@ export default function FeaturesPage() {
                       />
                     </svg>
                   </div>
-                  <p className="text-violet-600 font-medium">
-                    AI-generert bilde
-                  </p>
+                  <p className="text-violet-600 font-medium">AI-generert bilde</p>
                 </div>
               </div>
             </div>
@@ -376,9 +413,7 @@ export default function FeaturesPage() {
       {/* CTA */}
       <section className="py-16 bg-gradient-to-br from-emerald-600 to-emerald-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Klar til å prøve?
-          </h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Klar til å prøve?</h2>
           <p className="text-lg text-emerald-100 mb-8">
             Lag din første presentasjon gratis på under 2 minutter.
           </p>
@@ -435,13 +470,9 @@ export default function FeaturesPage() {
                   />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-gray-400">
-                ARTI Slides
-              </span>
+              <span className="text-sm font-medium text-gray-400">ARTI Slides</span>
             </div>
-            <p className="text-sm text-gray-500">
-              © 2024 ARTI Slides. Alle rettigheter reservert.
-            </p>
+            <p className="text-sm text-gray-500">© 2024 ARTI Slides. Alle rettigheter reservert.</p>
           </div>
         </div>
       </footer>

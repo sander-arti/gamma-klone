@@ -32,9 +32,7 @@ export function StreamingSlidePreview({
         >
           <Sparkles className="w-8 h-8 text-emerald-400" />
         </motion.div>
-        <span className="text-sm text-muted-foreground">
-          Starter slide {slideIndex + 1}...
-        </span>
+        <span className="text-sm text-muted-foreground">Starter slide {slideIndex + 1}...</span>
       </div>
     );
   }
@@ -73,11 +71,7 @@ function StreamingBlockRenderer({ block, isStreaming }: StreamingBlockRendererPr
           animate={{ opacity: 1 }}
           className="text-lg font-bold text-foreground"
         >
-          <StreamingTextBlock
-            text={text}
-            isStreaming={isStreaming}
-            speed="fast"
-          />
+          <StreamingTextBlock text={text} isStreaming={isStreaming} speed="fast" />
         </motion.h2>
       );
 
@@ -88,11 +82,7 @@ function StreamingBlockRenderer({ block, isStreaming }: StreamingBlockRendererPr
           animate={{ opacity: 1 }}
           className="text-sm text-muted-foreground leading-relaxed"
         >
-          <StreamingTextBlock
-            text={text}
-            isStreaming={isStreaming}
-            speed="normal"
-          />
+          <StreamingTextBlock text={text} isStreaming={isStreaming} speed="normal" />
         </motion.p>
       );
 
@@ -125,28 +115,16 @@ function StreamingBlockRenderer({ block, isStreaming }: StreamingBlockRendererPr
           className="p-3 bg-primary/5 rounded-lg border border-primary/10"
         >
           <p className="text-sm italic text-primary/80">
-            <StreamingTextBlock
-              text={text}
-              isStreaming={isStreaming}
-              speed="normal"
-            />
+            <StreamingTextBlock text={text} isStreaming={isStreaming} speed="normal" />
           </p>
         </motion.div>
       );
 
     case "stat_block":
       return (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
           <span className="text-2xl font-bold text-primary">
-            <StreamingTextBlock
-              text={text}
-              isStreaming={isStreaming}
-              speed="fast"
-            />
+            <StreamingTextBlock text={text} isStreaming={isStreaming} speed="fast" />
           </span>
         </motion.div>
       );
@@ -159,9 +137,7 @@ function StreamingBlockRenderer({ block, isStreaming }: StreamingBlockRendererPr
           animate={{ opacity: 1 }}
           className="flex items-center justify-center h-20 bg-muted/30 rounded-lg border-2 border-dashed border-muted"
         >
-          <span className="text-xs text-muted-foreground">
-            Bilde genereres...
-          </span>
+          <span className="text-xs text-muted-foreground">Bilde genereres...</span>
         </motion.div>
       );
 
@@ -188,11 +164,7 @@ function StreamingBlockRenderer({ block, isStreaming }: StreamingBlockRendererPr
           animate={{ opacity: 1 }}
           className="text-sm text-muted-foreground"
         >
-          <StreamingTextBlock
-            text={text}
-            isStreaming={isStreaming}
-            speed="normal"
-          />
+          <StreamingTextBlock text={text} isStreaming={isStreaming} speed="normal" />
         </motion.div>
       );
   }

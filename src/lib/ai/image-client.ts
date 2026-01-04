@@ -68,18 +68,13 @@ export interface OpenAIImageClientConfig {
  * Style-specific prompt modifiers
  */
 const STYLE_MODIFIERS: Record<ImageStyle, string> = {
-  photorealistic:
-    "Ultra-realistic photograph, high resolution, professional lighting, sharp focus",
+  photorealistic: "Ultra-realistic photograph, high resolution, professional lighting, sharp focus",
   illustration:
     "Digital illustration, clean lines, modern flat design, professional corporate style",
-  minimalist:
-    "Minimalist design, simple shapes, limited color palette, clean and elegant",
-  isometric:
-    "Isometric 3D illustration, clean geometric shapes, modern tech aesthetic",
-  editorial:
-    "Editorial photography style, dramatic lighting, professional composition",
-  default:
-    "Professional business image, clean and modern, suitable for corporate presentations",
+  minimalist: "Minimalist design, simple shapes, limited color palette, clean and elegant",
+  isometric: "Isometric 3D illustration, clean geometric shapes, modern tech aesthetic",
+  editorial: "Editorial photography style, dramatic lighting, professional composition",
+  default: "Professional business image, clean and modern, suitable for corporate presentations",
 };
 
 /**
@@ -102,10 +97,7 @@ export class OpenAIImageClient implements ImageClient {
     this.maxRetries = config.maxRetries ?? 2;
   }
 
-  async generateImage(
-    prompt: string,
-    style: ImageStyle = "default"
-  ): Promise<ImageResult> {
+  async generateImage(prompt: string, style: ImageStyle = "default"): Promise<ImageResult> {
     const styleModifier = STYLE_MODIFIERS[style];
     const fullPrompt = `${prompt}. ${styleModifier}. No text or watermarks.`;
 
@@ -135,10 +127,7 @@ export class OpenAIImageClient implements ImageClient {
         lastError = error;
 
         // Handle content policy violations - don't retry
-        if (
-          error instanceof OpenAI.BadRequestError &&
-          error.message.includes("content_policy")
-        ) {
+        if (error instanceof OpenAI.BadRequestError && error.message.includes("content_policy")) {
           throw new ImageError(
             "Image generation blocked by content policy",
             "CONTENT_POLICY",
@@ -153,11 +142,7 @@ export class OpenAIImageClient implements ImageClient {
             await this.sleep(Math.pow(2, attempt) * 2000);
             continue;
           }
-          throw new ImageError(
-            "Rate limited by OpenAI API",
-            "RATE_LIMITED",
-            error
-          );
+          throw new ImageError("Rate limited by OpenAI API", "RATE_LIMITED", error);
         }
 
         // Handle API errors
@@ -166,11 +151,7 @@ export class OpenAIImageClient implements ImageClient {
             await this.sleep(2000 * attempt);
             continue;
           }
-          throw new ImageError(
-            `OpenAI API error: ${error.message}`,
-            "MODEL_ERROR",
-            error
-          );
+          throw new ImageError(`OpenAI API error: ${error.message}`, "MODEL_ERROR", error);
         }
 
         // Re-throw ImageErrors
@@ -189,11 +170,7 @@ export class OpenAIImageClient implements ImageClient {
       }
     }
 
-    throw new ImageError(
-      "Unexpected error in image client",
-      "MODEL_ERROR",
-      lastError
-    );
+    throw new ImageError("Unexpected error in image client", "MODEL_ERROR", lastError);
   }
 
   private sleep(ms: number): Promise<void> {
@@ -236,12 +213,11 @@ export class GeminiImageClient implements ImageClient {
     console.log(`[GeminiImageClient] Initialized with model: ${this.model}`);
   }
 
-  async generateImage(
-    prompt: string,
-    style: ImageStyle = "default"
-  ): Promise<ImageResult> {
+  async generateImage(prompt: string, style: ImageStyle = "default"): Promise<ImageResult> {
     console.log(`[GeminiImageClient] 🎨 Generating image with Nano Banana Pro`);
-    console.log(`[GeminiImageClient] Model: ${this.model}, AspectRatio: ${this.aspectRatio}, Size: ${this.imageSize}`);
+    console.log(
+      `[GeminiImageClient] Model: ${this.model}, AspectRatio: ${this.aspectRatio}, Size: ${this.imageSize}`
+    );
 
     const styleModifier = STYLE_MODIFIERS[style];
     const fullPrompt = `${prompt}. ${styleModifier}. No text or watermarks.`;
@@ -309,27 +285,16 @@ export class GeminiImageClient implements ImageClient {
           }
 
           // Rate limiting
-          if (
-            message.includes("rate") ||
-            message.includes("quota") ||
-            message.includes("429")
-          ) {
+          if (message.includes("rate") || message.includes("quota") || message.includes("429")) {
             if (attempt < this.maxRetries) {
               await this.sleep(Math.pow(2, attempt) * 2000);
               continue;
             }
-            throw new ImageError(
-              "Rate limited by Gemini API",
-              "RATE_LIMITED",
-              error
-            );
+            throw new ImageError("Rate limited by Gemini API", "RATE_LIMITED", error);
           }
 
           // Invalid request
-          if (
-            message.includes("invalid") ||
-            message.includes("400")
-          ) {
+          if (message.includes("invalid") || message.includes("400")) {
             throw new ImageError(
               `Invalid request to Gemini: ${error.message}`,
               "INVALID_REQUEST",
@@ -371,10 +336,7 @@ export class GeminiImageClient implements ImageClient {
  * Mock image client for testing
  */
 export class MockImageClient implements ImageClient {
-  async generateImage(
-    prompt: string,
-    style: ImageStyle = "default"
-  ): Promise<ImageResult> {
+  async generateImage(prompt: string, style: ImageStyle = "default"): Promise<ImageResult> {
     // Return placeholder image URL for testing
     const encodedPrompt = encodeURIComponent(prompt.slice(0, 50));
     return {
@@ -395,17 +357,16 @@ export class MockImageClient implements ImageClient {
 function getOpenAIImageClient(): ImageClient {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    throw new Error("No image generation API key configured (OPENAI_API_KEY required for fallback)");
+    throw new Error(
+      "No image generation API key configured (OPENAI_API_KEY required for fallback)"
+    );
   }
 
   return new OpenAIImageClient({
     apiKey,
     model: process.env.OPENAI_IMAGE_MODEL ?? "dall-e-3",
-    size:
-      (process.env.OPENAI_IMAGE_SIZE as "1024x1024" | "1792x1024") ??
-      "1792x1024",
-    quality:
-      (process.env.OPENAI_IMAGE_QUALITY as "standard" | "hd") ?? "standard",
+    size: (process.env.OPENAI_IMAGE_SIZE as "1024x1024" | "1792x1024") ?? "1792x1024",
+    quality: (process.env.OPENAI_IMAGE_QUALITY as "standard" | "hd") ?? "standard",
   });
 }
 
@@ -432,9 +393,7 @@ export function getImageClient(): ImageClient {
     const geminiApiKey = process.env.GEMINI_API_KEY;
 
     if (!geminiApiKey) {
-      console.warn(
-        "[image-client] GEMINI_API_KEY not set, falling back to OpenAI"
-      );
+      console.warn("[image-client] GEMINI_API_KEY not set, falling back to OpenAI");
       return getOpenAIImageClient();
     }
 

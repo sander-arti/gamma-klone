@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
     "test": "vitest",
     "worker": "tsx src/lib/queue/start-worker.ts",
     "export-worker": "tsx src/lib/queue/start-export-worker.ts",

@@ -43,9 +43,9 @@ export function HeroStatsSlide({
   // Dynamic sizing based on stat count to prevent overflow
   const statCount = statBlocks.length;
   const getSizeScale = () => {
-    if (statCount <= 2) return 1;      // Full size for 1-2 stats
-    if (statCount === 3) return 0.75;   // 75% for 3 stats
-    return 0.6;                         // 60% for 4+ stats
+    if (statCount <= 2) return 1; // Full size for 1-2 stats
+    if (statCount === 3) return 0.75; // 75% for 3 stats
+    return 0.6; // 60% for 4+ stats
   };
   const sizeScale = getSizeScale();
 
@@ -106,16 +106,19 @@ export function HeroStatsSlide({
   const largeStatStyle: React.CSSProperties = {
     textAlign: "center",
     padding: sizeScale === 1 ? "var(--theme-spacing-block-gap, 1rem)" : "0.5rem",
-    background: isBackground ? "rgba(255,255,255,0.1)" : "var(--theme-color-accent-subtle, #f0f9ff)",
+    background: isBackground
+      ? "rgba(255,255,255,0.1)"
+      : "var(--theme-color-accent-subtle, #f0f9ff)",
     borderRadius: "var(--theme-border-radius, 0.75rem)",
     backdropFilter: isBackground ? "blur(8px)" : undefined,
   };
 
   const statValueStyle: React.CSSProperties = {
     // Dynamic font size based on stat count - uses calc() to scale the display size
-    fontSize: sizeScale === 1
-      ? "var(--theme-typography-display-size, 3rem)"
-      : `calc(var(--theme-typography-display-size, 3rem) * ${sizeScale})`,
+    fontSize:
+      sizeScale === 1
+        ? "var(--theme-typography-display-size, 3rem)"
+        : `calc(var(--theme-typography-display-size, 3rem) * ${sizeScale})`,
     fontWeight: 700,
     lineHeight: 1.1,
     color: isBackground ? "#ffffff" : "var(--theme-color-accent, #3b82f6)",
@@ -124,9 +127,10 @@ export function HeroStatsSlide({
 
   const statLabelStyle: React.CSSProperties = {
     // Scale label proportionally with value
-    fontSize: sizeScale === 1
-      ? "var(--theme-font-size-sm, 0.875rem)"
-      : `calc(var(--theme-font-size-sm, 0.875rem) * ${Math.max(sizeScale, 0.85)})`,
+    fontSize:
+      sizeScale === 1
+        ? "var(--theme-font-size-sm, 0.875rem)"
+        : `calc(var(--theme-font-size-sm, 0.875rem) * ${Math.max(sizeScale, 0.85)})`,
     marginTop: "0.5rem",
     opacity: 0.9,
     color: isBackground ? "rgba(255,255,255,0.9)" : "var(--theme-color-foreground-muted, #64748b)",
@@ -231,7 +235,9 @@ export function HeroStatsSlide({
             <p
               style={{
                 fontSize: "var(--theme-font-size-body, 1rem)",
-                color: isBackground ? "rgba(255,255,255,0.9)" : "var(--theme-color-foreground-muted, #64748b)",
+                color: isBackground
+                  ? "rgba(255,255,255,0.9)"
+                  : "var(--theme-color-foreground-muted, #64748b)",
                 maxWidth: "60ch",
               }}
             >

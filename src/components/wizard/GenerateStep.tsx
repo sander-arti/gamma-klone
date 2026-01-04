@@ -30,23 +30,12 @@ interface GenerateStepProps {
   onRetry: () => void;
 }
 
-export function GenerateStep({
-  generationId,
-  outline,
-  onBack,
-  onRetry,
-}: GenerateStepProps) {
+export function GenerateStep({ generationId, outline, onBack, onRetry }: GenerateStepProps) {
   const router = useRouter();
 
   // Use streaming hook - only need liveDeckId for redirect
-  const {
-    status,
-    error,
-    isFailed,
-    liveDeckId,
-    result,
-    isComplete,
-  } = useGenerationStream(generationId);
+  const { status, error, isFailed, liveDeckId, result, isComplete } =
+    useGenerationStream(generationId);
 
   // Redirect to deck editor when deck is created (with small delay for better UX)
   useEffect(() => {
@@ -149,20 +138,14 @@ export function GenerateStep({
           </motion.div>
         </div>
 
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">
-          Starter generering...
-        </h2>
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Starter generering...</h2>
         <p className="text-gray-500 mb-4">
-          {status === "connecting"
-            ? "Kobler til server..."
-            : "Forbereder presentasjonen din"}
+          {status === "connecting" ? "Kobler til server..." : "Forbereder presentasjonen din"}
         </p>
 
         {/* Slide count hint */}
         {outline && (
-          <p className="text-sm text-gray-400">
-            {outline.slides.length} slides vil bli generert
-          </p>
+          <p className="text-sm text-gray-400">{outline.slides.length} slides vil bli generert</p>
         )}
 
         {/* Simple loading indicator */}

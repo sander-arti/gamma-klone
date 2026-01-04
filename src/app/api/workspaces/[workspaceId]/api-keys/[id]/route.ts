@@ -30,10 +30,7 @@ export async function DELETE(
       .single();
 
     if (!member) {
-      return NextResponse.json(
-        { error: "Not a member of this workspace" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Not a member of this workspace" }, { status: 403 });
     }
 
     // Revoke API key by setting revoked_at (using admin client)
@@ -45,18 +42,12 @@ export async function DELETE(
 
     if (error) {
       console.error("Failed to revoke API key:", error);
-      return NextResponse.json(
-        { error: "Failed to revoke API key" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to revoke API key" }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("API key revocation error:", error);
-    return NextResponse.json(
-      { error: "Failed to revoke API key" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to revoke API key" }, { status: 500 });
   }
 }

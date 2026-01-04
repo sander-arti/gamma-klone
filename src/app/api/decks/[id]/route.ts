@@ -24,10 +24,7 @@ const MVP_WORKSPACE_ID = "ws_default";
 // GET /api/decks/[id]
 // ============================================================================
 
-export async function GET(
-  _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const deck = await getDeckById(id, MVP_WORKSPACE_ID);
@@ -72,10 +69,7 @@ const UpdateDeckSchema = z.object({
   deck: DeckSchema.optional(),
 });
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const body = await request.json();
@@ -96,11 +90,7 @@ export async function PUT(
 
     // If full deck content is provided, save it
     if (parsed.data.deck) {
-      const savedDeck = await saveDeckFromSchema(
-        id,
-        MVP_WORKSPACE_ID,
-        parsed.data.deck
-      );
+      const savedDeck = await saveDeckFromSchema(id, MVP_WORKSPACE_ID, parsed.data.deck);
 
       if (!savedDeck) {
         return NextResponse.json(

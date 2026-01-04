@@ -8,10 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createUploadedFile } from "@/lib/db/uploaded-file";
-import {
-  generateUploadPresignedUrl,
-  generateUploadKey,
-} from "@/lib/storage/s3-client";
+import { generateUploadPresignedUrl, generateUploadKey } from "@/lib/storage/s3-client";
 import { validateFile, SUPPORTED_MIME_TYPES } from "@/lib/extraction";
 
 // Default workspace ID for MVP (single-tenant)
@@ -82,18 +79,10 @@ export async function POST(request: NextRequest) {
     });
 
     // 4. Generate S3 key
-    const s3Key = generateUploadKey(
-      DEFAULT_WORKSPACE_ID,
-      uploadedFile.id,
-      filename
-    );
+    const s3Key = generateUploadKey(DEFAULT_WORKSPACE_ID, uploadedFile.id, filename);
 
     // 5. Generate presigned PUT URL
-    const presignedUrl = await generateUploadPresignedUrl(
-      s3Key,
-      mimeType,
-      PRESIGN_EXPIRY_SECONDS
-    );
+    const presignedUrl = await generateUploadPresignedUrl(s3Key, mimeType, PRESIGN_EXPIRY_SECONDS);
 
     // 6. Update the record with the S3 key
     const { prisma } = await import("@/lib/db/prisma");
@@ -103,9 +92,7 @@ export async function POST(request: NextRequest) {
     });
 
     // 7. Calculate expiry time
-    const expiresAt = new Date(
-      Date.now() + PRESIGN_EXPIRY_SECONDS * 1000
-    ).toISOString();
+    const expiresAt = new Date(Date.now() + PRESIGN_EXPIRY_SECONDS * 1000).toISOString();
 
     return NextResponse.json({
       uploadId: uploadedFile.id,
@@ -118,8 +105,7 @@ export async function POST(request: NextRequest) {
       {
         error: {
           code: "INTERNAL_ERROR",
-          message:
-            error instanceof Error ? error.message : "Failed to generate presigned URL",
+          message: error instanceof Error ? error.message : "Failed to generate presigned URL",
         },
       },
       { status: 500 }

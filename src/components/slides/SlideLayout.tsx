@@ -62,17 +62,16 @@ export function SlideLayout({
   const isDistributed = contentAlign === "distributed";
 
   // Use more visual background for spacious/content-light slides
-  const effectiveBackgroundVariant = spacious && backgroundVariant === "depth"
-    ? "accent"  // More visual depth for content-light slides
-    : backgroundVariant;
+  const effectiveBackgroundVariant =
+    spacious && backgroundVariant === "depth"
+      ? "accent" // More visual depth for content-light slides
+      : backgroundVariant;
 
   // Show decorative orb on spacious slides for visual interest
   const showOrb = spacious;
 
   return (
-    <div
-      className={`relative w-full h-full overflow-hidden ${className}`}
-    >
+    <div className={`relative w-full h-full overflow-hidden ${className}`}>
       {/* Background layers */}
       <SlideBackground
         variant={effectiveBackgroundVariant}
@@ -86,12 +85,12 @@ export function SlideLayout({
         className="relative z-10 w-full h-full flex flex-col animate-slide-entrance"
         style={{
           padding: spacious
-            ? 'var(--theme-spacing-slide-gutter-spacious, clamp(2.5rem, 5cqw, 4rem))'
-            : 'var(--theme-spacing-slide-gutter, clamp(1.5rem, 3cqw, 2.5rem))',
+            ? "var(--theme-spacing-slide-gutter-spacious, clamp(2.5rem, 5cqw, 4rem))"
+            : "var(--theme-spacing-slide-gutter, clamp(1.5rem, 3cqw, 2.5rem))",
           justifyContent,
           // For distributed, add padding-bottom for visual balance
           paddingBottom: isDistributed
-            ? 'var(--theme-spacing-slide-gutter-bottom, clamp(2rem, 4cqw, 3rem))'
+            ? "var(--theme-spacing-slide-gutter-bottom, clamp(2rem, 4cqw, 3rem))"
             : undefined,
         }}
       >

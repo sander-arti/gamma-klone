@@ -96,9 +96,7 @@ export function OutlineStep({
       <div className="flex flex-col items-center justify-center py-16">
         <LoadingSpinner size="lg" label="Genererer outline" />
         <p className="mt-4 text-gray-600">Genererer outline...</p>
-        <p className="text-sm text-gray-400 mt-2">
-          Dette tar vanligvis 5-10 sekunder
-        </p>
+        <p className="text-sm text-gray-400 mt-2">Dette tar vanligvis 5-10 sekunder</p>
       </div>
     );
   }
@@ -116,9 +114,7 @@ export function OutlineStep({
             />
           </svg>
         </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">
-          Kunne ikke generere outline
-        </h3>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">Kunne ikke generere outline</h3>
         <p className="text-gray-500 mb-6">{error}</p>
         <div className="flex gap-3 justify-center">
           <Button variant="secondary" onClick={onBack}>
@@ -144,9 +140,7 @@ export function OutlineStep({
         <input
           type="text"
           value={editedOutline.title}
-          onChange={(e) =>
-            setEditedOutline({ ...editedOutline, title: e.target.value })
-          }
+          onChange={(e) => setEditedOutline({ ...editedOutline, title: e.target.value })}
           className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
@@ -234,18 +228,8 @@ export function OutlineStep({
           </Button>
           <Button onClick={handleSubmit}>
             Generer presentasjon
-            <svg
-              className="w-4 h-4 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Button>
         </div>

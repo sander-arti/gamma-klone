@@ -206,7 +206,13 @@ async function downloadImageAsBase64(url: string): Promise<string | null> {
 async function addImage(
   pptxSlide: PptxGenJS.Slide,
   imageUrl: string,
-  options: { x: number; y: number; w: number; h: number; sizing?: { type: "cover" | "contain" | "crop"; w: number; h: number } }
+  options: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    sizing?: { type: "cover" | "contain" | "crop"; w: number; h: number };
+  }
 ): Promise<boolean> {
   const base64Data = await downloadImageAsBase64(imageUrl);
   if (!base64Data) {
@@ -228,10 +234,7 @@ async function addImage(
 /**
  * Get callout border color based on style
  */
-function getCalloutColor(
-  style: string | undefined,
-  styles: PptxThemeStyles
-): string {
+function getCalloutColor(style: string | undefined, styles: PptxThemeStyles): string {
   switch (style) {
     case "warning":
       return styles.colors.warning;
@@ -1229,11 +1232,7 @@ function renderQuoteSlide(
 /**
  * Render slide based on type
  */
-async function renderSlide(
-  pptx: PptxGenJS,
-  slide: Slide,
-  styles: PptxThemeStyles
-): Promise<void> {
+async function renderSlide(pptx: PptxGenJS, slide: Slide, styles: PptxThemeStyles): Promise<void> {
   const pptxSlide = pptx.addSlide();
 
   switch (slide.type) {

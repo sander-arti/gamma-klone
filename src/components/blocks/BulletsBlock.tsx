@@ -9,11 +9,7 @@
  */
 
 import { useRef, useEffect, useCallback, useState } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 import { SlashMenu, useSlashMenu, type SlashMenuItem } from "@/components/editor/SlashMenu";
 
 interface BulletsBlockProps {
@@ -209,7 +205,15 @@ export function BulletsBlock({
       // Prevent typing beyond max length
       if (
         text.length >= maxItemChars &&
-        !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter"].includes(e.key) &&
+        ![
+          "Backspace",
+          "Delete",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowUp",
+          "ArrowDown",
+          "Enter",
+        ].includes(e.key) &&
         !e.metaKey &&
         !e.ctrlKey
       ) {
@@ -253,18 +257,16 @@ export function BulletsBlock({
   // Use larger body typography for better readability
   // The --bullet-font-size can be set by parent slide for variant control
   const itemStyle: React.CSSProperties = {
-    fontSize: "var(--bullet-font-size, var(--theme-typography-body-size, clamp(1rem, 1.6cqw, 1.125rem)))",
+    fontSize:
+      "var(--bullet-font-size, var(--theme-typography-body-size, clamp(1rem, 1.6cqw, 1.125rem)))",
     lineHeight: "var(--bullet-line-height, var(--theme-typography-body-line-height, 1.65))",
-    fontWeight: "var(--theme-typography-body-weight, 400)" as React.CSSProperties['fontWeight'],
+    fontWeight: "var(--theme-typography-body-weight, 400)" as React.CSSProperties["fontWeight"],
     color: "var(--theme-color-foreground, #0f172a)",
   };
 
   return (
     <div className="relative">
-      <Tag
-        className={className}
-        style={listStyle}
-      >
+      <Tag className={className} style={listStyle}>
         {items.map((item, index) => {
           const isItemEditing = isEditing && activeEditingIndex === index;
           const charCount = item.length;
@@ -280,9 +282,7 @@ export function BulletsBlock({
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
-              className={`flex items-start gap-3 ${
-                !isEditing ? "animate-fade-in-up" : ""
-              } ${
+              className={`flex items-start gap-3 ${!isEditing ? "animate-fade-in-up" : ""} ${
                 isItemEditing
                   ? "outline-none ring-2 ring-blue-500 ring-offset-2 rounded-lg px-2 py-1 -mx-2"
                   : isEditing
@@ -311,10 +311,12 @@ export function BulletsBlock({
                     width: "clamp(1.75rem, 2.5cqw, 2rem)",
                     height: "clamp(1.75rem, 2.5cqw, 2rem)",
                     fontSize: "clamp(0.8rem, 1.1cqw, 0.9rem)",
-                    background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
+                    background:
+                      "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
                     color: "var(--theme-color-primary-foreground, #ffffff)",
                     marginTop: "0.1em",
-                    boxShadow: "var(--theme-effects-shadow-blue, 0 2px 6px rgba(59, 130, 246, 0.25))",
+                    boxShadow:
+                      "var(--theme-effects-shadow-blue, 0 2px 6px rgba(59, 130, 246, 0.25))",
                   }}
                   contentEditable={false}
                 >
@@ -326,9 +328,11 @@ export function BulletsBlock({
                   style={{
                     width: "clamp(0.5rem, 0.75cqw, 0.625rem)",
                     height: "clamp(0.5rem, 0.75cqw, 0.625rem)",
-                    background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
+                    background:
+                      "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
                     marginTop: "0.5em",
-                    boxShadow: "var(--theme-effects-shadow-blue, 0 1px 3px rgba(59, 130, 246, 0.2))",
+                    boxShadow:
+                      "var(--theme-effects-shadow-blue, 0 1px 3px rgba(59, 130, 246, 0.2))",
                   }}
                   contentEditable={false}
                   aria-hidden="true"
@@ -336,9 +340,7 @@ export function BulletsBlock({
               )}
 
               {/* Bullet text content */}
-              <span className="flex-1">
-                {item}
-              </span>
+              <span className="flex-1">{item}</span>
 
               {/* Inline character counter for item being edited */}
               {isItemEditing && (
@@ -375,7 +377,7 @@ export function BulletsBlock({
             }
           }}
           className="mt-2 text-sm text-blue-500 hover:text-blue-600 flex items-center gap-1"
-          style={{ paddingLeft: 'var(--theme-spacing-bullet-indent, 1.5em)' }}
+          style={{ paddingLeft: "var(--theme-spacing-bullet-indent, 1.5em)" }}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

@@ -10,11 +10,7 @@
  */
 
 import { useRef, useEffect, useCallback } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 import { SlashMenu, useSlashMenu, type SlashMenuItem } from "@/components/editor/SlashMenu";
 
 interface TextBlockProps {
@@ -104,7 +100,9 @@ export function TextBlock({
         editableRef.current &&
         editableRef.current.textContent &&
         editableRef.current.textContent.length >= maxLength &&
-        !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key) &&
+        !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(
+          e.key
+        ) &&
         !e.metaKey &&
         !e.ctrlKey
       ) {
@@ -143,29 +141,32 @@ export function TextBlock({
   // Use inline styles for theme variables with proper hierarchy levels
   const getTextStyle = (): React.CSSProperties => {
     switch (variant) {
-      case 'subtitle':
+      case "subtitle":
         // Use body-large for subtitles - slightly larger, more prominent
         return {
-          fontSize: 'var(--theme-typography-body-large-size, 1.0625rem)',
-          lineHeight: 'var(--theme-typography-body-large-line-height, 1.6)',
-          fontWeight: 'var(--theme-typography-body-large-weight, 400)' as React.CSSProperties['fontWeight'],
-          color: 'var(--theme-color-foreground-muted, #475569)',
+          fontSize: "var(--theme-typography-body-large-size, 1.0625rem)",
+          lineHeight: "var(--theme-typography-body-large-line-height, 1.6)",
+          fontWeight:
+            "var(--theme-typography-body-large-weight, 400)" as React.CSSProperties["fontWeight"],
+          color: "var(--theme-color-foreground-muted, #475569)",
         };
-      case 'muted':
+      case "muted":
         // Use body-small for muted text - smaller, secondary
         return {
-          fontSize: 'var(--theme-typography-body-small-size, 0.8125rem)',
-          lineHeight: 'var(--theme-typography-body-small-line-height, 1.6)',
-          fontWeight: 'var(--theme-typography-body-small-weight, 400)' as React.CSSProperties['fontWeight'],
-          color: 'var(--theme-color-foreground-muted, #475569)',
+          fontSize: "var(--theme-typography-body-small-size, 0.8125rem)",
+          lineHeight: "var(--theme-typography-body-small-line-height, 1.6)",
+          fontWeight:
+            "var(--theme-typography-body-small-weight, 400)" as React.CSSProperties["fontWeight"],
+          color: "var(--theme-color-foreground-muted, #475569)",
         };
       default:
         // Default body text
         return {
-          fontSize: 'var(--theme-typography-body-size, 0.9375rem)',
-          lineHeight: 'var(--theme-typography-body-line-height, 1.65)',
-          fontWeight: 'var(--theme-typography-body-weight, 400)' as React.CSSProperties['fontWeight'],
-          color: 'var(--theme-color-foreground, #0f172a)',
+          fontSize: "var(--theme-typography-body-size, 0.9375rem)",
+          lineHeight: "var(--theme-typography-body-line-height, 1.65)",
+          fontWeight:
+            "var(--theme-typography-body-weight, 400)" as React.CSSProperties["fontWeight"],
+          color: "var(--theme-color-foreground, #0f172a)",
         };
     }
   };
@@ -191,11 +192,7 @@ export function TextBlock({
       {isEditing && (
         <div
           className={`absolute -bottom-5 right-0 text-xs ${
-            isOver
-              ? "text-red-400 font-medium"
-              : isApproaching
-                ? "text-amber-400"
-                : "text-zinc-500"
+            isOver ? "text-red-400 font-medium" : isApproaching ? "text-amber-400" : "text-zinc-500"
           }`}
         >
           {charCount}/{maxLength}

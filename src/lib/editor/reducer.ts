@@ -8,12 +8,7 @@
 import type { Deck } from "@/lib/schemas/deck";
 import type { Slide } from "@/lib/schemas/slide";
 import type { Block } from "@/lib/schemas/block";
-import type {
-  EditorState,
-  EditorAction,
-  EditorHistory,
-  ConstraintViolation,
-} from "./types";
+import type { EditorState, EditorAction, EditorHistory, ConstraintViolation } from "./types";
 
 // ============================================================================
 // History Helpers
@@ -41,10 +36,7 @@ function pushToHistory(history: EditorHistory, deck: Deck): EditorHistory {
 // Reducer
 // ============================================================================
 
-export function editorReducer(
-  state: EditorState,
-  action: EditorAction
-): EditorState {
+export function editorReducer(state: EditorState, action: EditorAction): EditorState {
   switch (action.type) {
     case "INITIALIZE": {
       return {
@@ -187,10 +179,7 @@ export function editorReducer(
       }
 
       const newSlides = state.deck.slides.filter((_, i) => i !== index);
-      const newSelectedIndex = Math.min(
-        state.selectedSlideIndex,
-        newSlides.length - 1
-      );
+      const newSelectedIndex = Math.min(state.selectedSlideIndex, newSlides.length - 1);
 
       return {
         ...state,
@@ -428,11 +417,7 @@ export const editorActions = {
     payload: { index, slide },
   }),
 
-  updateBlock: (
-    slideIndex: number,
-    blockIndex: number,
-    block: Partial<Block>
-  ): EditorAction => ({
+  updateBlock: (slideIndex: number, blockIndex: number, block: Partial<Block>): EditorAction => ({
     type: "UPDATE_BLOCK",
     payload: { slideIndex, blockIndex, block },
   }),
@@ -473,9 +458,7 @@ export const editorActions = {
     payload: { error },
   }),
 
-  setViolations: (
-    violations: Map<string, ConstraintViolation[]>
-  ): EditorAction => ({
+  setViolations: (violations: Map<string, ConstraintViolation[]>): EditorAction => ({
     type: "SET_VIOLATIONS",
     payload: { violations },
   }),

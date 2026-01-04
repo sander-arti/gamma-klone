@@ -41,9 +41,8 @@ export function GenerationHeader({
   const showImageProgress = isGeneratingImages;
 
   // Use imagesCompleted if provided, otherwise fall back to a simpler display
-  const imageProgressLabel = imagesCompleted > 0
-    ? `${imagesCompleted} bilder generert`
-    : "Genererer bilder...";
+  const imageProgressLabel =
+    imagesCompleted > 0 ? `${imagesCompleted} bilder generert` : "Genererer bilder...";
 
   const progressLabel = showImageProgress
     ? imageProgressLabel
@@ -101,12 +100,8 @@ export function GenerationHeader({
           <div className="flex items-center gap-4">
             {/* Slide/Image count */}
             <div className="text-right">
-              <div className="text-sm font-medium">
-                {progressLabel}
-              </div>
-              <div className="text-xs text-white/70">
-                {Math.round(progress)}% ferdig
-              </div>
+              <div className="text-sm font-medium">{progressLabel}</div>
+              <div className="text-xs text-white/70">{Math.round(progress)}% ferdig</div>
             </div>
 
             {/* Circular progress indicator */}

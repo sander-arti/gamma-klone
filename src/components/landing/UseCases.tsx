@@ -19,18 +19,9 @@ const useCases: UseCase[] = [
   {
     title: "Konsulenter",
     description: "Imponerende presentasjoner til kunder uten å bruke hele natten.",
-    examples: [
-      "Statusrapporter",
-      "Prosjektoppdateringer",
-      "Strategidokumenter",
-    ],
+    examples: ["Statusrapporter", "Prosjektoppdateringer", "Strategidokumenter"],
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -44,18 +35,9 @@ const useCases: UseCase[] = [
   {
     title: "Salgsteam",
     description: "Pitch decks og produktpresentasjoner som overbeviser.",
-    examples: [
-      "Pitch decks",
-      "Produktdemoer",
-      "Kundeforslag",
-    ],
+    examples: ["Pitch decks", "Produktdemoer", "Kundeforslag"],
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -69,18 +51,9 @@ const useCases: UseCase[] = [
   {
     title: "Ledere",
     description: "Profesjonelle presentasjoner til styre og ledergruppe.",
-    examples: [
-      "Styremøtepresentasjoner",
-      "Kvartalsrapporter",
-      "All-hands møter",
-    ],
+    examples: ["Styremøtepresentasjoner", "Kvartalsrapporter", "All-hands møter"],
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -94,18 +67,9 @@ const useCases: UseCase[] = [
   {
     title: "Markedsforere",
     description: "Kampanjepresentasjoner og strategidokumenter på minutter.",
-    examples: [
-      "Kampanjeplaner",
-      "Markedsstrategier",
-      "Agenturpresentasjoner",
-    ],
+    examples: ["Kampanjeplaner", "Markedsstrategier", "Agenturpresentasjoner"],
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -189,14 +153,10 @@ export function UseCases() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {useCase.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{useCase.title}</h3>
 
                 {/* Description */}
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                  {useCase.description}
-                </p>
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed">{useCase.description}</p>
 
                 {/* Examples */}
                 <div className="space-y-1.5">

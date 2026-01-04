@@ -5,8 +5,8 @@
  * non-blocking - signup will succeed even if sample deck creation fails.
  */
 
-import { supabaseAdmin } from '@/lib/db/supabase';
-import { SAMPLE_DECK_CONTENT } from './sample-deck-content';
+import { supabaseAdmin } from "@/lib/db/supabase";
+import { SAMPLE_DECK_CONTENT } from "./sample-deck-content";
 
 export type CreateSampleDeckResult =
   | { success: true; deckId: string }
@@ -28,7 +28,7 @@ export async function createSampleDeck(
     const now = new Date().toISOString();
 
     // Create the deck
-    const { error: deckError } = await supabaseAdmin.from('decks').insert({
+    const { error: deckError } = await supabaseAdmin.from("decks").insert({
       id: deckId,
       workspace_id: workspaceId,
       user_id: userId,
@@ -41,7 +41,7 @@ export async function createSampleDeck(
     });
 
     if (deckError) {
-      console.error('[createSampleDeck] Failed to create deck:', deckError);
+      console.error("[createSampleDeck] Failed to create deck:", deckError);
       throw deckError;
     }
 
@@ -51,7 +51,7 @@ export async function createSampleDeck(
       const slideId = crypto.randomUUID();
 
       // Create slide
-      const { error: slideError } = await supabaseAdmin.from('slides').insert({
+      const { error: slideError } = await supabaseAdmin.from("slides").insert({
         id: slideId,
         deck_id: deckId,
         position: slideIndex,
@@ -61,10 +61,7 @@ export async function createSampleDeck(
       });
 
       if (slideError) {
-        console.error(
-          `[createSampleDeck] Failed to create slide ${slideIndex}:`,
-          slideError
-        );
+        console.error(`[createSampleDeck] Failed to create slide ${slideIndex}:`, slideError);
         throw slideError;
       }
 
@@ -74,13 +71,14 @@ export async function createSampleDeck(
         const blockId = crypto.randomUUID();
 
         // Build content JSON based on block type
-        const content: any = 'content' in block
-          ? { text: block.content }
-          : 'items' in block
-          ? { items: [...block.items] } // Convert readonly array to mutable
-          : {};
+        const content: any =
+          "content" in block
+            ? { text: block.content }
+            : "items" in block
+              ? { items: [...block.items] } // Convert readonly array to mutable
+              : {};
 
-        const { error: blockError } = await supabaseAdmin.from('blocks').insert({
+        const { error: blockError } = await supabaseAdmin.from("blocks").insert({
           id: blockId,
           slide_id: slideId,
           position: blockIndex,
@@ -100,12 +98,10 @@ export async function createSampleDeck(
       }
     }
 
-    console.log(
-      `[createSampleDeck] Successfully created sample deck ${deckId} for user ${userId}`
-    );
+    console.log(`[createSampleDeck] Successfully created sample deck ${deckId} for user ${userId}`);
     return { success: true, deckId };
   } catch (error) {
-    console.error('[createSampleDeck] Sample deck creation failed:', error);
+    console.error("[createSampleDeck] Sample deck creation failed:", error);
     return { success: false, error };
   }
 }

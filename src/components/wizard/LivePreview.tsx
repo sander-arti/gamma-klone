@@ -51,12 +51,8 @@ export function LivePreview({
       {/* Progress header */}
       <div className="space-y-3">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground font-medium">
-            {currentStage || "Starter..."}
-          </span>
-          <span className="font-mono text-muted-foreground">
-            {Math.round(progress)}%
-          </span>
+          <span className="text-muted-foreground font-medium">{currentStage || "Starter..."}</span>
+          <span className="font-mono text-muted-foreground">{Math.round(progress)}%</span>
         </div>
 
         {/* Progress bar */}
@@ -111,10 +107,12 @@ export function LivePreview({
                   />
                 )}
 
-                <div className={`
+                <div
+                  className={`
                   relative aspect-video rounded-lg overflow-hidden shadow-lg
                   ${isLatest ? "ring-2 ring-emerald-500" : "ring-1 ring-black/5"}
-                `}>
+                `}
+                >
                   <ThemeProvider themeId={themeId}>
                     <SlideCanvas>
                       <SlideRenderer slide={slide} slideIndex={index} />
@@ -227,9 +225,7 @@ export function LivePreview({
               animate={{ opacity: 1 }}
               className="col-span-full aspect-video max-w-md mx-auto rounded-lg bg-muted/30 border-2 border-dashed border-muted-foreground/10 flex items-center justify-center"
             >
-              <p className="text-sm text-muted-foreground">
-                Venter på generering...
-              </p>
+              <p className="text-sm text-muted-foreground">Venter på generering...</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -247,21 +243,11 @@ export function LivePreview({
             <ol className="space-y-1 text-sm text-muted-foreground">
               {outline.slides.map((outlineSlide, index) => (
                 <li key={index} className="flex items-center gap-2">
-                  <span className="w-5 text-right font-mono text-xs">
-                    {index + 1}.
-                  </span>
-                  <span
-                    className={
-                      index < slides.length
-                        ? "line-through opacity-50"
-                        : ""
-                    }
-                  >
+                  <span className="w-5 text-right font-mono text-xs">{index + 1}.</span>
+                  <span className={index < slides.length ? "line-through opacity-50" : ""}>
                     {outlineSlide.title}
                   </span>
-                  {index < slides.length && (
-                    <span className="text-green-600 text-xs">✓</span>
-                  )}
+                  {index < slides.length && <span className="text-green-600 text-xs">✓</span>}
                 </li>
               ))}
             </ol>

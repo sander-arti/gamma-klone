@@ -244,23 +244,23 @@ export function validateDeck(deck: Deck): DeckValidationResult {
  * Used to calculate content density
  */
 const LAYOUT_CAPACITY: Record<SlideType, number> = {
-  cover: 180,              // title + subtitle
-  agenda: 500,             // title + 6-8 agenda items
-  section_header: 160,     // title + subtitle
-  bullets: 600,            // title + 5-6 bullets
-  two_column_text: 700,    // 2 x 350 chars
-  text_plus_image: 500,    // text + image (image adds density)
-  decisions_list: 600,     // title + decisions
+  cover: 180, // title + subtitle
+  agenda: 500, // title + 6-8 agenda items
+  section_header: 160, // title + subtitle
+  bullets: 600, // title + 5-6 bullets
+  two_column_text: 700, // 2 x 350 chars
+  text_plus_image: 500, // text + image (image adds density)
+  decisions_list: 600, // title + decisions
   action_items_table: 500, // table content
   summary_next_steps: 550, // title + steps
-  quote_callout: 400,      // quote + attribution
-  timeline_roadmap: 500,   // steps with descriptions
-  numbered_grid: 480,      // 3-4 cards x 120 chars
+  quote_callout: 400, // quote + attribution
+  timeline_roadmap: 500, // steps with descriptions
+  numbered_grid: 480, // 3-4 cards x 120 chars
   icon_cards_with_image: 480, // 3-4 cards + image
   summary_with_stats: 500, // text + stats
-  hero_stats: 400,         // stats + image
+  hero_stats: 400, // stats + image
   split_with_callouts: 450, // image + callouts
-  person_spotlight: 400,   // image + bio
+  person_spotlight: 400, // image + bio
 };
 
 /**
@@ -290,7 +290,7 @@ export function calculateContentDensity(slide: Slide): number {
   }
 
   // Images add visual density (count as ~150 chars worth)
-  const hasImage = slide.blocks.some(b => b.kind === "image" && b.url);
+  const hasImage = slide.blocks.some((b) => b.kind === "image" && b.url);
   const imageBonus = hasImage ? 150 : 0;
 
   const capacity = LAYOUT_CAPACITY[slide.type] ?? 400;

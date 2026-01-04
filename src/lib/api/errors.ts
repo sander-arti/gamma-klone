@@ -72,19 +72,14 @@ export class ApiError extends Error {
       errorBody.details = this.details;
     }
 
-    return NextResponse.json(
-      { error: errorBody },
-      { status: this.status }
-    );
+    return NextResponse.json({ error: errorBody }, { status: this.status });
   }
 }
 
 /**
  * Map PipelineError to ApiError code
  */
-export function mapPipelineErrorToApiCode(
-  error: PipelineError
-): ApiErrorCode {
+export function mapPipelineErrorToApiCode(error: PipelineError): ApiErrorCode {
   switch (error.code) {
     case "OUTLINE_FAILED":
     case "CONTENT_FAILED":
@@ -106,10 +101,7 @@ export function mapErrorToApiError(error: unknown): ApiError {
   }
 
   if (error instanceof PipelineError) {
-    return new ApiError(
-      mapPipelineErrorToApiCode(error),
-      error.message
-    );
+    return new ApiError(mapPipelineErrorToApiCode(error), error.message);
   }
 
   if (error instanceof Error) {
@@ -140,9 +132,6 @@ export function errorResponse(
 /**
  * Success response helper
  */
-export function successResponse<T>(
-  data: T,
-  status = 200
-): NextResponse<T> {
+export function successResponse<T>(data: T, status = 200): NextResponse<T> {
   return NextResponse.json(data, { status });
 }

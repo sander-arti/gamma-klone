@@ -14,11 +14,7 @@
  */
 
 import { useRef, useEffect, useCallback, useState } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 import { InlineDropdown, type DropdownOption } from "@/components/ui";
 
 type TimelineStatus = "completed" | "current" | "upcoming";
@@ -153,10 +149,7 @@ export function EditableTimelineStepBlock({
       const rawText = stepRef.current.textContent ?? "";
       const parsed = parseInt(rawText, 10);
       if (!isNaN(parsed)) {
-        const clamped = Math.max(
-          constraints.minStep,
-          Math.min(constraints.maxStep, parsed)
-        );
+        const clamped = Math.max(constraints.minStep, Math.min(constraints.maxStep, parsed));
         onFieldChange("step", clamped);
       }
     }
@@ -214,12 +207,7 @@ export function EditableTimelineStepBlock({
   const handleKeyDown = useCallback(
     (field: EditableField, e: React.KeyboardEvent) => {
       const maxLength = getMaxLength(field);
-      const ref =
-        field === "step"
-          ? stepRef
-          : field === "title"
-            ? titleRef
-            : descriptionRef;
+      const ref = field === "step" ? stepRef : field === "title" ? titleRef : descriptionRef;
 
       // Tab navigation
       if (e.key === "Tab" && !e.shiftKey) {
@@ -291,33 +279,25 @@ export function EditableTimelineStepBlock({
   );
 
   // Handle paste
-  const handlePaste = useCallback(
-    (field: EditableField, e: React.ClipboardEvent) => {
-      e.preventDefault();
-      const maxLength = getMaxLength(field);
-      const ref =
-        field === "step"
-          ? stepRef
-          : field === "title"
-            ? titleRef
-            : descriptionRef;
+  const handlePaste = useCallback((field: EditableField, e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const maxLength = getMaxLength(field);
+    const ref = field === "step" ? stepRef : field === "title" ? titleRef : descriptionRef;
 
-      let pastedText = e.clipboardData.getData("text/plain");
+    let pastedText = e.clipboardData.getData("text/plain");
 
-      if (field === "step") {
-        pastedText = pastedText.replace(/[^0-9]/g, "").slice(0, 2);
-      }
+    if (field === "step") {
+      pastedText = pastedText.replace(/[^0-9]/g, "").slice(0, 2);
+    }
 
-      const currentText = ref.current?.textContent ?? "";
-      const selection = window.getSelection();
-      const selectedLength = selection?.toString().length ?? 0;
-      const availableSpace = maxLength - currentText.length + selectedLength;
-      const textToInsert = pastedText.slice(0, availableSpace);
+    const currentText = ref.current?.textContent ?? "";
+    const selection = window.getSelection();
+    const selectedLength = selection?.toString().length ?? 0;
+    const availableSpace = maxLength - currentText.length + selectedLength;
+    const textToInsert = pastedText.slice(0, availableSpace);
 
-      document.execCommand("insertText", false, textToInsert);
-    },
-    []
-  );
+    document.execCommand("insertText", false, textToInsert);
+  }, []);
 
   const getFieldStyles = (field: EditableField, isFocused: boolean) => {
     if (isFocused) {
@@ -329,10 +309,7 @@ export function EditableTimelineStepBlock({
     return "";
   };
 
-  const renderCharCounter = (
-    field: "title" | "description",
-    currentLength: number
-  ) => {
+  const renderCharCounter = (field: "title" | "description", currentLength: number) => {
     const maxLength = getMaxLength(field);
     const isOver = exceedsLimit(currentLength, maxLength);
     const isApproaching = isApproachingLimit(currentLength, maxLength);
@@ -340,11 +317,7 @@ export function EditableTimelineStepBlock({
     return (
       <span
         className={`text-xs ml-2 ${
-          isOver
-            ? "text-red-500 font-medium"
-            : isApproaching
-              ? "text-amber-500"
-              : "text-gray-400"
+          isOver ? "text-red-500 font-medium" : isApproaching ? "text-amber-500" : "text-gray-400"
         }`}
       >
         {currentLength}/{maxLength}
@@ -383,8 +356,7 @@ export function EditableTimelineStepBlock({
                   border: `2px solid ${colors.border}`,
                   color: colors.text,
                   fontSize: "0.875rem",
-                  boxShadow:
-                    status === "current" ? "0 0 0 4px rgba(59, 130, 246, 0.2)" : "none",
+                  boxShadow: status === "current" ? "0 0 0 4px rgba(59, 130, 246, 0.2)" : "none",
                 }}
                 contentEditable={status !== "completed"}
                 suppressContentEditableWarning
@@ -434,8 +406,7 @@ export function EditableTimelineStepBlock({
                 border: `2px solid ${colors.border}`,
                 color: colors.text,
                 fontSize: "0.875rem",
-                boxShadow:
-                  status === "current" ? "0 0 0 4px rgba(59, 130, 246, 0.2)" : "none",
+                boxShadow: status === "current" ? "0 0 0 4px rgba(59, 130, 246, 0.2)" : "none",
               }}
             >
               {status === "completed" ? (
@@ -510,10 +481,7 @@ export function EditableTimelineStepBlock({
         </div>
 
         {/* Description */}
-        <div
-          className="flex items-start"
-          style={{ marginTop: "var(--theme-spacing-sm, 0.5rem)" }}
-        >
+        <div className="flex items-start" style={{ marginTop: "var(--theme-spacing-sm, 0.5rem)" }}>
           <div
             ref={descriptionRef}
             className={getFieldStyles("description", focusedField === "description")}
@@ -534,9 +502,7 @@ export function EditableTimelineStepBlock({
             onClick={(e) => handleFieldClick("description", e)}
             onKeyDown={(e) => handleKeyDown("description", e)}
             onPaste={(e) => handlePaste("description", e)}
-            data-placeholder={
-              isEditing && !description ? "Legg til beskrivelse..." : undefined
-            }
+            data-placeholder={isEditing && !description ? "Legg til beskrivelse..." : undefined}
           >
             {description || ""}
           </div>

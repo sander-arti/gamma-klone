@@ -8,10 +8,7 @@
 import "dotenv/config";
 import { createGenerationWorker, shutdownWorker } from "./generation-worker";
 import { createExportWorker, shutdownExportWorker } from "./export-worker";
-import {
-  createExtractionWorker,
-  shutdownExtractionWorker,
-} from "./extraction-worker";
+import { createExtractionWorker, shutdownExtractionWorker } from "./extraction-worker";
 import { closeRedisConnection } from "./redis";
 import { closeGenerationQueue } from "./generation-queue";
 import { closeExportQueue } from "./export-queue";
@@ -41,11 +38,7 @@ async function shutdown(signal: string): Promise<void> {
       shutdownExtractionWorker(extractionWorker),
     ]);
 
-    await Promise.all([
-      closeGenerationQueue(),
-      closeExportQueue(),
-      closeExtractionQueue(),
-    ]);
+    await Promise.all([closeGenerationQueue(), closeExportQueue(), closeExtractionQueue()]);
 
     await closeRedisConnection();
     console.log("All workers shutdown complete");
@@ -69,6 +62,4 @@ process.on("unhandledRejection", (reason) => {
   console.error("Unhandled rejection:", reason);
 });
 
-console.log(
-  "All workers started and waiting for jobs (generation, export, extraction)..."
-);
+console.log("All workers started and waiting for jobs (generation, export, extraction)...");

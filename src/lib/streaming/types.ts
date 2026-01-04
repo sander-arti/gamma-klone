@@ -16,19 +16,19 @@ export type StreamEventType =
   | "connected"
   | "generation_started"
   | "outline_complete"
-  | "deck_created"     // Deck created early - redirect to editor
+  | "deck_created" // Deck created early - redirect to editor
   | "slide_started"
   | "slide_content"
   | "slide_validated"
   | "generation_complete"
   | "generation_failed"
   // Character-level streaming events (Gamma-style typing effect)
-  | "block_started"   // A new block within a slide started generating
-  | "block_delta"     // Text chunk for the current block
-  | "block_complete"  // Block finished generating
+  | "block_started" // A new block within a slide started generating
+  | "block_delta" // Text chunk for the current block
+  | "block_complete" // Block finished generating
   // Image generation events
-  | "image_started"   // Image generation phase started
-  | "image_progress"  // Individual image being generated
+  | "image_started" // Image generation phase started
+  | "image_progress" // Individual image being generated
   | "image_complete"; // Single image finished (includes URL)
 
 /**

@@ -39,11 +39,7 @@ function getBlockText(block: Block | null): string {
   return "";
 }
 
-export function CoverSlide({
-  slide,
-  editable = false,
-  slideIndex = 0,
-}: CoverSlideProps) {
+export function CoverSlide({ slide, editable = false, slideIndex = 0 }: CoverSlideProps) {
   // Determine variant - default to "cinematic" for new covers
   const variant = (slide.layoutVariant as CoverLayoutVariant) || "cinematic";
 
@@ -635,13 +631,15 @@ function GradientOnlyLayout({
       <div
         className="absolute top-0 right-0 w-1/2 h-1/2 opacity-30"
         style={{
-          background: "radial-gradient(circle at top right, rgba(255,255,255,0.2) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at top right, rgba(255,255,255,0.2) 0%, transparent 60%)",
         }}
       />
       <div
         className="absolute bottom-0 left-0 w-1/2 h-1/2 opacity-20"
         style={{
-          background: "radial-gradient(circle at bottom left, rgba(236,72,153,0.3) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle at bottom left, rgba(236,72,153,0.3) 0%, transparent 60%)",
         }}
       />
 

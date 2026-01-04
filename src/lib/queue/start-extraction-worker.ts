@@ -6,10 +6,7 @@
  */
 
 import "dotenv/config";
-import {
-  createExtractionWorker,
-  shutdownExtractionWorker,
-} from "./extraction-worker";
+import { createExtractionWorker, shutdownExtractionWorker } from "./extraction-worker";
 import { closeRedisConnection } from "./redis";
 import { closeExtractionQueue } from "./extraction-queue";
 

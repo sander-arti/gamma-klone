@@ -129,7 +129,8 @@ export function PersonSpotlightSlide({
             style={{
               flex: "0 0 40%",
               position: "relative",
-              background: "linear-gradient(135deg, var(--theme-color-accent, #8b5cf6) 0%, #6366f1 100%)",
+              background:
+                "linear-gradient(135deg, var(--theme-color-accent, #8b5cf6) 0%, #6366f1 100%)",
             }}
           >
             {imageBlock && (

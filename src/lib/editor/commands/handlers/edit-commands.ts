@@ -4,15 +4,7 @@
  * Basic editing commands: undo, redo, save, duplicate, delete, block navigation.
  */
 
-import {
-  Undo2,
-  Redo2,
-  Save,
-  Copy,
-  Trash2,
-  ArrowRight,
-  ArrowLeft,
-} from "lucide-react";
+import { Undo2, Redo2, Save, Copy, Trash2, ArrowRight, ArrowLeft } from "lucide-react";
 import type { CommandDefinition } from "../types";
 import { createBlockId, parseBlockId } from "@/lib/editor/constraints";
 

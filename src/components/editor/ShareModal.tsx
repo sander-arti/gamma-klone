@@ -90,11 +90,7 @@ export function ShareModal({ isOpen, onClose, deckId }: ShareModalProps) {
             <Button onClick={handleGenerateLink} disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <svg
-                    className="animate-spin -ml-1 mr-2 h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
                     <circle
                       className="opacity-25"
                       cx="12"
@@ -145,7 +141,12 @@ export function ShareModal({ isOpen, onClose, deckId }: ShareModalProps) {
 
             {/* Access info */}
             <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-              <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -172,12 +173,7 @@ export function ShareModal({ isOpen, onClose, deckId }: ShareModalProps) {
                   Er du sikker? Lenken vil slutte å fungere umiddelbart.
                 </p>
                 <div className="flex gap-2">
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={handleRevoke}
-                    disabled={isLoading}
-                  >
+                  <Button variant="danger" size="sm" onClick={handleRevoke} disabled={isLoading}>
                     {isLoading ? "Fjerner..." : "Ja, fjern tilgang"}
                   </Button>
                   <Button

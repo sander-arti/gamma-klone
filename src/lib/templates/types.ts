@@ -8,25 +8,22 @@
 /**
  * Available golden template IDs
  */
-export type GoldenTemplateId =
-  | "executive_brief"
-  | "feature_showcase"
-  | "project_update";
+export type GoldenTemplateId = "executive_brief" | "feature_showcase" | "project_update";
 
 /**
  * Slide types available in golden templates
  * Each has a dedicated pixel-perfect component
  */
 export type GoldenSlideType =
-  | "cover"           // Hero title + background image
-  | "stats"           // 3 horizontal statistics
-  | "content"         // 60/40 text + image split
-  | "bullets"         // 4-5 bullet points
-  | "cta"             // Call to action ending
-  | "icon_grid"       // 2x2 icon feature grid
-  | "timeline"        // Horizontal or vertical timeline
-  | "checklist"       // Checkboxes + image
-  | "numbered_steps"  // Numbered cards with pink border
+  | "cover" // Hero title + background image
+  | "stats" // 3 horizontal statistics
+  | "content" // 60/40 text + image split
+  | "bullets" // 4-5 bullet points
+  | "cta" // Call to action ending
+  | "icon_grid" // 2x2 icon feature grid
+  | "timeline" // Horizontal or vertical timeline
+  | "checklist" // Checkboxes + image
+  | "numbered_steps" // Numbered cards with pink border
   | "circle_diagram"; // 4 elements around center circle
 
 /**
@@ -109,11 +106,11 @@ export interface SlotContent {
   body?: string;
   /** Array of items (bullets, stats, steps) */
   items?: Array<{
-    text?: string;     // For bullets, steps (optional for stats which use value/label)
-    value?: string;    // For stats
-    label?: string;    // For stats
+    text?: string; // For bullets, steps (optional for stats which use value/label)
+    value?: string; // For stats
+    label?: string; // For stats
     sublabel?: string; // For stats
-    icon?: string;     // For icon cards
+    icon?: string; // For icon cards
     description?: string;
   }>;
   /** Generated image URL */

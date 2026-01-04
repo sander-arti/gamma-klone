@@ -48,7 +48,9 @@ export function SectionHeaderSlide({
             : "var(--theme-effects-gradient-primary, linear-gradient(90deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
           borderRadius: "9999px",
           opacity: isSubtle ? 0.5 : 1,
-          boxShadow: isSubtle ? "none" : "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.3))",
+          boxShadow: isSubtle
+            ? "none"
+            : "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.3))",
         }}
         aria-hidden="true"
       />

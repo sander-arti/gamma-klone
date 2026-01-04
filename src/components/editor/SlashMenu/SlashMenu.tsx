@@ -13,14 +13,7 @@
  * - Icon display
  */
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-  type KeyboardEvent,
-} from "react";
+import { useState, useEffect, useRef, useCallback, useMemo, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import {
   List,
@@ -165,12 +158,7 @@ function matchesQuery(item: SlashMenuItem, query: string): boolean {
 // Component
 // ============================================================================
 
-export function SlashMenu({
-  position,
-  query,
-  onSelect,
-  onClose,
-}: SlashMenuProps) {
+export function SlashMenu({ position, query, onSelect, onClose }: SlashMenuProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
   const [menuPosition, setMenuPosition] = useState(position);
@@ -219,17 +207,13 @@ export function SlashMenu({
         case "ArrowDown":
           e.preventDefault();
           e.stopPropagation();
-          setSelectedIndex((prev) =>
-            prev < filteredItems.length - 1 ? prev + 1 : 0
-          );
+          setSelectedIndex((prev) => (prev < filteredItems.length - 1 ? prev + 1 : 0));
           break;
 
         case "ArrowUp":
           e.preventDefault();
           e.stopPropagation();
-          setSelectedIndex((prev) =>
-            prev > 0 ? prev - 1 : filteredItems.length - 1
-          );
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : filteredItems.length - 1));
           break;
 
         case "Enter":
@@ -250,13 +234,9 @@ export function SlashMenu({
           e.preventDefault();
           e.stopPropagation();
           if (e.shiftKey) {
-            setSelectedIndex((prev) =>
-              prev > 0 ? prev - 1 : filteredItems.length - 1
-            );
+            setSelectedIndex((prev) => (prev > 0 ? prev - 1 : filteredItems.length - 1));
           } else {
-            setSelectedIndex((prev) =>
-              prev < filteredItems.length - 1 ? prev + 1 : 0
-            );
+            setSelectedIndex((prev) => (prev < filteredItems.length - 1 ? prev + 1 : 0));
           }
           break;
       }
@@ -313,9 +293,10 @@ export function SlashMenu({
             type="button"
             className={`
               w-full flex items-center gap-3 px-3 py-2 text-left transition-colors
-              ${index === selectedIndex
-                ? "bg-blue-50 text-blue-900"
-                : "hover:bg-gray-50 text-gray-900"
+              ${
+                index === selectedIndex
+                  ? "bg-blue-50 text-blue-900"
+                  : "hover:bg-gray-50 text-gray-900"
               }
             `}
             onClick={() => onSelect(item)}
@@ -331,9 +312,7 @@ export function SlashMenu({
             <div className="flex-1 min-w-0">
               <div className="font-medium text-sm">{item.label}</div>
               {item.description && (
-                <div className="text-xs text-gray-500 truncate">
-                  {item.description}
-                </div>
+                <div className="text-xs text-gray-500 truncate">{item.description}</div>
               )}
             </div>
           </button>

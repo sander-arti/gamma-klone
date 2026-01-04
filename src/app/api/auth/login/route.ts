@@ -1,10 +1,10 @@
-import { createClient } from '@/lib/db/supabase-server';
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
+import { createClient } from "@/lib/db/supabase-server";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
 const LoginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(1, "Password is required"),
 });
 
 export async function POST(request: NextRequest) {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     if (!validation.success) {
       return NextResponse.json(
         {
-          error: 'Validation failed',
+          error: "Validation failed",
           details: validation.error.flatten().fieldErrors,
         },
         { status: 400 }
@@ -32,17 +32,11 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 401 });
     }
 
     if (!data.user) {
-      return NextResponse.json(
-        { error: 'Login failed' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Login failed" }, { status: 401 });
     }
 
     return NextResponse.json({
@@ -52,10 +46,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Login error:', error);
-    return NextResponse.json(
-      { error: 'Login failed' },
-      { status: 500 }
-    );
+    console.error("Login error:", error);
+    return NextResponse.json({ error: "Login failed" }, { status: 500 });
   }
 }

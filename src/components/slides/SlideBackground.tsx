@@ -18,11 +18,11 @@
  */
 
 export type SlideBackgroundVariant =
-  | "solid"        // Just the background color
-  | "gradient"     // Adds gradient overlay
-  | "depth"        // Gradient + radial vignette
-  | "accent"       // Gradient + corner accent
-  | "full";        // All layers (most visual depth)
+  | "solid" // Just the background color
+  | "gradient" // Adds gradient overlay
+  | "depth" // Gradient + radial vignette
+  | "accent" // Gradient + corner accent
+  | "full"; // All layers (most visual depth)
 
 interface SlideBackgroundProps {
   /** Background variant - controls which layers are applied */
@@ -66,7 +66,9 @@ export function SlideBackground({
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: customGradient ?? `
+            background:
+              customGradient ??
+              `
               linear-gradient(
                 180deg,
                 rgba(255, 255, 255, 0.8) 0%,

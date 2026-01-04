@@ -8,7 +8,7 @@
  * Detect if user is on macOS
  */
 export function isMac(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === "undefined") return false;
   return /Mac|iPhone|iPad|iPod/.test(navigator.platform);
 }
 
@@ -16,7 +16,7 @@ export function isMac(): boolean {
  * Detect if user is on Windows
  */
 export function isWindows(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === "undefined") return false;
   return /Win/.test(navigator.platform);
 }
 
@@ -33,21 +33,21 @@ export function isWindows(): boolean {
  * formatShortcut("⌘Z") → "Ctrl+Z" on Windows, "⌘Z" on Mac
  */
 export function formatShortcut(shortcut: string): string {
-  if (!shortcut) return '';
+  if (!shortcut) return "";
 
   const mac = isMac();
 
   // Replace command symbol with Ctrl on Windows
   let formatted = shortcut;
   if (!mac) {
-    formatted = formatted.replace(/⌘/g, 'Ctrl');
+    formatted = formatted.replace(/⌘/g, "Ctrl");
   }
 
   // Replace option symbol with Alt (both platforms)
-  formatted = formatted.replace(/⌥/g, 'Alt');
+  formatted = formatted.replace(/⌥/g, "Alt");
 
   // Backspace symbol
-  formatted = formatted.replace(/⌫/g, 'Backspace');
+  formatted = formatted.replace(/⌫/g, "Backspace");
 
   return formatted;
 }
@@ -66,15 +66,15 @@ export function parseShortcutKeys(shortcut: string): string[] {
   if (!shortcut) return [];
 
   // If shortcut contains "+", split by it
-  if (shortcut.includes('+')) {
-    return shortcut.split('+').map((k) => k.trim());
+  if (shortcut.includes("+")) {
+    return shortcut.split("+").map((k) => k.trim());
   }
 
   // Otherwise, split individual characters (for symbols like ⌘⇧Z)
   const keys: string[] = [];
-  const symbols = ['⌘', '⌥', '⇧', '⌃', '⌫'];
+  const symbols = ["⌘", "⌥", "⇧", "⌃", "⌫"];
 
-  let buffer = '';
+  let buffer = "";
   for (let i = 0; i < shortcut.length; i++) {
     const char = shortcut[i];
 
@@ -82,7 +82,7 @@ export function parseShortcutKeys(shortcut: string): string[] {
       // Symbol - add to keys
       if (buffer) {
         keys.push(buffer);
-        buffer = '';
+        buffer = "";
       }
       keys.push(char);
     } else {

@@ -118,20 +118,20 @@ export const nordicMinimalism: Theme = {
       unit: "8px",
 
       // 8px grid scale (responsive with container queries)
-      xs: "clamp(0.25rem, 0.5cqw, 0.375rem)",    // ~4-6px
-      sm: "clamp(0.5rem, 1cqw, 0.875rem)",       // ~8-14px
-      md: "clamp(1rem, 1.75cqw, 1.5rem)",        // ~16-24px
-      lg: "clamp(1.75rem, 2.5cqw, 2.5rem)",      // ~28-40px
-      xl: "clamp(2.5rem, 3.5cqw, 3.5rem)",       // ~40-56px
-      xxl: "clamp(3.5rem, 5cqw, 5rem)",          // ~56-80px
-      xxxl: "clamp(5rem, 7cqw, 6.5rem)",         // ~80-104px
+      xs: "clamp(0.25rem, 0.5cqw, 0.375rem)", // ~4-6px
+      sm: "clamp(0.5rem, 1cqw, 0.875rem)", // ~8-14px
+      md: "clamp(1rem, 1.75cqw, 1.5rem)", // ~16-24px
+      lg: "clamp(1.75rem, 2.5cqw, 2.5rem)", // ~28-40px
+      xl: "clamp(2.5rem, 3.5cqw, 3.5rem)", // ~40-56px
+      xxl: "clamp(3.5rem, 5cqw, 5rem)", // ~56-80px
+      xxxl: "clamp(5rem, 7cqw, 6.5rem)", // ~80-104px
 
       // Semantic tokens (generous "breathing room")
-      slideGutter: "clamp(3.5rem, 6cqw, 6rem)",  // Maps to xxl-xxxl
+      slideGutter: "clamp(3.5rem, 6cqw, 6rem)", // Maps to xxl-xxxl
       sectionGap: "clamp(3rem, 4.5cqw, 4.5rem)", // Large section breaks
       blockGap: "clamp(2rem, 2.75cqw, 2.75rem)", // Between content blocks
       contentPadding: "clamp(1.5rem, 2cqw, 2rem)", // Inside cards
-      itemGap: "clamp(1rem, 1.25cqw, 1.25rem)",  // List items, grid gaps
+      itemGap: "clamp(1rem, 1.25cqw, 1.25rem)", // List items, grid gaps
       inlineGap: "clamp(0.625rem, 0.875cqw, 0.875rem)", // Icon-text spacing
 
       // Legacy tokens
@@ -173,11 +173,14 @@ export const nordicMinimalism: Theme = {
 
       // Slide background system
       // Subtle gradient adding depth
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(24, 24, 27, 0.5) 0%, rgba(15, 15, 16, 0.3) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(24, 24, 27, 0.5) 0%, rgba(15, 15, 16, 0.3) 100%)",
       // Radial vignette for focus
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.12) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.12) 100%)",
       // Corner accent with primary glow
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.06) 0%, transparent 50%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.06) 0%, transparent 50%)",
       // Pattern overlay (subtle dots on dark)
       slidePatternColor: "rgba(161, 161, 170, 0.03)",
       slidePatternOpacity: "0.3",
@@ -185,7 +188,8 @@ export const nordicMinimalism: Theme = {
       // Image styling system
       imageBorderRadius: "0.875rem",
       imageShadow: "0 4px 20px -4px rgba(0, 0, 0, 0.5), 0 2px 8px -2px rgba(0, 0, 0, 0.35)",
-      imageShadowFloating: "0 28px 56px -16px rgba(0, 0, 0, 0.55), 0 16px 32px -12px rgba(0, 0, 0, 0.45)",
+      imageShadowFloating:
+        "0 28px 56px -16px rgba(0, 0, 0, 0.55), 0 16px 32px -12px rgba(0, 0, 0, 0.45)",
       imageInnerShadow: "inset 0 0 0 1px rgba(255, 255, 255, 0.04)",
       imageFrameColor: "rgba(24, 24, 27, 0.95)",
       imageFrameWidth: "3px",

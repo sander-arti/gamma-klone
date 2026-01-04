@@ -186,9 +186,7 @@ class CommandRegistry {
   /**
    * Get available commands grouped by category.
    */
-  getAvailableByCategory(
-    context: EditorContext
-  ): Record<CommandCategory, CommandDefinition[]> {
+  getAvailableByCategory(context: EditorContext): Record<CommandCategory, CommandDefinition[]> {
     const available = this.getAvailable(context);
     const grouped: Record<CommandCategory, CommandDefinition[]> = {
       edit: [],
@@ -249,9 +247,7 @@ class CommandRegistry {
       const labelMatch = fuzzySearch(query, command.label);
 
       // Search in description if present
-      const descMatch = command.description
-        ? fuzzySearch(query, command.description)
-        : null;
+      const descMatch = command.description ? fuzzySearch(query, command.description) : null;
 
       // Take best score
       if (labelMatch || descMatch) {

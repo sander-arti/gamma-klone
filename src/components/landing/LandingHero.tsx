@@ -53,9 +53,7 @@ export function LandingHero({ title, subtitle, children }: LandingHeroProps) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="text-sm font-medium text-emerald-700">
-                AI-drevet
-              </span>
+              <span className="text-sm font-medium text-emerald-700">AI-drevet</span>
             </div>
           </div>
 
@@ -93,13 +91,7 @@ export function LandingHero({ title, subtitle, children }: LandingHeroProps) {
 }
 
 // Compact version for other pages
-export function LandingHeroCompact({
-  title,
-  subtitle,
-}: {
-  title: string;
-  subtitle: string;
-}) {
+export function LandingHeroCompact({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div className="relative overflow-hidden bg-[#faf8f5] border-b border-gray-200/60">
       {/* Subtle emerald glow */}
@@ -107,9 +99,7 @@ export function LandingHeroCompact({
 
       <div className="relative z-10 px-4 py-8 sm:py-12">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-            {title}
-          </h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{title}</h1>
           <p className="text-base text-gray-600">{subtitle}</p>
         </div>
       </div>

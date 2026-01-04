@@ -49,10 +49,14 @@ KVALITETSKRAV:
 - Tilpass til publikum: ${request.audience ?? "profesjonelle beslutningstakere"}
 - Tone: ${request.tone ?? "profesjonell og engasjerende"}
 
-${slot.example ? `
+${
+  slot.example
+    ? `
 EKSEMPEL PÅ FORVENTET FORMAT:
 ${JSON.stringify(slot.example, null, 2)}
-` : ""}
+`
+    : ""
+}
 
 OUTPUT FORMAT:
 Returner BARE JSON i følgende format (ingen markdown, ingen forklaringer):
@@ -66,10 +70,7 @@ Returner BARE JSON i følgende format (ingen markdown, ingen forklaringer):
 /**
  * Build user prompt for golden slot content generation
  */
-export function buildGoldenSlotUserPrompt(
-  slot: GoldenSlot,
-  inputText: string
-): string {
+export function buildGoldenSlotUserPrompt(slot: GoldenSlot, inputText: string): string {
   return `BRUKERENS INNHOLD:
 ---
 ${inputText}
@@ -82,10 +83,7 @@ Følg begrensningene nøyaktig. Returner kun JSON.`;
 /**
  * Build stats-specific prompt for GoldenStatsSlide
  */
-export function buildGoldenStatsPrompt(
-  inputText: string,
-  language: string
-): string {
+export function buildGoldenStatsPrompt(inputText: string, language: string): string {
   const lang = language === "no" ? "norsk" : "English";
 
   return `Analyser følgende tekst og trekk ut NØYAKTIG 3 nøkkeltall/statistikker.
@@ -154,10 +152,7 @@ OUTPUT FORMAT (kun JSON):
 /**
  * Build cover-specific prompt for GoldenCoverSlide
  */
-export function buildGoldenCoverPrompt(
-  inputText: string,
-  language: string
-): string {
+export function buildGoldenCoverPrompt(inputText: string, language: string): string {
   const lang = language === "no" ? "norsk" : "English";
 
   return `Lag en kraftfull presentasjonstittel basert på følgende innhold.
@@ -183,10 +178,7 @@ OUTPUT FORMAT (kun JSON):
 /**
  * Build CTA-specific prompt for GoldenCTASlide
  */
-export function buildGoldenCTAPrompt(
-  inputText: string,
-  language: string
-): string {
+export function buildGoldenCTAPrompt(inputText: string, language: string): string {
   const lang = language === "no" ? "norsk" : "English";
 
   return `Lag en avsluttende "call to action" slide basert på innholdet.

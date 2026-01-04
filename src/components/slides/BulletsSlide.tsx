@@ -42,13 +42,12 @@ function BulletCard({
       className="group relative animate-fade-in-up"
       style={{
         animationDelay: `${index * 50}ms`,
-        padding: isCards
-          ? "clamp(1.25rem, 2.5cqw, 1.75rem)"
-          : "clamp(1rem, 2cqw, 1.5rem)",
+        padding: isCards ? "clamp(1.25rem, 2.5cqw, 1.75rem)" : "clamp(1rem, 2cqw, 1.5rem)",
         background: "var(--theme-color-surface, rgba(255, 255, 255, 0.7))",
         borderRadius: "var(--theme-radius-lg, 12px)",
         border: "1px solid var(--theme-color-border-subtle, rgba(0, 0, 0, 0.06))",
-        boxShadow: "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
+        boxShadow:
+          "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
         transition: "all 0.2s ease",
         display: "flex",
         flexDirection: isCards ? "column" : "row",
@@ -63,7 +62,8 @@ function BulletCard({
           width: isCards ? "clamp(2.5rem, 4cqw, 3rem)" : "clamp(2rem, 3cqw, 2.5rem)",
           height: isCards ? "clamp(2.5rem, 4cqw, 3rem)" : "clamp(2rem, 3cqw, 2.5rem)",
           fontSize: isCards ? "clamp(1rem, 1.5cqw, 1.25rem)" : "clamp(0.875rem, 1.2cqw, 1rem)",
-          background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
+          background:
+            "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
           color: "var(--theme-color-primary-foreground, #ffffff)",
           borderRadius: isCards ? "var(--theme-radius-md, 10px)" : "50%",
           boxShadow: "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.25))",
@@ -101,7 +101,7 @@ function selectOptimalVariant(items: string[], explicitVariant?: string): string
 
   const count = items.length;
   const avgLength = items.reduce((sum, item) => sum + item.length, 0) / (count || 1);
-  const maxLength = Math.max(...items.map(item => item.length), 0);
+  const maxLength = Math.max(...items.map((item) => item.length), 0);
 
   // Very short items (keywords/phrases) → cards layout
   if (count <= 4 && avgLength < 40) {
@@ -137,11 +137,7 @@ function selectOptimalVariant(items: string[], explicitVariant?: string): string
   return "grid";
 }
 
-export function BulletsSlide({
-  slide,
-  editable = false,
-  slideIndex = 0,
-}: BulletsSlideProps) {
+export function BulletsSlide({ slide, editable = false, slideIndex = 0 }: BulletsSlideProps) {
   const titleBlockIndex = slide.blocks.findIndex((b) => b.kind === "title");
   const bulletsBlockIndex = slide.blocks.findIndex((b) => b.kind === "bullets");
 
@@ -181,9 +177,7 @@ export function BulletsSlide({
     const gridContainerStyle: React.CSSProperties = {
       display: "grid",
       gridTemplateColumns: `repeat(${columnCount}, 1fr)`,
-      gap: isCards
-        ? "clamp(1rem, 2cqw, 1.5rem)"
-        : "clamp(0.875rem, 1.5cqw, 1.25rem)",
+      gap: isCards ? "clamp(1rem, 2cqw, 1.5rem)" : "clamp(0.875rem, 1.5cqw, 1.25rem)",
       flex: 1,
       alignContent: "start",
     };
@@ -270,8 +264,7 @@ export function BulletsSlide({
 
   const variantStyles: Record<string, React.CSSProperties> = {
     default: {
-      "--bullet-font-size":
-        "var(--theme-typography-body-size, clamp(1rem, 1.6cqw, 1.125rem))",
+      "--bullet-font-size": "var(--theme-typography-body-size, clamp(1rem, 1.6cqw, 1.125rem))",
       "--bullet-line-height": "var(--theme-typography-body-line-height, 1.65)",
     } as React.CSSProperties,
     compact: {
@@ -285,9 +278,7 @@ export function BulletsSlide({
     } as React.CSSProperties,
   };
 
-  const activeVariant = ["default", "compact", "expanded"].includes(variant)
-    ? variant
-    : "default";
+  const activeVariant = ["default", "compact", "expanded"].includes(variant) ? variant : "default";
 
   return (
     <SlideLayout contentAlign="distributed" spacious={isContentLight}>

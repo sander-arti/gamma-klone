@@ -12,9 +12,4 @@ export {
   type OverlayVariant,
 } from "./CinematicOverlay";
 
-export {
-  CoverTitle,
-  CoverSubtitle,
-  CoverBadge,
-  CoverTextContainer,
-} from "./CoverTypography";
+export { CoverTitle, CoverSubtitle, CoverBadge, CoverTextContainer } from "./CoverTypography";

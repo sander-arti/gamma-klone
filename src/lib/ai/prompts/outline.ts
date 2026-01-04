@@ -2,10 +2,7 @@ import type { GenerationRequest } from "@/lib/schemas/deck";
 import type { SlideType } from "@/lib/schemas/slide";
 import type { ContentAnalysis } from "../content-analysis";
 import { formatAnalysisForPrompt } from "../content-analysis";
-import {
-  recommendSlideTypes,
-  formatRecommendationsForPrompt,
-} from "../slide-type-selector";
+import { recommendSlideTypes, formatRecommendationsForPrompt } from "../slide-type-selector";
 
 /**
  * Available slide types for outline generation

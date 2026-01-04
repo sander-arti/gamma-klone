@@ -90,9 +90,7 @@ export function FAQ() {
                   focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:ring-inset
                 "
               >
-                <span className="font-semibold text-gray-900 pr-4">
-                  {faq.question}
-                </span>
+                <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
                 <span
                   className={`
                     flex-shrink-0 w-6 h-6 rounded-full
@@ -102,12 +100,7 @@ export function FAQ() {
                     ${openIndex === index ? "rotate-180" : ""}
                   `}
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

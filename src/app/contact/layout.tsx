@@ -8,8 +8,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Kontakt oss",
-  description:
-    "Ta kontakt med ARTI Slides. Send oss en melding, og vi svarer så raskt vi kan.",
+  description: "Ta kontakt med ARTI Slides. Send oss en melding, og vi svarer så raskt vi kan.",
   openGraph: {
     title: "Kontakt oss | ARTI Slides",
     description: "Ta kontakt med ARTI Slides-teamet.",
@@ -20,10 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

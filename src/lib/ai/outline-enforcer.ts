@@ -32,11 +32,7 @@ export interface ScoringContext {
 /**
  * Slide types that are considered "bullet-like" and CAN be upgraded
  */
-const UPGRADEABLE_BULLET_TYPES: SlideType[] = [
-  "bullets",
-  "agenda",
-  "decisions_list",
-];
+const UPGRADEABLE_BULLET_TYPES: SlideType[] = ["bullets", "agenda", "decisions_list"];
 
 /**
  * ALL types that VISUALLY appear as bullet/list-heavy (for counting purposes)
@@ -46,8 +42,8 @@ const VISUAL_BULLET_TYPES: SlideType[] = [
   "bullets",
   "agenda",
   "decisions_list",
-  "action_items_table",    // Protected but looks like bullets
-  "summary_next_steps",    // Protected but looks like bullets
+  "action_items_table", // Protected but looks like bullets
+  "summary_next_steps", // Protected but looks like bullets
 ];
 
 /**
@@ -129,11 +125,7 @@ function hasPremiumSlide(outline: Outline): boolean {
  * Phase 7 Sprint 4: Apply dynamic scoring modifiers
  * Returns a multiplier (0.0 - 1.5) to adjust base score
  */
-function applyScoreModifiers(
-  type: SlideType,
-  baseScore: number,
-  context?: ScoringContext
-): number {
+function applyScoreModifiers(type: SlideType, baseScore: number, context?: ScoringContext): number {
   if (!context) {
     return baseScore;
   }
@@ -223,8 +215,9 @@ function selectPremiumType(
 
   // Short numbered concepts → numbered_grid
   if (analysis.sequentialProcess.length >= 2 && analysis.sequentialProcess.length <= 4) {
-    const avgLength = analysis.sequentialProcess.reduce((sum, s) => sum + s.text.length, 0) /
-                      analysis.sequentialProcess.length;
+    const avgLength =
+      analysis.sequentialProcess.reduce((sum, s) => sum + s.text.length, 0) /
+      analysis.sequentialProcess.length;
     if (avgLength < 60 && !usedTypes.has("numbered_grid")) {
       const baseScore = 75;
       const score = applyScoreModifiers("numbered_grid", baseScore, context);
@@ -259,10 +252,7 @@ function selectPremiumType(
 /**
  * Upgrade a bullet-like slide to a premium type
  */
-function upgradeSlide(
-  slide: OutlineSlide,
-  newType: SlideType
-): OutlineSlide {
+function upgradeSlide(slide: OutlineSlide, newType: SlideType): OutlineSlide {
   return {
     ...slide,
     suggestedType: newType,
@@ -315,16 +305,20 @@ export function enforceSlideDistribution(
   // Rule 1: Limit VISUAL bullet-like slides to max 2
   // Count all slides that LOOK like bullet lists (including protected ones)
   const visualBulletIndices = getVisualBulletIndices({ ...outline, slides: modifiedSlides });
-  const upgradeableBulletIndices = getUpgradeableBulletIndices({ ...outline, slides: modifiedSlides });
+  const upgradeableBulletIndices = getUpgradeableBulletIndices({
+    ...outline,
+    slides: modifiedSlides,
+  });
 
   const excessBullets = visualBulletIndices.length - 2;
 
   if (excessBullets > 0) {
-    console.log(`[outline-enforcer] Found ${visualBulletIndices.length} visual bullet-like slides (max 2), need to upgrade ${excessBullets}`);
+    console.log(
+      `[outline-enforcer] Found ${visualBulletIndices.length} visual bullet-like slides (max 2), need to upgrade ${excessBullets}`
+    );
 
     // Get upgradeable indices, excluding first slide (cover)
-    const candidatesForUpgrade = upgradeableBulletIndices
-      .filter(idx => idx !== 0); // Never upgrade first slide
+    const candidatesForUpgrade = upgradeableBulletIndices.filter((idx) => idx !== 0); // Never upgrade first slide
 
     // Upgrade as many as needed, starting from the last ones
     const indicesToUpgrade = candidatesForUpgrade.slice(-excessBullets);
@@ -343,9 +337,14 @@ export function enforceSlideDistribution(
     }
 
     // If we couldn't upgrade enough (too many protected), log warning
-    const remainingVisualBullets = getVisualBulletIndices({ ...outline, slides: modifiedSlides }).length;
+    const remainingVisualBullets = getVisualBulletIndices({
+      ...outline,
+      slides: modifiedSlides,
+    }).length;
     if (remainingVisualBullets > 2) {
-      console.log(`[outline-enforcer] WARNING: Still have ${remainingVisualBullets} visual bullet-like slides (${remainingVisualBullets - 2} are protected)`);
+      console.log(
+        `[outline-enforcer] WARNING: Still have ${remainingVisualBullets} visual bullet-like slides (${remainingVisualBullets - 2} are protected)`
+      );
     }
   }
 
@@ -355,8 +354,9 @@ export function enforceSlideDistribution(
 
     // Find best candidate to upgrade (prefer middle slides)
     const middleIndex = Math.floor(modifiedSlides.length / 2);
-    const candidateIndices = [middleIndex, middleIndex - 1, middleIndex + 1]
-      .filter(idx => idx > 0 && idx < modifiedSlides.length - 1); // Exclude first and last
+    const candidateIndices = [middleIndex, middleIndex - 1, middleIndex + 1].filter(
+      (idx) => idx > 0 && idx < modifiedSlides.length - 1
+    ); // Exclude first and last
 
     for (const idx of candidateIndices) {
       const slide = modifiedSlides[idx];
@@ -377,7 +377,7 @@ export function enforceSlideDistribution(
   // Log changes
   if (changes.length > 0) {
     console.log("[outline-enforcer] Changes made:");
-    changes.forEach(change => console.log(`  - ${change}`));
+    changes.forEach((change) => console.log(`  - ${change}`));
   } else {
     console.log("[outline-enforcer] No changes needed");
   }

@@ -1,5 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { GenerationPipeline, createPipeline, generatePresentation, PipelineError } from "../pipeline";
+import {
+  GenerationPipeline,
+  createPipeline,
+  generatePresentation,
+  PipelineError,
+} from "../pipeline";
 import { MockLLMClient } from "../mock-llm";
 import type { GenerationRequest } from "@/lib/schemas/deck";
 

@@ -136,9 +136,7 @@ export function useGenerationStream(
             ...s,
             progress: job.progress ?? s.progress,
             currentStage:
-              job.status === "running"
-                ? `Genererer... ${job.progress ?? 0}%`
-                : s.currentStage,
+              job.status === "running" ? `Genererer... ${job.progress ?? 0}%` : s.currentStage,
           }));
 
           if (job.status === "completed") {
@@ -149,9 +147,7 @@ export function useGenerationStream(
               status: "complete",
               progress: 100,
               currentStage: "Ferdig!",
-              result: deckId
-                ? { deckId, viewUrl: job.viewUrl }
-                : null,
+              result: deckId ? { deckId, viewUrl: job.viewUrl } : null,
             }));
             if (pollingIntervalRef.current) {
               clearInterval(pollingIntervalRef.current);
@@ -274,11 +270,13 @@ export function useGenerationStream(
               ...s,
               streamingSlide: {
                 slideIndex: data?.slideIndex ?? 0,
-                blocks: [{
-                  kind: (data?.blockKind as BlockKind) ?? "text",
-                  text: data?.delta ?? "",
-                  isComplete: false,
-                }],
+                blocks: [
+                  {
+                    kind: (data?.blockKind as BlockKind) ?? "text",
+                    text: data?.delta ?? "",
+                    isComplete: false,
+                  },
+                ],
                 isStreaming: true,
               },
             };
@@ -287,11 +285,14 @@ export function useGenerationStream(
             ...s,
             streamingSlide: {
               ...s.streamingSlide,
-              blocks: [...s.streamingSlide.blocks, {
-                kind: (data?.blockKind as BlockKind) ?? "text",
-                text: data?.delta ?? "",
-                isComplete: false,
-              }],
+              blocks: [
+                ...s.streamingSlide.blocks,
+                {
+                  kind: (data?.blockKind as BlockKind) ?? "text",
+                  text: data?.delta ?? "",
+                  isComplete: false,
+                },
+              ],
             },
           };
         });
@@ -421,7 +422,8 @@ export function useGenerationStream(
 
           const newGeneratedImages = { ...s.generatedImages };
           // Only count as new completion if we have a URL and haven't already recorded this slide
-          const isNewCompletion = imageUrl && slideIdx !== undefined && !s.generatedImages[slideIdx];
+          const isNewCompletion =
+            imageUrl && slideIdx !== undefined && !s.generatedImages[slideIdx];
 
           if (imageUrl && slideIdx !== undefined) {
             newGeneratedImages[slideIdx] = imageUrl;
@@ -431,9 +433,10 @@ export function useGenerationStream(
           const newImagesCompleted = isNewCompletion ? s.imagesCompleted + 1 : s.imagesCompleted;
 
           // Show completed count for cleaner UX (avoids confusing "X av Y" during retries)
-          const stageText = newImagesCompleted > 0
-            ? `${newImagesCompleted} bilder generert...`
-            : "Genererer bilder...";
+          const stageText =
+            newImagesCompleted > 0
+              ? `${newImagesCompleted} bilder generert...`
+              : "Genererer bilder...";
 
           return {
             ...s,
@@ -457,7 +460,8 @@ export function useGenerationStream(
         setState((s) => {
           const newGeneratedImages = { ...s.generatedImages };
           // Only count as new completion if we haven't already recorded this slide's image
-          const isNewCompletion = imageUrl && slideIdx !== undefined && !s.generatedImages[slideIdx];
+          const isNewCompletion =
+            imageUrl && slideIdx !== undefined && !s.generatedImages[slideIdx];
 
           if (imageUrl && slideIdx !== undefined) {
             newGeneratedImages[slideIdx] = imageUrl;
@@ -524,9 +528,7 @@ export function useGenerationStream(
     setState((s) => ({ ...s, status: "connecting" }));
 
     const connectSSE = () => {
-      const eventSource = new EventSource(
-        `/api/generations/${generationId}/stream`
-      );
+      const eventSource = new EventSource(`/api/generations/${generationId}/stream`);
       eventSourceRef.current = eventSource;
 
       // Generic message handler for all event types
@@ -560,10 +562,7 @@ export function useGenerationStream(
             reconnectAttemptsRef.current = 0;
 
             // Close on terminal states
-            if (
-              eventType === "generation_complete" ||
-              eventType === "generation_failed"
-            ) {
+            if (eventType === "generation_complete" || eventType === "generation_failed") {
               eventSource.close();
               eventSourceRef.current = null;
             }
@@ -587,10 +586,7 @@ export function useGenerationStream(
           );
 
           // Exponential backoff
-          const delay = Math.min(
-            1000 * Math.pow(2, reconnectAttemptsRef.current - 1),
-            10000
-          );
+          const delay = Math.min(1000 * Math.pow(2, reconnectAttemptsRef.current - 1), 10000);
           setTimeout(connectSSE, delay);
         } else if (enablePollingFallback) {
           console.log("SSE failed, falling back to polling");
@@ -625,13 +621,7 @@ export function useGenerationStream(
         pollingIntervalRef.current = null;
       }
     };
-  }, [
-    generationId,
-    handleEvent,
-    startPolling,
-    enablePollingFallback,
-    maxReconnectAttempts,
-  ]);
+  }, [generationId, handleEvent, startPolling, enablePollingFallback, maxReconnectAttempts]);
 
   return {
     ...state,

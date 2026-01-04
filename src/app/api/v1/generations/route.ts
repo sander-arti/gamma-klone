@@ -9,10 +9,7 @@ import { validateApiKey } from "@/lib/api/auth";
 import { enforceRateLimit, getRateLimitHeaders } from "@/lib/api/rate-limit";
 import { ApiError, errorResponse, successResponse, mapErrorToApiError } from "@/lib/api/errors";
 import { GenerationRequestSchema } from "@/lib/schemas/deck";
-import {
-  createGenerationJob,
-  getJobByIdempotencyKey,
-} from "@/lib/db/generation-job";
+import { createGenerationJob, getJobByIdempotencyKey } from "@/lib/db/generation-job";
 import { addGenerationJob } from "@/lib/queue/generation-queue";
 
 export async function POST(request: NextRequest) {
@@ -46,10 +43,7 @@ export async function POST(request: NextRequest) {
     // 4. Check idempotency key
     const idempotencyKey = request.headers.get("Idempotency-Key");
     if (idempotencyKey) {
-      const existingJob = await getJobByIdempotencyKey(
-        idempotencyKey,
-        auth.workspaceId
-      );
+      const existingJob = await getJobByIdempotencyKey(idempotencyKey, auth.workspaceId);
       if (existingJob) {
         // Return existing job (idempotent response)
         const response = successResponse({

@@ -19,11 +19,7 @@ interface SlideCountSelectorProps {
   disabled?: boolean;
 }
 
-export function SlideCountSelector({
-  value,
-  onChange,
-  disabled = false,
-}: SlideCountSelectorProps) {
+export function SlideCountSelector({ value, onChange, disabled = false }: SlideCountSelectorProps) {
   const handleDecrement = () => {
     if (!disabled && value > MIN_SLIDES) {
       onChange(value - 1);
@@ -49,9 +45,10 @@ export function SlideCountSelector({
           disabled={disabled || !canDecrement}
           className={`
             w-10 h-10 rounded-full flex items-center justify-center transition-all
-            ${disabled || !canDecrement
-              ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200 active:scale-95"
+            ${
+              disabled || !canDecrement
+                ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200 active:scale-95"
             }
           `}
           aria-label="Reduser antall slides"
@@ -90,9 +87,10 @@ export function SlideCountSelector({
           disabled={disabled || !canIncrement}
           className={`
             w-10 h-10 rounded-full flex items-center justify-center transition-all
-            ${disabled || !canIncrement
-              ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-              : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200 active:scale-95"
+            ${
+              disabled || !canIncrement
+                ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200 active:scale-95"
             }
           `}
           aria-label="Øk antall slides"
@@ -124,11 +122,7 @@ interface CompactSlideCountProps {
   disabled?: boolean;
 }
 
-export function CompactSlideCount({
-  value,
-  onChange,
-  disabled = false,
-}: CompactSlideCountProps) {
+export function CompactSlideCount({ value, onChange, disabled = false }: CompactSlideCountProps) {
   const handleDecrement = () => {
     if (!disabled && value > MIN_SLIDES) {
       onChange(value - 1);
@@ -149,9 +143,10 @@ export function CompactSlideCount({
         disabled={disabled || value <= MIN_SLIDES}
         className={`
           w-7 h-7 rounded-md flex items-center justify-center transition-all
-          ${disabled || value <= MIN_SLIDES
-            ? "text-gray-300 cursor-not-allowed"
-            : "text-gray-600 hover:bg-white hover:shadow-sm active:scale-95"
+          ${
+            disabled || value <= MIN_SLIDES
+              ? "text-gray-300 cursor-not-allowed"
+              : "text-gray-600 hover:bg-white hover:shadow-sm active:scale-95"
           }
         `}
       >
@@ -168,9 +163,10 @@ export function CompactSlideCount({
         disabled={disabled || value >= MAX_SLIDES}
         className={`
           w-7 h-7 rounded-md flex items-center justify-center transition-all
-          ${disabled || value >= MAX_SLIDES
-            ? "text-gray-300 cursor-not-allowed"
-            : "text-gray-600 hover:bg-white hover:shadow-sm active:scale-95"
+          ${
+            disabled || value >= MAX_SLIDES
+              ? "text-gray-300 cursor-not-allowed"
+              : "text-gray-600 hover:bg-white hover:shadow-sm active:scale-95"
           }
         `}
       >

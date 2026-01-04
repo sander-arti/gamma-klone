@@ -25,8 +25,7 @@ import { ChevronDown, Check } from "lucide-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export function WorkspaceSwitcher() {
-  const { workspaces, activeWorkspace, switchWorkspace, isLoading } =
-    useWorkspace();
+  const { workspaces, activeWorkspace, switchWorkspace, isLoading } = useWorkspace();
 
   if (isLoading) {
     return (
@@ -43,9 +42,7 @@ export function WorkspaceSwitcher() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors">
-        <span className="font-medium text-gray-900">
-          {activeWorkspace.name}
-        </span>
+        <span className="font-medium text-gray-900">{activeWorkspace.name}</span>
         <ChevronDown className="w-4 h-4 text-gray-500" />
       </DropdownMenu.Trigger>
 

@@ -23,10 +23,7 @@ const S3_SECRET_KEY = process.env.S3_SECRET_KEY || "minioadmin";
 const S3_BUCKET = process.env.S3_BUCKET || "gamma-klone";
 
 // Default URL expiry: 1 hour (from EXPORT_URL_EXPIRY env var)
-const DEFAULT_EXPIRY_SECONDS = parseInt(
-  process.env.EXPORT_URL_EXPIRY || "3600",
-  10
-);
+const DEFAULT_EXPIRY_SECONDS = parseInt(process.env.EXPORT_URL_EXPIRY || "3600", 10);
 
 /**
  * Singleton S3 client instance
@@ -157,10 +154,7 @@ export async function fileExists(key: string): Promise<boolean> {
  * @param format - The export format (pdf or pptx)
  * @returns A unique object key
  */
-export function generateExportKey(
-  generationId: string,
-  format: "pdf" | "pptx"
-): string {
+export function generateExportKey(generationId: string, format: "pdf" | "pptx"): string {
   const extension = format === "pdf" ? "pdf" : "pptx";
   const timestamp = Date.now();
   return `exports/${generationId}/${timestamp}.${extension}`;
@@ -172,9 +166,7 @@ export function generateExportKey(
  * @param expiresInSeconds - Seconds until expiry
  * @returns Date when the URL expires
  */
-export function calculateExpiryDate(
-  expiresInSeconds: number = DEFAULT_EXPIRY_SECONDS
-): Date {
+export function calculateExpiryDate(expiresInSeconds: number = DEFAULT_EXPIRY_SECONDS): Date {
   return new Date(Date.now() + expiresInSeconds * 1000);
 }
 
@@ -252,11 +244,7 @@ export async function generateUploadPresignedUrl(
  * @param filename - The original filename (will be sanitized)
  * @returns A unique object key
  */
-export function generateUploadKey(
-  workspaceId: string,
-  uploadId: string,
-  filename: string
-): string {
+export function generateUploadKey(workspaceId: string, uploadId: string, filename: string): string {
   // Sanitize filename: remove special chars, keep extension
   const sanitized = filename
     .toLowerCase()

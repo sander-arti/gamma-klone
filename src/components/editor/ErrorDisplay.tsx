@@ -60,20 +60,12 @@ export function ErrorDisplay({
       </div>
 
       {/* Title */}
-      <h3
-        className={`${
-          compact ? "text-base" : "text-lg"
-        } font-medium text-gray-900 mb-2`}
-      >
+      <h3 className={`${compact ? "text-base" : "text-lg"} font-medium text-gray-900 mb-2`}>
         {errorDetails.title}
       </h3>
 
       {/* Message */}
-      <p
-        className={`text-gray-500 ${
-          compact ? "text-sm mb-3" : "mb-4"
-        } max-w-md mx-auto`}
-      >
+      <p className={`text-gray-500 ${compact ? "text-sm mb-3" : "mb-4"} max-w-md mx-auto`}>
         {errorDetails.message}
       </p>
 
@@ -142,9 +134,7 @@ export function InlineError({ error }: { error: ErrorResponse | null | undefined
     <div className="flex items-start gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
       <AlertTriangle className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
       <div className="flex-1">
-        <p className="text-sm font-medium text-red-800">
-          {userError.error.title}
-        </p>
+        <p className="text-sm font-medium text-red-800">{userError.error.title}</p>
         <p className="text-xs text-red-600 mt-1">{userError.error.message}</p>
       </div>
     </div>

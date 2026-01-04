@@ -8,10 +8,7 @@
 import { Worker, Job } from "bullmq";
 import { randomUUID } from "crypto";
 import { createWorkerConnection } from "./redis";
-import {
-  GENERATION_QUEUE_NAME,
-  type GenerationJobData,
-} from "./generation-queue";
+import { GENERATION_QUEUE_NAME, type GenerationJobData } from "./generation-queue";
 import {
   updateJobStatus,
   updateJobProgress,
@@ -20,20 +17,12 @@ import {
   setJobDeckId,
 } from "@/lib/db/generation-job";
 import { prisma } from "@/lib/db/prisma";
-import {
-  createPipeline,
-  type PipelineProgress,
-  PipelineError,
-} from "@/lib/ai/pipeline";
+import { createPipeline, type PipelineProgress, PipelineError } from "@/lib/ai/pipeline";
 import { mapPipelineErrorToApiCode } from "@/lib/api/errors";
 import { addExportJob } from "./export-queue";
 import { createExportJob } from "@/lib/db/export-job";
 import type { ThemeId } from "@/lib/themes";
-import {
-  createPublisher,
-  publishEvent,
-  closeConnection,
-} from "@/lib/streaming/redis-pubsub";
+import { createPublisher, publishEvent, closeConnection } from "@/lib/streaming/redis-pubsub";
 import { createStreamEvent, type StreamEventType } from "@/lib/streaming/types";
 
 /**
@@ -143,9 +132,7 @@ function createProgressUpdater(generationId: string) {
 /**
  * Process a single generation job
  */
-async function processGenerationJob(
-  job: Job<GenerationJobData>
-): Promise<void> {
+async function processGenerationJob(job: Job<GenerationJobData>): Promise<void> {
   const { generationId, workspaceId, request } = job.data;
 
   console.log(`Processing generation job ${generationId}`);
@@ -164,20 +151,13 @@ async function processGenerationJob(
   }
 
   // Helper to safely publish events
-  const publish = async (
-    type: StreamEventType,
-    data?: Parameters<typeof createStreamEvent>[2]
-  ) => {
+  const publish = async (type: StreamEventType, data?: Parameters<typeof createStreamEvent>[2]) => {
     if (!publisherConnected) {
       console.log(`[${generationId}] Skipping publish ${type} - publisher not connected`);
       return;
     }
     try {
-      await publishEvent(
-        publisher,
-        generationId,
-        createStreamEvent(type, generationId, data)
-      );
+      await publishEvent(publisher, generationId, createStreamEvent(type, generationId, data));
       console.log(`[${generationId}] Published ${type} event`);
     } catch (err) {
       console.warn(`Failed to publish ${type} event for ${generationId}:`, err);
@@ -192,7 +172,7 @@ async function processGenerationJob(
 
   // Small delay to allow SSE subscribers to connect
   // This is necessary because Redis Pub/Sub doesn't queue messages
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   // Track slide counts for consistent frontend display
   // requestedSlides = what user asked for (single source of truth)
@@ -281,7 +261,9 @@ async function processGenerationJob(
             );
           }
 
-          console.log(`[${generationId}] Outline complete (${actualSlides} slides), updating deck...`);
+          console.log(
+            `[${generationId}] Outline complete (${actualSlides} slides), updating deck...`
+          );
           await prisma.deck.update({
             where: { id: preDeckId },
             data: {
@@ -425,7 +407,11 @@ async function processGenerationJob(
         const finalSlideData = result.deck.slides[i];
 
         // Update each block's content
-        for (let j = 0; j < Math.min(existingSlide.blocks.length, finalSlideData.blocks.length); j++) {
+        for (
+          let j = 0;
+          j < Math.min(existingSlide.blocks.length, finalSlideData.blocks.length);
+          j++
+        ) {
           const existingBlock = existingSlide.blocks[j];
           const finalBlock = finalSlideData.blocks[j];
 
@@ -556,18 +542,14 @@ async function processGenerationJob(
 export function createGenerationWorker(): Worker<GenerationJobData> {
   const connection = createWorkerConnection();
 
-  const worker = new Worker<GenerationJobData>(
-    GENERATION_QUEUE_NAME,
-    processGenerationJob,
-    {
-      connection,
-      concurrency: parseInt(process.env.WORKER_CONCURRENCY ?? "2", 10),
-      // Lock settings for long-running jobs (image generation can take 60+ seconds)
-      lockDuration: 300000,    // 5 minutes - how long before job is considered stalled
-      lockRenewTime: 60000,    // 1 minute - how often to renew the lock
-      stalledInterval: 120000, // 2 minutes - how often to check for stalled jobs
-    }
-  );
+  const worker = new Worker<GenerationJobData>(GENERATION_QUEUE_NAME, processGenerationJob, {
+    connection,
+    concurrency: parseInt(process.env.WORKER_CONCURRENCY ?? "2", 10),
+    // Lock settings for long-running jobs (image generation can take 60+ seconds)
+    lockDuration: 300000, // 5 minutes - how long before job is considered stalled
+    lockRenewTime: 60000, // 1 minute - how often to renew the lock
+    stalledInterval: 120000, // 2 minutes - how often to check for stalled jobs
+  });
 
   worker.on("completed", (job) => {
     console.log(`Job ${job.id} completed`);

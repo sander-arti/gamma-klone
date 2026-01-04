@@ -98,9 +98,7 @@ export function ContentPreview({
             {outline ? outline.title : "Innholdsforhåndsvisning"}
           </h3>
           {outline && (
-            <p className="text-xs text-gray-500 mt-0.5">
-              {outline.slides.length} slides
-            </p>
+            <p className="text-xs text-gray-500 mt-0.5">{outline.slides.length} slides</p>
           )}
         </div>
 
@@ -111,9 +109,10 @@ export function ContentPreview({
             onClick={() => setViewMode("cards")}
             className={`
               p-1.5 rounded-md transition-all
-              ${viewMode === "cards"
-                ? "bg-white shadow-sm text-gray-900"
-                : "text-gray-500 hover:text-gray-700"
+              ${
+                viewMode === "cards"
+                  ? "bg-white shadow-sm text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }
             `}
             title="Kortvisning"
@@ -125,9 +124,10 @@ export function ContentPreview({
             onClick={() => setViewMode("freeform")}
             className={`
               p-1.5 rounded-md transition-all
-              ${viewMode === "freeform"
-                ? "bg-white shadow-sm text-gray-900"
-                : "text-gray-500 hover:text-gray-700"
+              ${
+                viewMode === "freeform"
+                  ? "bg-white shadow-sm text-gray-900"
+                  : "text-gray-500 hover:text-gray-700"
               }
             `}
             title="Fritekstvisning"
@@ -165,9 +165,10 @@ export function ContentPreview({
                       <div
                         className={`
                           flex items-center gap-3 p-3 rounded-lg border transition-all
-                          ${disabled
-                            ? "bg-gray-50 border-gray-200"
-                            : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm cursor-grab active:cursor-grabbing"
+                          ${
+                            disabled
+                              ? "bg-gray-50 border-gray-200"
+                              : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm cursor-grab active:cursor-grabbing"
                           }
                         `}
                       >
@@ -300,9 +301,7 @@ export function ContentPreview({
                 </div>
               ) : outline ? (
                 <div className="space-y-4">
-                  <h4 className="text-base font-semibold text-gray-900">
-                    {outline.title}
-                  </h4>
+                  <h4 className="text-base font-semibold text-gray-900">{outline.title}</h4>
                   <ol className="space-y-2 list-decimal list-inside">
                     {outline.slides.map((slide, index) => (
                       <li key={index} className="text-sm text-gray-700">
@@ -317,7 +316,11 @@ export function ContentPreview({
                   </ol>
                 </div>
               ) : (
-                <FreeformEmptyState onGenerateOutline={onGenerateOutline} isGeneratingOutline={isGeneratingOutline} disabled={disabled} />
+                <FreeformEmptyState
+                  onGenerateOutline={onGenerateOutline}
+                  isGeneratingOutline={isGeneratingOutline}
+                  disabled={disabled}
+                />
               )}
             </motion.div>
           )}
@@ -333,9 +336,7 @@ function EmptyState() {
       <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
         <LayoutGrid className="w-6 h-6 text-gray-400" />
       </div>
-      <p className="text-sm text-gray-500">
-        Ingen outline generert
-      </p>
+      <p className="text-sm text-gray-500">Ingen outline generert</p>
       <p className="text-xs text-gray-400 mt-1">
         Bytt til fritekstvisning eller generer en outline
       </p>
@@ -349,18 +350,20 @@ interface FreeformEmptyStateProps {
   disabled?: boolean;
 }
 
-function FreeformEmptyState({ onGenerateOutline, isGeneratingOutline = false, disabled = false }: FreeformEmptyStateProps) {
+function FreeformEmptyState({
+  onGenerateOutline,
+  isGeneratingOutline = false,
+  disabled = false,
+}: FreeformEmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
       <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-3">
         <AlignLeft className="w-6 h-6 text-emerald-600" />
       </div>
-      <p className="text-sm text-gray-700 font-medium mb-1">
-        Klar til å generere!
-      </p>
+      <p className="text-sm text-gray-700 font-medium mb-1">Klar til å generere!</p>
       <p className="text-xs text-gray-500 mb-4 max-w-xs">
-        Trykk &quot;Generer presentasjon&quot; for å la AI strukturere innholdet automatisk,
-        eller generer en outline først for mer kontroll.
+        Trykk &quot;Generer presentasjon&quot; for å la AI strukturere innholdet automatisk, eller
+        generer en outline først for mer kontroll.
       </p>
       {onGenerateOutline && (
         <Button

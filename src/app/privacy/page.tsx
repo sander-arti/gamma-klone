@@ -47,9 +47,7 @@ export default function PrivacyPage() {
                 />
               </svg>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
-              ARTI Slides
-            </span>
+            <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
           </Link>
         </div>
       </header>
@@ -57,44 +55,36 @@ export default function PrivacyPage() {
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <article className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-8 sm:p-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Personvernerklæring
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Personvernerklæring</h1>
           <p className="text-gray-500 mb-8">Sist oppdatert: 1. januar 2024</p>
 
           <div className="prose prose-gray max-w-none">
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">
-              1. Introduksjon
-            </h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Introduksjon</h2>
             <p className="text-gray-600 mb-4">
-              ARTI Slides ("vi", "oss" eller "vår") er forpliktet til å beskytte
-              personvernet ditt. Denne personvernerklæringen forklarer hvordan
-              vi samler inn, bruker og beskytter informasjonen din når du bruker
-              vår tjeneste.
+              ARTI Slides ("vi", "oss" eller "vår") er forpliktet til å beskytte personvernet ditt.
+              Denne personvernerklæringen forklarer hvordan vi samler inn, bruker og beskytter
+              informasjonen din når du bruker vår tjeneste.
             </p>
 
             <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">
               2. Informasjon vi samler inn
             </h2>
-            <p className="text-gray-600 mb-4">
-              Vi samler inn følgende typer informasjon:
-            </p>
+            <p className="text-gray-600 mb-4">Vi samler inn følgende typer informasjon:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-2">
               <li>
-                <strong>Kontoinformasjon:</strong> Navn, e-postadresse og passord
-                når du oppretter en konto.
+                <strong>Kontoinformasjon:</strong> Navn, e-postadresse og passord når du oppretter
+                en konto.
               </li>
               <li>
-                <strong>Innhold:</strong> Tekst og data du oppgir for å generere
-                presentasjoner.
+                <strong>Innhold:</strong> Tekst og data du oppgir for å generere presentasjoner.
               </li>
               <li>
-                <strong>Bruksdata:</strong> Informasjon om hvordan du bruker
-                tjenesten, inkludert funksjoner du bruker og tid brukt.
+                <strong>Bruksdata:</strong> Informasjon om hvordan du bruker tjenesten, inkludert
+                funksjoner du bruker og tid brukt.
               </li>
               <li>
-                <strong>Teknisk informasjon:</strong> IP-adresse, nettlesertype
-                og enhetsinformasjon.
+                <strong>Teknisk informasjon:</strong> IP-adresse, nettlesertype og
+                enhetsinformasjon.
               </li>
             </ul>
 
@@ -114,15 +104,14 @@ export default function PrivacyPage() {
               4. Deling av informasjon
             </h2>
             <p className="text-gray-600 mb-4">
-              Vi deler ikke personopplysningene dine med tredjeparter, bortsett
-              fra:
+              Vi deler ikke personopplysningene dine med tredjeparter, bortsett fra:
             </p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-2">
               <li>Med ditt samtykke</li>
               <li>For å oppfylle juridiske forpliktelser</li>
               <li>
-                Med tjenesteleverandorer som hjelper oss å drive tjenesten
-                (under strenge databehandleravtaler)
+                Med tjenesteleverandorer som hjelper oss å drive tjenesten (under strenge
+                databehandleravtaler)
               </li>
             </ul>
 
@@ -130,17 +119,13 @@ export default function PrivacyPage() {
               5. Datalagring og sikkerhet
             </h2>
             <p className="text-gray-600 mb-4">
-              Vi lagrer dataene dine på sikre servere i EU. Vi bruker
-              bransjestandard sikkerhetstiltak for å beskytte informasjonen din,
-              inkludert kryptering av data i transitt og i hvile.
+              Vi lagrer dataene dine på sikre servere i EU. Vi bruker bransjestandard
+              sikkerhetstiltak for å beskytte informasjonen din, inkludert kryptering av data i
+              transitt og i hvile.
             </p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">
-              6. Dine rettigheter
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Du har rett til å:
-            </p>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">6. Dine rettigheter</h2>
+            <p className="text-gray-600 mb-4">Du har rett til å:</p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-2">
               <li>Få tilgang til dataene dine</li>
               <li>Rette unøyaktige data</li>
@@ -153,25 +138,18 @@ export default function PrivacyPage() {
               7. Informasjonskapsler
             </h2>
             <p className="text-gray-600 mb-4">
-              Vi bruker nødvendige informasjonskapsler for å få tjenesten til å
-              fungere. Vi bruker også analyseinformasjonskapsler for å forstå
-              hvordan tjenesten brukes. Du kan administrere
-              informasjonskapsler i nettleserinnstillingene dine.
+              Vi bruker nødvendige informasjonskapsler for å få tjenesten til å fungere. Vi bruker
+              også analyseinformasjonskapsler for å forstå hvordan tjenesten brukes. Du kan
+              administrere informasjonskapsler i nettleserinnstillingene dine.
             </p>
 
-            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">
-              8. Kontakt oss
-            </h2>
+            <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">8. Kontakt oss</h2>
             <p className="text-gray-600 mb-4">
-              Hvis du har spørsmål om denne personvernerklæringen, kan du
-              kontakte oss på:
+              Hvis du har spørsmål om denne personvernerklæringen, kan du kontakte oss på:
             </p>
             <p className="text-gray-600">
               E-post:{" "}
-              <a
-                href="mailto:privacy@artislides.no"
-                className="text-emerald-600 hover:underline"
-              >
+              <a href="mailto:privacy@artislides.no" className="text-emerald-600 hover:underline">
                 privacy@artislides.no
               </a>
             </p>
@@ -180,10 +158,7 @@ export default function PrivacyPage() {
 
         {/* Back link */}
         <div className="mt-8 text-center">
-          <Link
-            href="/"
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
             ← Tilbake til forsiden
           </Link>
         </div>

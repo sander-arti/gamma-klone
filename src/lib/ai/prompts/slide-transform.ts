@@ -32,9 +32,7 @@ export function getConstraintsForSlideType(slideType: SlideType): string {
   // Add type-specific constraints
   switch (slideType) {
     case "bullets":
-      constraints.push(
-        `\nDenne slide-typen fokuserer på punktlister. Hold punktene konsise.`
-      );
+      constraints.push(`\nDenne slide-typen fokuserer på punktlister. Hold punktene konsise.`);
       break;
     case "text_plus_image":
       constraints.push(
@@ -124,10 +122,7 @@ VIKTIG: "slide" må være et komplett, gyldig Slide-objekt med type, layoutVaria
 /**
  * Build user prompt for slide transformation
  */
-export function buildTransformUserPrompt(
-  slide: unknown,
-  instruction: string
-): string {
+export function buildTransformUserPrompt(slide: unknown, instruction: string): string {
   return `Slide å transformere:
 \`\`\`json
 ${JSON.stringify(slide, null, 2)}

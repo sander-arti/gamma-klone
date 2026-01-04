@@ -5,10 +5,10 @@
  * Returns 200 OK if service is healthy
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/db/prisma';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/db/prisma";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
@@ -17,21 +17,21 @@ export async function GET() {
 
     return NextResponse.json(
       {
-        status: 'healthy',
+        status: "healthy",
         timestamp: new Date().toISOString(),
-        service: 'gamma-klone-web',
+        service: "gamma-klone-web",
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error('[Health Check] Database connection failed:', error);
+    console.error("[Health Check] Database connection failed:", error);
 
     return NextResponse.json(
       {
-        status: 'unhealthy',
+        status: "unhealthy",
         timestamp: new Date().toISOString(),
-        service: 'gamma-klone-web',
-        error: 'Database connection failed',
+        service: "gamma-klone-web",
+        error: "Database connection failed",
       },
       { status: 503 }
     );

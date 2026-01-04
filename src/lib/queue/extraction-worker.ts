@@ -26,10 +26,7 @@ import type Redis from "ioredis";
 /**
  * Process a single extraction job
  */
-async function processExtractionJob(
-  job: Job<ExtractionJobData>,
-  publisher: Redis
-): Promise<void> {
+async function processExtractionJob(job: Job<ExtractionJobData>, publisher: Redis): Promise<void> {
   const { uploadId, s3Key, mimeType } = job.data;
 
   console.log(`[Extraction] Processing job ${uploadId} for file ${s3Key}`);
@@ -85,12 +82,9 @@ async function processExtractionJob(
       },
     });
 
-    console.log(
-      `[Extraction] Successfully extracted ${result.charCount} characters from ${s3Key}`
-    );
+    console.log(`[Extraction] Successfully extracted ${result.charCount} characters from ${s3Key}`);
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Unknown extraction error";
+    const errorMessage = error instanceof Error ? error.message : "Unknown extraction error";
     const errorCode = getErrorCode(error);
 
     console.error(`[Extraction] Failed to extract ${s3Key}:`, errorMessage);
@@ -160,9 +154,9 @@ export function createExtractionWorker(): Worker<ExtractionJobData> {
       connection,
       concurrency: parseInt(process.env.EXTRACTION_WORKER_CONCURRENCY ?? "2", 10),
       // Lock settings for file processing (large files can take a while)
-      lockDuration: 180000,    // 3 minutes
-      lockRenewTime: 30000,    // 30 seconds
-      stalledInterval: 60000,  // 1 minute
+      lockDuration: 180000, // 3 minutes
+      lockRenewTime: 30000, // 30 seconds
+      stalledInterval: 60000, // 1 minute
     }
   );
 
@@ -187,9 +181,7 @@ export function createExtractionWorker(): Worker<ExtractionJobData> {
 /**
  * Shutdown the worker gracefully
  */
-export async function shutdownExtractionWorker(
-  worker: Worker<ExtractionJobData>
-): Promise<void> {
+export async function shutdownExtractionWorker(worker: Worker<ExtractionJobData>): Promise<void> {
   console.log("[Extraction] Shutting down worker...");
 
   // Close publisher if attached

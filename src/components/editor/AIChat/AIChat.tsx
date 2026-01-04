@@ -119,9 +119,7 @@ function StatusIndicator({ status }: { status: AIChatStatus }) {
       return (
         <div className="flex items-center gap-2 text-emerald-600">
           <Loader2 className="w-4 h-4 animate-spin" />
-          <span className="text-sm">
-            {status === "loading" ? "Behandler..." : "Skriver..."}
-          </span>
+          <span className="text-sm">{status === "loading" ? "Behandler..." : "Skriver..."}</span>
         </div>
       );
     case "success":
@@ -148,9 +146,7 @@ function ChatMessage({ message }: { message: AIChatMessage }) {
   const isError = message.type === "error";
 
   return (
-    <div
-      className={`flex ${isUser ? "justify-end" : "justify-start"} mb-3`}
-    >
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-3`}>
       <div
         className={`max-w-[85%] rounded-xl px-3.5 py-2.5 ${
           isUser
@@ -275,7 +271,16 @@ export function AIChat({
     if (!pendingAction) {
       pendingActionProcessedRef.current = false;
     }
-  }, [isOpen, pendingAction, slide, applyQuickAction, setInput, submit, generateImage, onPendingActionConsumed]);
+  }, [
+    isOpen,
+    pendingAction,
+    slide,
+    applyQuickAction,
+    setInput,
+    submit,
+    generateImage,
+    onPendingActionConsumed,
+  ]);
 
   // Handle key events
   const handleKeyDown = useCallback(
@@ -338,9 +343,7 @@ export function AIChat({
       {/* No slide warning - ARTI Premium */}
       {hasNoSlide && (
         <div className="px-4 py-3 bg-amber-50 border-b border-amber-200">
-          <p className="text-sm text-amber-700">
-            Velg en slide for å bruke AI-assistenten.
-          </p>
+          <p className="text-sm text-amber-700">Velg en slide for å bruke AI-assistenten.</p>
         </div>
       )}
 
@@ -424,9 +427,7 @@ export function AIChat({
             )}
           </button>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
-          Enter for å sende, Shift+Enter for ny linje
-        </p>
+        <p className="mt-2 text-xs text-gray-500">Enter for å sende, Shift+Enter for ny linje</p>
       </div>
     </div>
   );

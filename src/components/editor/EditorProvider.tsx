@@ -62,8 +62,14 @@ interface EditorContextValue {
     setError: (error: string | null) => void;
     setViolations: (violations: Map<string, ConstraintViolation[]>) => void;
     replaceDeck: (deck: Deck) => void;
-    aiReplaceSlide: (slideIndex: number, newSlide: Parameters<typeof editorActions.aiReplaceSlide>[1]) => void;
-    aiSplitSlide: (slideIndex: number, slides: Parameters<typeof editorActions.aiSplitSlide>[1]) => void;
+    aiReplaceSlide: (
+      slideIndex: number,
+      newSlide: Parameters<typeof editorActions.aiReplaceSlide>[1]
+    ) => void;
+    aiSplitSlide: (
+      slideIndex: number,
+      slides: Parameters<typeof editorActions.aiSplitSlide>[1]
+    ) => void;
   };
   /** Check if undo is available */
   canUndo: boolean;
@@ -116,10 +122,8 @@ export function EditorProvider({
     ensureCommandsRegistered();
   }, []);
 
-  const [state, dispatch] = useReducer(
-    editorReducer,
-    initialDeck,
-    (deck) => createInitialState(deck)
+  const [state, dispatch] = useReducer(editorReducer, initialDeck, (deck) =>
+    createInitialState(deck)
   );
 
   // Track previous deck for sync logic
@@ -351,12 +355,9 @@ export function EditorProvider({
     dispatch({ type: "SET_ERROR", payload: { error } });
   }, []);
 
-  const setViolations = useCallback(
-    (violations: Map<string, ConstraintViolation[]>) => {
-      dispatch(editorActions.setViolations(violations));
-    },
-    []
-  );
+  const setViolations = useCallback((violations: Map<string, ConstraintViolation[]>) => {
+    dispatch(editorActions.setViolations(violations));
+  }, []);
 
   const replaceDeck = useCallback((deck: Deck) => {
     dispatch(editorActions.replaceDeck(deck));
@@ -444,11 +445,7 @@ export function EditorProvider({
     ]
   );
 
-  return (
-    <EditorContext.Provider value={contextValue}>
-      {children}
-    </EditorContext.Provider>
-  );
+  return <EditorContext.Provider value={contextValue}>{children}</EditorContext.Provider>;
 }
 
 // ============================================================================

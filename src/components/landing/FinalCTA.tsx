@@ -26,9 +26,7 @@ export function FinalCTA() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </span>
-            <span className="text-sm font-medium text-white">
-              Ingen kredittkort nødvendig
-            </span>
+            <span className="text-sm font-medium text-white">Ingen kredittkort nødvendig</span>
           </div>
 
           {/* Headline */}
@@ -38,8 +36,8 @@ export function FinalCTA() {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-emerald-50 mb-10 max-w-2xl mx-auto">
-            Bli med over 500+ profesjonelle som allerede har byttet ut
-            frustrerende AI-verktøy med ARTI Slides.
+            Bli med over 500+ profesjonelle som allerede har byttet ut frustrerende AI-verktøy med
+            ARTI Slides.
           </p>
 
           {/* CTA Buttons */}
@@ -57,12 +55,7 @@ export function FinalCTA() {
               "
             >
               Lag din første presentasjon gratis
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -91,12 +84,7 @@ export function FinalCTA() {
           {/* Trust badges */}
           <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-emerald-100 text-sm">
             <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -107,12 +95,7 @@ export function FinalCTA() {
               <span>GDPR-kompatibel</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -123,12 +106,7 @@ export function FinalCTA() {
               <span>Kryptert kommunikasjon</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

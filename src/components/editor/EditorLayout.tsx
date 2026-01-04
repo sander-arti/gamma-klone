@@ -224,7 +224,12 @@ export function EditorLayout({
                   className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
                   </svg>
                 </Link>
               </Tooltip>
@@ -251,7 +256,12 @@ export function EditorLayout({
                     className="!text-gray-500 hover:!text-gray-700 hover:!bg-[#e5e2dd] disabled:!text-gray-300 !rounded-md"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                      />
                     </svg>
                   </Button>
                 </Tooltip>
@@ -264,7 +274,12 @@ export function EditorLayout({
                     className="!text-gray-500 hover:!text-gray-700 hover:!bg-[#e5e2dd] disabled:!text-gray-300 !rounded-md"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 10h-10a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M21 10h-10a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6"
+                      />
                     </svg>
                   </Button>
                 </Tooltip>
@@ -279,9 +294,10 @@ export function EditorLayout({
                     variant={isAIChatOpen ? "primary" : "ghost"}
                     size="sm"
                     onClick={() => setIsAIChatOpen(!isAIChatOpen)}
-                    className={isAIChatOpen
-                      ? "!bg-gradient-to-r !from-emerald-500 !to-emerald-600 !border-0 !text-white !shadow-lg !shadow-emerald-500/20"
-                      : "!text-gray-500 hover:!text-gray-700 hover:!bg-[#f0ede8]"
+                    className={
+                      isAIChatOpen
+                        ? "!bg-gradient-to-r !from-emerald-500 !to-emerald-600 !border-0 !text-white !shadow-lg !shadow-emerald-500/20"
+                        : "!text-gray-500 hover:!text-gray-700 hover:!bg-[#f0ede8]"
                     }
                   >
                     <Sparkles className="w-4 h-4" />
@@ -320,7 +336,11 @@ export function EditorLayout({
                   size="sm"
                   onClick={onSaveNow}
                   disabled={!state.isDirty || isSaving || hasViolations}
-                  title={hasViolations ? `Kan ikke lagre: ${violations.length} feil må rettes` : undefined}
+                  title={
+                    hasViolations
+                      ? `Kan ikke lagre: ${violations.length} feil må rettes`
+                      : undefined
+                  }
                   className="!bg-white !border-[#e5e2dd] !text-gray-700 hover:!bg-[#f5f3f0] hover:!text-gray-900 disabled:!bg-gray-50 disabled:!text-gray-300 disabled:!border-gray-200"
                 >
                   Lagre
@@ -334,8 +354,18 @@ export function EditorLayout({
                     onClick={exportModal.onOpen}
                     className="!bg-white !border-[#e5e2dd] !text-gray-700 hover:!bg-[#f5f3f0] hover:!text-gray-900"
                   >
-                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    <svg
+                      className="w-4 h-4 mr-1.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                      />
                     </svg>
                     Eksporter
                   </Button>
@@ -349,8 +379,18 @@ export function EditorLayout({
                     onClick={shareModal.onOpen}
                     className="!bg-gradient-to-r !from-emerald-600 !to-emerald-700 !border-0 hover:!from-emerald-500 hover:!to-emerald-600 !shadow-lg !shadow-emerald-500/20"
                   >
-                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    <svg
+                      className="w-4 h-4 mr-1.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                      />
                     </svg>
                     Del
                   </Button>
@@ -400,20 +440,12 @@ export function EditorLayout({
 
         {/* Share Modal (controlled by parent) */}
         {shareModal && (
-          <ShareModal
-            isOpen={shareModal.isOpen}
-            onClose={shareModal.onClose}
-            deckId={deckId}
-          />
+          <ShareModal isOpen={shareModal.isOpen} onClose={shareModal.onClose} deckId={deckId} />
         )}
 
         {/* Export Modal (controlled by parent) */}
         {exportModal && (
-          <ExportModal
-            isOpen={exportModal.isOpen}
-            onClose={exportModal.onClose}
-            deckId={deckId}
-          />
+          <ExportModal isOpen={exportModal.isOpen} onClose={exportModal.onClose} deckId={deckId} />
         )}
       </div>
     </>

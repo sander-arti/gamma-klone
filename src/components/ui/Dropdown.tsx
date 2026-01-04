@@ -7,13 +7,7 @@
 
 "use client";
 
-import {
-  useState,
-  useRef,
-  useEffect,
-  type ReactNode,
-  type KeyboardEvent,
-} from "react";
+import { useState, useRef, useEffect, type ReactNode, type KeyboardEvent } from "react";
 
 export interface DropdownItem {
   id: string;
@@ -31,12 +25,7 @@ export interface DropdownProps {
   className?: string;
 }
 
-export function Dropdown({
-  trigger,
-  items,
-  align = "left",
-  className = "",
-}: DropdownProps) {
+export function Dropdown({ trigger, items, align = "left", className = "" }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,10 +34,7 @@ export function Dropdown({
   // Close on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -86,15 +72,11 @@ export function Dropdown({
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
-        setFocusedIndex((prev) =>
-          prev < items.length - 1 ? prev + 1 : 0
-        );
+        setFocusedIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
         break;
       case "ArrowUp":
         event.preventDefault();
-        setFocusedIndex((prev) =>
-          prev > 0 ? prev - 1 : items.length - 1
-        );
+        setFocusedIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
         break;
       case "Enter":
       case " ":
@@ -160,21 +142,13 @@ export function Dropdown({
                 w-full flex items-center gap-3 px-4 py-2.5
                 text-sm text-left
                 transition-colors duration-100
-                ${
-                  focusedIndex === index
-                    ? "bg-[var(--theme-color-background-subtle)]"
-                    : ""
-                }
+                ${focusedIndex === index ? "bg-[var(--theme-color-background-subtle)]" : ""}
                 ${
                   item.disabled
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-[var(--theme-color-background-subtle)] cursor-pointer"
                 }
-                ${
-                  item.danger
-                    ? "text-red-600"
-                    : "text-[var(--theme-color-foreground)]"
-                }
+                ${item.danger ? "text-red-600" : "text-[var(--theme-color-foreground)]"}
               `}
             >
               {item.icon && <span className="flex-shrink-0 w-4">{item.icon}</span>}

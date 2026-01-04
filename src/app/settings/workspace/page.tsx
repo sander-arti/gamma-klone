@@ -48,9 +48,7 @@ export default function WorkspaceSettingsPage() {
       await refreshWorkspaces();
       setSuccess("Workspace updated successfully");
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to update workspace"
-      );
+      setError(err instanceof Error ? err.message : "Failed to update workspace");
     } finally {
       setIsLoading(false);
     }
@@ -82,9 +80,7 @@ export default function WorkspaceSettingsPage() {
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to delete workspace"
-      );
+      setError(err instanceof Error ? err.message : "Failed to delete workspace");
     } finally {
       setIsLoading(false);
     }
@@ -101,9 +97,7 @@ export default function WorkspaceSettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">
-        Workspace Settings
-      </h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">Workspace Settings</h1>
 
       {/* Error message */}
       {error && (
@@ -121,10 +115,7 @@ export default function WorkspaceSettingsPage() {
 
       {/* Workspace name */}
       <div className="mb-8">
-        <label
-          htmlFor="workspace-name"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
+        <label htmlFor="workspace-name" className="block text-sm font-medium text-gray-700 mb-2">
           Workspace Name
         </label>
         <input
@@ -140,11 +131,7 @@ export default function WorkspaceSettingsPage() {
         </p>
         <button
           onClick={handleSave}
-          disabled={
-            isLoading ||
-            name === activeWorkspace.name ||
-            name.trim().length === 0
-          }
+          disabled={isLoading || name === activeWorkspace.name || name.trim().length === 0}
           className="mt-4 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
         >
           {isLoading ? "Saving..." : "Save Changes"}
@@ -154,18 +141,13 @@ export default function WorkspaceSettingsPage() {
       {/* Danger zone */}
       {activeWorkspace.role === "owner" && (
         <div className="pt-8 border-t border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Danger Zone
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Danger Zone</h2>
           <div className="p-4 border border-red-200 rounded-lg bg-red-50">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-900 mb-1">
-                  Delete Workspace
-                </h3>
+                <h3 className="text-sm font-medium text-gray-900 mb-1">Delete Workspace</h3>
                 <p className="text-sm text-gray-600">
-                  Permanently delete this workspace and all its data. This
-                  action cannot be undone.
+                  Permanently delete this workspace and all its data. This action cannot be undone.
                 </p>
               </div>
               <button

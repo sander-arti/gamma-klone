@@ -32,35 +32,38 @@ export function CommandPalette() {
   const { state, actions, canUndo, canRedo, currentSlide } = useEditor();
 
   // Build command context
-  const getContext = useCallback((): EditorContext => ({
-    state,
-    actions: {
-      selectSlide: actions.selectSlide,
-      startEditing: actions.startEditing,
-      stopEditing: actions.stopEditing,
-      updateDeckMeta: actions.updateDeckMeta,
-      updateSlide: actions.updateSlide,
-      updateBlock: actions.updateBlock,
-      addSlide: actions.addSlide,
-      deleteSlide: actions.deleteSlide,
-      duplicateSlide: actions.duplicateSlide,
-      reorderSlides: actions.reorderSlides,
-      undo: actions.undo,
-      redo: actions.redo,
-      markSaving: actions.markSaving,
-      markSaved: actions.markSaved,
-      setError: actions.setError,
-      setViolations: actions.setViolations,
-      replaceDeck: actions.replaceDeck,
-      aiReplaceSlide: actions.aiReplaceSlide,
-      aiSplitSlide: actions.aiSplitSlide,
-    },
-    currentSlide: currentSlide ?? null,
-    selectedSlideIndex: state.selectedSlideIndex,
-    selectedBlockId: state.editingBlockId,
-    canUndo,
-    canRedo,
-  }), [state, actions, currentSlide, canUndo, canRedo]);
+  const getContext = useCallback(
+    (): EditorContext => ({
+      state,
+      actions: {
+        selectSlide: actions.selectSlide,
+        startEditing: actions.startEditing,
+        stopEditing: actions.stopEditing,
+        updateDeckMeta: actions.updateDeckMeta,
+        updateSlide: actions.updateSlide,
+        updateBlock: actions.updateBlock,
+        addSlide: actions.addSlide,
+        deleteSlide: actions.deleteSlide,
+        duplicateSlide: actions.duplicateSlide,
+        reorderSlides: actions.reorderSlides,
+        undo: actions.undo,
+        redo: actions.redo,
+        markSaving: actions.markSaving,
+        markSaved: actions.markSaved,
+        setError: actions.setError,
+        setViolations: actions.setViolations,
+        replaceDeck: actions.replaceDeck,
+        aiReplaceSlide: actions.aiReplaceSlide,
+        aiSplitSlide: actions.aiSplitSlide,
+      },
+      currentSlide: currentSlide ?? null,
+      selectedSlideIndex: state.selectedSlideIndex,
+      selectedBlockId: state.editingBlockId,
+      canUndo,
+      canRedo,
+    }),
+    [state, actions, currentSlide, canUndo, canRedo]
+  );
 
   // Handle ⌘K trigger
   useCommandPaletteTrigger({
@@ -119,8 +122,8 @@ export function CommandPalette() {
       if (!query.trim()) {
         // Return items sorted by category order when no query
         return [..._items].sort((a, b) => {
-          const aOrder = CATEGORY_ORDER.indexOf(a.category as typeof CATEGORY_ORDER[number]);
-          const bOrder = CATEGORY_ORDER.indexOf(b.category as typeof CATEGORY_ORDER[number]);
+          const aOrder = CATEGORY_ORDER.indexOf(a.category as (typeof CATEGORY_ORDER)[number]);
+          const bOrder = CATEGORY_ORDER.indexOf(b.category as (typeof CATEGORY_ORDER)[number]);
           return aOrder - bOrder;
         });
       }
@@ -132,9 +135,7 @@ export function CommandPalette() {
         id: result.command.id,
         label: result.command.label,
         description: result.command.description,
-        icon: result.command.icon ? (
-          <result.command.icon className="w-4 h-4" />
-        ) : undefined,
+        icon: result.command.icon ? <result.command.icon className="w-4 h-4" /> : undefined,
         shortcut: result.command.shortcut,
         category: result.command.category,
         labelMatches: result.labelMatches,

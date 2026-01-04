@@ -78,7 +78,7 @@ export default function DashboardPage() {
   useEffect(() => {
     async function checkOnboarding() {
       try {
-        const res = await fetch('/api/user/onboarding-status');
+        const res = await fetch("/api/user/onboarding-status");
         if (res.ok) {
           const data = await res.json();
           if (data.shouldShowTour) {
@@ -86,7 +86,7 @@ export default function DashboardPage() {
           }
         }
       } catch (err) {
-        console.error('[dashboard] Failed to check onboarding status:', err);
+        console.error("[dashboard] Failed to check onboarding status:", err);
       }
     }
     checkOnboarding();
@@ -106,10 +106,10 @@ export default function DashboardPage() {
 
   const handleTourComplete = async () => {
     try {
-      await fetch('/api/user/complete-onboarding', { method: 'POST' });
+      await fetch("/api/user/complete-onboarding", { method: "POST" });
       setShowTour(false);
     } catch (err) {
-      console.error('[dashboard] Failed to complete onboarding:', err);
+      console.error("[dashboard] Failed to complete onboarding:", err);
       // Still hide tour even if API call fails
       setShowTour(false);
     }
@@ -143,9 +143,7 @@ export default function DashboardPage() {
                 </span>
               </Link>
               <nav className="hidden sm:flex items-center gap-4">
-                <span className="text-sm font-medium text-purple-600">
-                  Mine presentasjoner
-                </span>
+                <span className="text-sm font-medium text-purple-600">Mine presentasjoner</span>
                 <WorkspaceSwitcher />
               </nav>
             </div>
@@ -183,21 +181,14 @@ export default function DashboardPage() {
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-gray-900">
-            Mine presentasjoner
-          </h1>
-          <p className="text-gray-600 mt-1">
-            Administrer og rediger dine presentasjoner
-          </p>
+          <h1 className="text-2xl font-semibold text-gray-900">Mine presentasjoner</h1>
+          <p className="text-gray-600 mt-1">Administrer og rediger dine presentasjoner</p>
         </div>
 
         {error && (
           <div className="mb-6 bg-red-50 text-red-700 px-4 py-3 rounded-lg">
             {error}
-            <button
-              onClick={fetchDecks}
-              className="ml-2 underline hover:no-underline"
-            >
+            <button onClick={fetchDecks} className="ml-2 underline hover:no-underline">
               Prov igjen
             </button>
           </div>
@@ -228,9 +219,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Heading */}
-            <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-              Ingen presentasjoner ennå
-            </h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">Ingen presentasjoner ennå</h3>
             <p className="text-gray-600 mb-8 max-w-lg mx-auto">
               Lag din første AI-genererte presentasjon på noen sekunder.
             </p>

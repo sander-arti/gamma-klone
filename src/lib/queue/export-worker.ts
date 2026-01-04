@@ -74,13 +74,14 @@ async function fetchDeckData(deckId: string): Promise<{
       title: deckRecord.title,
       language: deckRecord.language,
       themeId: deckRecord.themeId as Deck["deck"]["themeId"],
-      brandKit: deckRecord.primaryColor || deckRecord.secondaryColor
-        ? {
-            primaryColor: deckRecord.primaryColor ?? undefined,
-            secondaryColor: deckRecord.secondaryColor ?? undefined,
-            logoUrl: deckRecord.logoUrl ?? undefined,
-          }
-        : undefined,
+      brandKit:
+        deckRecord.primaryColor || deckRecord.secondaryColor
+          ? {
+              primaryColor: deckRecord.primaryColor ?? undefined,
+              secondaryColor: deckRecord.secondaryColor ?? undefined,
+              logoUrl: deckRecord.logoUrl ?? undefined,
+            }
+          : undefined,
     },
     slides,
   };
@@ -137,10 +138,7 @@ async function processExportJob(job: Job<ExportJobData>): Promise<void> {
     const deckData = await fetchDeckData(deckId);
 
     if (!deckData) {
-      throw new ExportError(
-        ExportErrorCodes.DECK_NOT_FOUND,
-        `Deck ${deckId} not found`
-      );
+      throw new ExportError(ExportErrorCodes.DECK_NOT_FOUND, `Deck ${deckId} not found`);
     }
 
     const { deck } = deckData;
@@ -151,10 +149,7 @@ async function processExportJob(job: Job<ExportJobData>): Promise<void> {
     // Verify theme exists
     const theme = getTheme(resolvedThemeId as Parameters<typeof getTheme>[0]);
     if (!theme) {
-      throw new ExportError(
-        ExportErrorCodes.INTERNAL_ERROR,
-        `Theme ${resolvedThemeId} not found`
-      );
+      throw new ExportError(ExportErrorCodes.INTERNAL_ERROR, `Theme ${resolvedThemeId} not found`);
     }
 
     // Render based on format
@@ -166,8 +161,7 @@ async function processExportJob(job: Job<ExportJobData>): Promise<void> {
       contentType = "application/pdf";
     } else {
       buffer = await renderPptx(deck, resolvedThemeId, brandKit);
-      contentType =
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+      contentType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
     }
 
     // Generate S3 key
@@ -195,9 +189,7 @@ async function processExportJob(job: Job<ExportJobData>): Promise<void> {
           exportExpiresAt: expiresAt,
         },
       });
-      console.log(
-        `Updated generation job ${job.data.generationJobId} with ${format} URL`
-      );
+      console.log(`Updated generation job ${job.data.generationJobId} with ${format} URL`);
     }
 
     console.log(`Export job ${exportJobId} completed successfully`);
@@ -219,10 +211,7 @@ async function processExportJob(job: Job<ExportJobData>): Promise<void> {
         errorCode = ExportErrorCodes.RENDER_ERROR_PDF;
       } else if (error.message.includes("PPTX")) {
         errorCode = ExportErrorCodes.RENDER_ERROR_PPTX;
-      } else if (
-        error.message.includes("S3") ||
-        error.message.includes("upload")
-      ) {
+      } else if (error.message.includes("S3") || error.message.includes("upload")) {
         errorCode = ExportErrorCodes.UPLOAD_ERROR;
       }
     }
@@ -253,19 +242,15 @@ class ExportError extends Error {
 export function createExportWorker(): Worker<ExportJobData> {
   const connection = createWorkerConnection();
 
-  const worker = new Worker<ExportJobData>(
-    EXPORT_QUEUE_NAME,
-    processExportJob,
-    {
-      connection,
-      // Lower concurrency for resource-intensive export operations
-      concurrency: parseInt(process.env.EXPORT_WORKER_CONCURRENCY ?? "1", 10),
-      // Lock settings for long-running jobs (PDF/PPTX rendering can take a while)
-      lockDuration: 300000,    // 5 minutes
-      lockRenewTime: 60000,    // 1 minute
-      stalledInterval: 120000, // 2 minutes
-    }
-  );
+  const worker = new Worker<ExportJobData>(EXPORT_QUEUE_NAME, processExportJob, {
+    connection,
+    // Lower concurrency for resource-intensive export operations
+    concurrency: parseInt(process.env.EXPORT_WORKER_CONCURRENCY ?? "1", 10),
+    // Lock settings for long-running jobs (PDF/PPTX rendering can take a while)
+    lockDuration: 300000, // 5 minutes
+    lockRenewTime: 60000, // 1 minute
+    stalledInterval: 120000, // 2 minutes
+  });
 
   worker.on("completed", (job) => {
     console.log(`Export job ${job.id} completed`);

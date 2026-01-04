@@ -13,8 +13,7 @@ export const metadata: Metadata = {
     "Alt du trenger for å komme i gang med ARTI Slides. Steg-for-steg guide, FAQ, og kontaktinformasjon.",
   openGraph: {
     title: "Hjelp og dokumentasjon | ARTI Slides",
-    description:
-      "Steg-for-steg guide, FAQ, og kontaktinformasjon for ARTI Slides.",
+    description: "Steg-for-steg guide, FAQ, og kontaktinformasjon for ARTI Slides.",
     url: "https://artislides.no/docs",
   },
   alternates: {
@@ -120,9 +119,7 @@ export default function DocsPage() {
                 />
               </svg>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
-              ARTI Slides
-            </span>
+            <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
           </Link>
         </div>
       </header>
@@ -134,8 +131,7 @@ export default function DocsPage() {
             Hjelp og dokumentasjon
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Alt du trenger for å komme i gang med ARTI Slides og få mest mulig
-            ut av plattformen.
+            Alt du trenger for å komme i gang med ARTI Slides og få mest mulig ut av plattformen.
           </p>
         </div>
       </section>
@@ -222,9 +218,7 @@ export default function DocsPage() {
               <div
                 key={item.step}
                 className={`p-6 ${
-                  index !== gettingStartedSteps.length - 1
-                    ? "border-b border-gray-100"
-                    : ""
+                  index !== gettingStartedSteps.length - 1 ? "border-b border-gray-100" : ""
                 }`}
               >
                 <div className="flex gap-4">
@@ -234,9 +228,7 @@ export default function DocsPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">
-                      {item.title}
-                    </h3>
+                    <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
                     <p className="text-gray-600">{item.description}</p>
                   </div>
                 </div>
@@ -256,9 +248,7 @@ export default function DocsPage() {
 
         {/* FAQ */}
         <section id="faq" className="mb-16 scroll-mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">
-            Ofte stilte spørsmål
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">Ofte stilte spørsmål</h2>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <details
@@ -266,9 +256,7 @@ export default function DocsPage() {
                 className="group bg-white rounded-xl border border-gray-200/80 shadow-sm"
               >
                 <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
-                  <h3 className="font-semibold text-gray-900 pr-4">
-                    {faq.question}
-                  </h3>
+                  <h3 className="font-semibold text-gray-900 pr-4">{faq.question}</h3>
                   <svg
                     className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180"
                     fill="none"
@@ -295,8 +283,8 @@ export default function DocsPage() {
         <section className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl p-8 sm:p-12 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Finner du ikke svaret?</h2>
           <p className="text-emerald-100 mb-6 max-w-lg mx-auto">
-            Vårt supportteam er klare til å hjelpe deg. Send oss en melding, så
-            svarer vi så raskt vi kan.
+            Vårt supportteam er klare til å hjelpe deg. Send oss en melding, så svarer vi så raskt
+            vi kan.
           </p>
           <Link
             href="/contact"
@@ -308,10 +296,7 @@ export default function DocsPage() {
 
         {/* Back link */}
         <div className="mt-12 text-center">
-          <Link
-            href="/"
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
             ← Tilbake til forsiden
           </Link>
         </div>

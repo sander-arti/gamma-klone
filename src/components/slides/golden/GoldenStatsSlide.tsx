@@ -40,11 +40,13 @@ export function GoldenStatsSlide({
   const intro = slotContent?.body ?? textBlock?.text ?? "";
 
   // Get stats from slotContent or slide blocks
-  const stats = slotContent?.items?.slice(0, 3) ?? statBlocks.slice(0, 3).map((block) => ({
-    value: block.value ?? "",
-    label: block.label ?? "",
-    sublabel: block.sublabel,
-  }));
+  const stats =
+    slotContent?.items?.slice(0, 3) ??
+    statBlocks.slice(0, 3).map((block) => ({
+      value: block.value ?? "",
+      label: block.label ?? "",
+      sublabel: block.sublabel,
+    }));
 
   return (
     <div

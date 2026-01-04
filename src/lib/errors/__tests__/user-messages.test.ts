@@ -151,9 +151,7 @@ describe("Message Quality", () => {
 
       it("should not contain technical jargon in title", () => {
         const technicalTerms = ["API", "JSON", "HTTP", "500", "404"];
-        const hasJargon = technicalTerms.some((term) =>
-          message.title.includes(term)
-        );
+        const hasJargon = technicalTerms.some((term) => message.title.includes(term));
         //允许 "API" 在某些情况下出现（如 "API-nøkkelen"）
         if (hasJargon && !message.title.includes("API-")) {
           expect(hasJargon).toBe(false);
@@ -177,15 +175,13 @@ describe("Message Quality", () => {
           "å",
         ];
         const text = `${message.title} ${message.message}`.toLowerCase();
-        const hasNorwegian = norwegianIndicators.some((word) =>
-          text.includes(word)
-        );
+        const hasNorwegian = norwegianIndicators.some((word) => text.includes(word));
         expect(hasNorwegian).toBe(true);
       });
 
       if (message.recovery) {
         it("should have actionable recovery steps", () => {
-          message.recovery.forEach((step) => {
+          message.recovery!.forEach((step) => {
             // Recovery steps should start with action verbs
             const actionVerbs = [
               "Prøv",
@@ -205,9 +201,7 @@ describe("Message Quality", () => {
               "Juster",
               "Vær", // "Vær mer spesifikk"
             ];
-            const startsWithAction = actionVerbs.some((verb) =>
-              step.startsWith(verb)
-            );
+            const startsWithAction = actionVerbs.some((verb) => step.startsWith(verb));
             expect(startsWithAction).toBe(true);
           });
         });

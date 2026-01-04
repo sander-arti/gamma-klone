@@ -148,10 +148,7 @@ interface TableData {
  * - Limits rows to maxRows
  * - Ensures at least minimum columns and rows
  */
-export function enforceTableConstraints(
-  columns: string[],
-  rows: string[][]
-): TableData {
+export function enforceTableConstraints(columns: string[], rows: string[][]): TableData {
   const { minColumns, maxColumns, minRows, maxRows } = BLOCK_CONSTRAINTS.table;
 
   // Enforce column constraints
@@ -192,9 +189,7 @@ export function createBlockId(slideIndex: number, blockIndex: number): string {
 /**
  * Parse a block ID back to indices.
  */
-export function parseBlockId(
-  blockId: string
-): { slideIndex: number; blockIndex: number } | null {
+export function parseBlockId(blockId: string): { slideIndex: number; blockIndex: number } | null {
   const parts = blockId.split("-");
   if (parts.length !== 2) return null;
 
@@ -328,8 +323,7 @@ export function validateBlock(
       const value = block.value ?? "";
       const label = block.label ?? "";
       const sublabel = block.sublabel ?? "";
-      const { maxValueChars, maxLabelChars, maxSublabelChars } =
-        BLOCK_CONSTRAINTS.stat_block;
+      const { maxValueChars, maxLabelChars, maxSublabelChars } = BLOCK_CONSTRAINTS.stat_block;
 
       if (value.length > maxValueChars) {
         violations.push({
@@ -532,17 +526,14 @@ export function enforceBlockConstraints(block: Block): Block {
         enforced.rows = enforced.rows.slice(0, maxRows);
         // Also truncate columns in rows
         if (enforced.columns) {
-          enforced.rows = enforced.rows.map((row) =>
-            row.slice(0, enforced.columns!.length)
-          );
+          enforced.rows = enforced.rows.map((row) => row.slice(0, enforced.columns!.length));
         }
       }
       break;
     }
 
     case "stat_block": {
-      const { maxValueChars, maxLabelChars, maxSublabelChars } =
-        BLOCK_CONSTRAINTS.stat_block;
+      const { maxValueChars, maxLabelChars, maxSublabelChars } = BLOCK_CONSTRAINTS.stat_block;
       if (enforced.value && enforced.value.length > maxValueChars) {
         enforced.value = truncateText(enforced.value, maxValueChars);
       }
@@ -556,8 +547,7 @@ export function enforceBlockConstraints(block: Block): Block {
     }
 
     case "timeline_step": {
-      const { maxTitleChars, maxDescriptionChars } =
-        BLOCK_CONSTRAINTS.timeline_step;
+      const { maxTitleChars, maxDescriptionChars } = BLOCK_CONSTRAINTS.timeline_step;
       if (enforced.text && enforced.text.length > maxTitleChars) {
         enforced.text = truncateText(enforced.text, maxTitleChars);
       }
@@ -579,8 +569,7 @@ export function enforceBlockConstraints(block: Block): Block {
     }
 
     case "numbered_card": {
-      const { maxTextChars, maxDescriptionChars } =
-        BLOCK_CONSTRAINTS.numbered_card;
+      const { maxTextChars, maxDescriptionChars } = BLOCK_CONSTRAINTS.numbered_card;
       if (enforced.text && enforced.text.length > maxTextChars) {
         enforced.text = truncateText(enforced.text, maxTextChars);
       }
@@ -602,7 +591,10 @@ export function enforceBlockConstraints(block: Block): Block {
  * Enforce constraints on all blocks in a slide.
  * Returns a new slide with all blocks within limits.
  */
-export function enforceSlideConstraints(slide: { blocks: Block[]; [key: string]: unknown }): typeof slide {
+export function enforceSlideConstraints(slide: {
+  blocks: Block[];
+  [key: string]: unknown;
+}): typeof slide {
   return {
     ...slide,
     blocks: slide.blocks.map(enforceBlockConstraints),

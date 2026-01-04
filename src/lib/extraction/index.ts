@@ -24,25 +24,21 @@ export type SupportedMimeType = (typeof SUPPORTED_MIME_TYPES)[number];
 // File extension mappings
 export const MIME_TYPE_EXTENSIONS: Record<SupportedMimeType, string> = {
   "application/pdf": ".pdf",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-    ".docx",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
   "text/plain": ".txt",
 };
 
 // Human-readable format names
 export const MIME_TYPE_NAMES: Record<SupportedMimeType, string> = {
   "application/pdf": "PDF",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-    "Word (DOCX)",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "Word (DOCX)",
   "text/plain": "Tekstfil (TXT)",
 };
 
 /**
  * Check if a MIME type is supported for extraction
  */
-export function isSupportedMimeType(
-  mimeType: string
-): mimeType is SupportedMimeType {
+export function isSupportedMimeType(mimeType: string): mimeType is SupportedMimeType {
   return SUPPORTED_MIME_TYPES.includes(mimeType as SupportedMimeType);
 }
 
@@ -54,10 +50,7 @@ export function isSupportedMimeType(
  * @returns Extraction result with text and metadata
  * @throws Error if MIME type is not supported
  */
-export async function extractContent(
-  buffer: Buffer,
-  mimeType: string
-): Promise<ExtractionResult> {
+export async function extractContent(buffer: Buffer, mimeType: string): Promise<ExtractionResult> {
   switch (mimeType) {
     case "application/pdf":
       return extractPdf(buffer);

@@ -13,8 +13,7 @@ export const metadata: Metadata = {
     "ARTI Slides er bygget for å løse ett problem: AI-presentasjoner som faktisk imponerer. Les om vår misjon og verdier.",
   openGraph: {
     title: "Om oss | ARTI Slides",
-    description:
-      "Vi bygger fremtidens presentasjoner. Les om vår misjon og verdier.",
+    description: "Vi bygger fremtidens presentasjoner. Les om vår misjon og verdier.",
     url: "https://artislides.no/about",
   },
   alternates: {
@@ -44,9 +43,7 @@ export default function AboutPage() {
                 />
               </svg>
             </div>
-            <span className="text-xl font-semibold text-gray-900">
-              ARTI Slides
-            </span>
+            <span className="text-xl font-semibold text-gray-900">ARTI Slides</span>
           </Link>
         </div>
       </header>
@@ -58,8 +55,7 @@ export default function AboutPage() {
             Vi bygger fremtidens presentasjoner
           </h1>
           <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
-            ARTI Slides er skapt for å løse ett problem: AI-presentasjoner som
-            faktisk imponerer.
+            ARTI Slides er skapt for å løse ett problem: AI-presentasjoner som faktisk imponerer.
           </p>
         </div>
       </section>
@@ -69,27 +65,21 @@ export default function AboutPage() {
         {/* Mission */}
         <section className="mb-16">
           <div className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-8 sm:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Vår misjon
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Vår misjon</h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Vi tror at gode presentasjoner skal være tilgjengelige for alle.
-              Ikke bare de som har tid til å bruke timer i PowerPoint, eller
-              budsjett til å hyre designere.
+              Vi tror at gode presentasjoner skal være tilgjengelige for alle. Ikke bare de som har
+              tid til å bruke timer i PowerPoint, eller budsjett til å hyre designere.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed">
-              ARTI Slides er bygget fra bunnen av med én misjon: å gjøre det
-              enkelt å lage presentasjoner som engasjerer, overbeviser og
-              inspirerer - på minutter, ikke timer.
+              ARTI Slides er bygget fra bunnen av med én misjon: å gjøre det enkelt å lage
+              presentasjoner som engasjerer, overbeviser og inspirerer - på minutter, ikke timer.
             </p>
           </div>
         </section>
 
         {/* Why we exist */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            Hvorfor vi finnes
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Hvorfor vi finnes</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-6 text-center">
               <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mx-auto mb-4">
@@ -129,9 +119,7 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Profesjonelt design
-              </h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Profesjonelt design</h3>
               <p className="text-gray-600 text-sm">
                 Premium temaer og layouts som ser bra ut med én gang
               </p>
@@ -153,9 +141,7 @@ export default function AboutPage() {
                   />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Norsk og trygt
-              </h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Norsk og trygt</h3>
               <p className="text-gray-600 text-sm">
                 Bygget i Norge med fokus på personvern og sikkerhet
               </p>
@@ -166,35 +152,27 @@ export default function AboutPage() {
         {/* Values */}
         <section className="mb-16">
           <div className="bg-white rounded-2xl border border-gray-200/80 shadow-sm p-8 sm:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Våre verdier
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Våre verdier</h2>
             <div className="space-y-6">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  Kvalitet over kvantitet
-                </h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Kvalitet over kvantitet</h3>
                 <p className="text-gray-600">
-                  Vi fokuserer på å gjøre én ting skikkelig bra: AI-genererte
-                  presentasjoner som faktisk fungerer.
+                  Vi fokuserer på å gjøre én ting skikkelig bra: AI-genererte presentasjoner som
+                  faktisk fungerer.
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  Brukeren først
-                </h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Brukeren først</h3>
                 <p className="text-gray-600">
-                  Hver funksjon vi bygger starter med spørsmålet: Hjelper dette
-                  brukeren å lage bedre presentasjoner?
+                  Hver funksjon vi bygger starter med spørsmålet: Hjelper dette brukeren å lage
+                  bedre presentasjoner?
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  Åpenhet og ærlighet
-                </h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Åpenhet og ærlighet</h3>
                 <p className="text-gray-600">
-                  Vi er tydelige på hva produktet kan og ikke kan. Ingen skjulte
-                  kostnader, ingen villedende markedsføring.
+                  Vi er tydelige på hva produktet kan og ikke kan. Ingen skjulte kostnader, ingen
+                  villedende markedsføring.
                 </p>
               </div>
             </div>
@@ -229,10 +207,7 @@ export default function AboutPage() {
       {/* Footer */}
       <footer className="border-t border-gray-200/60 bg-white py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Link
-            href="/"
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-          >
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
             ← Tilbake til forsiden
           </Link>
         </div>

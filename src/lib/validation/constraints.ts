@@ -202,7 +202,10 @@ export function extractNumberFromTitle(title: string): number | null {
   // Pattern 3: Number word anywhere with common patterns
   // e.g., "De fire viktigste...", "Våre tre hovedpunkter"
   for (const [word, num] of Object.entries(NORWEGIAN_NUMBERS)) {
-    const pattern = new RegExp(`\\b${word}\\s+(viktigste|beste|største|hovedpunkter?|punkter?|steg|trinn|tips|grunner?|fordeler?|usp|elementer?)\\b`, "i");
+    const pattern = new RegExp(
+      `\\b${word}\\s+(viktigste|beste|største|hovedpunkter?|punkter?|steg|trinn|tips|grunner?|fordeler?|usp|elementer?)\\b`,
+      "i"
+    );
     if (pattern.test(lowerTitle)) {
       return num;
     }

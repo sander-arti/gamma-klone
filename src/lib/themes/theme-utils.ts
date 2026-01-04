@@ -130,10 +130,7 @@ export function themeToCssVars(tokens: ThemeTokens): Record<string, string> {
  * Brand kit allows per-deck customization of colors without
  * changing the underlying theme structure.
  */
-export function applyBrandKit(
-  theme: Theme,
-  brandKit?: BrandKitOverrides
-): Theme {
+export function applyBrandKit(theme: Theme, brandKit?: BrandKitOverrides): Theme {
   // Return original theme if no brand kit
   if (!brandKit) return theme;
 
@@ -150,17 +147,13 @@ export function applyBrandKit(
   // Apply primary color override
   if (brandKit.primaryColor) {
     overriddenTokens.colors.primary = brandKit.primaryColor;
-    overriddenTokens.colors.primaryForeground = getContrastColor(
-      brandKit.primaryColor
-    );
+    overriddenTokens.colors.primaryForeground = getContrastColor(brandKit.primaryColor);
   }
 
   // Apply secondary color override
   if (brandKit.secondaryColor) {
     overriddenTokens.colors.secondary = brandKit.secondaryColor;
-    overriddenTokens.colors.secondaryForeground = getContrastColor(
-      brandKit.secondaryColor
-    );
+    overriddenTokens.colors.secondaryForeground = getContrastColor(brandKit.secondaryColor);
   }
 
   return {
@@ -173,17 +166,13 @@ export function applyBrandKit(
  * Create inline style object from CSS variables
  * Used by ThemeProvider to apply variables to the DOM
  */
-export function cssVarsToStyle(
-  cssVars: Record<string, string>
-): React.CSSProperties {
+export function cssVarsToStyle(cssVars: Record<string, string>): React.CSSProperties {
   return cssVars as unknown as React.CSSProperties;
 }
 
 /**
  * Merge multiple CSS variable objects
  */
-export function mergeCssVars(
-  ...varObjects: Record<string, string>[]
-): Record<string, string> {
+export function mergeCssVars(...varObjects: Record<string, string>[]): Record<string, string> {
   return Object.assign({}, ...varObjects);
 }

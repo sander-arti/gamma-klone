@@ -32,7 +32,8 @@ export function getConstraintHelp(
     case "max_chars":
       return {
         explanation: "Teksten er for lang til å vises pent på slide.",
-        reason: "Lange tekster blir vanskelig å lese i presentasjoner og kan ikke vises fullstendig på skjermen.",
+        reason:
+          "Lange tekster blir vanskelig å lese i presentasjoner og kan ikke vises fullstendig på skjermen.",
         suggestions: [
           "Bruk AI-knappen for å automatisk korte ned teksten",
           "Flytt noe innhold til en ny slide (del i to)",
@@ -43,9 +44,10 @@ export function getConstraintHelp(
     case "max_items":
       return {
         explanation: `For mange punkter (${current}/${max}) – blir uleselig på slide.`,
-        reason: "Slides med mange punkter blir rotete og vanskelig å fokusere på. Best praksis er maks 5-6 punkter per slide.",
+        reason:
+          "Slides med mange punkter blir rotete og vanskelig å fokusere på. Best praksis er maks 5-6 punkter per slide.",
         suggestions: [
-          "Del punktene over flere slides (bruk \"Del i to\")",
+          'Del punktene over flere slides (bruk "Del i to")',
           "Slå sammen relaterte punkter til færre, bredere punkter",
           "Flytt mindre viktige punkter til notater eller appendiks",
         ],
@@ -66,20 +68,15 @@ export function getConstraintHelp(
       return {
         explanation: `Verdien (${current}) overskrider grensen (${max}).`,
         reason: "Denne verdien må holdes innenfor definerte grenser for å sikre korrekt visning.",
-        suggestions: [
-          "Reduser verdien til maks ${max}",
-          "Sjekk om verdien er korrekt",
-        ],
+        suggestions: ["Reduser verdien til maks ${max}", "Sjekk om verdien er korrekt"],
       };
 
     default:
       return {
         explanation: "Innholdet bryter med slide-begrensninger.",
-        reason: "For å sikre god lesbarhet og profesjonelt utseende må innholdet holdes innenfor visse grenser.",
-        suggestions: [
-          "Bruk AI-verktøyene for å automatisk fikse",
-          "Rediger innholdet manuelt",
-        ],
+        reason:
+          "For å sikre god lesbarhet og profesjonelt utseende må innholdet holdes innenfor visse grenser.",
+        suggestions: ["Bruk AI-verktøyene for å automatisk fikse", "Rediger innholdet manuelt"],
       };
   }
 }
@@ -93,7 +90,7 @@ export function getBlockKindHelp(kind: BlockKind): string {
       return "Titler må være korte og konsise for å fungere som overskrifter. Lange titler mister impact og blir vanskelig å lese raskt.";
 
     case "text":
-      return "Tekstblokker begrenses for å unngå \"wall of text\" som er vanskelig å lese på skjerm. Bruk flere slides for lengre innhold.";
+      return 'Tekstblokker begrenses for å unngå "wall of text" som er vanskelig å lese på skjerm. Bruk flere slides for lengre innhold.';
 
     case "callout":
       return "Callouts skal fremheve nøkkelpunkter kort og tydelig. Lange callouts mister sin effekt.";
@@ -128,9 +125,7 @@ export function getBlockKindHelp(kind: BlockKind): string {
  * Get quick action label based on violation severity.
  * Returns "Kort ned" or "Del i to" based on how severe the overflow is.
  */
-export function getSuggestedAction(
-  violation: ConstraintViolation
-): "shorten" | "split" | null {
+export function getSuggestedAction(violation: ConstraintViolation): "shorten" | "split" | null {
   const { type, current, max } = violation;
 
   // Only suggest actions for text/item overflow

@@ -125,15 +125,11 @@ export function ColorSwatchPicker({
       switch (e.key) {
         case "ArrowRight":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev < totalItems - 1 ? prev + 1 : 0
-          );
+          setHighlightedIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0));
           break;
         case "ArrowLeft":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev > 0 ? prev - 1 : totalItems - 1
-          );
+          setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : totalItems - 1));
           break;
         case "ArrowDown":
           e.preventDefault();
@@ -144,9 +140,7 @@ export function ColorSwatchPicker({
         case "ArrowUp":
           e.preventDefault();
           setHighlightedIndex((prev) =>
-            prev - columns >= 0
-              ? prev - columns
-              : totalItems - columns + (prev % columns)
+            prev - columns >= 0 ? prev - columns : totalItems - columns + (prev % columns)
           );
           break;
         case "Enter":
@@ -203,9 +197,7 @@ export function ColorSwatchPicker({
           width: "200px",
         }}
       >
-        <div className="text-xs font-medium text-gray-500 mb-2 px-1">
-          Velg farge
-        </div>
+        <div className="text-xs font-medium text-gray-500 mb-2 px-1">Velg farge</div>
         <div className="grid grid-cols-4 gap-2">
           {AVAILABLE_COLORS.map((color, index) => {
             const isSelected = color.name === value;
@@ -225,9 +217,7 @@ export function ColorSwatchPicker({
                 onMouseEnter={() => setHighlightedIndex(index)}
                 title={color.label}
               >
-                {isSelected && (
-                  <Check className="w-5 h-5 text-white" strokeWidth={3} />
-                )}
+                {isSelected && <Check className="w-5 h-5 text-white" strokeWidth={3} />}
               </button>
             );
           })}
@@ -247,9 +237,10 @@ export function ColorSwatchPicker({
         type="button"
         className={`
           flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors
-          ${isOpen
-            ? "border-blue-500 bg-blue-50 ring-2 ring-blue-200"
-            : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
+          ${
+            isOpen
+              ? "border-blue-500 bg-blue-50 ring-2 ring-blue-200"
+              : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
           }
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
         `}
@@ -258,25 +249,15 @@ export function ColorSwatchPicker({
         aria-expanded={isOpen}
         title="Endre farge"
       >
-        <span
-          className="w-5 h-5 rounded-full"
-          style={{ backgroundColor: currentColorValue }}
-        />
-        <span className="text-sm text-gray-700">
-          {currentColor?.label ?? "Farge"}
-        </span>
+        <span className="w-5 h-5 rounded-full" style={{ backgroundColor: currentColorValue }} />
+        <span className="text-sm text-gray-700">{currentColor?.label ?? "Farge"}</span>
         <svg
           className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {renderPicker()}

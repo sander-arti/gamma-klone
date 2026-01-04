@@ -86,8 +86,7 @@ export const moveSlideDownCommand: CommandDefinition = {
   icon: ChevronDown,
   category: "slide",
   when: (ctx) =>
-    ctx.currentSlide !== null &&
-    ctx.selectedSlideIndex < ctx.state.deck.slides.length - 1,
+    ctx.currentSlide !== null && ctx.selectedSlideIndex < ctx.state.deck.slides.length - 1,
   execute: (ctx) => {
     ctx.actions.reorderSlides(ctx.selectedSlideIndex, ctx.selectedSlideIndex + 1);
   },

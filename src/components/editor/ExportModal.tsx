@@ -38,9 +38,7 @@ function ExportStatusIndicator({ status, error }: { status: ExportStatus; error:
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           />
         </svg>
-        <span className="text-sm">
-          {status === "queued" ? "Venter i kø..." : "Eksporterer..."}
-        </span>
+        <span className="text-sm">{status === "queued" ? "Venter i kø..." : "Eksporterer..."}</span>
       </div>
     );
   }
@@ -137,9 +135,7 @@ export function ExportModal({ isOpen, onClose, deckId }: ExportModalProps) {
             {/* PDF Content */}
             <div className="flex-1 min-w-0">
               <h3 className="font-medium text-gray-900">PDF</h3>
-              <p className="text-sm text-gray-500 mb-3">
-                Perfekt for visning og utskrift
-              </p>
+              <p className="text-sm text-gray-500 mb-3">Perfekt for visning og utskrift</p>
 
               <ExportStatusIndicator status={pdfStatus} error={pdfError} />
 
@@ -155,11 +151,13 @@ export function ExportModal({ isOpen, onClose, deckId }: ExportModalProps) {
               )}
 
               {pdfStatus === "completed" && pdfUrl && (
-                <Button
-                  onClick={() => handleDownload(pdfUrl, "pdf")}
-                  size="sm"
-                >
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Button onClick={() => handleDownload(pdfUrl, "pdf")} size="sm">
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -198,9 +196,7 @@ export function ExportModal({ isOpen, onClose, deckId }: ExportModalProps) {
             {/* PPTX Content */}
             <div className="flex-1 min-w-0">
               <h3 className="font-medium text-gray-900">PowerPoint</h3>
-              <p className="text-sm text-gray-500 mb-3">
-                Redigerbar fil for Microsoft PowerPoint
-              </p>
+              <p className="text-sm text-gray-500 mb-3">Redigerbar fil for Microsoft PowerPoint</p>
 
               <ExportStatusIndicator status={pptxStatus} error={pptxError} />
 
@@ -216,11 +212,13 @@ export function ExportModal({ isOpen, onClose, deckId }: ExportModalProps) {
               )}
 
               {pptxStatus === "completed" && pptxUrl && (
-                <Button
-                  onClick={() => handleDownload(pptxUrl, "pptx")}
-                  size="sm"
-                >
-                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Button onClick={() => handleDownload(pptxUrl, "pptx")} size="sm">
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

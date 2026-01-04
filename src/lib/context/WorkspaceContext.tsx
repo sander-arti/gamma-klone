@@ -41,9 +41,7 @@ const WorkspaceContext = createContext<WorkspaceContextType | null>(null);
 
 export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
-  const [activeWorkspace, setActiveWorkspace] = useState<Workspace | null>(
-    null
-  );
+  const [activeWorkspace, setActiveWorkspace] = useState<Workspace | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchWorkspaces = async () => {
@@ -91,13 +89,9 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
 
       // Set active workspace from localStorage or default to first
       const savedWorkspaceId =
-        typeof window !== "undefined"
-          ? localStorage.getItem("activeWorkspaceId")
-          : null;
+        typeof window !== "undefined" ? localStorage.getItem("activeWorkspaceId") : null;
       const active =
-        workspacesList.find((w) => w.id === savedWorkspaceId) ||
-        workspacesList[0] ||
-        null;
+        workspacesList.find((w) => w.id === savedWorkspaceId) || workspacesList[0] || null;
 
       setActiveWorkspace(active);
     } catch (error) {

@@ -12,11 +12,7 @@ export {
   closeBrowser,
 } from "./pdf-renderer";
 
-export {
-  renderSlideToHtml,
-  renderSlidesToHtml,
-  PDF_DIMENSIONS,
-} from "./slide-html";
+export { renderSlideToHtml, renderSlidesToHtml, PDF_DIMENSIONS } from "./slide-html";
 
 // PPTX exports
 export { renderDeckToPptx, renderSlidesToPptx } from "./pptx-renderer";

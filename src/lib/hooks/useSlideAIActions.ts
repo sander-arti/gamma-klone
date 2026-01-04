@@ -39,10 +39,7 @@ interface UseSlideAIActionsReturn {
  * @param deckId - The deck ID for API calls
  * @param slideIndex - The index of the slide to perform actions on
  */
-export function useSlideAIActions(
-  deckId: string,
-  slideIndex: number
-): UseSlideAIActionsReturn {
+export function useSlideAIActions(deckId: string, slideIndex: number): UseSlideAIActionsReturn {
   const { actions } = useEditor();
   const [isLoading, setIsLoading] = useState(false);
   const [currentAction, setCurrentAction] = useState<"shorten" | "split" | null>(null);

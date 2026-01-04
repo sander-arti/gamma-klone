@@ -49,7 +49,7 @@ export function TimelineRoadmapSlide({
 
   // Title section with proper spacing
   const titleSectionStyle: React.CSSProperties = {
-    marginBottom: 'var(--theme-spacing-section-gap, clamp(1.5rem, 3cqw, 2.5rem))',
+    marginBottom: "var(--theme-spacing-section-gap, clamp(1.5rem, 3cqw, 2.5rem))",
     flexShrink: 0,
   };
 

@@ -103,11 +103,7 @@ export async function validateApiKey(request: Request): Promise<AuthResult> {
 export function generateApiKey(): { key: string; hash: string; prefix: string } {
   // Generate 32 random bytes and convert to base64url
   const randomBytes = crypto.getRandomValues(new Uint8Array(32));
-  const key =
-    "ak_" +
-    Buffer.from(randomBytes)
-      .toString("base64url")
-      .slice(0, 40);
+  const key = "ak_" + Buffer.from(randomBytes).toString("base64url").slice(0, 40);
 
   return {
     key,

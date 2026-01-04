@@ -81,7 +81,14 @@ export function SlideRenderer({
       return <TwoColumnTextSlide slide={slide} editable={editable} slideIndex={slideIndex} />;
 
     case "text_plus_image":
-      return <TextPlusImageSlide slide={slide} editable={editable} slideIndex={slideIndex} isImageGenerating={isImageGenerating} />;
+      return (
+        <TextPlusImageSlide
+          slide={slide}
+          editable={editable}
+          slideIndex={slideIndex}
+          isImageGenerating={isImageGenerating}
+        />
+      );
 
     case "decisions_list":
       return <DecisionsListSlide slide={slide} editable={editable} slideIndex={slideIndex} />;
@@ -102,19 +109,47 @@ export function SlideRenderer({
       return <NumberedGridSlide slide={slide} editable={editable} slideIndex={slideIndex} />;
 
     case "icon_cards_with_image":
-      return <IconCardsWithImageSlide slide={slide} editable={editable} slideIndex={slideIndex} isImageGenerating={isImageGenerating} />;
+      return (
+        <IconCardsWithImageSlide
+          slide={slide}
+          editable={editable}
+          slideIndex={slideIndex}
+          isImageGenerating={isImageGenerating}
+        />
+      );
 
     case "summary_with_stats":
       return <SummaryWithStatsSlide slide={slide} editable={editable} slideIndex={slideIndex} />;
 
     case "hero_stats":
-      return <HeroStatsSlide slide={slide} editable={editable} slideIndex={slideIndex} isImageGenerating={isImageGenerating} />;
+      return (
+        <HeroStatsSlide
+          slide={slide}
+          editable={editable}
+          slideIndex={slideIndex}
+          isImageGenerating={isImageGenerating}
+        />
+      );
 
     case "split_with_callouts":
-      return <SplitWithCalloutsSlide slide={slide} editable={editable} slideIndex={slideIndex} isImageGenerating={isImageGenerating} />;
+      return (
+        <SplitWithCalloutsSlide
+          slide={slide}
+          editable={editable}
+          slideIndex={slideIndex}
+          isImageGenerating={isImageGenerating}
+        />
+      );
 
     case "person_spotlight":
-      return <PersonSpotlightSlide slide={slide} editable={editable} slideIndex={slideIndex} isImageGenerating={isImageGenerating} />;
+      return (
+        <PersonSpotlightSlide
+          slide={slide}
+          editable={editable}
+          slideIndex={slideIndex}
+          isImageGenerating={isImageGenerating}
+        />
+      );
 
     default: {
       // Type-safe exhaustive check
@@ -123,9 +158,9 @@ export function SlideRenderer({
       return (
         <div
           className="flex items-center justify-center h-full"
-          style={{ backgroundColor: 'var(--theme-color-background-subtle, #f8fafc)' }}
+          style={{ backgroundColor: "var(--theme-color-background-subtle, #f8fafc)" }}
         >
-          <p style={{ color: 'var(--theme-color-foreground-muted, #475569)' }}>
+          <p style={{ color: "var(--theme-color-foreground-muted, #475569)" }}>
             Unknown slide type: {slide.type}
           </p>
         </div>

@@ -7,9 +7,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { GenerationRequestSchema } from "@/lib/schemas/deck";
-import {
-  createGenerationJob,
-} from "@/lib/db/generation-job";
+import { createGenerationJob } from "@/lib/db/generation-job";
 import { addGenerationJob } from "@/lib/queue/generation-queue";
 
 // Default workspace ID for MVP (single-tenant)

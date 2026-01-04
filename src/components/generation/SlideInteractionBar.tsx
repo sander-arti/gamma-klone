@@ -29,9 +29,10 @@ export function SlideInteractionBar({
 }: SlideInteractionBarProps) {
   const buttonClasses = `
     p-2 rounded-lg transition-all duration-200
-    ${disabled
-      ? "text-gray-300 cursor-not-allowed"
-      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:scale-95"
+    ${
+      disabled
+        ? "text-gray-300 cursor-not-allowed"
+        : "text-gray-500 hover:text-gray-700 hover:bg-gray-100 active:scale-95"
     }
   `;
 
@@ -103,10 +104,7 @@ interface CompactInteractionBarProps {
   onAdd?: () => void;
 }
 
-export function CompactInteractionBar({
-  disabled = false,
-  onAdd,
-}: CompactInteractionBarProps) {
+export function CompactInteractionBar({ disabled = false, onAdd }: CompactInteractionBarProps) {
   return (
     <motion.button
       type="button"
@@ -119,9 +117,10 @@ export function CompactInteractionBar({
       className={`
         flex items-center justify-center
         w-6 h-6 rounded-full
-        ${disabled
-          ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-          : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200"
+        ${
+          disabled
+            ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+            : "bg-emerald-100 text-emerald-600 hover:bg-emerald-200"
         }
         transition-colors duration-200
       `}

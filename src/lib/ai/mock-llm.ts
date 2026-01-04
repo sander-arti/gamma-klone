@@ -65,7 +65,7 @@ export class MockLLMClient implements LLMClient {
 
     // Simulate streaming by emitting characters in chunks
     const chunkSize = 3; // Characters per chunk
-    const delayMs = 10;  // Milliseconds between chunks
+    const delayMs = 10; // Milliseconds between chunks
 
     for (let i = 0; i < jsonString.length; i += chunkSize) {
       await this.sleep(delayMs);
@@ -196,7 +196,10 @@ export class MockLLMClient implements LLMClient {
       };
     }
 
-    if (promptLower.includes("type: section_header") || promptLower.includes("type:section_header")) {
+    if (
+      promptLower.includes("type: section_header") ||
+      promptLower.includes("type:section_header")
+    ) {
       return {
         type: "section_header",
         layoutVariant: "default",
@@ -207,7 +210,10 @@ export class MockLLMClient implements LLMClient {
       };
     }
 
-    if (promptLower.includes("type: text_plus_image") || promptLower.includes("type:text_plus_image")) {
+    if (
+      promptLower.includes("type: text_plus_image") ||
+      promptLower.includes("type:text_plus_image")
+    ) {
       return {
         type: "text_plus_image",
         layoutVariant: "default",
@@ -258,18 +264,16 @@ export class MockLLMClient implements LLMClient {
           { kind: "title", text: "Hovedpunkter" },
           {
             kind: "bullets",
-            items: [
-              "Første viktige punkt",
-              "Andre viktige punkt",
-              "Tredje punkt",
-              "Fjerde punkt",
-            ],
+            items: ["Første viktige punkt", "Andre viktige punkt", "Tredje punkt", "Fjerde punkt"],
           },
         ],
       };
     }
 
-    if (promptLower.includes("type: two_column_text") || promptLower.includes("type:two_column_text")) {
+    if (
+      promptLower.includes("type: two_column_text") ||
+      promptLower.includes("type:two_column_text")
+    ) {
       return {
         type: "two_column_text",
         layoutVariant: "default",
@@ -281,7 +285,10 @@ export class MockLLMClient implements LLMClient {
       };
     }
 
-    if (promptLower.includes("type: decisions_list") || promptLower.includes("type:decisions_list")) {
+    if (
+      promptLower.includes("type: decisions_list") ||
+      promptLower.includes("type:decisions_list")
+    ) {
       return {
         type: "decisions_list",
         layoutVariant: "default",
@@ -299,7 +306,10 @@ export class MockLLMClient implements LLMClient {
       };
     }
 
-    if (promptLower.includes("type: action_items_table") || promptLower.includes("type:action_items_table")) {
+    if (
+      promptLower.includes("type: action_items_table") ||
+      promptLower.includes("type:action_items_table")
+    ) {
       return {
         type: "action_items_table",
         layoutVariant: "default",
@@ -318,7 +328,10 @@ export class MockLLMClient implements LLMClient {
       };
     }
 
-    if (promptLower.includes("type: summary_next_steps") || promptLower.includes("type:summary_next_steps")) {
+    if (
+      promptLower.includes("type: summary_next_steps") ||
+      promptLower.includes("type:summary_next_steps")
+    ) {
       return {
         type: "summary_next_steps",
         layoutVariant: "default",
@@ -412,13 +425,23 @@ export class MockLLMClient implements LLMClient {
         layoutVariant: "default",
         blocks: [
           { kind: "title", text: "Sammenligning" },
-          { kind: "text", text: "Venstre kolonne: Fordeler med løsning A inkluderer bedre ytelse og lavere kostnad." },
-          { kind: "text", text: "Høyre kolonne: Fordeler med løsning B inkluderer enklere implementering og bedre support." },
+          {
+            kind: "text",
+            text: "Venstre kolonne: Fordeler med løsning A inkluderer bedre ytelse og lavere kostnad.",
+          },
+          {
+            kind: "text",
+            text: "Høyre kolonne: Fordeler med løsning B inkluderer enklere implementering og bedre support.",
+          },
         ],
       };
     }
 
-    if (promptLower.includes("summary") || promptLower.includes("oppsummering") || promptLower.includes("neste")) {
+    if (
+      promptLower.includes("summary") ||
+      promptLower.includes("oppsummering") ||
+      promptLower.includes("neste")
+    ) {
       return {
         type: "summary_next_steps",
         layoutVariant: "default",
@@ -465,11 +488,7 @@ export class MockLLMClient implements LLMClient {
         { kind: "title", text: "Reparert innhold" },
         {
           kind: "bullets",
-          items: [
-            "Forkortet punkt 1",
-            "Forkortet punkt 2",
-            "Forkortet punkt 3",
-          ],
+          items: ["Forkortet punkt 1", "Forkortet punkt 2", "Forkortet punkt 3"],
         },
       ],
     };

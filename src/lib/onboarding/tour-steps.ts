@@ -8,8 +8,8 @@ export type TourStep = {
   id: string;
   title: string;
   description: string;
-  target: string | 'modal'; // CSS selector or 'modal' for center position
-  position: 'top' | 'right' | 'bottom' | 'left' | 'center';
+  target: string | "modal"; // CSS selector or 'modal' for center position
+  position: "top" | "right" | "bottom" | "left" | "center";
   action?: {
     label: string;
     onClick: () => void;
@@ -25,28 +25,27 @@ export type TourStep = {
  */
 export const DASHBOARD_TOUR_STEPS: TourStep[] = [
   {
-    id: 'welcome',
-    title: 'Velkommen til ARTI Slides! 👋',
-    description:
-      'La oss vise deg rundt i 30 sekunder. Du kan hoppe over når som helst.',
-    target: 'modal',
-    position: 'center',
+    id: "welcome",
+    title: "Velkommen til ARTI Slides! 👋",
+    description: "La oss vise deg rundt i 30 sekunder. Du kan hoppe over når som helst.",
+    target: "modal",
+    position: "center",
   },
   {
-    id: 'sample-deck',
-    title: 'Din første presentasjon',
+    id: "sample-deck",
+    title: "Din første presentasjon",
     description:
-      'Vi har laget en eksempel-presentasjon for deg. Åpne den for å se hva ARTI Slides kan gjøre.',
+      "Vi har laget en eksempel-presentasjon for deg. Åpne den for å se hva ARTI Slides kan gjøre.",
     target: '[data-tour="deck-list"]',
-    position: 'right',
+    position: "right",
   },
   {
-    id: 'create-new',
-    title: 'Lag din egen',
+    id: "create-new",
+    title: "Lag din egen",
     description:
-      'Klar til å lage din første presentasjon? Klikk her for å starte med AI-generering.',
+      "Klar til å lage din første presentasjon? Klikk her for å starte med AI-generering.",
     target: '[data-tour="new-presentation"]',
-    position: 'bottom',
+    position: "bottom",
   },
 ];
 

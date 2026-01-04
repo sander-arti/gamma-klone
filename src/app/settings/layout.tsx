@@ -18,11 +18,7 @@ const tabs = [
   { name: "Team", href: "/settings/team" },
 ];
 
-export default function SettingsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function SettingsLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -62,9 +58,7 @@ export default function SettingsLayout({
         `}
       >
         <div className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Settings
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Settings</h2>
           <nav className="space-y-1">
             {tabs.map((tab) => (
               <Link
@@ -85,9 +79,7 @@ export default function SettingsLayout({
       </aside>
 
       {/* Main content - adjust padding for mobile menu button */}
-      <main className="flex-1 p-4 md:p-8 pt-16 md:pt-8 max-w-4xl">
-        {children}
-      </main>
+      <main className="flex-1 p-4 md:p-8 pt-16 md:pt-8 max-w-4xl">{children}</main>
     </div>
   );
 }

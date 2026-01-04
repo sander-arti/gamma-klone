@@ -30,10 +30,7 @@ export interface ComposerOptions {
  * IDEMPOTENT: Safe to call multiple times - checks for existing structural slides
  * anywhere in the outline, not just at expected positions.
  */
-export function composeDeck(
-  outline: Outline,
-  options: ComposerOptions = {}
-): Outline {
+export function composeDeck(outline: Outline, options: ComposerOptions = {}): Outline {
   const {
     ensureCover = true,
     ensureAgenda = true,
@@ -59,11 +56,7 @@ export function composeDeck(
 
   // 2. Add agenda after cover if many slides
   // IDEMPOTENT: Check if ANY slide is agenda
-  if (
-    ensureAgenda &&
-    slides.length > maxSlidesWithoutAgenda &&
-    !hasAgenda(slides)
-  ) {
+  if (ensureAgenda && slides.length > maxSlidesWithoutAgenda && !hasAgenda(slides)) {
     const agendaSlide = createAgendaSlide(slides);
     // Insert after cover (index 1)
     slides = [slides[0], agendaSlide, ...slides.slice(1)];
@@ -130,10 +123,7 @@ function hasSummaryAnywhere(slides: OutlineSlide[]): boolean {
  */
 function isSummaryLast(slides: OutlineSlide[]): boolean {
   const last = slides[slides.length - 1];
-  return (
-    last?.suggestedType === "summary_next_steps" ||
-    last?.suggestedType === "quote_callout"
-  );
+  return last?.suggestedType === "summary_next_steps" || last?.suggestedType === "quote_callout";
 }
 
 /**
@@ -141,10 +131,7 @@ function isSummaryLast(slides: OutlineSlide[]): boolean {
  */
 function hasSummary(slides: OutlineSlide[]): boolean {
   const last = slides[slides.length - 1];
-  return (
-    last?.suggestedType === "summary_next_steps" ||
-    last?.suggestedType === "quote_callout"
-  );
+  return last?.suggestedType === "summary_next_steps" || last?.suggestedType === "quote_callout";
 }
 
 /**
@@ -163,12 +150,7 @@ function createCoverSlide(title: string): OutlineSlide {
  */
 function createAgendaSlide(slides: OutlineSlide[]): OutlineSlide {
   // Get content slides (not cover, agenda, or summary)
-  const structuralTypes: SlideType[] = [
-    "cover",
-    "agenda",
-    "summary_next_steps",
-    "section_header",
-  ];
+  const structuralTypes: SlideType[] = ["cover", "agenda", "summary_next_steps", "section_header"];
 
   const contentSlides = slides.filter(
     (s) => !structuralTypes.includes(s.suggestedType ?? "bullets")
@@ -212,8 +194,7 @@ export function getComposerStats(
 } {
   const addedCover = !hasCover(original.slides) && hasCover(composed.slides);
   const addedAgenda = !hasAgenda(original.slides) && hasAgenda(composed.slides);
-  const addedSummary =
-    !hasSummary(original.slides) && hasSummary(composed.slides);
+  const addedSummary = !hasSummary(original.slides) && hasSummary(composed.slides);
 
   return {
     addedCover,

@@ -122,15 +122,11 @@ export function InlineDropdown<T extends string = string>({
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev < options.length - 1 ? prev + 1 : 0
-          );
+          setHighlightedIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
           break;
         case "ArrowUp":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev > 0 ? prev - 1 : options.length - 1
-          );
+          setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
           break;
         case "Enter":
         case " ":
@@ -242,9 +238,7 @@ export function InlineDropdown<T extends string = string>({
               />
             )}
             <span>{option.label}</span>
-            {option.value === value && (
-              <span className="ml-auto text-blue-600">✓</span>
-            )}
+            {option.value === value && <span className="ml-auto text-blue-600">✓</span>}
           </li>
         ))}
       </ul>,
@@ -278,9 +272,7 @@ export function InlineDropdown<T extends string = string>({
             : undefined
         }
       >
-        {currentOption?.icon && (
-          <span className="flex-shrink-0">{currentOption.icon}</span>
-        )}
+        {currentOption?.icon && <span className="flex-shrink-0">{currentOption.icon}</span>}
         {currentOption?.color && variant !== "badge" && (
           <span
             className="w-3 h-3 rounded-full flex-shrink-0"
@@ -294,12 +286,7 @@ export function InlineDropdown<T extends string = string>({
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {renderDropdown()}

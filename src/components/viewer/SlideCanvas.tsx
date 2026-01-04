@@ -54,20 +54,14 @@ export function SlideCanvas({ children, className = "" }: SlideCanvasProps) {
   }, []);
 
   // Calculate scale based on container size state
-  const scale = containerSize.width > 0 && containerSize.height > 0
-    ? Math.min(
-        containerSize.width / BASE_WIDTH,
-        containerSize.height / BASE_HEIGHT
-      )
-    : 1;
+  const scale =
+    containerSize.width > 0 && containerSize.height > 0
+      ? Math.min(containerSize.width / BASE_WIDTH, containerSize.height / BASE_HEIGHT)
+      : 1;
 
   // Calculate centering based on state (not ref)
-  const left = containerSize.width > 0
-    ? containerSize.width / 2 - (BASE_WIDTH * scale) / 2
-    : 0;
-  const top = containerSize.height > 0
-    ? containerSize.height / 2 - (BASE_HEIGHT * scale) / 2
-    : 0;
+  const left = containerSize.width > 0 ? containerSize.width / 2 - (BASE_WIDTH * scale) / 2 : 0;
+  const top = containerSize.height > 0 ? containerSize.height / 2 - (BASE_HEIGHT * scale) / 2 : 0;
 
   return (
     <div
@@ -87,9 +81,9 @@ export function SlideCanvas({ children, className = "" }: SlideCanvasProps) {
           transform: `scale(${scale})`,
           left: `${left}px`,
           top: `${top}px`,
-          backgroundColor: 'var(--theme-color-background, #f8fafc)',
+          backgroundColor: "var(--theme-color-background, #f8fafc)",
           // Enable container queries so cqw/cqh units work relative to slide size
-          containerType: 'size' as React.CSSProperties['containerType'],
+          containerType: "size" as React.CSSProperties["containerType"],
         }}
       >
         {children}

@@ -42,17 +42,32 @@ describe("Content Prompts", () => {
     });
 
     it("includes generate mode instructions", () => {
-      const prompt = buildContentSystemPrompt(baseOutlineSlide, { ...baseRequest, textMode: "generate" }, 0, 5);
+      const prompt = buildContentSystemPrompt(
+        baseOutlineSlide,
+        { ...baseRequest, textMode: "generate" },
+        0,
+        5
+      );
       expect(prompt).toContain("Create engaging, original content");
     });
 
     it("includes condense mode instructions", () => {
-      const prompt = buildContentSystemPrompt(baseOutlineSlide, { ...baseRequest, textMode: "condense" }, 0, 5);
+      const prompt = buildContentSystemPrompt(
+        baseOutlineSlide,
+        { ...baseRequest, textMode: "condense" },
+        0,
+        5
+      );
       expect(prompt).toContain("Extract and summarize");
     });
 
     it("includes preserve mode instructions", () => {
-      const prompt = buildContentSystemPrompt(baseOutlineSlide, { ...baseRequest, textMode: "preserve" }, 0, 5);
+      const prompt = buildContentSystemPrompt(
+        baseOutlineSlide,
+        { ...baseRequest, textMode: "preserve" },
+        0,
+        5
+      );
       expect(prompt).toContain("Use the original text");
     });
 
@@ -90,7 +105,12 @@ describe("Content Prompts", () => {
     });
 
     it("includes tone when provided", () => {
-      const prompt = buildContentSystemPrompt(baseOutlineSlide, { ...baseRequest, tone: "formal" }, 0, 5);
+      const prompt = buildContentSystemPrompt(
+        baseOutlineSlide,
+        { ...baseRequest, tone: "formal" },
+        0,
+        5
+      );
       expect(prompt).toContain("Tone: formal");
     });
 

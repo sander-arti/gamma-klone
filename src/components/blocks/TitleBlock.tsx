@@ -9,11 +9,7 @@
  */
 
 import { useRef, useEffect, useCallback } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 
 interface TitleBlockProps {
   text: string;
@@ -124,23 +120,26 @@ export function TitleBlock({
   const isOver = exceedsLimit(charCount, maxLength);
 
   // Use inline styles for theme variables with proper hierarchy
-  const titleStyle: React.CSSProperties = level === 1
-    ? {
-        color: 'var(--theme-color-foreground, #0f172a)',
-        fontSize: 'var(--theme-typography-title-size, 2.5rem)',
-        fontWeight: 'var(--theme-typography-title-weight, 700)' as React.CSSProperties['fontWeight'],
-        lineHeight: 'var(--theme-typography-title-line-height, 1.1)',
-        letterSpacing: 'var(--theme-typography-title-letter-spacing, -0.025em)',
-        textWrap: 'balance' as React.CSSProperties['textWrap'],
-      }
-    : {
-        color: 'var(--theme-color-foreground, #0f172a)',
-        fontSize: 'var(--theme-typography-heading-size, 1.5rem)',
-        fontWeight: 'var(--theme-typography-heading-weight, 600)' as React.CSSProperties['fontWeight'],
-        lineHeight: 'var(--theme-typography-heading-line-height, 1.2)',
-        letterSpacing: 'var(--theme-typography-heading-letter-spacing, -0.02em)',
-        textWrap: 'balance' as React.CSSProperties['textWrap'],
-      };
+  const titleStyle: React.CSSProperties =
+    level === 1
+      ? {
+          color: "var(--theme-color-foreground, #0f172a)",
+          fontSize: "var(--theme-typography-title-size, 2.5rem)",
+          fontWeight:
+            "var(--theme-typography-title-weight, 700)" as React.CSSProperties["fontWeight"],
+          lineHeight: "var(--theme-typography-title-line-height, 1.1)",
+          letterSpacing: "var(--theme-typography-title-letter-spacing, -0.025em)",
+          textWrap: "balance" as React.CSSProperties["textWrap"],
+        }
+      : {
+          color: "var(--theme-color-foreground, #0f172a)",
+          fontSize: "var(--theme-typography-heading-size, 1.5rem)",
+          fontWeight:
+            "var(--theme-typography-heading-weight, 600)" as React.CSSProperties["fontWeight"],
+          lineHeight: "var(--theme-typography-heading-line-height, 1.2)",
+          letterSpacing: "var(--theme-typography-heading-letter-spacing, -0.02em)",
+          textWrap: "balance" as React.CSSProperties["textWrap"],
+        };
 
   return (
     <div className="relative animate-reveal-up">
@@ -163,11 +162,7 @@ export function TitleBlock({
       {isEditing && (
         <div
           className={`absolute -bottom-5 right-0 text-xs ${
-            isOver
-              ? "text-red-400 font-medium"
-              : isApproaching
-                ? "text-amber-400"
-                : "text-zinc-500"
+            isOver ? "text-red-400 font-medium" : isApproaching ? "text-amber-400" : "text-zinc-500"
           }`}
         >
           {charCount}/{maxLength}

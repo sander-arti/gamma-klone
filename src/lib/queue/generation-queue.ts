@@ -56,9 +56,7 @@ export function getGenerationQueue(): Queue<GenerationJobData> {
 /**
  * Add a generation job to the queue
  */
-export async function addGenerationJob(
-  data: GenerationJobData
-): Promise<string> {
+export async function addGenerationJob(data: GenerationJobData): Promise<string> {
   const queue = getGenerationQueue();
 
   const job = await queue.add(

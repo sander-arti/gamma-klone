@@ -5,8 +5,8 @@
  * New users (onboarding_completed = false) will see the tour.
  */
 
-import { createClient } from '@/lib/db/supabase-server';
-import { NextResponse } from 'next/server';
+import { createClient } from "@/lib/db/supabase-server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
@@ -16,18 +16,18 @@ export async function GET() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     // Check if user has completed onboarding
     const { data: userRecord, error } = await supabase
-      .from('users')
-      .select('onboarding_completed')
-      .eq('id', user.id)
+      .from("users")
+      .select("onboarding_completed")
+      .eq("id", user.id)
       .single();
 
     if (error) {
-      console.error('[onboarding-status] Failed to fetch user:', error);
+      console.error("[onboarding-status] Failed to fetch user:", error);
       // Default to not showing tour if we can't determine status
       return NextResponse.json({ shouldShowTour: false });
     }
@@ -36,10 +36,7 @@ export async function GET() {
       shouldShowTour: !userRecord?.onboarding_completed,
     });
   } catch (error) {
-    console.error('[onboarding-status] Unexpected error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error("[onboarding-status] Unexpected error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

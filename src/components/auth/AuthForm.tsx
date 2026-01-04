@@ -17,12 +17,7 @@ interface AuthFormProps {
   error?: string;
 }
 
-export function AuthForm({
-  mode,
-  onSubmit,
-  isLoading = false,
-  error,
-}: AuthFormProps) {
+export function AuthForm({ mode, onSubmit, isLoading = false, error }: AuthFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -44,10 +39,7 @@ export function AuthForm({
       {/* Name field (signup only) */}
       {mode === "signup" && (
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-1.5"
-          >
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
             Navn
           </label>
           <input
@@ -72,10 +64,7 @@ export function AuthForm({
 
       {/* Email field */}
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 mb-1.5"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
           E-post
         </label>
         <input
@@ -100,10 +89,7 @@ export function AuthForm({
       {/* Password field */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Passord
           </label>
           {mode === "login" && (
@@ -150,11 +136,7 @@ export function AuthForm({
       >
         {isLoading ? (
           <span className="flex items-center justify-center gap-2">
-            <svg
-              className="animate-spin w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
+            <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
               <circle
                 className="opacity-25"
                 cx="12"

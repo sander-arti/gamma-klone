@@ -106,9 +106,7 @@ export async function getDeckById(
  * Get a deck by share token (for public access)
  * No workspace isolation - token is the auth
  */
-export async function getDeckByShareToken(
-  shareToken: string
-): Promise<DeckWithSlides | null> {
+export async function getDeckByShareToken(shareToken: string): Promise<DeckWithSlides | null> {
   return prisma.deck.findFirst({
     where: {
       shareToken,
@@ -191,10 +189,7 @@ export async function updateDeck(
 /**
  * Delete a deck
  */
-export async function deleteDeck(
-  deckId: string,
-  workspaceId: string
-): Promise<boolean> {
+export async function deleteDeck(deckId: string, workspaceId: string): Promise<boolean> {
   // Verify ownership first
   const existing = await prisma.deck.findFirst({
     where: { id: deckId, workspaceId },
@@ -244,10 +239,7 @@ export async function generateShareToken(
 /**
  * Revoke share access for a deck
  */
-export async function revokeShareAccess(
-  deckId: string,
-  workspaceId: string
-): Promise<boolean> {
+export async function revokeShareAccess(deckId: string, workspaceId: string): Promise<boolean> {
   // Verify ownership first
   const existing = await prisma.deck.findFirst({
     where: { id: deckId, workspaceId },
@@ -366,10 +358,7 @@ export async function updateSlide(
 /**
  * Delete a slide
  */
-export async function deleteSlide(
-  slideId: string,
-  workspaceId: string
-): Promise<boolean> {
+export async function deleteSlide(slideId: string, workspaceId: string): Promise<boolean> {
   // Verify ownership via deck
   const existing = await prisma.slide.findFirst({
     where: { id: slideId },

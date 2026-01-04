@@ -116,7 +116,7 @@ export function getSlideViolations(slide: Slide): ValidationViolation[] {
   const slideViolations = validateSlideConstraints(slide.type, content);
   for (const v of slideViolations) {
     // Only add if not already captured by block validation
-    if (!violations.some(existing => existing.message === v.message)) {
+    if (!violations.some((existing) => existing.message === v.message)) {
       violations.push(v);
     }
   }

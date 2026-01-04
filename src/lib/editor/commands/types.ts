@@ -137,10 +137,10 @@ export interface CommandDefinition {
  * Modifier keys
  */
 export interface ShortcutModifiers {
-  meta?: boolean;    // ⌘ on Mac, Ctrl on Windows
-  ctrl?: boolean;    // Ctrl key specifically
-  shift?: boolean;   // Shift key
-  alt?: boolean;     // Alt/Option key
+  meta?: boolean; // ⌘ on Mac, Ctrl on Windows
+  ctrl?: boolean; // Ctrl key specifically
+  shift?: boolean; // Shift key
+  alt?: boolean; // Alt/Option key
 }
 
 /**
@@ -196,10 +196,7 @@ export function parseShortcut(shortcut: string): ParsedShortcut {
 /**
  * Check if a keyboard event matches a parsed shortcut
  */
-export function matchesShortcut(
-  event: KeyboardEvent,
-  shortcut: ParsedShortcut
-): boolean {
+export function matchesShortcut(event: KeyboardEvent, shortcut: ParsedShortcut): boolean {
   // Check modifiers
   const metaMatch = shortcut.modifiers.meta
     ? event.metaKey || event.ctrlKey

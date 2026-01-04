@@ -101,10 +101,7 @@ export function ThemeCard({ themeId, name, selected, onClick }: ThemeCardProps) 
         relative flex flex-col items-center gap-2 p-2
         rounded-xl transition-all duration-200
         focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2
-        ${selected
-          ? "ring-2 ring-purple-500 ring-offset-2 bg-purple-50"
-          : "hover:bg-gray-50"
-        }
+        ${selected ? "ring-2 ring-purple-500 ring-offset-2 bg-purple-50" : "hover:bg-gray-50"}
       `}
     >
       {/* Mini slide preview */}
@@ -115,10 +112,7 @@ export function ThemeCard({ themeId, name, selected, onClick }: ThemeCardProps) 
         {/* Slide content preview */}
         <div className="absolute inset-2 flex flex-col">
           {/* Title bar */}
-          <div
-            className="h-2 w-3/4 rounded-sm mb-1.5"
-            style={{ backgroundColor: colors.text }}
-          />
+          <div className="h-2 w-3/4 rounded-sm mb-1.5" style={{ backgroundColor: colors.text }} />
 
           {/* Subtitle */}
           <div
@@ -141,7 +135,8 @@ export function ThemeCard({ themeId, name, selected, onClick }: ThemeCardProps) 
                 <div
                   className="w-2 h-2 rounded-full mb-1"
                   style={{
-                    backgroundColor: i === 0 ? colors.primary : i === 1 ? colors.accent : colors.primary,
+                    backgroundColor:
+                      i === 0 ? colors.primary : i === 1 ? colors.accent : colors.primary,
                     opacity: i === 2 ? 0.7 : 1,
                   }}
                 />

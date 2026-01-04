@@ -21,12 +21,7 @@ const steps: Step[] = [
     description:
       "Skriv hva presentasjonen skal handle om. Et emne, noen stikkord, eller lim inn møtenotater.",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -42,12 +37,7 @@ const steps: Step[] = [
     description:
       "AI-en lager et outline som du kan justere. Godkjenn, og få en komplett presentasjon på sekunder.",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -63,12 +53,7 @@ const steps: Step[] = [
     description:
       "Last ned som PDF for deling, eller redigerbar PowerPoint for videre arbeid. Fungerer alltid.",
     icon: (
-      <svg
-        className="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -86,12 +71,9 @@ export function HowItWorks() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Så enkelt er det
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Så enkelt er det</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Fra idé til ferdig presentasjon på under 2 minutter.
-            Ingen designkunnskap nødvendig.
+            Fra idé til ferdig presentasjon på under 2 minutter. Ingen designkunnskap nødvendig.
           </p>
         </div>
 
@@ -116,9 +98,7 @@ export function HowItWorks() {
                         transform transition-transform duration-300 hover:scale-110
                       "
                     >
-                      <span className="text-2xl font-bold text-white">
-                        {step.number}
-                      </span>
+                      <span className="text-2xl font-bold text-white">{step.number}</span>
                     </div>
                     {/* Glow effect */}
                     <div className="absolute inset-0 rounded-2xl bg-emerald-500/20 blur-xl -z-10" />
@@ -130,14 +110,10 @@ export function HowItWorks() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {step.title}
-                  </h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
+                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
                 </div>
 
                 {/* Mobile Arrow */}

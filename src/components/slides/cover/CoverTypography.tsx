@@ -50,10 +50,12 @@ export function CoverTitle({
 }: CoverTitleProps) {
   // Override theme CSS variables when light mode is active
   // This ensures nested components (like TitleBlock) inherit correct colors
-  const lightModeOverrides: React.CSSProperties = light ? {
-    '--theme-color-foreground': '#ffffff',
-    '--theme-color-foreground-muted': 'rgba(255, 255, 255, 0.9)',
-  } as React.CSSProperties : {};
+  const lightModeOverrides: React.CSSProperties = light
+    ? ({
+        "--theme-color-foreground": "#ffffff",
+        "--theme-color-foreground-muted": "rgba(255, 255, 255, 0.9)",
+      } as React.CSSProperties)
+    : {};
 
   const baseStyle: React.CSSProperties = {
     ...lightModeOverrides,
@@ -62,9 +64,7 @@ export function CoverTitle({
     letterSpacing: "-0.03em",
     lineHeight: 1.1,
     color: light ? "#ffffff" : "var(--theme-color-foreground, #0f172a)",
-    textShadow: light
-      ? "0 2px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2)"
-      : "none",
+    textShadow: light ? "0 2px 4px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2)" : "none",
     margin: 0,
     maxWidth: "90%",
     wordBreak: "break-word",
@@ -135,10 +135,12 @@ export function CoverSubtitle({
 }: CoverSubtitleProps) {
   // Override theme CSS variables when light mode is active
   // This ensures nested components (like TextBlock) inherit correct colors
-  const lightModeOverrides: React.CSSProperties = light ? {
-    '--theme-color-foreground': '#ffffff',
-    '--theme-color-foreground-muted': 'rgba(255, 255, 255, 0.9)',
-  } as React.CSSProperties : {};
+  const lightModeOverrides: React.CSSProperties = light
+    ? ({
+        "--theme-color-foreground": "#ffffff",
+        "--theme-color-foreground-muted": "rgba(255, 255, 255, 0.9)",
+      } as React.CSSProperties)
+    : {};
 
   const baseStyle: React.CSSProperties = {
     ...lightModeOverrides,
@@ -146,9 +148,7 @@ export function CoverSubtitle({
     fontWeight: 400,
     letterSpacing: "0",
     lineHeight: 1.5,
-    color: light
-      ? "rgba(255, 255, 255, 0.9)"
-      : "var(--theme-color-foreground-muted, #64748b)",
+    color: light ? "rgba(255, 255, 255, 0.9)" : "var(--theme-color-foreground-muted, #64748b)",
     textShadow: light ? "0 1px 2px rgba(0,0,0,0.3)" : "none",
     margin: 0,
     maxWidth,
@@ -209,7 +209,8 @@ export function CoverBadge({
   delay = 0,
   className = "",
 }: CoverBadgeProps) {
-  const bgColor = color || (light ? "rgba(255,255,255,0.2)" : "var(--theme-color-primary, #2563eb)");
+  const bgColor =
+    color || (light ? "rgba(255,255,255,0.2)" : "var(--theme-color-primary, #2563eb)");
   const textColor = light ? "#ffffff" : "var(--theme-color-primary-foreground, #ffffff)";
 
   const badgeStyle: React.CSSProperties = {

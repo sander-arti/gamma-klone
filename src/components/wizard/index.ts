@@ -12,11 +12,7 @@ export { LivePreview } from "./LivePreview";
 export { GenerateInput, PasteInput, ImportInput } from "./modes";
 
 // Prompt Editor components
-export {
-  PromptEditor,
-  getDefaultPromptEditorState,
-  type PromptEditorState,
-} from "./PromptEditor";
+export { PromptEditor, getDefaultPromptEditorState, type PromptEditorState } from "./PromptEditor";
 export { SettingsPanel } from "./SettingsPanel";
 export { TemplateSelector } from "./TemplateSelector";
 export { ContentPreview } from "./ContentPreview";

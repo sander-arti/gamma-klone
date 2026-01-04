@@ -39,9 +39,7 @@ export default function AccountSettingsPage() {
           setEmail(user.email || "");
         }
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to load account details"
-        );
+        setError(err instanceof Error ? err.message : "Failed to load account details");
       } finally {
         setIsLoading(false);
       }
@@ -80,9 +78,7 @@ export default function AccountSettingsPage() {
     <div>
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Account Settings</h1>
-        <p className="text-sm text-gray-600 mt-1">
-          Manage your personal account information
-        </p>
+        <p className="text-sm text-gray-600 mt-1">Manage your personal account information</p>
       </div>
 
       {error && (
@@ -100,9 +96,7 @@ export default function AccountSettingsPage() {
       {isLoading ? (
         <div className="text-center py-12">
           <div className="inline-block w-8 h-8 border-4 border-gray-200 border-t-emerald-600 rounded-full animate-spin"></div>
-          <p className="text-sm text-gray-600 mt-4">
-            Loading account details...
-          </p>
+          <p className="text-sm text-gray-600 mt-4">Loading account details...</p>
         </div>
       ) : (
         <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -117,19 +111,14 @@ export default function AccountSettingsPage() {
                   <User className="w-8 h-8 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">
-                    Profile pictures coming soon
-                  </p>
+                  <p className="text-sm text-gray-600">Profile pictures coming soon</p>
                 </div>
               </div>
             </div>
 
             {/* Name Section */}
             <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                 Name
               </label>
               <div className="flex gap-3">
@@ -157,10 +146,7 @@ export default function AccountSettingsPage() {
 
             {/* Email Section */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
               </label>
               <input
@@ -171,30 +157,26 @@ export default function AccountSettingsPage() {
                 className="w-full px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 text-gray-600 cursor-not-allowed"
               />
               <p className="text-xs text-gray-500 mt-1">
-                Email address cannot be changed at this time. Contact support if
-                you need to update your email.
+                Email address cannot be changed at this time. Contact support if you need to update
+                your email.
               </p>
             </div>
 
             {/* Password Section */}
             <div className="pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
-                Password
-              </h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Password</h3>
               <p className="text-sm text-gray-600 mb-4">
-                Password management coming soon. For now, use the password reset
-                link on the login page if you need to change your password.
+                Password management coming soon. For now, use the password reset link on the login
+                page if you need to change your password.
               </p>
             </div>
 
             {/* Danger Zone */}
             <div className="pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-medium text-red-600 mb-2">
-                Danger Zone
-              </h3>
+              <h3 className="text-lg font-medium text-red-600 mb-2">Danger Zone</h3>
               <p className="text-sm text-gray-600 mb-4">
-                Account deletion is not available yet. Contact support if you
-                need to delete your account.
+                Account deletion is not available yet. Contact support if you need to delete your
+                account.
               </p>
             </div>
           </div>

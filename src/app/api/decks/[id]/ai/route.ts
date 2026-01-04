@@ -14,12 +14,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getDeckById, saveDeckFromSchema, dbDeckToSchema } from "@/lib/db/deck";
-import { aiShortenSlide, aiSplitSlide, aiRepairSlide, getSlideViolations } from "@/lib/ai/edit-actions";
-import { transformSlideServer } from "@/lib/ai/slide-agent";
 import {
-  buildImagePrompt,
-  updateSlideWithImage,
-} from "@/lib/ai/image-generation";
+  aiShortenSlide,
+  aiSplitSlide,
+  aiRepairSlide,
+  getSlideViolations,
+} from "@/lib/ai/edit-actions";
+import { transformSlideServer } from "@/lib/ai/slide-agent";
+import { buildImagePrompt, updateSlideWithImage } from "@/lib/ai/image-generation";
 import { getImageClient, ImageError } from "@/lib/ai/image-client";
 import { uploadFile, generateSignedUrl } from "@/lib/storage/s3-client";
 import type { Deck } from "@/lib/schemas/deck";
@@ -60,10 +62,7 @@ const AIActionSchema = z.discriminatedUnion("action", [
 // POST /api/decks/[id]/ai
 // ============================================================================
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const body = await request.json();
@@ -100,7 +99,10 @@ export async function POST(
     // Handle repair_all action (no slideIndex required)
     if (action === "repair_all") {
       // Find all slides with violations
-      const slidesWithViolations: Array<{ index: number; violations: ReturnType<typeof getSlideViolations> }> = [];
+      const slidesWithViolations: Array<{
+        index: number;
+        violations: ReturnType<typeof getSlideViolations>;
+      }> = [];
 
       for (let i = 0; i < deckSchema.slides.length; i++) {
         const slideViolations = getSlideViolations(deckSchema.slides[i]);
@@ -146,7 +148,7 @@ export async function POST(
         } catch (error) {
           errors.push({
             slideIndex: index,
-            error: error instanceof Error ? error.message : "Ukjent feil"
+            error: error instanceof Error ? error.message : "Ukjent feil",
           });
         }
       }
@@ -157,9 +159,10 @@ export async function POST(
         repairedCount,
         totalWithViolations: slidesWithViolations.length,
         errors: errors.length > 0 ? errors : undefined,
-        message: errors.length > 0
-          ? `Reparerte ${repairedCount} av ${slidesWithViolations.length} slides (${errors.length} feilet)`
-          : `Reparerte ${repairedCount} slides`,
+        message:
+          errors.length > 0
+            ? `Reparerte ${repairedCount} av ${slidesWithViolations.length} slides (${errors.length} feilet)`
+            : `Reparerte ${repairedCount} slides`,
         action: "repair_all",
       });
     }

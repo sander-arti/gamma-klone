@@ -69,10 +69,7 @@ export interface SpotlightProps {
 // Default Fuzzy Search
 // ============================================================================
 
-function defaultFuzzySearch(
-  query: string,
-  items: SpotlightItem[]
-): SpotlightItem[] {
+function defaultFuzzySearch(query: string, items: SpotlightItem[]): SpotlightItem[] {
   if (!query.trim()) return items;
 
   const queryLower = query.toLowerCase();
@@ -265,9 +262,7 @@ export function Spotlight({
   useEffect(() => {
     if (!listRef.current) return;
 
-    const selectedElement = listRef.current.querySelector(
-      `[data-index="${selectedIndex}"]`
-    );
+    const selectedElement = listRef.current.querySelector(`[data-index="${selectedIndex}"]`);
     if (selectedElement) {
       selectedElement.scrollIntoView({ block: "nearest" });
     }
@@ -279,16 +274,12 @@ export function Spotlight({
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex((prev) =>
-            prev < flatItems.length - 1 ? prev + 1 : 0
-          );
+          setSelectedIndex((prev) => (prev < flatItems.length - 1 ? prev + 1 : 0));
           break;
 
         case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex((prev) =>
-            prev > 0 ? prev - 1 : flatItems.length - 1
-          );
+          setSelectedIndex((prev) => (prev > 0 ? prev - 1 : flatItems.length - 1));
           break;
 
         case "Enter":
@@ -306,13 +297,9 @@ export function Spotlight({
         case "Tab":
           e.preventDefault();
           if (e.shiftKey) {
-            setSelectedIndex((prev) =>
-              prev > 0 ? prev - 1 : flatItems.length - 1
-            );
+            setSelectedIndex((prev) => (prev > 0 ? prev - 1 : flatItems.length - 1));
           } else {
-            setSelectedIndex((prev) =>
-              prev < flatItems.length - 1 ? prev + 1 : 0
-            );
+            setSelectedIndex((prev) => (prev < flatItems.length - 1 ? prev + 1 : 0));
           }
           break;
       }
@@ -344,10 +331,7 @@ export function Spotlight({
         data-index={index}
         className={`
           w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200
-          ${isSelected
-            ? "bg-emerald-50 text-gray-900"
-            : "hover:bg-[#f5f3f0] text-gray-700"
-          }
+          ${isSelected ? "bg-emerald-50 text-gray-900" : "hover:bg-[#f5f3f0] text-gray-700"}
         `}
         onClick={() => onSelect(item)}
         onMouseEnter={() => setSelectedIndex(index)}
@@ -418,10 +402,7 @@ export function Spotlight({
         </div>
 
         {/* Results list - ARTI Premium */}
-        <div
-          ref={listRef}
-          className="max-h-[50vh] overflow-y-auto"
-        >
+        <div ref={listRef} className="max-h-[50vh] overflow-y-auto">
           {flatItems.length === 0 ? (
             <div className="px-4 py-8 text-center text-gray-500">
               {emptyState ?? "Ingen resultater funnet"}
@@ -445,9 +426,7 @@ export function Spotlight({
                       {categoryLabels[category] ?? category}
                     </div>
                   )}
-                  {categoryItems.map((item, i) =>
-                    renderItem(item, startIndex + i)
-                  )}
+                  {categoryItems.map((item, i) => renderItem(item, startIndex + i))}
                 </div>
               );
             })
@@ -459,9 +438,7 @@ export function Spotlight({
 
         {/* Footer - ARTI Premium */}
         {footer && (
-          <div className="px-4 py-2.5 border-t border-[#e5e2dd] bg-[#faf8f5]/80">
-            {footer}
-          </div>
+          <div className="px-4 py-2.5 border-t border-[#e5e2dd] bg-[#faf8f5]/80">{footer}</div>
         )}
       </div>
     </div>

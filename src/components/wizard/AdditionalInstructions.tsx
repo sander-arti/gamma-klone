@@ -70,12 +70,8 @@ export function AdditionalInstructions({
     <div className="space-y-4">
       {/* Header */}
       <div className="pb-4 border-b border-gray-200">
-        <h3 className="text-sm font-medium text-gray-900">
-          Tilleggsinstruksjoner
-        </h3>
-        <p className="text-xs text-gray-500 mt-0.5">
-          Gi AI ekstra veiledning for presentasjonen
-        </p>
+        <h3 className="text-sm font-medium text-gray-900">Tilleggsinstruksjoner</h3>
+        <p className="text-xs text-gray-500 mt-0.5">Gi AI ekstra veiledning for presentasjonen</p>
       </div>
 
       {/* Textarea */}
@@ -83,10 +79,7 @@ export function AdditionalInstructions({
         <div
           className={`
             relative rounded-lg border-2 transition-all
-            ${isFocused
-              ? "border-emerald-400 ring-2 ring-emerald-100"
-              : "border-gray-200"
-            }
+            ${isFocused ? "border-emerald-400 ring-2 ring-emerald-100" : "border-gray-200"}
             ${disabled ? "bg-gray-50" : "bg-white"}
           `}
         >
@@ -111,12 +104,7 @@ export function AdditionalInstructions({
             <span
               className={`
                 text-xs font-mono
-                ${isOverLimit
-                  ? "text-red-500"
-                  : isNearLimit
-                  ? "text-amber-500"
-                  : "text-gray-400"
-                }
+                ${isOverLimit ? "text-red-500" : isNearLimit ? "text-amber-500" : "text-gray-400"}
               `}
             >
               {charCount}/{MAX_CHARS}
@@ -136,9 +124,10 @@ export function AdditionalInstructions({
                 disabled={disabled || isOverLimit}
                 className={`
                   px-2.5 py-1 text-xs rounded-full border transition-all
-                  ${disabled
-                    ? "bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-emerald-300 hover:text-emerald-600 cursor-pointer"
+                  ${
+                    disabled
+                      ? "bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-emerald-300 hover:text-emerald-600 cursor-pointer"
                   }
                 `}
               >
@@ -167,12 +156,8 @@ export function AdditionalInstructions({
                   <Icon className="w-3.5 h-3.5 text-emerald-500" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-gray-700">
-                    {tip.title}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    {tip.description}
-                  </p>
+                  <p className="text-xs font-medium text-gray-700">{tip.title}</p>
+                  <p className="text-xs text-gray-500">{tip.description}</p>
                 </div>
               </motion.div>
             );

@@ -165,7 +165,9 @@ function extractKeywords(slide: Slide, analysis?: ContentAnalysis): string[] {
     // Extract capitalized words and key phrases (simple heuristic)
     const titleWords = title
       .split(/\s+/)
-      .filter((w) => w.length > 3 && !/^(og|med|for|til|fra|som|det|den|de|en|et|i|på|av)$/i.test(w))
+      .filter(
+        (w) => w.length > 3 && !/^(og|med|for|til|fra|som|det|den|de|en|et|i|på|av)$/i.test(w)
+      )
       .slice(0, 3);
     keywords.push(...titleWords);
   }
@@ -194,9 +196,7 @@ function extractKeywords(slide: Slide, analysis?: ContentAnalysis): string[] {
   }
 
   // Dedupe and limit to 5 keywords, max 40 chars each
-  return [...new Set(keywords)]
-    .map((k) => k.slice(0, 40))
-    .slice(0, 5);
+  return [...new Set(keywords)].map((k) => k.slice(0, 40)).slice(0, 5);
 }
 
 /**
@@ -246,9 +246,7 @@ export function buildImagePrompt(
 
   // Phase 7 Sprint 4: Extract semantic keywords from analysis
   const keywords = extractKeywords(slide, contentAnalysis);
-  const keywordsText = keywords.length > 0
-    ? `Key concepts: ${keywords.join(", ")}.`
-    : "";
+  const keywordsText = keywords.length > 0 ? `Key concepts: ${keywords.join(", ")}.` : "";
 
   // Build prompt based on slide type with analysis-enhanced context
   let prompt = "";
@@ -292,7 +290,10 @@ export function buildImagePrompt(
 
     case "icon_cards_with_image": {
       // Phase 7 Sprint 4: Include feature names in prompt
-      const featuresText = contentAnalysis?.features?.slice(0, 3).map(f => f.title).join(", ");
+      const featuresText = contentAnalysis?.features
+        ?.slice(0, 3)
+        .map((f) => f.title)
+        .join(", ");
       prompt = `Professional concept image for "${slideTitle}". ${featuresText ? `Features: ${featuresText}.` : ""} ${keywordsText} Modern, clean aesthetic that complements icon cards. Subtle, not overpowering. Premium business photography.`;
       break;
     }
@@ -300,9 +301,10 @@ export function buildImagePrompt(
     case "timeline_roadmap": {
       // Phase 7 Sprint 4: Include phases/steps in prompt
       const steps = contentAnalysis?.sequentialProcess?.slice(0, 3);
-      const phasesText = steps && steps.length > 0
-        ? `Phases: ${steps.map(s => s.text.slice(0, 25)).join(", ")}.`
-        : "";
+      const phasesText =
+        steps && steps.length > 0
+          ? `Phases: ${steps.map((s) => s.text.slice(0, 25)).join(", ")}.`
+          : "";
       prompt = `Conceptual image representing progress and milestones for "${slideTitle}". ${phasesText} ${keywordsText} Abstract or architectural imagery suggesting journey, phases, or progression. Modern, clean, aspirational.`;
       break;
     }
@@ -501,17 +503,14 @@ export async function generateImagesForDeck(
     onProgress,
     skipSlideIndices = [],
     analysis,
-    maxRetriesPerSlide = 1,  // Reduced from 3 to minimize wait time
-    baseDelayMs = 3000,      // Increased from 2000 to prevent rate limits proactively
+    maxRetriesPerSlide = 1, // Reduced from 3 to minimize wait time
+    baseDelayMs = 3000, // Increased from 2000 to prevent rate limits proactively
   } = options;
 
   // Find slides that need images
   const slidesToProcess = deck.slides
     .map((slide, index) => ({ slide, index }))
-    .filter(
-      ({ slide, index }) =>
-        !skipSlideIndices.includes(index) && shouldGenerateImage(slide)
-    );
+    .filter(({ slide, index }) => !skipSlideIndices.includes(index) && shouldGenerateImage(slide));
 
   if (slidesToProcess.length === 0) {
     return deck;
@@ -534,9 +533,10 @@ export async function generateImagesForDeck(
       slideIndex: index,
       imageIndex: i + 1, // 1-based image counter (not deck position)
       totalImages,
-      message: currentRetries > 0
-        ? `Regenerer bilde ${i + 1}/${totalImages} for slide ${index + 1} (forsøk ${currentRetries + 1})...`
-        : `Genererer bilde ${i + 1}/${totalImages} for slide ${index + 1}...`,
+      message:
+        currentRetries > 0
+          ? `Regenerer bilde ${i + 1}/${totalImages} for slide ${index + 1} (forsøk ${currentRetries + 1})...`
+          : `Genererer bilde ${i + 1}/${totalImages} for slide ${index + 1}...`,
     });
 
     try {
@@ -606,9 +606,7 @@ export async function generateImagesForDeck(
             continue;
           } else {
             // Max retries reached
-            console.error(
-              `Slide ${index} failed after ${maxRetriesPerSlide} rate-limit retries`
-            );
+            console.error(`Slide ${index} failed after ${maxRetriesPerSlide} rate-limit retries`);
             failedImages.push({
               slideIndex: index,
               error: `Rate limited - prøvde ${maxRetriesPerSlide} ganger`,
@@ -671,17 +669,14 @@ export async function generateImagesForDeckWithResult(
     onProgress,
     skipSlideIndices = [],
     analysis,
-    maxRetriesPerSlide = 1,  // Reduced from 3 to minimize wait time
-    baseDelayMs = 3000,      // Increased from 2000 to prevent rate limits proactively
+    maxRetriesPerSlide = 1, // Reduced from 3 to minimize wait time
+    baseDelayMs = 3000, // Increased from 2000 to prevent rate limits proactively
   } = options;
 
   // Find slides that need images
   const slidesToProcess = deck.slides
     .map((slide, index) => ({ slide, index }))
-    .filter(
-      ({ slide, index }) =>
-        !skipSlideIndices.includes(index) && shouldGenerateImage(slide)
-    );
+    .filter(({ slide, index }) => !skipSlideIndices.includes(index) && shouldGenerateImage(slide));
 
   if (slidesToProcess.length === 0) {
     return {
@@ -706,9 +701,10 @@ export async function generateImagesForDeckWithResult(
       slideIndex: index,
       imageIndex: i + 1,
       totalImages,
-      message: currentRetries > 0
-        ? `Regenerer bilde ${i + 1}/${totalImages} for slide ${index + 1} (forsøk ${currentRetries + 1})...`
-        : `Genererer bilde ${i + 1}/${totalImages} for slide ${index + 1}...`,
+      message:
+        currentRetries > 0
+          ? `Regenerer bilde ${i + 1}/${totalImages} for slide ${index + 1} (forsøk ${currentRetries + 1})...`
+          : `Genererer bilde ${i + 1}/${totalImages} for slide ${index + 1}...`,
     });
 
     try {

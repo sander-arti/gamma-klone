@@ -120,8 +120,8 @@ export function TimelineStepBlock({
         style={{
           flex: isVertical ? 1 : undefined,
           minWidth: !isVertical ? "clamp(120px, 20cqw, 200px)" : undefined,
-          marginLeft: isVertical ? 'var(--theme-spacing-md, 1rem)' : undefined,
-          marginTop: !isVertical ? 'var(--theme-spacing-md, 1rem)' : undefined,
+          marginLeft: isVertical ? "var(--theme-spacing-md, 1rem)" : undefined,
+          marginTop: !isVertical ? "var(--theme-spacing-md, 1rem)" : undefined,
         }}
       >
         {/* Title - uses heading typography for horizontal, subheading for vertical */}
@@ -130,7 +130,8 @@ export function TimelineStepBlock({
             fontSize: isVertical
               ? "var(--theme-typography-subheading-size, 1.125rem)"
               : "var(--theme-typography-heading-size, clamp(1.125rem, 1.8cqw, 1.375rem))",
-            fontWeight: "var(--theme-typography-heading-weight, 600)" as React.CSSProperties['fontWeight'],
+            fontWeight:
+              "var(--theme-typography-heading-weight, 600)" as React.CSSProperties["fontWeight"],
             color: "var(--theme-color-foreground, #0f172a)",
             lineHeight: "var(--theme-typography-heading-line-height, 1.3)",
           }}
@@ -142,7 +143,7 @@ export function TimelineStepBlock({
         {description && (
           <div
             style={{
-              marginTop: 'var(--theme-spacing-sm, 0.5rem)',
+              marginTop: "var(--theme-spacing-sm, 0.5rem)",
               fontSize: isVertical
                 ? "var(--theme-typography-body-size, 0.9375rem)"
                 : "var(--theme-typography-body-size, clamp(0.875rem, 1.3cqw, 1rem))",

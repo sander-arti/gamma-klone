@@ -255,7 +255,11 @@ export class GenerationPipeline {
       return outline;
     } catch (error) {
       if (error instanceof LLMError) {
-        throw new PipelineError(`Outline generation failed: ${error.message}`, "OUTLINE_FAILED", error);
+        throw new PipelineError(
+          `Outline generation failed: ${error.message}`,
+          "OUTLINE_FAILED",
+          error
+        );
       }
       throw error;
     }
@@ -290,9 +294,10 @@ export class GenerationPipeline {
 
         // Calculate delta (only the new characters)
         const isNewBlock = extracted.blockIndex !== lastBlockIndex;
-        const delta = isNewBlock || !lastReportedText
-          ? extracted.text
-          : extracted.text.slice(lastReportedText.length);
+        const delta =
+          isNewBlock || !lastReportedText
+            ? extracted.text
+            : extracted.text.slice(lastReportedText.length);
 
         // Only report if there's new content
         // Not awaited - these are fire-and-forget UI updates
@@ -303,9 +308,7 @@ export class GenerationPipeline {
             totalSlides,
             blockIndex: extracted.blockIndex,
             blockKind: extracted.kind,
-            message: isNewBlock
-              ? `Block ${extracted.blockIndex + 1} started`
-              : "Streaming",
+            message: isNewBlock ? `Block ${extracted.blockIndex + 1} started` : "Streaming",
             delta,
           });
         }
@@ -453,7 +456,10 @@ export class GenerationPipeline {
 
         if (needsRepairData) {
           try {
-            const repaired = await this.repairSlide(needsRepairData.slide, needsRepairData.violations);
+            const repaired = await this.repairSlide(
+              needsRepairData.slide,
+              needsRepairData.violations
+            );
             repairedSlides.push(...repaired);
             slideOffset += repaired.length - 1;
           } catch (error) {
@@ -490,7 +496,11 @@ export class GenerationPipeline {
 
       // Re-validate after deterministic fixes
       const postFixDeck: Deck = {
-        deck: { title: "Temp", language: request.language, themeId: request.themeId ?? "nordic_light" },
+        deck: {
+          title: "Temp",
+          language: request.language,
+          themeId: request.themeId ?? "nordic_light",
+        },
         slides: currentSlides,
       };
       const postFixResult = validateDeck(postFixDeck);
@@ -600,7 +610,8 @@ export class GenerationPipeline {
             const itemIndex = parseInt(match[1], 10);
             // Find the card-type blocks and truncate the right one
             const cardBlocks = fixedBlocks.filter(
-              (b) => b.kind === "icon_card" || b.kind === "numbered_card" || b.kind === "timeline_step"
+              (b) =>
+                b.kind === "icon_card" || b.kind === "numbered_card" || b.kind === "timeline_step"
             );
             if (cardBlocks[itemIndex] && cardBlocks[itemIndex].text) {
               cardBlocks[itemIndex].text = this.truncateAtWordBoundary(
@@ -631,7 +642,9 @@ export class GenerationPipeline {
       };
     }
 
-    console.log(`[pipeline] Applied deterministic fixes to ${validationResult.slideResults.filter(r => !r.isValid).length} slides`);
+    console.log(
+      `[pipeline] Applied deterministic fixes to ${validationResult.slideResults.filter((r) => !r.isValid).length} slides`
+    );
 
     return fixedSlides;
   }
@@ -754,10 +767,14 @@ export class GenerationPipeline {
     }
 
     if (currentCount > targetCount) {
-      console.log(`[pipeline] Trimming ${currentCount - targetCount} slides to reach ${targetCount}`);
+      console.log(
+        `[pipeline] Trimming ${currentCount - targetCount} slides to reach ${targetCount}`
+      );
       return this.trimComposedOutline(outline, targetCount);
     } else {
-      console.log(`[pipeline] Padding ${targetCount - currentCount} slides to reach ${targetCount}`);
+      console.log(
+        `[pipeline] Padding ${targetCount - currentCount} slides to reach ${targetCount}`
+      );
       return this.padComposedOutline(outline, targetCount, analysis);
     }
   }
@@ -773,7 +790,13 @@ export class GenerationPipeline {
     const slides = [...outline.slides];
 
     // Identify structural slides that should NOT be removed
-    const structuralTypes: SlideType[] = ["cover", "agenda", "summary_next_steps", "section_header", "quote_callout"];
+    const structuralTypes: SlideType[] = [
+      "cover",
+      "agenda",
+      "summary_next_steps",
+      "section_header",
+      "quote_callout",
+    ];
 
     // Find removable content slides (from the end, before summary)
     const removableIndices: number[] = [];
@@ -872,7 +895,9 @@ export class GenerationPipeline {
       newSlides.splice(insertionIndex + i, 0, newSlide);
     }
 
-    console.log(`[pipeline] Added ${slidesToAdd} slides: ${additionalSlideTypes.map((s) => s.type).join(", ")}`);
+    console.log(
+      `[pipeline] Added ${slidesToAdd} slides: ${additionalSlideTypes.map((s) => s.type).join(", ")}`
+    );
 
     return { ...outline, slides: newSlides };
   }
@@ -938,7 +963,8 @@ export class GenerationPipeline {
     if (composerStats.slidesAdded > 0) {
       await this.report({
         stage: "outline",
-        message: `Composed: ${rawOutline.slides.length} → ${composedOutline.slides.length} slides (${composerStats.addedCover ? "+cover " : ""}${composerStats.addedAgenda ? "+agenda " : ""}${composerStats.addedSummary ? "+summary" : ""})`.trim(),
+        message:
+          `Composed: ${rawOutline.slides.length} → ${composedOutline.slides.length} slides (${composerStats.addedCover ? "+cover " : ""}${composerStats.addedAgenda ? "+agenda " : ""}${composerStats.addedSummary ? "+summary" : ""})`.trim(),
       });
     }
 
@@ -946,10 +972,16 @@ export class GenerationPipeline {
     // This is the ONLY place where slide count is adjusted
     let countEnforcedOutline = composedOutline;
     if (request.numSlides) {
-      countEnforcedOutline = this.enforceExactSlideCount(composedOutline, request.numSlides, analysis);
+      countEnforcedOutline = this.enforceExactSlideCount(
+        composedOutline,
+        request.numSlides,
+        analysis
+      );
 
       if (countEnforcedOutline.slides.length !== request.numSlides) {
-        console.warn(`[pipeline] Count enforcement failed: wanted ${request.numSlides}, got ${countEnforcedOutline.slides.length}`);
+        console.warn(
+          `[pipeline] Count enforcement failed: wanted ${request.numSlides}, got ${countEnforcedOutline.slides.length}`
+        );
       }
 
       await this.report({
@@ -983,19 +1015,13 @@ export class GenerationPipeline {
     const templateId = request.templateId;
 
     if (!templateId) {
-      throw new PipelineError(
-        "No template ID provided",
-        "TEMPLATE_NOT_FOUND"
-      );
+      throw new PipelineError("No template ID provided", "TEMPLATE_NOT_FOUND");
     }
 
     const template = getGoldenTemplate(templateId);
 
     if (!template) {
-      throw new PipelineError(
-        `Template not found: ${templateId}`,
-        "TEMPLATE_NOT_FOUND"
-      );
+      throw new PipelineError(`Template not found: ${templateId}`, "TEMPLATE_NOT_FOUND");
     }
 
     await this.report({
@@ -1111,11 +1137,7 @@ export class GenerationPipeline {
         prompt = buildGoldenCTAPrompt(request.inputText, request.language);
         break;
       case "content":
-        prompt = buildGoldenContentPrompt(
-          request.inputText,
-          request.language,
-          slot.purpose
-        );
+        prompt = buildGoldenContentPrompt(request.inputText, request.language, slot.purpose);
         break;
       default:
         // Generic prompt for other slot types
@@ -1130,25 +1152,25 @@ Return JSON with title, body, and items as appropriate.`;
     const SlotContentSchema = z.object({
       title: z.string().optional(),
       body: z.string().optional(),
-      items: z.array(z.object({
-        text: z.string().optional(),
-        value: z.string().optional(),
-        label: z.string().optional(),
-        sublabel: z.string().optional(),
-        icon: z.string().optional(),
-        description: z.string().optional(),
-      })).optional(),
+      items: z
+        .array(
+          z.object({
+            text: z.string().optional(),
+            value: z.string().optional(),
+            label: z.string().optional(),
+            sublabel: z.string().optional(),
+            icon: z.string().optional(),
+            description: z.string().optional(),
+          })
+        )
+        .optional(),
       imageDescription: z.string().optional(),
     });
 
     const systemPrompt = `You are a professional presentation content writer.
 Generate concise, high-quality content. Return ONLY valid JSON, no markdown.`;
 
-    const result = await this.llm.generateJSON(
-      systemPrompt,
-      prompt,
-      SlotContentSchema
-    );
+    const result = await this.llm.generateJSON(systemPrompt, prompt, SlotContentSchema);
 
     return {
       position: slot.position,
@@ -1161,10 +1183,7 @@ Generate concise, high-quality content. Return ONLY valid JSON, no markdown.`;
   /**
    * Convert slot contents to Slide objects
    */
-  private convertSlotsToSlides(
-    template: GoldenTemplate,
-    slotContents: SlotContent[]
-  ): Slide[] {
+  private convertSlotsToSlides(template: GoldenTemplate, slotContents: SlotContent[]): Slide[] {
     return template.slots.map((slot, index) => {
       const content = slotContents[index];
       const slideType = this.goldenSlideTypeToSlideType(slot.slideType);
@@ -1198,7 +1217,9 @@ Generate concise, high-quality content. Return ONLY valid JSON, no markdown.`;
           // Convert to bullets block
           blocks.push({
             kind: "bullets",
-            items: content.items.map((item) => item.text ?? item.label ?? "").filter(Boolean) as string[],
+            items: content.items
+              .map((item) => item.text ?? item.label ?? "")
+              .filter(Boolean) as string[],
           });
         }
       }

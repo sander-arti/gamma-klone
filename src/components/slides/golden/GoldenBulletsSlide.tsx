@@ -38,7 +38,8 @@ export function GoldenBulletsSlide({
 
   // Get bullets from slotContent or slide blocks (max 5)
   // The bullets block has an `items` array property
-  const bullets = slotContent?.items?.slice(0, 5).map((item) => item.text) ??
+  const bullets =
+    slotContent?.items?.slice(0, 5).map((item) => item.text) ??
     (bulletsBlock?.items ?? []).slice(0, 5);
 
   return (

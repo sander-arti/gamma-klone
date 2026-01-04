@@ -139,9 +139,10 @@ export function ThemeCardGrid({ selectedTheme, onSelect }: ThemeCardGridProps) {
             className={`
               relative flex items-center gap-3 py-2.5 px-3 rounded-xl border-2 transition-all text-left
               focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1
-              ${isSelected
-                ? "border-transparent bg-emerald-50"
-                : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+              ${
+                isSelected
+                  ? "border-transparent bg-emerald-50"
+                  : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
               }
             `}
           >
@@ -165,7 +166,9 @@ export function ThemeCardGrid({ selectedTheme, onSelect }: ThemeCardGridProps) {
             </div>
 
             {/* Theme name */}
-            <span className={`text-sm font-medium truncate ${isSelected ? "text-emerald-700" : "text-gray-700"}`}>
+            <span
+              className={`text-sm font-medium truncate ${isSelected ? "text-emerald-700" : "text-gray-700"}`}
+            >
               {theme.name}
             </span>
 

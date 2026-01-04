@@ -48,10 +48,12 @@ export function NumberedCardBlock({
         style={{
           width: "clamp(2.25rem, 3cqw, 2.75rem)",
           height: "clamp(2.25rem, 3cqw, 2.75rem)",
-          background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, #3b82f6 0%, #6366f1 100%))",
+          background:
+            "var(--theme-effects-gradient-primary, linear-gradient(135deg, #3b82f6 0%, #6366f1 100%))",
           color: "var(--theme-color-primary-foreground, #ffffff)",
           fontSize: "var(--theme-typography-subheading-size, clamp(1rem, 1.4cqw, 1.125rem))",
-          fontWeight: "var(--theme-typography-heading-weight, 700)" as React.CSSProperties['fontWeight'],
+          fontWeight:
+            "var(--theme-typography-heading-weight, 700)" as React.CSSProperties["fontWeight"],
           marginBottom: "var(--theme-spacing-sm, clamp(0.75rem, 1.2cqw, 1rem))",
           boxShadow: "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.25))",
         }}
@@ -63,7 +65,8 @@ export function NumberedCardBlock({
       <div
         style={{
           fontSize: "var(--theme-typography-subheading-size, clamp(1rem, 1.5cqw, 1.125rem))",
-          fontWeight: "var(--theme-typography-subheading-weight, 600)" as React.CSSProperties['fontWeight'],
+          fontWeight:
+            "var(--theme-typography-subheading-weight, 600)" as React.CSSProperties["fontWeight"],
           color: "var(--theme-color-foreground, #0f172a)",
           lineHeight: "var(--theme-typography-subheading-line-height, 1.3)",
           letterSpacing: "var(--theme-typography-letter-spacing-tight, -0.01em)",

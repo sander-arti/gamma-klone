@@ -12,11 +12,7 @@
  */
 
 import { useRef, useEffect, useCallback, useState } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 
 type EditableField = "value" | "label" | "sublabel" | null;
 
@@ -94,12 +90,7 @@ export function EditableStatBlock({
   // Handle input changes
   const handleInput = useCallback(
     (field: "value" | "label" | "sublabel") => {
-      const ref =
-        field === "value"
-          ? valueRef
-          : field === "label"
-            ? labelRef
-            : sublabelRef;
+      const ref = field === "value" ? valueRef : field === "label" ? labelRef : sublabelRef;
       if (ref.current && onFieldChange) {
         const newText = ref.current.textContent ?? "";
         onFieldChange(field, newText);
@@ -118,10 +109,7 @@ export function EditableStatBlock({
     (e: React.FocusEvent) => {
       // Small delay to allow focus to move to another field within the component
       requestAnimationFrame(() => {
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(document.activeElement)
-        ) {
+        if (containerRef.current && !containerRef.current.contains(document.activeElement)) {
           setFocusedField(null);
           onBlur?.();
         }
@@ -156,12 +144,7 @@ export function EditableStatBlock({
   const handleKeyDown = useCallback(
     (field: EditableField, e: React.KeyboardEvent) => {
       const maxLength = getMaxLength(field);
-      const ref =
-        field === "value"
-          ? valueRef
-          : field === "label"
-            ? labelRef
-            : sublabelRef;
+      const ref = field === "value" ? valueRef : field === "label" ? labelRef : sublabelRef;
 
       // Tab to next field
       if (e.key === "Tab" && !e.shiftKey) {
@@ -216,34 +199,24 @@ export function EditableStatBlock({
   );
 
   // Handle paste
-  const handlePaste = useCallback(
-    (field: EditableField, e: React.ClipboardEvent) => {
-      e.preventDefault();
-      const maxLength = getMaxLength(field);
-      const ref =
-        field === "value"
-          ? valueRef
-          : field === "label"
-            ? labelRef
-            : sublabelRef;
+  const handlePaste = useCallback((field: EditableField, e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const maxLength = getMaxLength(field);
+    const ref = field === "value" ? valueRef : field === "label" ? labelRef : sublabelRef;
 
-      const pastedText = e.clipboardData.getData("text/plain");
-      const currentText = ref.current?.textContent ?? "";
-      const selection = window.getSelection();
-      const selectedLength = selection?.toString().length ?? 0;
-      const availableSpace = maxLength - currentText.length + selectedLength;
-      const textToInsert = pastedText.slice(0, availableSpace);
+    const pastedText = e.clipboardData.getData("text/plain");
+    const currentText = ref.current?.textContent ?? "";
+    const selection = window.getSelection();
+    const selectedLength = selection?.toString().length ?? 0;
+    const availableSpace = maxLength - currentText.length + selectedLength;
+    const textToInsert = pastedText.slice(0, availableSpace);
 
-      document.execCommand("insertText", false, textToInsert);
-    },
-    []
-  );
+    document.execCommand("insertText", false, textToInsert);
+  }, []);
 
   // Apply scale to font sizes
   const valueSize =
-    scale === 1
-      ? "clamp(2.5rem, 4cqw, 3.5rem)"
-      : `calc(clamp(2.5rem, 4cqw, 3.5rem) * ${scale})`;
+    scale === 1 ? "clamp(2.5rem, 4cqw, 3.5rem)" : `calc(clamp(2.5rem, 4cqw, 3.5rem) * ${scale})`;
 
   const labelSize =
     scale === 1
@@ -267,10 +240,7 @@ export function EditableStatBlock({
   };
 
   // Character counter for focused field
-  const renderCharCounter = (
-    field: "value" | "label" | "sublabel",
-    currentLength: number
-  ) => {
+  const renderCharCounter = (field: "value" | "label" | "sublabel", currentLength: number) => {
     const maxLength = getMaxLength(field);
     const isOver = exceedsLimit(currentLength, maxLength);
     const isApproaching = isApproachingLimit(currentLength, maxLength);
@@ -278,11 +248,7 @@ export function EditableStatBlock({
     return (
       <span
         className={`text-xs ml-2 ${
-          isOver
-            ? "text-red-500 font-medium"
-            : isApproaching
-              ? "text-amber-500"
-              : "text-gray-400"
+          isOver ? "text-red-500 font-medium" : isApproaching ? "text-amber-500" : "text-gray-400"
         }`}
       >
         {currentLength}/{maxLength}
@@ -290,17 +256,17 @@ export function EditableStatBlock({
     );
   };
 
-  const containerStyles = onClick && !isEditing
-    ? "cursor-pointer hover:ring-2 hover:ring-blue-200 hover:ring-offset-2 rounded transition-all"
-    : "";
+  const containerStyles =
+    onClick && !isEditing
+      ? "cursor-pointer hover:ring-2 hover:ring-blue-200 hover:ring-offset-2 rounded transition-all"
+      : "";
 
   return (
     <div
       ref={containerRef}
       className={`flex flex-col items-center justify-center text-center ${containerStyles} ${className}`}
       style={{
-        backgroundColor:
-          "var(--theme-color-background-subtle, rgba(0, 0, 0, 0.02))",
+        backgroundColor: "var(--theme-color-background-subtle, rgba(0, 0, 0, 0.02))",
         borderRadius: "var(--theme-effects-border-radius, 0.75rem)",
         padding: "clamp(1rem, 2cqw, 1.5rem)",
         minHeight:
@@ -321,8 +287,7 @@ export function EditableStatBlock({
             fontWeight:
               "var(--theme-typography-display-weight, 800)" as React.CSSProperties["fontWeight"],
             lineHeight: "var(--theme-typography-display-line-height, 1)",
-            letterSpacing:
-              "var(--theme-typography-display-letter-spacing, -0.03em)",
+            letterSpacing: "var(--theme-typography-display-letter-spacing, -0.03em)",
           }}
           contentEditable={isEditing}
           suppressContentEditableWarning
@@ -387,8 +352,7 @@ export function EditableStatBlock({
         >
           {sublabel || (isEditing ? "" : "")}
         </div>
-        {focusedField === "sublabel" &&
-          renderCharCounter("sublabel", (sublabel ?? "").length)}
+        {focusedField === "sublabel" && renderCharCounter("sublabel", (sublabel ?? "").length)}
       </div>
     </div>
   );

@@ -9,14 +9,14 @@
  * - Responsive positioning (top/right/bottom/left/center)
  */
 
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import { X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import type { TourStep } from '@/lib/onboarding/tour-steps';
-import { onboarding } from '@/lib/analytics/events';
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
+import { X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { TourStep } from "@/lib/onboarding/tour-steps";
+import { onboarding } from "@/lib/analytics/events";
 
 type ProductTourProps = {
   steps: TourStep[];
@@ -73,7 +73,7 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
   // Focus trap: keep focus within dialog
   useEffect(() => {
     const handleTabKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || !dialogRef.current) return;
+      if (e.key !== "Tab" || !dialogRef.current) return;
 
       const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -96,13 +96,13 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
       }
     };
 
-    window.addEventListener('keydown', handleTabKey);
-    return () => window.removeEventListener('keydown', handleTabKey);
+    window.addEventListener("keydown", handleTabKey);
+    return () => window.removeEventListener("keydown", handleTabKey);
   }, []);
 
   // Update target element rect when step changes
   useEffect(() => {
-    if (step.target === 'modal') {
+    if (step.target === "modal") {
       setTargetRect(null);
       return;
     }
@@ -128,13 +128,13 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
     };
 
     // Update on resize and scroll (debounced)
-    window.addEventListener('resize', debouncedUpdate);
-    window.addEventListener('scroll', debouncedUpdate, true);
+    window.addEventListener("resize", debouncedUpdate);
+    window.addEventListener("scroll", debouncedUpdate, true);
 
     return () => {
       clearTimeout(resizeTimeout);
-      window.removeEventListener('resize', debouncedUpdate);
-      window.removeEventListener('scroll', debouncedUpdate, true);
+      window.removeEventListener("resize", debouncedUpdate);
+      window.removeEventListener("scroll", debouncedUpdate, true);
     };
   }, [step]);
 
@@ -163,51 +163,51 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
-        case 'Escape':
+        case "Escape":
           handleSkip();
           break;
-        case 'ArrowRight':
-        case 'Enter':
+        case "ArrowRight":
+        case "Enter":
           handleNext();
           break;
-        case 'ArrowLeft':
+        case "ArrowLeft":
           handlePrevious();
           break;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleNext, handlePrevious, handleSkip]);
 
   // Calculate tooltip position based on target and preferred position (memoized)
   const tooltipStyle = useMemo((): React.CSSProperties => {
-    if (!targetRect || step.position === 'center') {
+    if (!targetRect || step.position === "center") {
       return {
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
       };
     }
 
     const offset = 16;
-    const styles: React.CSSProperties = { position: 'fixed' };
+    const styles: React.CSSProperties = { position: "fixed" };
 
     switch (step.position) {
-      case 'right':
+      case "right":
         styles.left = targetRect.right + offset;
         styles.top = targetRect.top;
         break;
-      case 'bottom':
+      case "bottom":
         styles.left = targetRect.left;
         styles.top = targetRect.bottom + offset;
         break;
-      case 'left':
+      case "left":
         styles.right = window.innerWidth - targetRect.left + offset;
         styles.top = targetRect.top;
         break;
-      case 'top':
+      case "top":
         styles.left = targetRect.left;
         styles.bottom = window.innerHeight - targetRect.top + offset;
         break;
@@ -251,8 +251,7 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
               top: targetRect.top - 4,
               width: targetRect.width + 8,
               height: targetRect.height + 8,
-              boxShadow:
-                '0 0 0 4px rgba(139, 92, 246, 0.3), 0 0 0 9999px rgba(0, 0, 0, 0.5)',
+              boxShadow: "0 0 0 4px rgba(139, 92, 246, 0.3), 0 0 0 9999px rgba(0, 0, 0, 0.5)",
               zIndex: 9998,
             }}
           />
@@ -270,10 +269,7 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
         >
           {/* Header */}
           <div className="flex justify-between items-start mb-4">
-            <h3
-              id="tour-title"
-              className="text-lg font-semibold text-gray-900 pr-8"
-            >
+            <h3 id="tour-title" className="text-lg font-semibold text-gray-900 pr-8">
               {step.title}
             </h3>
             <button
@@ -286,38 +282,36 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
           </div>
 
           {/* Description */}
-          <p
-            id="tour-description"
-            className="text-gray-600 mb-6 leading-relaxed"
-          >
+          <p id="tour-description" className="text-gray-600 mb-6 leading-relaxed">
             {step.description}
           </p>
 
           {/* Live region for screen reader announcements */}
-          <div
-            className="sr-only"
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
+          <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
             Steg {currentStep + 1} av {steps.length}: {step.title}
           </div>
 
           {/* Footer */}
           <div className="flex justify-between items-center">
             {/* Progress dots */}
-            <div className="flex gap-1.5" role="progressbar" aria-valuenow={currentStep + 1} aria-valuemin={1} aria-valuemax={steps.length}>
+            <div
+              className="flex gap-1.5"
+              role="progressbar"
+              aria-valuenow={currentStep + 1}
+              aria-valuemin={1}
+              aria-valuemax={steps.length}
+            >
               {steps.map((_, i) => (
                 <div
                   key={i}
                   className={`w-2 h-2 rounded-full transition-all duration-200 ${
                     i === currentStep
-                      ? 'bg-violet-600 w-6'
+                      ? "bg-violet-600 w-6"
                       : i < currentStep
-                      ? 'bg-violet-400'
-                      : 'bg-gray-300'
+                        ? "bg-violet-400"
+                        : "bg-gray-300"
                   }`}
-                  aria-label={`Step ${i + 1} ${i === currentStep ? '(current)' : i < currentStep ? '(completed)' : '(upcoming)'}`}
+                  aria-label={`Step ${i + 1} ${i === currentStep ? "(current)" : i < currentStep ? "(completed)" : "(upcoming)"}`}
                 />
               ))}
             </div>
@@ -343,9 +337,13 @@ export function ProductTour({ steps, onComplete, onSkip }: ProductTourProps) {
               <button
                 onClick={handleNext}
                 className="px-4 py-2 text-sm bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-medium"
-                aria-label={isLast ? 'Fullfør tour' : `Gå til neste steg (${currentStep + 2} av ${steps.length})`}
+                aria-label={
+                  isLast
+                    ? "Fullfør tour"
+                    : `Gå til neste steg (${currentStep + 2} av ${steps.length})`
+                }
               >
-                {isLast ? 'Ferdig' : 'Neste'}
+                {isLast ? "Ferdig" : "Neste"}
               </button>
             </div>
           </div>

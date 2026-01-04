@@ -35,9 +35,7 @@ export interface SetExportJobResultInput {
 /**
  * Create a new export job
  */
-export async function createExportJob(
-  input: CreateExportJobInput
-): Promise<ExportJob> {
+export async function createExportJob(input: CreateExportJobInput): Promise<ExportJob> {
   const { deckId, format } = input;
 
   return prisma.exportJob.create({
@@ -200,9 +198,7 @@ export async function deleteExpiredExportJobs(): Promise<number> {
 /**
  * Get pending export jobs (for worker recovery)
  */
-export async function getPendingExportJobs(
-  limit: number = 10
-): Promise<ExportJob[]> {
+export async function getPendingExportJobs(limit: number = 10): Promise<ExportJob[]> {
   return prisma.exportJob.findMany({
     where: {
       status: {

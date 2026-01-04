@@ -120,9 +120,7 @@ export function GoldenSlideRenderer({
         return (
           <div className="golden-slide" data-golden-type={goldenSlideType}>
             <div className="flex items-center justify-center h-full">
-              <p className="text-lg text-gray-500">
-                Golden {goldenSlideType} slide coming soon
-              </p>
+              <p className="text-lg text-gray-500">Golden {goldenSlideType} slide coming soon</p>
             </div>
           </div>
         );
@@ -131,9 +129,7 @@ export function GoldenSlideRenderer({
         return (
           <div className="golden-slide">
             <div className="flex items-center justify-center h-full">
-              <p className="text-lg text-gray-500">
-                Unknown golden slide type: {goldenSlideType}
-              </p>
+              <p className="text-lg text-gray-500">Unknown golden slide type: {goldenSlideType}</p>
             </div>
           </div>
         );
@@ -157,7 +153,9 @@ export function GoldenSlideRenderer({
  * Check if a deck should use golden rendering
  */
 export function isGoldenDeck(templateId?: string): templateId is GoldenTemplateId {
-  return templateId === "executive_brief" ||
-         templateId === "feature_showcase" ||
-         templateId === "project_update";
+  return (
+    templateId === "executive_brief" ||
+    templateId === "feature_showcase" ||
+    templateId === "project_update"
+  );
 }

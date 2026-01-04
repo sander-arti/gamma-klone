@@ -35,21 +35,13 @@ export function BlockRenderer({
 }: BlockRendererProps) {
   switch (block.kind) {
     case "title":
-      return (
-        <TitleBlock
-          text={block.text ?? ""}
-          level={titleLevel}
-          className={className}
-        />
-      );
+      return <TitleBlock text={block.text ?? ""} level={titleLevel} className={className} />;
 
     case "text":
       return <TextBlock text={block.text ?? ""} className={className} />;
 
     case "bullets":
-      return (
-        <BulletsBlock items={block.items ?? []} className={className} />
-      );
+      return <BulletsBlock items={block.items ?? []} className={className} />;
 
     case "image":
       return (
@@ -64,21 +56,11 @@ export function BlockRenderer({
 
     case "table":
       return (
-        <TableBlock
-          columns={block.columns ?? []}
-          rows={block.rows ?? []}
-          className={className}
-        />
+        <TableBlock columns={block.columns ?? []} rows={block.rows ?? []} className={className} />
       );
 
     case "callout":
-      return (
-        <CalloutBlock
-          text={block.text ?? ""}
-          style={block.style}
-          className={className}
-        />
-      );
+      return <CalloutBlock text={block.text ?? ""} style={block.style} className={className} />;
 
     case "stat_block":
       return (

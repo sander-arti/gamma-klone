@@ -43,9 +43,9 @@ export function SummaryWithStatsSlide({
   // Dynamic sizing based on stat count to prevent overflow
   const statCount = statBlocks.length;
   const getStatScale = () => {
-    if (statCount <= 2) return 1;      // Full size for 1-2 stats
-    if (statCount === 3) return 0.75;   // 75% for 3 stats
-    return 0.6;                         // 60% for 4+ stats
+    if (statCount <= 2) return 1; // Full size for 1-2 stats
+    if (statCount === 3) return 0.75; // 75% for 3 stats
+    return 0.6; // 60% for 4+ stats
   };
   const statScale = getStatScale();
 
@@ -88,7 +88,9 @@ export function SummaryWithStatsSlide({
       // Stats inline with text
       return {
         display: "grid",
-        gridTemplateColumns: useHorizontalGrid ? `repeat(${Math.min(statCount, 4)}, 1fr)` : "repeat(auto-fit, minmax(150px, 1fr))",
+        gridTemplateColumns: useHorizontalGrid
+          ? `repeat(${Math.min(statCount, 4)}, 1fr)`
+          : "repeat(auto-fit, minmax(150px, 1fr))",
         gap: "var(--theme-spacing-block-gap, 1rem)",
         justifyContent: "center",
       };

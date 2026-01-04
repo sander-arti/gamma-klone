@@ -19,14 +19,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500/50",
+  primary: "bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500/50",
   secondary:
     "bg-white text-gray-700 border border-[#e5e2dd] hover:bg-[#f5f3f0] focus:ring-emerald-500/30",
-  ghost:
-    "bg-transparent text-gray-700 hover:bg-[#f0ede8] focus:ring-emerald-500/30",
-  danger:
-    "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500/50",
+  ghost: "bg-transparent text-gray-700 hover:bg-[#f0ede8] focus:ring-emerald-500/30",
+  danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500/50",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

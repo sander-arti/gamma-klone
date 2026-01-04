@@ -153,13 +153,7 @@ interface ProductJsonLdProps {
   }>;
 }
 
-export function ProductJsonLd({
-  name,
-  description,
-  url,
-  brand,
-  offers,
-}: ProductJsonLdProps) {
+export function ProductJsonLd({ name, description, url, brand, offers }: ProductJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",

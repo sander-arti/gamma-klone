@@ -30,8 +30,10 @@ export function AIActionsMenu({
 }: AIActionsMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { shorten, split, isLoading, currentAction, error, clearError } =
-    useSlideAIActions(deckId, slideIndex);
+  const { shorten, split, isLoading, currentAction, error, clearError } = useSlideAIActions(
+    deckId,
+    slideIndex
+  );
   const { addToast } = useToast();
 
   // Close menu when clicking outside
@@ -142,10 +144,7 @@ export function AIActionsMenu({
       {error && (
         <div className="absolute left-0 top-full mt-1 bg-red-50 border border-red-200 rounded-lg p-2 shadow-lg z-50 min-w-[200px]">
           <p className="text-xs text-red-700">{error}</p>
-          <button
-            onClick={clearError}
-            className="text-xs text-red-600 hover:text-red-800 mt-1"
-          >
+          <button onClick={clearError} className="text-xs text-red-600 hover:text-red-800 mt-1">
             Lukk
           </button>
         </div>

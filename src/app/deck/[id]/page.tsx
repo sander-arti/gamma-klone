@@ -69,7 +69,8 @@ function EditorContent({
     if (!imageBlock) return false;
 
     // Check if image already has URL (either in block or in generatedImages)
-    const hasUrl = Boolean(imageBlock.url) || Boolean(liveGeneratedImages[state.selectedSlideIndex]);
+    const hasUrl =
+      Boolean(imageBlock.url) || Boolean(liveGeneratedImages[state.selectedSlideIndex]);
 
     // If no URL yet and we're generating images, this slide's image is being generated
     return !hasUrl;
@@ -108,7 +109,12 @@ function EditorContent({
   }, [deckId, state.deck, actions]);
 
   // Auto-save hook (3 second debounce)
-  const { lastSavedAt, isSaving, error: saveError, saveNow } = useAutoSave({
+  const {
+    lastSavedAt,
+    isSaving,
+    error: saveError,
+    saveNow,
+  } = useAutoSave({
     onSave: performSave,
     isDirty: state.isDirty,
     delay: 3000,
@@ -218,10 +224,7 @@ function EditorContent({
           <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
             <div className="absolute inset-0">
               <SlideCanvas className="shadow-lg rounded-lg overflow-hidden w-full h-full">
-                <SlideTransition
-                  slideIndex={state.selectedSlideIndex}
-                  transition="fade"
-                >
+                <SlideTransition slideIndex={state.selectedSlideIndex} transition="fade">
                   {/* Show streaming preview when generating this slide */}
                   {isLiveMode &&
                   streamingSlide?.isStreaming &&
@@ -367,7 +370,7 @@ export default function EditorPage() {
     const doFinalFetch = async () => {
       try {
         // Small delay to ensure database transaction has fully committed
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         // Fetch the complete deck
         const res = await fetch(`/api/decks/${deckId}`);
@@ -421,9 +424,7 @@ export default function EditorPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-gray-900 mb-2">
-            {error || "Noe gikk galt"}
-          </h1>
+          <h1 className="text-xl font-semibold text-gray-900 mb-2">{error || "Noe gikk galt"}</h1>
           <p className="text-gray-500 mb-4">
             Prøv å laste siden på nytt, eller gå tilbake til dashbordet.
           </p>

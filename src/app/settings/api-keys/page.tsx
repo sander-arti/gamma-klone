@@ -33,9 +33,7 @@ export default function ApiKeysPage() {
     setError(undefined);
 
     try {
-      const res = await fetch(
-        `/api/workspaces/${activeWorkspace.id}/api-keys`
-      );
+      const res = await fetch(`/api/workspaces/${activeWorkspace.id}/api-keys`);
 
       if (!res.ok) {
         throw new Error("Failed to fetch API keys");
@@ -61,10 +59,9 @@ export default function ApiKeysPage() {
     if (!confirm("Revoke this API key? This action cannot be undone.")) return;
 
     try {
-      const res = await fetch(
-        `/api/workspaces/${activeWorkspace.id}/api-keys/${keyId}`,
-        { method: "DELETE" }
-      );
+      const res = await fetch(`/api/workspaces/${activeWorkspace.id}/api-keys/${keyId}`, {
+        method: "DELETE",
+      });
 
       if (!res.ok) {
         throw new Error("Failed to revoke API key");
@@ -119,9 +116,7 @@ export default function ApiKeysPage() {
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
             <Plus className="w-6 h-6 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            No API keys yet
-          </h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">No API keys yet</h3>
           <p className="text-gray-600 mb-6 max-w-sm mx-auto">
             Create an API key to access the ARTI Slides API programmatically
           </p>
@@ -171,14 +166,10 @@ export default function ApiKeysPage() {
                     {new Date(key.created_at).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {key.last_used_at
-                      ? new Date(key.last_used_at).toLocaleDateString()
-                      : "Never"}
+                    {key.last_used_at ? new Date(key.last_used_at).toLocaleDateString() : "Never"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {key.expires_at
-                      ? new Date(key.expires_at).toLocaleDateString()
-                      : "Never"}
+                    {key.expires_at ? new Date(key.expires_at).toLocaleDateString() : "Never"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                     <button
@@ -209,17 +200,9 @@ export default function ApiKeysPage() {
   );
 }
 
-function CreateApiKeyModal({
-  workspaceId,
-  onClose,
-}: {
-  workspaceId: string;
-  onClose: () => void;
-}) {
+function CreateApiKeyModal({ workspaceId, onClose }: { workspaceId: string; onClose: () => void }) {
   const [name, setName] = useState("");
-  const [expiresIn, setExpiresIn] = useState<"never" | "30d" | "90d" | "1y">(
-    "never"
-  );
+  const [expiresIn, setExpiresIn] = useState<"never" | "30d" | "90d" | "1y">("never");
   const [newKey, setNewKey] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
@@ -266,9 +249,7 @@ function CreateApiKeyModal({
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
         <div className="bg-white rounded-lg max-w-lg w-full p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            API Key Created
-          </h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">API Key Created</h2>
           <div className="mb-6">
             <p className="text-sm text-red-600 font-medium mb-3">
               ⚠️ Copy this key now. It will not be shown again.
@@ -309,9 +290,7 @@ function CreateApiKeyModal({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-md w-full p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Create API Key
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Create API Key</h2>
 
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -321,10 +300,7 @@ function CreateApiKeyModal({
 
         <div className="space-y-4 mb-6">
           <div>
-            <label
-              htmlFor="key-name"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="key-name" className="block text-sm font-medium text-gray-700 mb-2">
               Name
             </label>
             <input
@@ -339,18 +315,13 @@ function CreateApiKeyModal({
           </div>
 
           <div>
-            <label
-              htmlFor="expires-in"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="expires-in" className="block text-sm font-medium text-gray-700 mb-2">
               Expires In
             </label>
             <select
               id="expires-in"
               value={expiresIn}
-              onChange={(e) =>
-                setExpiresIn(e.target.value as "never" | "30d" | "90d" | "1y")
-              }
+              onChange={(e) => setExpiresIn(e.target.value as "never" | "30d" | "90d" | "1y")}
               disabled={isLoading}
               className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 disabled:bg-gray-50 disabled:cursor-not-allowed"
             >

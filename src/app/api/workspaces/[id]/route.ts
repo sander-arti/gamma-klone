@@ -11,10 +11,7 @@ const UpdateWorkspaceSchema = z.object({
  * Update workspace name
  * Only owners and admins can update
  */
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const supabase = await createClient();
@@ -69,10 +66,7 @@ export async function PATCH(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Workspace update error:", error);
-    return NextResponse.json(
-      { error: "Failed to update workspace" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to update workspace" }, { status: 500 });
   }
 }
 
@@ -105,17 +99,11 @@ export async function DELETE(
       .single();
 
     if (!member || member.role !== "owner") {
-      return NextResponse.json(
-        { error: "Only owners can delete workspace" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Only owners can delete workspace" }, { status: 403 });
     }
 
     // Delete workspace (cascade will delete all related data via FK constraints)
-    const { error } = await supabase
-      .from("workspaces")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabase.from("workspaces").delete().eq("id", id);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });
@@ -124,9 +112,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Workspace delete error:", error);
-    return NextResponse.json(
-      { error: "Failed to delete workspace" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to delete workspace" }, { status: 500 });
   }
 }

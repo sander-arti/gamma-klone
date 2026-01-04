@@ -9,17 +9,17 @@
  * Onboarding-related events
  */
 export type OnboardingEvent =
-  | 'onboarding_tour_started'
-  | 'onboarding_tour_completed'
-  | 'onboarding_tour_skipped'
-  | 'onboarding_tour_step_viewed'
-  | 'sample_deck_opened'
-  | 'sample_deck_created';
+  | "onboarding_tour_started"
+  | "onboarding_tour_completed"
+  | "onboarding_tour_skipped"
+  | "onboarding_tour_step_viewed"
+  | "sample_deck_opened"
+  | "sample_deck_created";
 
 /**
  * Editor-related events
  */
-export type EditorEvent = 'help_modal_opened' | 'command_palette_opened';
+export type EditorEvent = "help_modal_opened" | "command_palette_opened";
 
 /**
  * All analytics events
@@ -45,8 +45,8 @@ export function track(event: AnalyticsEvent, properties?: EventProperties): void
   // MVP: Log to console
   // TODO: Replace with actual analytics service (PostHog, Mixpanel, etc.)
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[Analytics]', event, properties || {});
+  if (process.env.NODE_ENV === "development") {
+    console.log("[Analytics]", event, properties || {});
   }
 
   // Future implementation example:
@@ -65,8 +65,8 @@ export function track(event: AnalyticsEvent, properties?: EventProperties): void
  * identify('user-123', { email: 'user@example.com', plan: 'free' });
  */
 export function identify(userId: string, traits?: EventProperties): void {
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[Analytics] Identify:', userId, traits || {});
+  if (process.env.NODE_ENV === "development") {
+    console.log("[Analytics] Identify:", userId, traits || {});
   }
 
   // Future implementation example:
@@ -85,8 +85,8 @@ export function identify(userId: string, traits?: EventProperties): void {
  * page('Dashboard', { workspace: 'workspace-123' });
  */
 export function page(pageName: string, properties?: EventProperties): void {
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[Analytics] Page:', pageName, properties || {});
+  if (process.env.NODE_ENV === "development") {
+    console.log("[Analytics] Page:", pageName, properties || {});
   }
 
   // Future implementation example:
@@ -103,7 +103,7 @@ export const onboarding = {
    * Track tour started
    */
   tourStarted(): void {
-    track('onboarding_tour_started', {
+    track("onboarding_tour_started", {
       timestamp: Date.now(),
     });
   },
@@ -112,7 +112,7 @@ export const onboarding = {
    * Track tour step viewed
    */
   tourStepViewed(stepId: string, stepIndex: number): void {
-    track('onboarding_tour_step_viewed', {
+    track("onboarding_tour_step_viewed", {
       step: stepId,
       stepIndex,
       timestamp: Date.now(),
@@ -123,7 +123,7 @@ export const onboarding = {
    * Track tour completed
    */
   tourCompleted(stepsViewed: number): void {
-    track('onboarding_tour_completed', {
+    track("onboarding_tour_completed", {
       stepsViewed,
       timestamp: Date.now(),
     });
@@ -133,7 +133,7 @@ export const onboarding = {
    * Track tour skipped
    */
   tourSkipped(currentStep: number, totalSteps: number): void {
-    track('onboarding_tour_skipped', {
+    track("onboarding_tour_skipped", {
       currentStep,
       totalSteps,
       timestamp: Date.now(),
@@ -144,7 +144,7 @@ export const onboarding = {
    * Track sample deck opened
    */
   sampleDeckOpened(deckId: string): void {
-    track('sample_deck_opened', {
+    track("sample_deck_opened", {
       deckId,
       timestamp: Date.now(),
     });
@@ -154,7 +154,7 @@ export const onboarding = {
    * Track sample deck created
    */
   sampleDeckCreated(deckId: string, userId: string): void {
-    track('sample_deck_created', {
+    track("sample_deck_created", {
       deckId,
       userId,
       timestamp: Date.now(),
@@ -170,7 +170,7 @@ export const editor = {
    * Track help modal opened
    */
   helpModalOpened(): void {
-    track('help_modal_opened', {
+    track("help_modal_opened", {
       timestamp: Date.now(),
     });
   },
@@ -179,7 +179,7 @@ export const editor = {
    * Track command palette opened
    */
   commandPaletteOpened(): void {
-    track('command_palette_opened', {
+    track("command_palette_opened", {
       timestamp: Date.now(),
     });
   },

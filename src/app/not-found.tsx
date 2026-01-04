@@ -18,12 +18,9 @@ export default function NotFound() {
         </div>
 
         {/* Message */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-3">
-          Siden ble ikke funnet
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-3">Siden ble ikke funnet</h1>
         <p className="text-gray-600 mb-8">
-          Beklager, men siden du leter etter eksisterer ikke eller har blitt
-          flyttet.
+          Beklager, men siden du leter etter eksisterer ikke eller har blitt flyttet.
         </p>
 
         {/* Actions */}
@@ -46,28 +43,16 @@ export default function NotFound() {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <p className="text-sm text-gray-500 mb-4">Eller prøv disse sidene:</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link
-              href="/features"
-              className="text-emerald-600 hover:text-emerald-700"
-            >
+            <Link href="/features" className="text-emerald-600 hover:text-emerald-700">
               Funksjoner
             </Link>
-            <Link
-              href="/pricing"
-              className="text-emerald-600 hover:text-emerald-700"
-            >
+            <Link href="/pricing" className="text-emerald-600 hover:text-emerald-700">
               Priser
             </Link>
-            <Link
-              href="/docs"
-              className="text-emerald-600 hover:text-emerald-700"
-            >
+            <Link href="/docs" className="text-emerald-600 hover:text-emerald-700">
               Hjelp
             </Link>
-            <Link
-              href="/about"
-              className="text-emerald-600 hover:text-emerald-700"
-            >
+            <Link href="/about" className="text-emerald-600 hover:text-emerald-700">
               Om oss
             </Link>
           </div>

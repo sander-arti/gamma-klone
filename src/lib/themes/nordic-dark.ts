@@ -117,20 +117,20 @@ export const nordicDark: Theme = {
       unit: "8px",
 
       // 8px grid scale (responsive with container queries)
-      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)",    // ~4-6px
-      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)",      // ~8-12px
-      md: "clamp(1rem, 1.5cqw, 1.25rem)",        // ~16-20px
-      lg: "clamp(1.5rem, 2cqw, 2rem)",           // ~24-32px
-      xl: "clamp(2rem, 3cqw, 2.5rem)",           // ~32-40px
-      xxl: "clamp(3rem, 4cqw, 4rem)",            // ~48-64px
-      xxxl: "clamp(4rem, 6cqw, 5rem)",           // ~64-80px
+      xs: "clamp(0.25rem, 0.4cqw, 0.375rem)", // ~4-6px
+      sm: "clamp(0.5rem, 0.8cqw, 0.75rem)", // ~8-12px
+      md: "clamp(1rem, 1.5cqw, 1.25rem)", // ~16-20px
+      lg: "clamp(1.5rem, 2cqw, 2rem)", // ~24-32px
+      xl: "clamp(2rem, 3cqw, 2.5rem)", // ~32-40px
+      xxl: "clamp(3rem, 4cqw, 4rem)", // ~48-64px
+      xxxl: "clamp(4rem, 6cqw, 5rem)", // ~64-80px
 
       // Semantic tokens (generous "breathing room")
-      slideGutter: "clamp(3rem, 5cqw, 5rem)",    // Maps to xxl-xxxl
+      slideGutter: "clamp(3rem, 5cqw, 5rem)", // Maps to xxl-xxxl
       sectionGap: "clamp(2.5rem, 4cqw, 3.5rem)", // Large section breaks
-      blockGap: "clamp(1.5rem, 2cqw, 2rem)",     // Between content blocks
+      blockGap: "clamp(1.5rem, 2cqw, 2rem)", // Between content blocks
       contentPadding: "clamp(1.25rem, 1.75cqw, 1.5rem)", // Inside cards
-      itemGap: "clamp(0.75rem, 1cqw, 1rem)",     // List items, grid gaps
+      itemGap: "clamp(0.75rem, 1cqw, 1rem)", // List items, grid gaps
       inlineGap: "clamp(0.5rem, 0.75cqw, 0.75rem)", // Icon-text spacing
 
       // Legacy tokens
@@ -172,11 +172,14 @@ export const nordicDark: Theme = {
 
       // Slide background system (Punkt 3)
       // Subtle gradient adding depth to dark theme
-      slideBackgroundGradient: "linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.2) 100%)",
+      slideBackgroundGradient:
+        "linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.2) 100%)",
       // Radial vignette for focus
-      slideBackgroundRadial: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%)",
+      slideBackgroundRadial:
+        "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.15) 100%)",
       // Corner accent with primary glow
-      slideBackgroundCorner: "radial-gradient(ellipse at top right, rgba(96, 165, 250, 0.08) 0%, transparent 50%)",
+      slideBackgroundCorner:
+        "radial-gradient(ellipse at top right, rgba(96, 165, 250, 0.08) 0%, transparent 50%)",
       // Pattern overlay (subtle dots on dark)
       slidePatternColor: "rgba(148, 163, 184, 0.05)",
       slidePatternOpacity: "0.4",
@@ -184,7 +187,8 @@ export const nordicDark: Theme = {
       // Image styling system (Punkt 5)
       imageBorderRadius: "0.75rem",
       imageShadow: "0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 8px -2px rgba(0, 0, 0, 0.3)",
-      imageShadowFloating: "0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 12px 24px -8px rgba(0, 0, 0, 0.4)",
+      imageShadowFloating:
+        "0 24px 48px -12px rgba(0, 0, 0, 0.5), 0 12px 24px -8px rgba(0, 0, 0, 0.4)",
       imageInnerShadow: "inset 0 0 0 1px rgba(255, 255, 255, 0.05)",
       imageFrameColor: "rgba(30, 41, 59, 0.9)",
       imageFrameWidth: "4px",

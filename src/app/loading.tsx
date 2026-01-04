@@ -34,9 +34,7 @@ export default function Loading() {
         </div>
 
         {/* Loading text */}
-        <p className="text-gray-500 text-sm font-medium animate-pulse">
-          Laster...
-        </p>
+        <p className="text-gray-500 text-sm font-medium animate-pulse">Laster...</p>
       </div>
     </div>
   );

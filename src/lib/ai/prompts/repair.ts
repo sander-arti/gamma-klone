@@ -7,7 +7,7 @@ import { SLIDE_CONSTRAINTS } from "@/lib/validation/constraints";
  */
 function getFullConstraintSpec(slideType: SlideType, violations: ConstraintViolation[]): string {
   const constraints = SLIDE_CONSTRAINTS[slideType];
-  const violatedFields = new Set(violations.map(v => v.field));
+  const violatedFields = new Set(violations.map((v) => v.field));
   const lines: string[] = [];
 
   if (constraints.title) {
@@ -23,20 +23,26 @@ function getFullConstraintSpec(slideType: SlideType, violations: ConstraintViola
     lines.push(`- text: max ${constraints.text.maxChars} chars [${status}]`);
   }
   if (constraints.bullets) {
-    const status = violations.some(v => v.field.includes("bullet")) ? "VIOLATION" : "OK";
-    lines.push(`- bullets: ${constraints.bullets.min}-${constraints.bullets.max} items, max ${constraints.bullets.maxCharsPerBullet} chars each [${status}]`);
+    const status = violations.some((v) => v.field.includes("bullet")) ? "VIOLATION" : "OK";
+    lines.push(
+      `- bullets: ${constraints.bullets.min}-${constraints.bullets.max} items, max ${constraints.bullets.maxCharsPerBullet} chars each [${status}]`
+    );
   }
   if (constraints.items) {
-    const status = violations.some(v => v.field.includes("item")) ? "VIOLATION" : "OK";
-    lines.push(`- items: ${constraints.items.min}-${constraints.items.max} items, max ${constraints.items.maxCharsPerItem} chars each [${status}]`);
+    const status = violations.some((v) => v.field.includes("item")) ? "VIOLATION" : "OK";
+    lines.push(
+      `- items: ${constraints.items.min}-${constraints.items.max} items, max ${constraints.items.maxCharsPerItem} chars each [${status}]`
+    );
   }
   if (constraints.columns) {
-    const status = violations.some(v => v.field.includes("column")) ? "VIOLATION" : "OK";
+    const status = violations.some((v) => v.field.includes("column")) ? "VIOLATION" : "OK";
     lines.push(`- columns: max ${constraints.columns.maxCharsPerColumn} chars each [${status}]`);
   }
   if (constraints.table) {
-    const status = violations.some(v => v.field.includes("table")) ? "VIOLATION" : "OK";
-    lines.push(`- table: max ${constraints.table.maxRows} rows, ${constraints.table.maxColumns} cols [${status}]`);
+    const status = violations.some((v) => v.field.includes("table")) ? "VIOLATION" : "OK";
+    lines.push(
+      `- table: max ${constraints.table.maxRows} rows, ${constraints.table.maxColumns} cols [${status}]`
+    );
   }
 
   return lines.join("\n");
@@ -61,7 +67,10 @@ const NUMBER_TO_NORWEGIAN: Record<number, string> = {
 /**
  * Build system prompt for slide repair
  */
-export function buildRepairSystemPrompt(violations: ConstraintViolation[], slideType?: SlideType): string {
+export function buildRepairSystemPrompt(
+  violations: ConstraintViolation[],
+  slideType?: SlideType
+): string {
   const violationDescriptions = violations
     .map((v) => `- ${v.field}: ${v.message} (current: ${v.current}, limit: ${v.limit})`)
     .join("\n");
@@ -284,12 +293,13 @@ export function buildSplitUserPrompt(slide: Slide, violations: ConstraintViolati
     if (textContent) themes.push(`Key content: ${textContent}...`);
   }
   if (bulletBlock && "items" in bulletBlock && bulletBlock.items && bulletBlock.items.length > 0) {
-    themes.push(`Bullet points cover: ${bulletBlock.items.slice(0, 3).join(", ")}${bulletBlock.items.length > 3 ? "..." : ""}`);
+    themes.push(
+      `Bullet points cover: ${bulletBlock.items.slice(0, 3).join(", ")}${bulletBlock.items.length > 3 ? "..." : ""}`
+    );
   }
 
-  const themeContext = themes.length > 0
-    ? `\n\nCONTENT THEMES TO CONSIDER FOR TITLES:\n${themes.join("\n")}\n`
-    : "";
+  const themeContext =
+    themes.length > 0 ? `\n\nCONTENT THEMES TO CONSIDER FOR TITLES:\n${themes.join("\n")}\n` : "";
 
   return `This slide has content that exceeds limits: ${violationSummary}
 ${themeContext}

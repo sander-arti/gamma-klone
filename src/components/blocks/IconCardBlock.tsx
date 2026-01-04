@@ -213,7 +213,8 @@ export function IconCardBlock({
       <div
         style={{
           fontSize: "var(--theme-typography-subheading-size, clamp(1rem, 1.5cqw, 1.125rem))",
-          fontWeight: "var(--theme-typography-subheading-weight, 600)" as React.CSSProperties['fontWeight'],
+          fontWeight:
+            "var(--theme-typography-subheading-weight, 600)" as React.CSSProperties["fontWeight"],
           color: "var(--theme-color-foreground, #0f172a)",
           lineHeight: "var(--theme-typography-subheading-line-height, 1.3)",
           letterSpacing: "var(--theme-typography-letter-spacing-tight, -0.01em)",

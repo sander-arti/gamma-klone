@@ -10,11 +10,7 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import { Info, AlertTriangle, CheckCircle, Quote } from "lucide-react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 
 interface CalloutBlockProps {
   text: string;
@@ -84,7 +80,9 @@ export function CalloutBlock({
         editableRef.current &&
         editableRef.current.textContent &&
         editableRef.current.textContent.length >= maxLength &&
-        !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key) &&
+        !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(
+          e.key
+        ) &&
         !e.metaKey &&
         !e.ctrlKey
       ) {
@@ -111,12 +109,15 @@ export function CalloutBlock({
   );
 
   // Style configuration for each callout type
-  const styleConfig: Record<string, {
-    borderColor: string;
-    bgColor: string;
-    iconColor: string;
-    Icon: typeof Info;
-  }> = {
+  const styleConfig: Record<
+    string,
+    {
+      borderColor: string;
+      bgColor: string;
+      iconColor: string;
+      Icon: typeof Info;
+    }
+  > = {
     info: {
       borderColor: "var(--theme-color-info, #3b82f6)",
       bgColor: "rgba(59, 130, 246, 0.08)",
@@ -148,33 +149,35 @@ export function CalloutBlock({
 
   // Get container style with shadow and animation
   const getContainerStyle = (): React.CSSProperties => ({
-    padding: 'var(--theme-spacing-content-padding, 1.25rem)',
-    paddingLeft: 'calc(var(--theme-spacing-content-padding, 1.25rem) + 2rem)',
-    borderRadius: 'var(--theme-effects-border-radius, 0.75rem)',
+    padding: "var(--theme-spacing-content-padding, 1.25rem)",
+    paddingLeft: "calc(var(--theme-spacing-content-padding, 1.25rem) + 2rem)",
+    borderRadius: "var(--theme-effects-border-radius, 0.75rem)",
     backgroundColor: config.bgColor,
     borderLeft: `var(--theme-effects-callout-border-width, 4px) solid ${config.borderColor}`,
-    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)',
-    position: 'relative',
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)",
+    position: "relative",
   });
 
   // Get text style using proper typography tokens
   const getTextStyle = (): React.CSSProperties => {
     const baseStyle: React.CSSProperties = {
-      color: 'var(--theme-color-foreground, #0f172a)',
+      color: "var(--theme-color-foreground, #0f172a)",
     };
     if (style === "quote") {
       return {
         ...baseStyle,
-        fontSize: 'var(--theme-typography-quote-size, 1.25rem)',
-        fontWeight: 'var(--theme-typography-quote-weight, 400)' as React.CSSProperties['fontWeight'],
-        fontStyle: 'var(--theme-typography-quote-style, italic)' as React.CSSProperties['fontStyle'],
-        lineHeight: 'var(--theme-typography-quote-line-height, 1.5)',
+        fontSize: "var(--theme-typography-quote-size, 1.25rem)",
+        fontWeight:
+          "var(--theme-typography-quote-weight, 400)" as React.CSSProperties["fontWeight"],
+        fontStyle:
+          "var(--theme-typography-quote-style, italic)" as React.CSSProperties["fontStyle"],
+        lineHeight: "var(--theme-typography-quote-line-height, 1.5)",
       };
     }
     return {
       ...baseStyle,
-      fontSize: 'var(--theme-typography-body-size, 0.9375rem)',
-      lineHeight: 'var(--theme-typography-body-line-height, 1.65)',
+      fontSize: "var(--theme-typography-body-size, 0.9375rem)",
+      lineHeight: "var(--theme-typography-body-line-height, 1.65)",
     };
   };
 
@@ -199,8 +202,8 @@ export function CalloutBlock({
         <div
           className="absolute flex items-center justify-center"
           style={{
-            left: 'var(--theme-spacing-content-padding, 1.25rem)',
-            top: 'var(--theme-spacing-content-padding, 1.25rem)',
+            left: "var(--theme-spacing-content-padding, 1.25rem)",
+            top: "var(--theme-spacing-content-padding, 1.25rem)",
             color: config.iconColor,
           }}
           contentEditable={false}
@@ -230,11 +233,7 @@ export function CalloutBlock({
       {isEditing && (
         <div
           className={`absolute -bottom-5 right-0 text-xs ${
-            isOver
-              ? "text-red-400 font-medium"
-              : isApproaching
-                ? "text-amber-400"
-                : "text-zinc-500"
+            isOver ? "text-red-400 font-medium" : isApproaching ? "text-amber-400" : "text-zinc-500"
           }`}
         >
           {charCount}/{maxLength}

@@ -30,12 +30,12 @@ export const MAX_TEXT_LENGTH = 50000;
  */
 export function sanitizeText(text: string): string {
   return text
-    .replace(/\x00/g, "")              // Remove null bytes
-    .replace(/\r\n/g, "\n")            // Normalize CRLF to LF
-    .replace(/\r/g, "\n")              // Normalize CR to LF
-    .replace(/\n{3,}/g, "\n\n")        // Max 2 consecutive newlines
-    .replace(/[ \t]+/g, " ")           // Collapse horizontal whitespace
-    .replace(/^\s+|\s+$/gm, "")        // Trim each line
+    .replace(/\x00/g, "") // Remove null bytes
+    .replace(/\r\n/g, "\n") // Normalize CRLF to LF
+    .replace(/\r/g, "\n") // Normalize CR to LF
+    .replace(/\n{3,}/g, "\n\n") // Max 2 consecutive newlines
+    .replace(/[ \t]+/g, " ") // Collapse horizontal whitespace
+    .replace(/^\s+|\s+$/gm, "") // Trim each line
     .trim();
 }
 

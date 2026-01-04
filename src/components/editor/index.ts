@@ -4,25 +4,13 @@
  * Components for the presentation editor.
  */
 
-export {
-  EditorProvider,
-  useEditor,
-  useCurrentSlide,
-  useEditorDispatch,
-} from "./EditorProvider";
+export { EditorProvider, useEditor, useCurrentSlide, useEditorDispatch } from "./EditorProvider";
 
 export { EditorLayout } from "./EditorLayout";
 export { SlideList } from "./SlideList";
 export { Inspector } from "./Inspector";
-export {
-  CharacterCounter,
-  CharacterProgressBar,
-  ItemCounter,
-} from "./CharacterCounter";
-export {
-  OverflowWarning,
-  CompactOverflowWarning,
-} from "./OverflowWarning";
+export { CharacterCounter, CharacterProgressBar, ItemCounter } from "./CharacterCounter";
+export { OverflowWarning, CompactOverflowWarning } from "./OverflowWarning";
 export { AIActionsMenu } from "./AIActionsMenu";
 export { ShareModal } from "./ShareModal";
 export { ExportModal } from "./ExportModal";

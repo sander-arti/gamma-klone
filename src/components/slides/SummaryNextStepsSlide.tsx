@@ -22,13 +22,7 @@ interface SummaryNextStepsSlideProps {
  * Premium action card for next steps
  * Features arrow icon to indicate actionable items
  */
-function NextStepCard({
-  item,
-  index,
-}: {
-  item: string;
-  index: number;
-}) {
+function NextStepCard({ item, index }: { item: string; index: number }) {
   return (
     <div
       className="group relative animate-fade-in-up"
@@ -38,7 +32,8 @@ function NextStepCard({
         background: "var(--theme-color-surface, rgba(255, 255, 255, 0.7))",
         borderRadius: "var(--theme-radius-lg, 12px)",
         border: "1px solid var(--theme-color-border-subtle, rgba(0, 0, 0, 0.06))",
-        boxShadow: "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
+        boxShadow:
+          "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
         transition: "all 0.2s ease",
         display: "flex",
         flexDirection: "row",
@@ -52,15 +47,13 @@ function NextStepCard({
         style={{
           width: "clamp(2rem, 3cqw, 2.5rem)",
           height: "clamp(2rem, 3cqw, 2.5rem)",
-          background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
+          background:
+            "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
           borderRadius: "50%",
           boxShadow: "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.25))",
         }}
       >
-        <ArrowRight
-          size={16}
-          style={{ color: "var(--theme-color-primary-foreground, #ffffff)" }}
-        />
+        <ArrowRight size={16} style={{ color: "var(--theme-color-primary-foreground, #ffffff)" }} />
       </div>
 
       {/* Content */}
@@ -82,13 +75,7 @@ function NextStepCard({
 /**
  * Numbered step card with arrow - used for grid layouts
  */
-function NumberedStepCard({
-  item,
-  index,
-}: {
-  item: string;
-  index: number;
-}) {
+function NumberedStepCard({ item, index }: { item: string; index: number }) {
   return (
     <div
       className="group relative animate-fade-in-up"
@@ -98,7 +85,8 @@ function NumberedStepCard({
         background: "var(--theme-color-surface, rgba(255, 255, 255, 0.7))",
         borderRadius: "var(--theme-radius-lg, 12px)",
         border: "1px solid var(--theme-color-border-subtle, rgba(0, 0, 0, 0.06))",
-        boxShadow: "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
+        boxShadow:
+          "var(--theme-effects-shadow-card, 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03))",
         transition: "all 0.2s ease",
         display: "flex",
         flexDirection: "row",
@@ -113,7 +101,8 @@ function NumberedStepCard({
           width: "clamp(2.25rem, 3.5cqw, 2.75rem)",
           height: "clamp(2.25rem, 3.5cqw, 2.75rem)",
           fontSize: "clamp(0.9rem, 1.3cqw, 1.1rem)",
-          background: "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
+          background:
+            "var(--theme-effects-gradient-primary, linear-gradient(135deg, var(--theme-color-primary, #3b82f6) 0%, var(--theme-color-accent-purple, #6366f1) 100%))",
           color: "var(--theme-color-primary-foreground, #ffffff)",
           borderRadius: "50%",
           boxShadow: "var(--theme-effects-shadow-blue, 0 2px 8px rgba(59, 130, 246, 0.25))",

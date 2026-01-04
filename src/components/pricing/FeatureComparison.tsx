@@ -117,12 +117,7 @@ function renderCell(value: string | boolean) {
         stroke="currentColor"
         viewBox="0 0 24 24"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M5 13l4 4L19 7"
-        />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
       </svg>
     ) : (
       <svg
@@ -149,40 +144,24 @@ export function FeatureComparison() {
       <table className="w-full">
         <thead>
           <tr className="border-b border-gray-200">
-            <th className="text-left py-4 px-4 font-semibold text-gray-900">
-              Funksjon
-            </th>
-            <th className="text-center py-4 px-4 font-semibold text-gray-900">
-              Gratis
-            </th>
-            <th className="text-center py-4 px-4 font-semibold text-emerald-600">
-              Pro
-            </th>
-            <th className="text-center py-4 px-4 font-semibold text-gray-900">
-              Team
-            </th>
-            <th className="text-center py-4 px-4 font-semibold text-gray-900">
-              Enterprise
-            </th>
+            <th className="text-left py-4 px-4 font-semibold text-gray-900">Funksjon</th>
+            <th className="text-center py-4 px-4 font-semibold text-gray-900">Gratis</th>
+            <th className="text-center py-4 px-4 font-semibold text-emerald-600">Pro</th>
+            <th className="text-center py-4 px-4 font-semibold text-gray-900">Team</th>
+            <th className="text-center py-4 px-4 font-semibold text-gray-900">Enterprise</th>
           </tr>
         </thead>
         <tbody>
           {features.map((row, index) => (
             <tr
               key={index}
-              className={`border-b border-gray-100 ${
-                index % 2 === 0 ? "bg-gray-50/50" : ""
-              }`}
+              className={`border-b border-gray-100 ${index % 2 === 0 ? "bg-gray-50/50" : ""}`}
             >
               <td className="py-4 px-4 text-sm text-gray-700">{row.feature}</td>
               <td className="py-4 px-4 text-center">{renderCell(row.free)}</td>
-              <td className="py-4 px-4 text-center bg-emerald-50/30">
-                {renderCell(row.pro)}
-              </td>
+              <td className="py-4 px-4 text-center bg-emerald-50/30">{renderCell(row.pro)}</td>
               <td className="py-4 px-4 text-center">{renderCell(row.team)}</td>
-              <td className="py-4 px-4 text-center">
-                {renderCell(row.enterprise)}
-              </td>
+              <td className="py-4 px-4 text-center">{renderCell(row.enterprise)}</td>
             </tr>
           ))}
         </tbody>

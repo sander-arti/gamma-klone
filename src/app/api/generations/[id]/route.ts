@@ -7,10 +7,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getGenerationJob } from "@/lib/db/generation-job";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
 
@@ -28,7 +25,7 @@ export async function GET(
       generationId: string;
       status: string;
       progress?: number;
-      deckId?: string;      // Added: return deckId for live redirect
+      deckId?: string; // Added: return deckId for live redirect
       viewUrl?: string;
       error?: { code: string; message: string };
     } = {

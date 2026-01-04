@@ -34,12 +34,7 @@ const features: Feature[] = [
       "Statistikk og tall",
     ],
     icon: (
-      <svg
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -64,12 +59,7 @@ const features: Feature[] = [
       "Tilpasset brand kit",
     ],
     icon: (
-      <svg
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -94,12 +84,7 @@ const features: Feature[] = [
       "Norsk språkforståelse",
     ],
     icon: (
-      <svg
-        className="w-7 h-7"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -123,8 +108,7 @@ export function FeaturesSection() {
             Bygget for presentasjoner
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Alt du trenger for å lage presentasjoner som imponerer.
-            Ingenting du ikke trenger.
+            Alt du trenger for å lage presentasjoner som imponerer. Ingenting du ikke trenger.
           </p>
         </div>
 
@@ -159,14 +143,10 @@ export function FeaturesSection() {
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {feature.title}
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
 
               {/* Description */}
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-gray-600 mb-6 leading-relaxed">{feature.description}</p>
 
               {/* Highlights List */}
               <ul className="space-y-2">

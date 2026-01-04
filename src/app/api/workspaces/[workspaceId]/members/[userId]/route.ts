@@ -65,18 +65,12 @@ export async function PATCH(
       .single();
 
     if (!targetMember) {
-      return NextResponse.json(
-        { error: "Member not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Member not found" }, { status: 404 });
     }
 
     // Cannot change owner role
     if (targetMember.role === "owner") {
-      return NextResponse.json(
-        { error: "Cannot change owner role" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Cannot change owner role" }, { status: 400 });
     }
 
     // Update member role
@@ -88,19 +82,13 @@ export async function PATCH(
 
     if (error) {
       console.error("Failed to update member role:", error);
-      return NextResponse.json(
-        { error: "Failed to update member role" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to update member role" }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Member role update error:", error);
-    return NextResponse.json(
-      { error: "Failed to update member role" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to update member role" }, { status: 500 });
   }
 }
 
@@ -147,18 +135,12 @@ export async function DELETE(
       .single();
 
     if (!targetMember) {
-      return NextResponse.json(
-        { error: "Member not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Member not found" }, { status: 404 });
     }
 
     // Cannot remove owner
     if (targetMember.role === "owner") {
-      return NextResponse.json(
-        { error: "Cannot remove workspace owner" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Cannot remove workspace owner" }, { status: 400 });
     }
 
     // Remove member
@@ -170,18 +152,12 @@ export async function DELETE(
 
     if (error) {
       console.error("Failed to remove member:", error);
-      return NextResponse.json(
-        { error: "Failed to remove member" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Failed to remove member" }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Member removal error:", error);
-    return NextResponse.json(
-      { error: "Failed to remove member" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to remove member" }, { status: 500 });
   }
 }

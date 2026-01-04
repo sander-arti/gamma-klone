@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     // (defensive measure in case AI exceeds limits)
     const sanitizedOutline = {
       ...outline,
-      slides: outline.slides.map(slide => ({
+      slides: outline.slides.map((slide) => ({
         ...slide,
         // Truncate hints to max 3 items
         hints: slide.hints?.slice(0, 3),

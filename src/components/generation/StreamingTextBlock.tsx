@@ -72,9 +72,7 @@ export function StreamingTextBlock({
   return (
     <span className={className}>
       {displayedText}
-      <AnimatePresence>
-        {isStreaming && !isComplete && <InlineGeneratingCursor />}
-      </AnimatePresence>
+      <AnimatePresence>{isStreaming && !isComplete && <InlineGeneratingCursor />}</AnimatePresence>
     </span>
   );
 }

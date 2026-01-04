@@ -12,7 +12,13 @@
 
 import { motion } from "framer-motion";
 
-export type OverlayVariant = "cinematic" | "editorial" | "minimal" | "centered" | "vignette" | "diagonal";
+export type OverlayVariant =
+  | "cinematic"
+  | "editorial"
+  | "minimal"
+  | "centered"
+  | "vignette"
+  | "diagonal";
 
 interface CinematicOverlayProps {
   variant?: OverlayVariant;
@@ -148,13 +154,7 @@ export function CinematicOverlay({
     );
   }
 
-  return (
-    <div
-      style={overlayStyle}
-      className={className}
-      aria-hidden="true"
-    />
-  );
+  return <div style={overlayStyle} className={className} aria-hidden="true" />;
 }
 
 /**

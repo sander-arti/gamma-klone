@@ -130,9 +130,7 @@ export function GoldenContentSlide({
               justifyContent: "center",
             }}
           >
-            <span style={{ color: "#94A3B8", fontSize: "16px" }}>
-              Bilde genereres...
-            </span>
+            <span style={{ color: "#94A3B8", fontSize: "16px" }}>Bilde genereres...</span>
           </div>
         )}
       </div>

@@ -5,17 +5,14 @@
  * Uses event system to communicate with AIChat component.
  */
 
-import {
-  Sparkles,
-  Minimize2,
-  Maximize2,
-  RefreshCw,
-  Image,
-  Languages,
-  Wand2,
-} from "lucide-react";
+import { Sparkles, Minimize2, Maximize2, RefreshCw, Image, Languages, Wand2 } from "lucide-react";
 import type { CommandDefinition } from "../types";
-import { openAIChat, triggerQuickAction, sendCustomInstruction, triggerImageGeneration } from "../ai-chat-events";
+import {
+  openAIChat,
+  triggerQuickAction,
+  sendCustomInstruction,
+  triggerImageGeneration,
+} from "../ai-chat-events";
 
 /**
  * Simplify content command

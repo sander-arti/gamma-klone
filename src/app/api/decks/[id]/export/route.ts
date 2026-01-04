@@ -22,10 +22,7 @@ const ExportRequestSchema = z.object({
 // POST /api/decks/[id]/export - Trigger export
 // ============================================================================
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
 
@@ -71,13 +68,14 @@ export async function POST(
       deckId: id,
       format: format as ExportFormat,
       themeId: (deck.themeId ?? "nordic_light") as ThemeId,
-      brandKit: deck.primaryColor || deck.secondaryColor
-        ? {
-            primaryColor: deck.primaryColor ?? undefined,
-            secondaryColor: deck.secondaryColor ?? undefined,
-            logoUrl: deck.logoUrl ?? undefined,
-          }
-        : undefined,
+      brandKit:
+        deck.primaryColor || deck.secondaryColor
+          ? {
+              primaryColor: deck.primaryColor ?? undefined,
+              secondaryColor: deck.secondaryColor ?? undefined,
+              logoUrl: deck.logoUrl ?? undefined,
+            }
+          : undefined,
     });
 
     return NextResponse.json({

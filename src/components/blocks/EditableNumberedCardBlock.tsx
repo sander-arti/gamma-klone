@@ -12,11 +12,7 @@
  */
 
 import { useRef, useEffect, useCallback, useState } from "react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 
 type EditableField = "number" | "text" | "description" | null;
 
@@ -28,10 +24,7 @@ interface EditableNumberedCardBlockProps {
   /** Enable inline editing mode */
   isEditing?: boolean;
   /** Callback when any field changes */
-  onFieldChange?: (
-    field: "number" | "text" | "description",
-    value: string | number
-  ) => void;
+  onFieldChange?: (field: "number" | "text" | "description", value: string | number) => void;
   /** Callback when editing ends (blur outside all fields) */
   onBlur?: () => void;
   /** Callback when block is clicked (to start editing) */
@@ -107,10 +100,7 @@ export function EditableNumberedCardBlock({
       const rawText = numberRef.current.textContent ?? "";
       const parsed = parseInt(rawText, 10);
       if (!isNaN(parsed)) {
-        const clamped = Math.max(
-          constraints.minNumber,
-          Math.min(constraints.maxNumber, parsed)
-        );
+        const clamped = Math.max(constraints.minNumber, Math.min(constraints.maxNumber, parsed));
         onFieldChange("number", clamped);
       }
     }
@@ -123,10 +113,7 @@ export function EditableNumberedCardBlock({
   const handleFieldBlur = useCallback(
     (e: React.FocusEvent) => {
       requestAnimationFrame(() => {
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(document.activeElement)
-        ) {
+        if (containerRef.current && !containerRef.current.contains(document.activeElement)) {
           setFocusedField(null);
           onBlur?.();
         }
@@ -159,12 +146,7 @@ export function EditableNumberedCardBlock({
   const handleKeyDown = useCallback(
     (field: EditableField, e: React.KeyboardEvent) => {
       const maxLength = getMaxLength(field);
-      const ref =
-        field === "number"
-          ? numberRef
-          : field === "text"
-            ? textRef
-            : descriptionRef;
+      const ref = field === "number" ? numberRef : field === "text" ? textRef : descriptionRef;
 
       // Tab to next field
       if (e.key === "Tab" && !e.shiftKey) {
@@ -239,34 +221,26 @@ export function EditableNumberedCardBlock({
   );
 
   // Handle paste
-  const handlePaste = useCallback(
-    (field: EditableField, e: React.ClipboardEvent) => {
-      e.preventDefault();
-      const maxLength = getMaxLength(field);
-      const ref =
-        field === "number"
-          ? numberRef
-          : field === "text"
-            ? textRef
-            : descriptionRef;
+  const handlePaste = useCallback((field: EditableField, e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const maxLength = getMaxLength(field);
+    const ref = field === "number" ? numberRef : field === "text" ? textRef : descriptionRef;
 
-      let pastedText = e.clipboardData.getData("text/plain");
+    let pastedText = e.clipboardData.getData("text/plain");
 
-      // For number field, only allow digits
-      if (field === "number") {
-        pastedText = pastedText.replace(/[^0-9]/g, "").slice(0, 2);
-      }
+    // For number field, only allow digits
+    if (field === "number") {
+      pastedText = pastedText.replace(/[^0-9]/g, "").slice(0, 2);
+    }
 
-      const currentText = ref.current?.textContent ?? "";
-      const selection = window.getSelection();
-      const selectedLength = selection?.toString().length ?? 0;
-      const availableSpace = maxLength - currentText.length + selectedLength;
-      const textToInsert = pastedText.slice(0, availableSpace);
+    const currentText = ref.current?.textContent ?? "";
+    const selection = window.getSelection();
+    const selectedLength = selection?.toString().length ?? 0;
+    const availableSpace = maxLength - currentText.length + selectedLength;
+    const textToInsert = pastedText.slice(0, availableSpace);
 
-      document.execCommand("insertText", false, textToInsert);
-    },
-    []
-  );
+    document.execCommand("insertText", false, textToInsert);
+  }, []);
 
   const getFieldStyles = (field: EditableField, isFocused: boolean) => {
     if (isFocused) {
@@ -278,10 +252,7 @@ export function EditableNumberedCardBlock({
     return "";
   };
 
-  const renderCharCounter = (
-    field: "text" | "description",
-    currentLength: number
-  ) => {
+  const renderCharCounter = (field: "text" | "description", currentLength: number) => {
     const maxLength = getMaxLength(field);
     const isOver = exceedsLimit(currentLength, maxLength);
     const isApproaching = isApproachingLimit(currentLength, maxLength);
@@ -289,11 +260,7 @@ export function EditableNumberedCardBlock({
     return (
       <span
         className={`text-xs ml-2 ${
-          isOver
-            ? "text-red-500 font-medium"
-            : isApproaching
-              ? "text-amber-500"
-              : "text-gray-400"
+          isOver ? "text-red-500 font-medium" : isApproaching ? "text-amber-500" : "text-gray-400"
         }`}
       >
         {currentLength}/{maxLength}
@@ -301,18 +268,14 @@ export function EditableNumberedCardBlock({
     );
   };
 
-  const containerStyles =
-    onClick && !isEditing
-      ? "cursor-pointer"
-      : "";
+  const containerStyles = onClick && !isEditing ? "cursor-pointer" : "";
 
   return (
     <div
       ref={containerRef}
       className={`flex flex-col items-start transition-all duration-200 ${containerStyles} ${className}`}
       style={{
-        backgroundColor:
-          "var(--theme-color-background-subtle, rgba(241, 245, 249, 0.5))",
+        backgroundColor: "var(--theme-color-background-subtle, rgba(241, 245, 249, 0.5))",
         borderRadius: "var(--theme-effects-border-radius-large, 1rem)",
         padding: "var(--theme-spacing-content-padding, clamp(1.25rem, 2cqw, 1.5rem))",
         minHeight: "clamp(130px, 12cqw, 160px)",

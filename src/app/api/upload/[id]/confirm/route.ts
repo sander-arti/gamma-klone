@@ -6,10 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getUploadedFileById,
-  markFileProcessing,
-} from "@/lib/db/uploaded-file";
+import { getUploadedFileById, markFileProcessing } from "@/lib/db/uploaded-file";
 import { fileExists } from "@/lib/storage/s3-client";
 import { addExtractionJob } from "@/lib/queue/extraction-queue";
 
@@ -20,10 +17,7 @@ type RouteParams = {
   params: Promise<{ id: string }>;
 };
 
-export async function POST(
-  request: NextRequest,
-  { params }: RouteParams
-) {
+export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = await params;
 
@@ -89,8 +83,7 @@ export async function POST(
       {
         error: {
           code: "INTERNAL_ERROR",
-          message:
-            error instanceof Error ? error.message : "Failed to confirm upload",
+          message: error instanceof Error ? error.message : "Failed to confirm upload",
         },
       },
       { status: 500 }

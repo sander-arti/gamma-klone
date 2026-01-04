@@ -80,11 +80,7 @@ export function TemplateSelector({
             </span>
           )}
         </span>
-        {isExpanded ? (
-          <ChevronUp className="w-4 h-4" />
-        ) : (
-          <ChevronDown className="w-4 h-4" />
-        )}
+        {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
       </button>
 
       <AnimatePresence>
@@ -104,28 +100,33 @@ export function TemplateSelector({
                 disabled={disabled}
                 className={`
                   w-full p-3 rounded-xl border-2 text-left transition-all
-                  ${selectedTemplate === null
-                    ? "border-emerald-500 bg-emerald-50"
-                    : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                  ${
+                    selectedTemplate === null
+                      ? "border-emerald-500 bg-emerald-50"
+                      : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                   }
                   ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                 `}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`
+                  <div
+                    className={`
                     w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0
                     ${selectedTemplate === null ? "bg-emerald-100" : "bg-gray-100"}
-                  `}>
-                    <Sparkles className={`w-4 h-4 ${selectedTemplate === null ? "text-emerald-600" : "text-gray-500"}`} />
+                  `}
+                  >
+                    <Sparkles
+                      className={`w-4 h-4 ${selectedTemplate === null ? "text-emerald-600" : "text-gray-500"}`}
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <span className={`text-sm font-medium ${selectedTemplate === null ? "text-emerald-900" : "text-gray-900"}`}>
+                      <span
+                        className={`text-sm font-medium ${selectedTemplate === null ? "text-emerald-900" : "text-gray-900"}`}
+                      >
                         Dynamisk (Standard)
                       </span>
-                      {selectedTemplate === null && (
-                        <Check className="w-4 h-4 text-emerald-600" />
-                      )}
+                      {selectedTemplate === null && <Check className="w-4 h-4 text-emerald-600" />}
                     </div>
                     <p className="text-xs text-gray-500 mt-0.5">
                       AI velger optimal struktur basert på innholdet
@@ -147,32 +148,35 @@ export function TemplateSelector({
                     disabled={disabled}
                     className={`
                       w-full p-3 rounded-xl border-2 text-left transition-all
-                      ${isSelected
-                        ? "border-emerald-500 bg-emerald-50"
-                        : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                      ${
+                        isSelected
+                          ? "border-emerald-500 bg-emerald-50"
+                          : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                       }
                       ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                     `}
                   >
                     <div className="flex items-start gap-3">
-                      <div className={`
+                      <div
+                        className={`
                         w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0
                         ${isSelected ? "bg-emerald-100" : "bg-gray-100"}
-                      `}>
-                        <Icon className={`w-4 h-4 ${isSelected ? "text-emerald-600" : "text-gray-500"}`} />
+                      `}
+                      >
+                        <Icon
+                          className={`w-4 h-4 ${isSelected ? "text-emerald-600" : "text-gray-500"}`}
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
-                          <span className={`text-sm font-medium ${isSelected ? "text-emerald-900" : "text-gray-900"}`}>
+                          <span
+                            className={`text-sm font-medium ${isSelected ? "text-emerald-900" : "text-gray-900"}`}
+                          >
                             {template.name}
                           </span>
-                          {isSelected && (
-                            <Check className="w-4 h-4 text-emerald-600" />
-                          )}
+                          {isSelected && <Check className="w-4 h-4 text-emerald-600" />}
                         </div>
-                        <p className="text-xs text-gray-500 mt-0.5">
-                          {template.description}
-                        </p>
+                        <p className="text-xs text-gray-500 mt-0.5">{template.description}</p>
                         <p className="text-xs text-gray-400 mt-1">
                           {TEMPLATE_DESCRIPTIONS[template.id]}
                         </p>

@@ -22,7 +22,7 @@ const EDITABLE_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
  * Commands that should work even in editable elements
  */
 const PASSTHROUGH_COMMANDS = new Set([
-  "edit.save",  // ⌘S should always work
+  "edit.save", // ⌘S should always work
 ]);
 
 // ============================================================================

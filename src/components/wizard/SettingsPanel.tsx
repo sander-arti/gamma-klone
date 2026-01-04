@@ -14,11 +14,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ChevronDown,
-  ChevronUp,
-  ImageIcon,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, ImageIcon } from "lucide-react";
 import { ThemeCardGrid } from "@/components/ui/ThemeCardGrid";
 import { TemplateSelector } from "./TemplateSelector";
 import type { ThemeId } from "@/lib/themes";
@@ -119,9 +115,10 @@ export function SettingsPanel({
                 disabled={disabled}
                 className={`
                   flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all
-                  ${isSelected
-                    ? "bg-gray-900 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  ${
+                    isSelected
+                      ? "bg-gray-900 text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }
                   ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                 `}
@@ -165,10 +162,7 @@ export function SettingsPanel({
       <section>
         <h3 className="text-sm font-medium text-gray-700 mb-3">Tema</h3>
         <div className={disabled ? "opacity-50 pointer-events-none" : ""}>
-          <ThemeCardGrid
-            selectedTheme={themeId}
-            onSelect={onThemeChange}
-          />
+          <ThemeCardGrid selectedTheme={themeId} onSelect={onThemeChange} />
         </div>
       </section>
 
@@ -214,9 +208,10 @@ export function SettingsPanel({
                           disabled={disabled}
                           className={`
                             flex-1 py-2 px-3 rounded-lg text-xs font-medium transition-all
-                            ${isSelected
-                              ? "bg-emerald-100 text-emerald-700 border-2 border-emerald-300"
-                              : "bg-gray-100 text-gray-600 border-2 border-transparent hover:bg-gray-200"
+                            ${
+                              isSelected
+                                ? "bg-emerald-100 text-emerald-700 border-2 border-emerald-300"
+                                : "bg-gray-100 text-gray-600 border-2 border-transparent hover:bg-gray-200"
                             }
                             ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                           `}
@@ -249,9 +244,10 @@ export function SettingsPanel({
                               disabled={disabled}
                               className={`
                                 py-2 px-3 rounded-lg text-xs font-medium transition-all
-                                ${isSelected
-                                  ? "bg-emerald-100 text-emerald-700 border-2 border-emerald-300"
-                                  : "bg-gray-100 text-gray-600 border-2 border-transparent hover:bg-gray-200"
+                                ${
+                                  isSelected
+                                    ? "bg-emerald-100 text-emerald-700 border-2 border-emerald-300"
+                                    : "bg-gray-100 text-gray-600 border-2 border-transparent hover:bg-gray-200"
                                 }
                                 ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
                               `}

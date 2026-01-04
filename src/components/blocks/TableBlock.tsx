@@ -97,9 +97,7 @@ export function TableBlock({
       if (el && onRowsChange) {
         const newText = el.textContent ?? "";
         const newRows = rows.map((row, ri) =>
-          ri === rowIndex
-            ? row.map((cell, ci) => (ci === colIndex ? newText : cell))
-            : [...row]
+          ri === rowIndex ? row.map((cell, ci) => (ci === colIndex ? newText : cell)) : [...row]
         );
         onRowsChange(newRows);
       }
@@ -272,39 +270,43 @@ export function TableBlock({
 
   // Table container style with shadow and rounded corners
   const tableContainerStyle: React.CSSProperties = {
-    borderRadius: 'var(--theme-effects-border-radius, 0.75rem)',
-    overflow: 'hidden',
-    boxShadow: 'var(--theme-effects-box-shadow-small, 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04))',
-    border: '1px solid var(--theme-color-border-subtle, #e2e8f0)',
+    borderRadius: "var(--theme-effects-border-radius, 0.75rem)",
+    overflow: "hidden",
+    boxShadow:
+      "var(--theme-effects-box-shadow-small, 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04))",
+    border: "1px solid var(--theme-color-border-subtle, #e2e8f0)",
   };
 
   // Inline styles for theme variables - use semantic spacing
   const cellStyle: React.CSSProperties = {
-    padding: 'var(--theme-spacing-sm, 0.5rem) var(--theme-spacing-md, 1rem)',
-    fontSize: 'var(--theme-typography-body-size, 0.9375rem)',
-    lineHeight: 'var(--theme-typography-body-line-height, 1.65)',
-    color: 'var(--theme-color-foreground, #0f172a)',
+    padding: "var(--theme-spacing-sm, 0.5rem) var(--theme-spacing-md, 1rem)",
+    fontSize: "var(--theme-typography-body-size, 0.9375rem)",
+    lineHeight: "var(--theme-typography-body-line-height, 1.65)",
+    color: "var(--theme-color-foreground, #0f172a)",
   };
 
   const headerCellStyle: React.CSSProperties = {
     ...cellStyle,
-    backgroundColor: 'var(--theme-color-background-muted, #f8fafc)',
-    fontWeight: 'var(--theme-typography-subheading-weight, 600)' as React.CSSProperties['fontWeight'],
-    fontSize: 'var(--theme-typography-caption-size, 0.8125rem)',
-    textTransform: 'uppercase' as const,
-    letterSpacing: 'var(--theme-typography-letter-spacing-wide, 0.05em)',
-    color: 'var(--theme-color-foreground-muted, #64748b)',
+    backgroundColor: "var(--theme-color-background-muted, #f8fafc)",
+    fontWeight:
+      "var(--theme-typography-subheading-weight, 600)" as React.CSSProperties["fontWeight"],
+    fontSize: "var(--theme-typography-caption-size, 0.8125rem)",
+    textTransform: "uppercase" as const,
+    letterSpacing: "var(--theme-typography-letter-spacing-wide, 0.05em)",
+    color: "var(--theme-color-foreground-muted, #64748b)",
   };
 
   const headerRowStyle: React.CSSProperties = {
-    borderBottom: '2px solid var(--theme-color-border, #e2e8f0)',
+    borderBottom: "2px solid var(--theme-color-border, #e2e8f0)",
   };
 
   // Zebra striping - even rows have subtle background
   const getBodyRowStyle = (rowIndex: number): React.CSSProperties => ({
-    borderBottom: rowIndex < rows.length - 1 ? '1px solid var(--theme-color-border-subtle, #f1f5f9)' : 'none',
-    backgroundColor: rowIndex % 2 === 1 ? 'var(--theme-color-background-subtle, #fafafa)' : 'transparent',
-    transition: 'background-color 0.15s ease',
+    borderBottom:
+      rowIndex < rows.length - 1 ? "1px solid var(--theme-color-border-subtle, #f1f5f9)" : "none",
+    backgroundColor:
+      rowIndex % 2 === 1 ? "var(--theme-color-background-subtle, #fafafa)" : "transparent",
+    transition: "background-color 0.15s ease",
   });
 
   return (
@@ -340,7 +342,11 @@ export function TableBlock({
                     onInput={() => handleHeaderInput(colIndex)}
                     onBlur={handleCellBlur}
                     onClick={() => handleCellClick({ type: "header", row: 0, col: colIndex })}
-                    onKeyDown={isEditing ? (e) => handleKeyDown(e, { type: "header", row: 0, col: colIndex }) : undefined}
+                    onKeyDown={
+                      isEditing
+                        ? (e) => handleKeyDown(e, { type: "header", row: 0, col: colIndex })
+                        : undefined
+                    }
                   >
                     {column}
                   </th>
@@ -348,7 +354,10 @@ export function TableBlock({
               })}
               {/* Delete column buttons when editing */}
               {isEditing && columns.length > 1 && (
-                <th className="p-1 w-8" style={{ backgroundColor: 'var(--theme-color-background-muted, #f8fafc)' }}>
+                <th
+                  className="p-1 w-8"
+                  style={{ backgroundColor: "var(--theme-color-background-muted, #f8fafc)" }}
+                >
                   {editingCell?.type === "header" && (
                     <button
                       type="button"
@@ -356,8 +365,18 @@ export function TableBlock({
                       className="p-1 text-red-500 hover:text-red-600 hover:bg-red-50 rounded"
                       title="Slett kolonne"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </button>
                   )}
@@ -400,8 +419,14 @@ export function TableBlock({
                       suppressContentEditableWarning
                       onInput={() => handleCellInput(rowIndex, cellIndex)}
                       onBlur={handleCellBlur}
-                      onClick={() => handleCellClick({ type: "cell", row: rowIndex, col: cellIndex })}
-                      onKeyDown={isEditing ? (e) => handleKeyDown(e, { type: "cell", row: rowIndex, col: cellIndex }) : undefined}
+                      onClick={() =>
+                        handleCellClick({ type: "cell", row: rowIndex, col: cellIndex })
+                      }
+                      onKeyDown={
+                        isEditing
+                          ? (e) => handleKeyDown(e, { type: "cell", row: rowIndex, col: cellIndex })
+                          : undefined
+                      }
                     >
                       {cell}
                     </td>
@@ -417,8 +442,18 @@ export function TableBlock({
                         className="p-1 text-red-500 hover:text-red-600 hover:bg-red-50 rounded"
                         title="Slett rad"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     )}
@@ -440,7 +475,12 @@ export function TableBlock({
               className="text-sm text-blue-500 hover:text-blue-600 flex items-center gap-1"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
               Legg til rad
             </button>
@@ -452,7 +492,12 @@ export function TableBlock({
               className="text-sm text-blue-500 hover:text-blue-600 flex items-center gap-1"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
               Legg til kolonne
             </button>

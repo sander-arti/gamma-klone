@@ -6,7 +6,11 @@
  */
 
 import Redis from "ioredis";
-import { createPublisher as createBasePublisher, createSubscriber, closeConnection } from "./redis-pubsub";
+import {
+  createPublisher as createBasePublisher,
+  createSubscriber,
+  closeConnection,
+} from "./redis-pubsub";
 
 export { createSubscriber, closeConnection };
 
@@ -69,7 +73,9 @@ export async function publishExtractionEvent(
   const channel = getExtractionChannelName(uploadId);
   console.log(`[Redis] Publishing extraction ${event.type} to channel ${channel}`);
   const numSubscribers = await publisher.publish(channel, JSON.stringify(event));
-  console.log(`[Redis] Published extraction ${event.type} - ${numSubscribers} subscriber(s) received it`);
+  console.log(
+    `[Redis] Published extraction ${event.type} - ${numSubscribers} subscriber(s) received it`
+  );
 }
 
 /**

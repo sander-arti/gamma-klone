@@ -42,9 +42,7 @@ function sanitizeText(text: string): string {
 /**
  * Create a new generation job
  */
-export async function createGenerationJob(
-  input: CreateJobInput
-): Promise<GenerationJob> {
+export async function createGenerationJob(input: CreateJobInput): Promise<GenerationJob> {
   const { workspaceId, request, idempotencyKey } = input;
 
   return prisma.generationJob.create({
@@ -72,9 +70,7 @@ export async function createGenerationJob(
 /**
  * Get a generation job by ID (internal use, no workspace isolation)
  */
-export async function getGenerationJob(
-  id: string
-): Promise<GenerationJob | null> {
+export async function getGenerationJob(id: string): Promise<GenerationJob | null> {
   return prisma.generationJob.findUnique({
     where: { id },
   });
@@ -153,10 +149,7 @@ export async function updateJobStatus(
 /**
  * Set job result when generation completes successfully
  */
-export async function setJobResult(
-  id: string,
-  input: SetJobResultInput
-): Promise<GenerationJob> {
+export async function setJobResult(id: string, input: SetJobResultInput): Promise<GenerationJob> {
   const { deckId, viewUrl } = input;
 
   return prisma.generationJob.update({
@@ -174,10 +167,7 @@ export async function setJobResult(
 /**
  * Update job progress (for incremental progress updates during generation)
  */
-export async function updateJobProgress(
-  id: string,
-  progress: number
-): Promise<GenerationJob> {
+export async function updateJobProgress(id: string, progress: number): Promise<GenerationJob> {
   return prisma.generationJob.update({
     where: { id },
     data: { progress },
@@ -207,10 +197,7 @@ export async function markJobFailed(
  * Set the deckId early (before generation completes)
  * This allows frontend to redirect to deck view during generation
  */
-export async function setJobDeckId(
-  id: string,
-  deckId: string
-): Promise<GenerationJob> {
+export async function setJobDeckId(id: string, deckId: string): Promise<GenerationJob> {
   return prisma.generationJob.update({
     where: { id },
     data: { deckId },

@@ -159,15 +159,11 @@ export function IconPicker({
       switch (e.key) {
         case "ArrowRight":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev < totalItems - 1 ? prev + 1 : 0
-          );
+          setHighlightedIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0));
           break;
         case "ArrowLeft":
           e.preventDefault();
-          setHighlightedIndex((prev) =>
-            prev > 0 ? prev - 1 : totalItems - 1
-          );
+          setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : totalItems - 1));
           break;
         case "ArrowDown":
           e.preventDefault();
@@ -178,9 +174,7 @@ export function IconPicker({
         case "ArrowUp":
           e.preventDefault();
           setHighlightedIndex((prev) =>
-            prev - columns >= 0
-              ? prev - columns
-              : totalItems - columns + (prev % columns)
+            prev - columns >= 0 ? prev - columns : totalItems - columns + (prev % columns)
           );
           break;
         case "Enter":
@@ -237,9 +231,7 @@ export function IconPicker({
           width: "280px",
         }}
       >
-        <div className="text-xs font-medium text-gray-500 mb-2 px-1">
-          Velg ikon
-        </div>
+        <div className="text-xs font-medium text-gray-500 mb-2 px-1">Velg ikon</div>
         <div className="grid grid-cols-5 gap-1">
           {AVAILABLE_ICONS.map((icon, index) => {
             const IconComponent = icon.Icon;
@@ -282,9 +274,10 @@ export function IconPicker({
           type="button"
           className={`
             flex items-center justify-center p-2 rounded-lg border transition-colors
-            ${isOpen
-              ? "border-blue-500 bg-blue-50 ring-2 ring-blue-200"
-              : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
+            ${
+              isOpen
+                ? "border-blue-500 bg-blue-50 ring-2 ring-blue-200"
+                : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
             }
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
           `}
@@ -300,12 +293,7 @@ export function IconPicker({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
       )}

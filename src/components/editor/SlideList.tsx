@@ -43,14 +43,11 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
     });
   }, [state.deck.slides]);
 
-  const handleDragStart = useCallback(
-    (e: React.DragEvent, index: number) => {
-      setDraggedIndex(index);
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/plain", String(index));
-    },
-    []
-  );
+  const handleDragStart = useCallback((e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", String(index));
+  }, []);
 
   const handleDragOver = useCallback(
     (e: React.DragEvent, index: number) => {
@@ -140,7 +137,12 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
             className="!text-gray-400 hover:!text-gray-600 hover:!bg-[#f0ede8] !p-1.5"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M12 4v16m8-8H4"
+              />
             </svg>
           </Button>
         </div>
@@ -160,11 +162,12 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
             onClick={() => actions.selectSlide(index)}
             className={`
               group relative rounded-xl cursor-pointer transition-all duration-200
-              ${index === state.selectedSlideIndex
-                ? "ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-[#faf8f5]"
-                : dragOverIndex === index
-                  ? "ring-2 ring-emerald-400/50 bg-emerald-500/10"
-                  : "hover:ring-1 hover:ring-gray-300"
+              ${
+                index === state.selectedSlideIndex
+                  ? "ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-[#faf8f5]"
+                  : dragOverIndex === index
+                    ? "ring-2 ring-emerald-400/50 bg-emerald-500/10"
+                    : "hover:ring-1 hover:ring-gray-300"
               }
               ${draggedIndex === index ? "opacity-50 scale-95" : ""}
             `}
@@ -174,7 +177,7 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
               className="aspect-video bg-white rounded-xl overflow-hidden relative shadow-md shadow-gray-200/50"
               style={{
                 width: THUMBNAIL_WIDTH,
-                height: THUMBNAIL_WIDTH * (9/16)
+                height: THUMBNAIL_WIDTH * (9 / 16),
               }}
             >
               {/* Scaled slide container */}
@@ -183,16 +186,12 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
                   width: SLIDE_WIDTH,
                   height: SLIDE_HEIGHT,
                   transform: `scale(${SCALE_FACTOR})`,
-                  transformOrigin: 'top left',
-                  pointerEvents: 'none', // Disable interactions in thumbnail
+                  transformOrigin: "top left",
+                  pointerEvents: "none", // Disable interactions in thumbnail
                 }}
               >
                 <ThemeProvider themeId={themeId} brandKit={brandKit}>
-                  <SlideRenderer
-                    slide={slide}
-                    editable={false}
-                    slideIndex={index}
-                  />
+                  <SlideRenderer slide={slide} editable={false} slideIndex={index} />
                 </ThemeProvider>
               </div>
 
@@ -209,9 +208,16 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
 
             {/* Violation indicator - ARTI Premium */}
             {slideViolations[index] && (
-              <div className="absolute top-1.5 left-1.5 p-1 bg-red-50 backdrop-blur-sm rounded-lg border border-red-200" title="Denne sliden har feil">
+              <div
+                className="absolute top-1.5 left-1.5 p-1 bg-red-50 backdrop-blur-sm rounded-lg border border-red-200"
+                title="Denne sliden har feil"
+              >
                 <svg className="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
             )}
@@ -221,10 +227,7 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
               {/* AI Actions (only shown when deckId is available and slide has violations) */}
               {deckId && slideViolations[index] && (
                 <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-md border border-gray-100">
-                  <AIActionsMenu
-                    deckId={deckId}
-                    slideIndex={index}
-                  />
+                  <AIActionsMenu deckId={deckId} slideIndex={index} />
                 </div>
               )}
               <button
@@ -233,7 +236,12 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
                 title="Dupliser"
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
                 </svg>
               </button>
               {state.deck.slides.length > 1 && (
@@ -242,8 +250,18 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
                   className="p-1.5 bg-white/95 backdrop-blur-sm rounded-lg shadow-md border border-gray-100 text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors"
                   title="Slett"
                 >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
                   </svg>
                 </button>
               )}
@@ -268,7 +286,12 @@ export function SlideList({ className = "", deckId }: SlideListProps) {
           onClick={handleAddSlide}
         >
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v16m8-8H4" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M12 4v16m8-8H4"
+            />
           </svg>
           Ny slide
         </Button>

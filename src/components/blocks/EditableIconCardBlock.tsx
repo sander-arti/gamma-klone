@@ -36,11 +36,7 @@ import {
   BarChart,
   type LucideIcon,
 } from "lucide-react";
-import {
-  BLOCK_CONSTRAINTS,
-  isApproachingLimit,
-  exceedsLimit,
-} from "@/lib/editor/constraints";
+import { BLOCK_CONSTRAINTS, isApproachingLimit, exceedsLimit } from "@/lib/editor/constraints";
 import { IconPicker, ColorSwatchPicker } from "@/components/ui";
 
 type EditableField = "text" | "description" | null;
@@ -147,10 +143,7 @@ interface EditableIconCardBlockProps {
   /** Enable inline editing mode */
   isEditing?: boolean;
   /** Callback when any field changes */
-  onFieldChange?: (
-    field: "icon" | "text" | "description" | "bgColor",
-    value: string
-  ) => void;
+  onFieldChange?: (field: "icon" | "text" | "description" | "bgColor", value: string) => void;
   /** Callback when editing ends */
   onBlur?: () => void;
   /** Callback when block is clicked */
@@ -339,23 +332,20 @@ export function EditableIconCardBlock({
   );
 
   // Handle paste
-  const handlePaste = useCallback(
-    (field: EditableField, e: React.ClipboardEvent) => {
-      e.preventDefault();
-      const maxLength = getMaxLength(field);
-      const ref = field === "text" ? textRef : descriptionRef;
+  const handlePaste = useCallback((field: EditableField, e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const maxLength = getMaxLength(field);
+    const ref = field === "text" ? textRef : descriptionRef;
 
-      const pastedText = e.clipboardData.getData("text/plain");
-      const currentText = ref.current?.textContent ?? "";
-      const selection = window.getSelection();
-      const selectedLength = selection?.toString().length ?? 0;
-      const availableSpace = maxLength - currentText.length + selectedLength;
-      const textToInsert = pastedText.slice(0, availableSpace);
+    const pastedText = e.clipboardData.getData("text/plain");
+    const currentText = ref.current?.textContent ?? "";
+    const selection = window.getSelection();
+    const selectedLength = selection?.toString().length ?? 0;
+    const availableSpace = maxLength - currentText.length + selectedLength;
+    const textToInsert = pastedText.slice(0, availableSpace);
 
-      document.execCommand("insertText", false, textToInsert);
-    },
-    []
-  );
+    document.execCommand("insertText", false, textToInsert);
+  }, []);
 
   const getFieldStyles = (field: EditableField, isFocused: boolean) => {
     if (isFocused) {
@@ -367,10 +357,7 @@ export function EditableIconCardBlock({
     return "";
   };
 
-  const renderCharCounter = (
-    field: "text" | "description",
-    currentLength: number
-  ) => {
+  const renderCharCounter = (field: "text" | "description", currentLength: number) => {
     const maxLength = getMaxLength(field);
     const isOver = exceedsLimit(currentLength, maxLength);
     const isApproaching = isApproachingLimit(currentLength, maxLength);
@@ -378,11 +365,7 @@ export function EditableIconCardBlock({
     return (
       <span
         className={`text-xs ml-2 ${
-          isOver
-            ? "text-red-500 font-medium"
-            : isApproaching
-              ? "text-amber-500"
-              : "text-gray-400"
+          isOver ? "text-red-500 font-medium" : isApproaching ? "text-amber-500" : "text-gray-400"
         }`}
       >
         {currentLength}/{maxLength}
@@ -509,9 +492,7 @@ export function EditableIconCardBlock({
           onClick={(e) => handleFieldClick("description", e)}
           onKeyDown={(e) => handleKeyDown("description", e)}
           onPaste={(e) => handlePaste("description", e)}
-          data-placeholder={
-            isEditing && !description ? "Legg til beskrivelse..." : undefined
-          }
+          data-placeholder={isEditing && !description ? "Legg til beskrivelse..." : undefined}
         >
           {description || ""}
         </div>

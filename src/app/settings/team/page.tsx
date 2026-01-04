@@ -33,9 +33,7 @@ export default function TeamSettingsPage() {
     setError(undefined);
 
     try {
-      const res = await fetch(
-        `/api/workspaces/${activeWorkspace.id}/members`
-      );
+      const res = await fetch(`/api/workspaces/${activeWorkspace.id}/members`);
 
       if (!res.ok) {
         throw new Error("Failed to fetch team members");
@@ -44,9 +42,7 @@ export default function TeamSettingsPage() {
       const data = await res.json();
       setMembers(data.members || []);
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to fetch team members"
-      );
+      setError(err instanceof Error ? err.message : "Failed to fetch team members");
     } finally {
       setIsLoading(false);
     }
@@ -62,14 +58,11 @@ export default function TeamSettingsPage() {
     if (!activeWorkspace) return;
 
     try {
-      const res = await fetch(
-        `/api/workspaces/${activeWorkspace.id}/members/${userId}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ role: newRole }),
-        }
-      );
+      const res = await fetch(`/api/workspaces/${activeWorkspace.id}/members/${userId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: newRole }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -78,28 +71,19 @@ export default function TeamSettingsPage() {
 
       await fetchMembers();
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Failed to change member role"
-      );
+      setError(err instanceof Error ? err.message : "Failed to change member role");
     }
   };
 
   const handleRemove = async (userId: string, memberEmail: string) => {
     if (!activeWorkspace) return;
-    if (
-      !confirm(
-        `Remove ${memberEmail} from this workspace? This action cannot be undone.`
-      )
-    )
+    if (!confirm(`Remove ${memberEmail} from this workspace? This action cannot be undone.`))
       return;
 
     try {
-      const res = await fetch(
-        `/api/workspaces/${activeWorkspace.id}/members/${userId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`/api/workspaces/${activeWorkspace.id}/members/${userId}`, {
+        method: "DELETE",
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -130,8 +114,7 @@ export default function TeamSettingsPage() {
             Manage team members and their roles in this workspace
           </p>
         </div>
-        {(activeWorkspace.role === "owner" ||
-          activeWorkspace.role === "admin") && (
+        {(activeWorkspace.role === "owner" || activeWorkspace.role === "admin") && (
           <button
             onClick={() => setShowInviteModal(true)}
             className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
@@ -158,14 +141,11 @@ export default function TeamSettingsPage() {
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
             <UserPlus className="w-6 h-6 text-gray-400" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
-            No team members yet
-          </h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">No team members yet</h3>
           <p className="text-gray-600 mb-6 max-w-sm mx-auto">
             Invite team members to collaborate on presentations
           </p>
-          {(activeWorkspace.role === "owner" ||
-            activeWorkspace.role === "admin") && (
+          {(activeWorkspace.role === "owner" || activeWorkspace.role === "admin") && (
             <button
               onClick={() => setShowInviteModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
@@ -189,8 +169,7 @@ export default function TeamSettingsPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Role
                 </th>
-                {(activeWorkspace.role === "owner" ||
-                  activeWorkspace.role === "admin") && (
+                {(activeWorkspace.role === "owner" || activeWorkspace.role === "admin") && (
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
@@ -211,14 +190,11 @@ export default function TeamSettingsPage() {
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
                         Owner
                       </span>
-                    ) : (activeWorkspace.role === "owner" ||
-                        activeWorkspace.role === "admin") &&
+                    ) : (activeWorkspace.role === "owner" || activeWorkspace.role === "admin") &&
                       member.role !== "owner" ? (
                       <select
                         value={member.role}
-                        onChange={(e) =>
-                          handleChangeRole(member.user_id, e.target.value)
-                        }
+                        onChange={(e) => handleChangeRole(member.user_id, e.target.value)}
                         className="px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       >
                         <option value="member">Member</option>
@@ -232,19 +208,15 @@ export default function TeamSettingsPage() {
                             : "bg-gray-100 text-gray-800"
                         }`}
                       >
-                        {member.role.charAt(0).toUpperCase() +
-                          member.role.slice(1)}
+                        {member.role.charAt(0).toUpperCase() + member.role.slice(1)}
                       </span>
                     )}
                   </td>
-                  {(activeWorkspace.role === "owner" ||
-                    activeWorkspace.role === "admin") && (
+                  {(activeWorkspace.role === "owner" || activeWorkspace.role === "admin") && (
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
                       {member.role !== "owner" && (
                         <button
-                          onClick={() =>
-                            handleRemove(member.user_id, member.users.email)
-                          }
+                          onClick={() => handleRemove(member.user_id, member.users.email)}
                           className="inline-flex items-center gap-1 text-red-600 hover:text-red-700"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -273,13 +245,7 @@ export default function TeamSettingsPage() {
   );
 }
 
-function InviteMemberModal({
-  workspaceId,
-  onClose,
-}: {
-  workspaceId: string;
-  onClose: () => void;
-}) {
+function InviteMemberModal({ workspaceId, onClose }: { workspaceId: string; onClose: () => void }) {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<"member" | "admin">("member");
   const [isLoading, setIsLoading] = useState(false);
@@ -318,9 +284,7 @@ function InviteMemberModal({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-md w-full p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Invite Team Member
-        </h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Invite Team Member</h2>
 
         {error && (
           <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -333,12 +297,8 @@ function InviteMemberModal({
             <p className="text-sm text-green-600 mb-2">{success}</p>
             {inviteUrl && (
               <div>
-                <p className="text-xs text-gray-600 mb-1">
-                  Invite URL (MVP - copy and share):
-                </p>
-                <code className="block p-2 bg-gray-100 rounded text-xs break-all">
-                  {inviteUrl}
-                </code>
+                <p className="text-xs text-gray-600 mb-1">Invite URL (MVP - copy and share):</p>
+                <code className="block p-2 bg-gray-100 rounded text-xs break-all">{inviteUrl}</code>
               </div>
             )}
           </div>
@@ -346,10 +306,7 @@ function InviteMemberModal({
 
         <div className="space-y-4 mb-6">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email Address
             </label>
             <input
@@ -364,10 +321,7 @@ function InviteMemberModal({
           </div>
 
           <div>
-            <label
-              htmlFor="role"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
               Role
             </label>
             <select
@@ -380,9 +334,7 @@ function InviteMemberModal({
               <option value="member">Member</option>
               <option value="admin">Admin</option>
             </select>
-            <p className="text-xs text-gray-500 mt-1">
-              Admins can invite and manage team members
-            </p>
+            <p className="text-xs text-gray-500 mt-1">Admins can invite and manage team members</p>
           </div>
         </div>
 

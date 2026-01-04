@@ -48,7 +48,4 @@ export const toggleFullscreenCommand: CommandDefinition = {
 /**
  * All view commands
  */
-export const viewCommands: CommandDefinition[] = [
-  showHelpCommand,
-  toggleFullscreenCommand,
-];
+export const viewCommands: CommandDefinition[] = [showHelpCommand, toggleFullscreenCommand];

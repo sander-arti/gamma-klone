@@ -105,9 +105,7 @@ export function DeckCard({
             {title}
           </h3>
         </Link>
-        <p className="text-sm text-gray-500 mt-1">
-          Oppdatert {formatDate(updatedAt)}
-        </p>
+        <p className="text-sm text-gray-500 mt-1">Oppdatert {formatDate(updatedAt)}</p>
       </div>
 
       {/* Actions (visible on hover) */}

@@ -162,12 +162,7 @@ interface ItemCounterProps {
 /**
  * ItemCounter displays the current item count for bullets or table rows.
  */
-export function ItemCounter({
-  current,
-  max,
-  min = 1,
-  className = "",
-}: ItemCounterProps) {
+export function ItemCounter({ current, max, min = 1, className = "" }: ItemCounterProps) {
   const { percentage, colorClass, status } = useMemo(() => {
     const pct = max > 0 ? Math.round((current / max) * 100) : 0;
 

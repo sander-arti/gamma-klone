@@ -7,12 +7,7 @@
 
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  type ReactNode,
-  type KeyboardEvent,
-} from "react";
+import { useEffect, useRef, type ReactNode, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 
 export interface ModalProps {
@@ -119,18 +114,12 @@ export function Modal({
         {(title || description) && (
           <div className="px-6 pt-6 pb-4">
             {title && (
-              <h2
-                id="modal-title"
-                className="text-lg font-semibold text-gray-900"
-              >
+              <h2 id="modal-title" className="text-lg font-semibold text-gray-900">
                 {title}
               </h2>
             )}
             {description && (
-              <p
-                id="modal-description"
-                className="mt-1 text-sm text-gray-500"
-              >
+              <p id="modal-description" className="mt-1 text-sm text-gray-500">
                 {description}
               </p>
             )}
@@ -138,15 +127,11 @@ export function Modal({
         )}
 
         {/* Body */}
-        <div className={`px-6 ${title || description ? "" : "pt-6"} pb-6`}>
-          {children}
-        </div>
+        <div className={`px-6 ${title || description ? "" : "pt-6"} pb-6`}>{children}</div>
 
         {/* Footer */}
         {footer && (
-          <div className="px-6 py-4 border-t border-[#e5e2dd] flex justify-end gap-3">
-            {footer}
-          </div>
+          <div className="px-6 py-4 border-t border-[#e5e2dd] flex justify-end gap-3">{footer}</div>
         )}
 
         {/* Close button - ARTI Premium */}

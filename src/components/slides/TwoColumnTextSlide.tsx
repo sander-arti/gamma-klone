@@ -41,15 +41,15 @@ export function TwoColumnTextSlide({
 
   // Container fills available space
   const containerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     flex: 1,
-    maxWidth: '100%',
+    maxWidth: "100%",
   };
 
   // Title section with proper spacing
   const titleSectionStyle: React.CSSProperties = {
-    marginBottom: 'var(--theme-spacing-section-gap, clamp(1.5rem, 3cqw, 2.5rem))',
+    marginBottom: "var(--theme-spacing-section-gap, clamp(1.5rem, 3cqw, 2.5rem))",
     flexShrink: 0,
   };
 
@@ -70,8 +70,8 @@ export function TwoColumnTextSlide({
         <div
           className={`grid ${gridClasses[variant] || gridClasses.equal} flex-1`}
           style={{
-            gap: 'var(--theme-spacing-lg, clamp(1.5rem, 3cqw, 2rem))',
-            alignContent: 'start',
+            gap: "var(--theme-spacing-lg, clamp(1.5rem, 3cqw, 2rem))",
+            alignContent: "start",
           }}
         >
           {contentBlockIndices.slice(0, 2).map((blockIndex) => (

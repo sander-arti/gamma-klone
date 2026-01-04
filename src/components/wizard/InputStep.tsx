@@ -66,9 +66,7 @@ export function InputStep({ onNext, initialData }: InputStepProps) {
   );
   const [language] = useState(initialData?.language ?? "no");
   const [themeId, setThemeId] = useState(initialData?.themeId ?? "nordic_light");
-  const [amount, setAmount] = useState<InputData["amount"]>(
-    initialData?.amount ?? "medium"
-  );
+  const [amount, setAmount] = useState<InputData["amount"]>(initialData?.amount ?? "medium");
 
   const selectedMode = TEXT_MODES.find((m) => m.id === textMode)!;
 
@@ -105,10 +103,7 @@ export function InputStep({ onNext, initialData }: InputStepProps) {
 
       {/* Input text */}
       <div>
-        <label
-          htmlFor="inputText"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
+        <label htmlFor="inputText" className="block text-sm font-medium text-gray-700 mb-2">
           {textMode === "generate" ? "Emne eller tema" : "Din tekst"}
         </label>
         <textarea
@@ -118,18 +113,14 @@ export function InputStep({ onNext, initialData }: InputStepProps) {
           placeholder={selectedMode.placeholder}
           className="w-full h-48 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
         />
-        <p className="mt-2 text-sm text-gray-500">
-          {inputText.length.toLocaleString()} tegn
-        </p>
+        <p className="mt-2 text-sm text-gray-500">{inputText.length.toLocaleString()} tegn</p>
       </div>
 
       {/* Options row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Theme */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Tema
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Tema</label>
           <select
             value={themeId}
             onChange={(e) => setThemeId(e.target.value)}
@@ -145,9 +136,7 @@ export function InputStep({ onNext, initialData }: InputStepProps) {
 
         {/* Amount */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Lengde
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Lengde</label>
           <div className="flex gap-2">
             {AMOUNTS.map((a) => (
               <button
@@ -170,24 +159,10 @@ export function InputStep({ onNext, initialData }: InputStepProps) {
 
       {/* Submit */}
       <div className="flex justify-end">
-        <Button
-          onClick={handleSubmit}
-          disabled={!inputText.trim()}
-          className="px-8"
-        >
+        <Button onClick={handleSubmit} disabled={!inputText.trim()} className="px-8">
           Neste: Se outline
-          <svg
-            className="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Button>
       </div>

@@ -47,9 +47,7 @@ export interface UseSlashMenuResult {
 // Hook
 // ============================================================================
 
-export function useSlashMenu(
-  options: UseSlashMenuOptions = {}
-): UseSlashMenuResult {
+export function useSlashMenu(options: UseSlashMenuOptions = {}): UseSlashMenuResult {
   const { onCommand, enabled = true } = options;
 
   const [isOpen, setIsOpen] = useState(false);

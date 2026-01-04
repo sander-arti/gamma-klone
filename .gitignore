@@ -55,3 +55,6 @@ prisma/.env
 # Logs
 *.log
 logs/
+
+# MCP config (contains secrets)
+.mcp.json

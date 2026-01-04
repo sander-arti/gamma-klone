@@ -49,9 +49,7 @@ export function FileDropZone({
     (file: File): string | null => {
       // Check file type
       if (!accept.includes(file.type as SupportedMimeType)) {
-        const acceptedFormats = accept
-          .map((mime) => MIME_TYPE_NAMES[mime])
-          .join(", ");
+        const acceptedFormats = accept.map((mime) => MIME_TYPE_NAMES[mime]).join(", ");
         return `Ugyldig filtype. Støttede formater: ${acceptedFormats}`;
       }
 
@@ -160,8 +158,8 @@ export function FileDropZone({
             isDragging
               ? "border-emerald-500 bg-emerald-50"
               : displayError
-              ? "border-red-300 bg-red-50"
-              : "border-gray-300 bg-white hover:border-emerald-400 hover:bg-gray-50"
+                ? "border-red-300 bg-red-50"
+                : "border-gray-300 bg-white hover:border-emerald-400 hover:bg-gray-50"
           }
           ${disabled || isUploading ? "cursor-not-allowed opacity-60" : "cursor-pointer"}
           focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2
@@ -180,11 +178,7 @@ export function FileDropZone({
             `}
           >
             {isUploading ? (
-              <svg
-                className="w-8 h-8 animate-spin"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-8 h-8 animate-spin" fill="none" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
                   cx="12"
@@ -200,12 +194,7 @@ export function FileDropZone({
                 />
               </svg>
             ) : (
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -221,15 +210,13 @@ export function FileDropZone({
             {isUploading
               ? "Laster opp..."
               : isDragging
-              ? "Slipp filen her"
-              : "Dra og slipp fil her, eller klikk"}
+                ? "Slipp filen her"
+                : "Dra og slipp fil her, eller klikk"}
           </p>
 
           {/* Format badges */}
           <div className="flex justify-center gap-2 mb-3">
-            {FORMAT_BADGES.filter((badge) =>
-              accept.includes(badge.mime)
-            ).map((badge) => (
+            {FORMAT_BADGES.filter((badge) => accept.includes(badge.mime)).map((badge) => (
               <span
                 key={badge.mime}
                 className={`px-2 py-0.5 rounded text-xs font-medium ${badge.color}`}

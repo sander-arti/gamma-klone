@@ -40,7 +40,8 @@ export function GoldenCTASlide({
 
   // Get actions from slotContent or slide blocks (max 3)
   // The bullets block has an `items` array property
-  const actions = slotContent?.items?.slice(0, 3).map((item) => item.text) ??
+  const actions =
+    slotContent?.items?.slice(0, 3).map((item) => item.text) ??
     (bulletsBlock?.items ?? []).slice(0, 3);
 
   return (

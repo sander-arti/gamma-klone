@@ -75,8 +75,8 @@ export function ThemeProvider({
       <div
         style={{
           ...style,
-          backgroundColor: 'var(--theme-color-background, #f8fafc)',
-          color: 'var(--theme-color-foreground, #0f172a)',
+          backgroundColor: "var(--theme-color-background, #f8fafc)",
+          color: "var(--theme-color-foreground, #0f172a)",
         }}
         className={`w-full h-full ${className}`}
       >

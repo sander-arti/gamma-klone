@@ -8,14 +8,7 @@
  */
 
 import { motion } from "framer-motion";
-import {
-  Camera,
-  Palette,
-  Shapes,
-  Box,
-  PenTool,
-  Sparkles,
-} from "lucide-react";
+import { Camera, Palette, Shapes, Box, PenTool, Sparkles } from "lucide-react";
 import type { ImageArtStyle } from "@/lib/schemas/deck";
 
 interface ArtStyleOption {
@@ -84,11 +77,7 @@ interface ArtStylePickerProps {
   disabled?: boolean;
 }
 
-export function ArtStylePicker({
-  value,
-  onChange,
-  disabled = false,
-}: ArtStylePickerProps) {
+export function ArtStylePicker({ value, onChange, disabled = false }: ArtStylePickerProps) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
       {ART_STYLES.map((style) => {
@@ -105,9 +94,10 @@ export function ArtStylePicker({
             whileTap={!disabled ? { scale: 0.98 } : undefined}
             className={`
               relative flex flex-col items-center p-4 rounded-xl border-2 transition-all
-              ${isSelected
-                ? "border-emerald-500 bg-emerald-50 shadow-lg"
-                : "border-gray-200 hover:border-gray-300 bg-white"
+              ${
+                isSelected
+                  ? "border-emerald-500 bg-emerald-50 shadow-lg"
+                  : "border-gray-200 hover:border-gray-300 bg-white"
               }
               ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
             `}
@@ -123,10 +113,12 @@ export function ArtStylePicker({
             </div>
 
             {/* Label */}
-            <span className={`
+            <span
+              className={`
               text-sm font-medium
               ${isSelected ? "text-emerald-700" : "text-gray-900"}
-            `}>
+            `}
+            >
               {style.label}
             </span>
 

@@ -18,12 +18,7 @@ export const executiveBriefTemplate: GoldenTemplate = {
   id: "executive_brief",
   name: "Executive Brief",
   description: "Konsis oppsummering for ledelse og beslutningstakere",
-  useCases: [
-    "Statusoppdateringer",
-    "Kvartalspresentasjoner",
-    "Prosjektsammendrag",
-    "Styremøter",
-  ],
+  useCases: ["Statusoppdateringer", "Kvartalspresentasjoner", "Prosjektsammendrag", "Styremøter"],
   slideCount: 5,
   defaultTheme: "golden",
   slots: [
@@ -32,8 +27,7 @@ export const executiveBriefTemplate: GoldenTemplate = {
       position: 1,
       slideType: "cover",
       layoutVariant: "centered",
-      purpose:
-        "Fang oppmerksomhet med kraftig tittel og profesjonelt bakgrunnsbilde",
+      purpose: "Fang oppmerksomhet med kraftig tittel og profesjonelt bakgrunnsbilde",
       constraints: {
         titleMaxChars: 60,
         bodyMaxChars: 120,
@@ -62,11 +56,7 @@ export const executiveBriefTemplate: GoldenTemplate = {
       example: {
         title: "Nøkkeltall",
         body: "Resultater fra siste kvartal viser solid fremgang",
-        items: [
-          "24% vekst",
-          "1.2M brukere",
-          "98% tilfredshet",
-        ],
+        items: ["24% vekst", "1.2M brukere", "98% tilfredshet"],
       },
     },
 
@@ -128,10 +118,7 @@ export const executiveBriefTemplate: GoldenTemplate = {
       example: {
         title: "Neste steg",
         body: "Vi inviterer til videre dialog og samarbeid",
-        items: [
-          "Godkjenn strategiplan innen 15. januar",
-          "Planlegg oppfølgingsmøte Q1",
-        ],
+        items: ["Godkjenn strategiplan innen 15. januar", "Planlegg oppfølgingsmøte Q1"],
       },
     },
   ],

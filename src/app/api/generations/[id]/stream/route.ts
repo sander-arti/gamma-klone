@@ -26,10 +26,7 @@ import { getGenerationJob } from "@/lib/db/generation-job";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id: generationId } = await params;
   console.log(`[SSE ${generationId}] Stream request received`);
 
@@ -51,13 +48,19 @@ export async function GET(
     const encoder = new TextEncoder();
 
     // For completed jobs, include the deckId and viewUrl so frontend can navigate
-    const eventData = job.status === "completed"
-      ? {
-          progress: 100,
-          deckId: job.deckId ?? undefined,
-          viewUrl: job.viewUrl ?? undefined,
-        }
-      : { error: { code: job.errorCode ?? "UNKNOWN", message: job.errorMessage ?? "Unknown error" } };
+    const eventData =
+      job.status === "completed"
+        ? {
+            progress: 100,
+            deckId: job.deckId ?? undefined,
+            viewUrl: job.viewUrl ?? undefined,
+          }
+        : {
+            error: {
+              code: job.errorCode ?? "UNKNOWN",
+              message: job.errorMessage ?? "Unknown error",
+            },
+          };
 
     const event = createStreamEvent(
       job.status === "completed" ? "generation_complete" : "generation_failed",
@@ -69,7 +72,7 @@ export async function GET(
       headers: {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache, no-transform",
-        "Connection": "keep-alive",
+        Connection: "keep-alive",
       },
     });
   }
@@ -93,9 +96,7 @@ export async function GET(
 
         // Send connected event
         controller.enqueue(
-          encoder.encode(
-            formatSSE(createStreamEvent("connected", generationId, { progress: 0 }))
-          )
+          encoder.encode(formatSSE(createStreamEvent("connected", generationId, { progress: 0 })))
         );
         console.log(`[SSE ${generationId}] Sent connected event`);
 
@@ -117,46 +118,39 @@ export async function GET(
 
         // Subscribe to generation events
         console.log(`[SSE ${generationId}] Subscribing to Redis channel...`);
-        const unsubscribe = await subscribeToGeneration(
-          subscriber,
-          generationId,
-          (event) => {
-            console.log(`[SSE ${generationId}] Received event: ${event.type}`);
-            if (isClosing) return;
+        const unsubscribe = await subscribeToGeneration(subscriber, generationId, (event) => {
+          console.log(`[SSE ${generationId}] Received event: ${event.type}`);
+          if (isClosing) return;
 
-            try {
-              controller.enqueue(encoder.encode(formatSSE(event)));
-              console.log(`[SSE ${generationId}] Forwarded event to client: ${event.type}`);
+          try {
+            controller.enqueue(encoder.encode(formatSSE(event)));
+            console.log(`[SSE ${generationId}] Forwarded event to client: ${event.type}`);
 
-              // Close stream when generation completes or fails
-              if (
-                event.type === "generation_complete" ||
-                event.type === "generation_failed"
-              ) {
-                isClosing = true;
-                console.log(`[SSE ${generationId}] Closing stream (${event.type})`);
-
-                // Clean up after a short delay to ensure client receives the final event
-                setTimeout(async () => {
-                  if (heartbeatInterval) {
-                    clearInterval(heartbeatInterval);
-                    heartbeatInterval = null;
-                  }
-                  unsubscribe();
-                  await closeConnection(subscriber);
-                  try {
-                    controller.close();
-                  } catch {
-                    // Already closed
-                  }
-                }, 100);
-              }
-            } catch {
-              // Client disconnected
+            // Close stream when generation completes or fails
+            if (event.type === "generation_complete" || event.type === "generation_failed") {
               isClosing = true;
+              console.log(`[SSE ${generationId}] Closing stream (${event.type})`);
+
+              // Clean up after a short delay to ensure client receives the final event
+              setTimeout(async () => {
+                if (heartbeatInterval) {
+                  clearInterval(heartbeatInterval);
+                  heartbeatInterval = null;
+                }
+                unsubscribe();
+                await closeConnection(subscriber);
+                try {
+                  controller.close();
+                } catch {
+                  // Already closed
+                }
+              }, 100);
             }
+          } catch {
+            // Client disconnected
+            isClosing = true;
           }
-        );
+        });
         console.log(`[SSE ${generationId}] Subscribed to channel`);
 
         // Handle client disconnect
@@ -195,7 +189,7 @@ export async function GET(
     headers: {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache, no-transform",
-      "Connection": "keep-alive",
+      Connection: "keep-alive",
       "X-Accel-Buffering": "no", // Disable nginx buffering
     },
   });

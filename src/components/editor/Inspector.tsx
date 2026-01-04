@@ -10,12 +10,42 @@ import { useEditor } from "./EditorProvider";
 import type { ThemeId } from "@/lib/schemas/deck";
 
 const THEMES: { id: ThemeId; name: string; description: string; gradient: string }[] = [
-  { id: "nordic_minimalism", name: "Nordic Minimalism", description: "Moderne AI-estetikk", gradient: "linear-gradient(135deg, #0f0f10, #6366f1)" },
-  { id: "nordic_light", name: "Nordic Light", description: "Lys og minimalistisk", gradient: "linear-gradient(135deg, #f8fafc, #64748b)" },
-  { id: "nordic_dark", name: "Nordic Dark", description: "Mørkt og elegant", gradient: "linear-gradient(135deg, #1a1a2e, #16213e)" },
-  { id: "corporate_blue", name: "Corporate Blue", description: "Profesjonell blå", gradient: "linear-gradient(135deg, #e8f0fe, #1a73e8)" },
-  { id: "minimal_warm", name: "Minimal Warm", description: "Varm og behagelig", gradient: "linear-gradient(135deg, #fef7f0, #c7a17a)" },
-  { id: "modern_contrast", name: "Modern Contrast", description: "Moderne kontrast", gradient: "linear-gradient(135deg, #fff, #111)" },
+  {
+    id: "nordic_minimalism",
+    name: "Nordic Minimalism",
+    description: "Moderne AI-estetikk",
+    gradient: "linear-gradient(135deg, #0f0f10, #6366f1)",
+  },
+  {
+    id: "nordic_light",
+    name: "Nordic Light",
+    description: "Lys og minimalistisk",
+    gradient: "linear-gradient(135deg, #f8fafc, #64748b)",
+  },
+  {
+    id: "nordic_dark",
+    name: "Nordic Dark",
+    description: "Mørkt og elegant",
+    gradient: "linear-gradient(135deg, #1a1a2e, #16213e)",
+  },
+  {
+    id: "corporate_blue",
+    name: "Corporate Blue",
+    description: "Profesjonell blå",
+    gradient: "linear-gradient(135deg, #e8f0fe, #1a73e8)",
+  },
+  {
+    id: "minimal_warm",
+    name: "Minimal Warm",
+    description: "Varm og behagelig",
+    gradient: "linear-gradient(135deg, #fef7f0, #c7a17a)",
+  },
+  {
+    id: "modern_contrast",
+    name: "Modern Contrast",
+    description: "Moderne kontrast",
+    gradient: "linear-gradient(135deg, #fff, #111)",
+  },
 ];
 
 const SLIDE_TYPES = [
@@ -88,9 +118,10 @@ export function Inspector({ className = "" }: InspectorProps) {
                 onClick={() => actions.updateDeckMeta({ themeId: theme.id })}
                 className={`
                   aspect-square rounded-lg transition-all duration-200
-                  ${state.deck.deck.themeId === theme.id
-                    ? "ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-[#faf8f5]"
-                    : "ring-1 ring-[#e5e2dd] hover:ring-gray-300"
+                  ${
+                    state.deck.deck.themeId === theme.id
+                      ? "ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-[#faf8f5]"
+                      : "ring-1 ring-[#e5e2dd] hover:ring-gray-300"
                   }
                 `}
                 title={theme.name}
@@ -176,7 +207,12 @@ export function Inspector({ className = "" }: InspectorProps) {
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-800 hover:bg-[#f0ede8] rounded-lg transition-colors duration-200"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
               </svg>
               Dupliser slide
             </button>
@@ -191,7 +227,12 @@ export function Inspector({ className = "" }: InspectorProps) {
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-500/80 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                />
               </svg>
               Slett slide
             </button>

@@ -117,9 +117,7 @@ function extractDecisions(text: string): string[] {
     const matches = [...text.matchAll(pattern)];
     decisions.push(...matches.map((m) => m[1].trim()).filter(Boolean));
   }
-  return [...new Set(decisions)]
-    .filter((d) => d.length > 5 && d.length < 150)
-    .slice(0, 5);
+  return [...new Set(decisions)].filter((d) => d.length > 5 && d.length < 150).slice(0, 5);
 }
 
 /**
@@ -140,9 +138,7 @@ function extractActionItems(text: string): string[] {
     const matches = [...text.matchAll(pattern)];
     items.push(...matches.map((m) => m[1]?.trim()).filter(Boolean));
   }
-  return [...new Set(items)]
-    .filter((i) => i && i.length > 5 && i.length < 100)
-    .slice(0, 6);
+  return [...new Set(items)].filter((i) => i && i.length > 5 && i.length < 100).slice(0, 6);
 }
 
 /**
@@ -251,7 +247,10 @@ function extractSequentialProcess(text: string): ProcessStep[] {
   const ordinalPatterns = [
     { pattern: /(?:først|for det første)[,:\s]+([^.!?\n]+)/gi, order: 1 },
     { pattern: /(?:deretter|så|dernest|for det andre)[,:\s]+([^.!?\n]+)/gi, order: 2 },
-    { pattern: /(?:til slutt|endelig|for det tredje|avslutningsvis)[,:\s]+([^.!?\n]+)/gi, order: 3 },
+    {
+      pattern: /(?:til slutt|endelig|for det tredje|avslutningsvis)[,:\s]+([^.!?\n]+)/gi,
+      order: 3,
+    },
   ];
 
   for (const { pattern, order } of ordinalPatterns) {
@@ -276,7 +275,8 @@ function extractComparisons(text: string): Comparison[] {
   const comparisons: Comparison[] = [];
 
   // Mønster 1: X vs Y, X kontra Y
-  const vsPattern = /([A-Za-zÆØÅæøå\s]{5,40})\s+(?:vs\.?|versus|kontra|mot)\s+([A-Za-zÆØÅæøå\s]{5,40})/gi;
+  const vsPattern =
+    /([A-Za-zÆØÅæøå\s]{5,40})\s+(?:vs\.?|versus|kontra|mot)\s+([A-Za-zÆØÅæøå\s]{5,40})/gi;
   let match;
   while ((match = vsPattern.exec(text)) !== null) {
     comparisons.push({
@@ -286,7 +286,8 @@ function extractComparisons(text: string): Comparison[] {
   }
 
   // Mønster 2: Før/Etter
-  const beforeAfterPattern = /(?:før|tidligere|gammel|nåværende)[:\s]+([^.!?\n]+?)\s+(?:etter|nå|ny|fremtidig|planlagt)[:\s]+([^.!?\n]+)/gi;
+  const beforeAfterPattern =
+    /(?:før|tidligere|gammel|nåværende)[:\s]+([^.!?\n]+?)\s+(?:etter|nå|ny|fremtidig|planlagt)[:\s]+([^.!?\n]+)/gi;
   while ((match = beforeAfterPattern.exec(text)) !== null) {
     comparisons.push({
       left: match[1].trim().slice(0, 50),

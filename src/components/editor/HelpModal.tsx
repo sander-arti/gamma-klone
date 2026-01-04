@@ -115,9 +115,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
     >
       <div className="space-y-6 max-h-[60vh] overflow-y-auto">
         {shortcutGroups.length === 0 ? (
-          <p className="text-sm text-gray-500 text-center py-8">
-            Ingen hurtigtaster registrert
-          </p>
+          <p className="text-sm text-gray-500 text-center py-8">Ingen hurtigtaster registrert</p>
         ) : (
           shortcutGroups.map((group) => (
             <div key={group.title}>
