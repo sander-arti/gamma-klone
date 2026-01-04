@@ -30,7 +30,7 @@ async function main() {
   });
 
   console.log('\n=== DATABASE SLIDES ===');
-  deck.slides.forEach((slide, i) => {
+  deck.slides.forEach((slide: { position: number; type: string }, i: number) => {
     console.log(`${i + 1}. [${slide.type}] position=${slide.position}`);
   });
 
