@@ -4,27 +4,6 @@
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "regions": ["iad1"],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
-      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
-      "SUPABASE_SERVICE_ROLE_KEY": "@supabase-service-role-key",
-      "DATABASE_URL": "@database-url",
-      "REDIS_URL": "@redis-url",
-      "OPENAI_API_KEY": "@openai-api-key",
-      "GEMINI_API_KEY": "@gemini-api-key",
-      "S3_ENDPOINT": "@s3-endpoint",
-      "S3_ACCESS_KEY": "@s3-access-key",
-      "S3_SECRET_KEY": "@s3-secret-key",
-      "S3_BUCKET": "@s3-bucket",
-      "APP_SECRET": "@app-secret",
-      "NEXT_PUBLIC_APP_URL": "@app-url",
-      "NEXT_PUBLIC_BASE_URL": "@base-url"
-    }
-  },
   "headers": [
     {
       "source": "/api/(.*)",
