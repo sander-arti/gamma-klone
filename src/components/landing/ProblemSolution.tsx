@@ -19,7 +19,7 @@ const problems: ProblemItem[] = [
     solution: "Visuelt hierarki med balansert innhold",
   },
   {
-    problem: "Ma redesigne alt manuelt etterpå",
+    problem: "Må redesigne alt manuelt etterpå",
     solution: "Klart for presentasjon med en gang",
   },
   {
@@ -27,7 +27,7 @@ const problems: ProblemItem[] = [
     solution: "AI-genererte bilder som passer innholdet",
   },
   {
-    problem: "Export til PowerPoint er odelagt",
+    problem: "Eksport til PowerPoint er ødelagt",
     solution: "Redigerbar PPTX som faktisk fungerer",
   },
 ];
@@ -42,10 +42,10 @@ export function ProblemSolution() {
             <span className="text-sm font-medium text-red-700">Kjenner du deg igjen?</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Generell AI lager darlige presentasjoner
+            Generell AI lager dårlige presentasjoner
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ChatGPT og andre verktøy er gode på mye, men presentasjoner? Ikke sa mye. ARTI Slides er
+            ChatGPT og andre verktøy er gode på mye, men presentasjoner? Ikke så mye. ARTI Slides er
             bygget for en ting: presentasjoner som imponerer.
           </p>
         </div>
@@ -148,7 +148,7 @@ export function ProblemSolution() {
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
           <p className="text-gray-500 text-sm">
-            Designet av nordmenn, for nordmenn. Forstar norsk kontekst og sprak.
+            Designet av nordmenn, for nordmenn. Forstår norsk kontekst og språk.
           </p>
         </div>
       </div>

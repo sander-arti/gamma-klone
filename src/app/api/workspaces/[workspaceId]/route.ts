@@ -7,13 +7,16 @@ const UpdateWorkspaceSchema = z.object({
 });
 
 /**
- * PATCH /api/workspaces/[id]
+ * PATCH /api/workspaces/[workspaceId]
  * Update workspace name
  * Only owners and admins can update
  */
-export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ workspaceId: string }> }
+) {
   try {
-    const { id } = await params;
+    const { workspaceId } = await params;
     const supabase = await createClient();
     const {
       data: { user },
@@ -42,7 +45,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { data: member } = await supabase
       .from("workspace_members")
       .select("role")
-      .eq("workspace_id", id)
+      .eq("workspace_id", workspaceId)
       .eq("user_id", user.id)
       .single();
 
@@ -57,7 +60,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { error } = await supabase
       .from("workspaces")
       .update({ name, updated_at: new Date().toISOString() })
-      .eq("id", id);
+      .eq("id", workspaceId);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });
@@ -71,16 +74,16 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 }
 
 /**
- * DELETE /api/workspaces/[id]
+ * DELETE /api/workspaces/[workspaceId]
  * Delete workspace
  * Only owners can delete
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ workspaceId: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { workspaceId } = await params;
     const supabase = await createClient();
     const {
       data: { user },
@@ -94,7 +97,7 @@ export async function DELETE(
     const { data: member } = await supabase
       .from("workspace_members")
       .select("role")
-      .eq("workspace_id", id)
+      .eq("workspace_id", workspaceId)
       .eq("user_id", user.id)
       .single();
 
@@ -103,7 +106,7 @@ export async function DELETE(
     }
 
     // Delete workspace (cascade will delete all related data via FK constraints)
-    const { error } = await supabase.from("workspaces").delete().eq("id", id);
+    const { error } = await supabase.from("workspaces").delete().eq("id", workspaceId);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });

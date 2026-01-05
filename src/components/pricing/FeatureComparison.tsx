@@ -16,7 +16,7 @@ interface FeatureRow {
 
 const features: FeatureRow[] = [
   {
-    feature: "Presentasjoner per maned",
+    feature: "Presentasjoner per måned",
     free: "3",
     pro: "Ubegrenset",
     team: "Ubegrenset",

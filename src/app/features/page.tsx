@@ -31,7 +31,7 @@ interface Feature {
 const slideTypes: Feature[] = [
   {
     title: "Tittel-slides",
-    description: "Imponerende aapningsslides med tittel, undertittel og visuell effekt.",
+    description: "Imponerende åpningsslides med tittel, undertittel og visuell effekt.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
@@ -87,7 +87,7 @@ const slideTypes: Feature[] = [
   },
   {
     title: "Statistikk",
-    description: "Vis tall og metrikker på en visuelt slaende mate.",
+    description: "Vis tall og metrikker på en visuelt slående måte.",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
@@ -317,7 +317,7 @@ export default function FeaturesPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Fleksibel input</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Start fra der du er. Tre mater å komme i gang på.
+              Start fra der du er. Tre måter å komme i gang på.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

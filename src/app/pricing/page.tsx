@@ -31,7 +31,7 @@ const tiers: PricingTier[] = [
     period: "/mnd",
     description: "Perfekt for å prøve ARTI Slides og lage enkle presentasjoner.",
     features: [
-      "3 presentasjoner per maned",
+      "3 presentasjoner per måned",
       "Grunnleggende slide-typer",
       "2 designtemaer",
       "PDF-eksport",
@@ -154,7 +154,7 @@ export default function PricingPage() {
             Enkel og transparent prising
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Velg planen som passer for deg. Oppgrader, nedgrader eller avbryt nar som helst.
+            Velg planen som passer for deg. Oppgrader, nedgrader eller avbryt når som helst.
           </p>
         </div>
       </section>
@@ -190,7 +190,7 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Klar til å komme i gang?</h2>
           <p className="text-lg text-emerald-100 mb-8">
-            Prove gratis i dag - ingen kredittkort nødvendig.
+            Prøv gratis i dag - ingen kredittkort nødvendig.
           </p>
           <Link
             href="/new"
@@ -250,7 +250,7 @@ export default function PricingPage() {
                 href="/terms"
                 className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
               >
-                Vilkar
+                Vilkår
               </Link>
               <Link
                 href="/contact"

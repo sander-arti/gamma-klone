@@ -145,7 +145,7 @@ export function GenerateCard() {
     <CreateModeCard
       mode="generate"
       title="Generer"
-      description="Lag en presentasjon fra et emne eller en kort beskrivelse. AI-en gjor resten."
+      description="Lag en presentasjon fra et emne eller en kort beskrivelse. AI-en gjør resten."
       href="/new?mode=generate"
       gradient="from-emerald-500/5 to-emerald-600/5"
       icon={
